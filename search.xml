@@ -5263,19 +5263,23 @@ $$\text{Information gain}(i) = \text{Entropy of parent table}~D~-\text{Sum}(\dfr
 <p>即父亲节点的信息熵减去子节点上样本熵的加权平均数。在 ID3 算法中，通过测量各种切分方案的信息增益，选择具有最大信息增益的切分方式，即可确定决策树上这一个父亲节点的切分。</p>
 <h4 id="基尼系数（Gini-index）"><a class="header-anchor" href="#基尼系数（Gini-index）">¶</a>基尼系数（Gini index）</h4>
 <h4 id="剪枝处理（pruning）"><a class="header-anchor" href="#剪枝处理（pruning）">¶</a>剪枝处理（pruning）</h4>
-<h3 id="Support-Vector-Machines"><a class="header-anchor" href="#Support-Vector-Machines">¶</a>Support Vector Machines</h3>
-<h3 id="Neural-Networks"><a class="header-anchor" href="#Neural-Networks">¶</a>Neural Networks</h3>
-<h2 id="Unsupervised-Learning-and-Preprocessing"><a class="header-anchor" href="#Unsupervised-Learning-and-Preprocessing">¶</a>Unsupervised Learning and Preprocessing</h2>
-<h3 id="Types-of-Unsupervised-Learning"><a class="header-anchor" href="#Types-of-Unsupervised-Learning">¶</a>Types of Unsupervised Learning</h3>
-<h3 id="Preprocessing-and-Scaling"><a class="header-anchor" href="#Preprocessing-and-Scaling">¶</a>Preprocessing and Scaling</h3>
-<h3 id="Clustering"><a class="header-anchor" href="#Clustering">¶</a>Clustering</h3>
+<h3 id="支持向量机（Support-Vector-Machines）"><a class="header-anchor" href="#支持向量机（Support-Vector-Machines）">¶</a>支持向量机（Support Vector Machines）</h3>
+<h3 id="神经网络（Neural-Networks）"><a class="header-anchor" href="#神经网络（Neural-Networks）">¶</a>神经网络（Neural Networks）</h3>
+<p>人工神经网络<br>
+前馈神经网络<br>
+BP 神经网络<br>
+卷积神经网络CNN<br>
+循环神经网络RNN</p>
 <hr>
 <p>以上的总结中有的来自下面的书籍或文章：</p>
 <p>[1] 机器学习 / 周志华著. 北京：清华大学出版社，2016<br>
 [2] 概率导论 /（美）伯特瑟卡斯（Dimitri P．Bertsekas）、齐齐克利斯（John N．Tsitsiklis）著，郑忠国、童行伟译<br>
 [3] CS229 Lecture notes / Andrew Ng<br>
 [4] <a href="https://www.ruanx.net/ml-review/" target="_blank" rel="noopener">机器学习复习笔记</a> / Ruan Xingzhi<br>
-[5] <a href="https://blog.csdn.net/u012328159/article/details/70184415" target="_blank" rel="noopener">决策树（decision tree）(一)——构造决策树方法</a> / 天泽28</p>
+[5] <a href="https://blog.csdn.net/u012328159/article/details/70184415" target="_blank" rel="noopener">决策树（decision tree）(一)——构造决策树方法</a> / 天泽28<br>
+[6] <a href="https://blog.csdn.net/u012328159/article/details/79285214" target="_blank" rel="noopener">决策树（decision tree）(二)——剪枝</a> / 天泽28<br>
+[7] <a href="https://blog.csdn.net/u012328159/article/details/79396893" target="_blank" rel="noopener">决策树（decision tree）(三)——连续值处理</a> / 天泽28<br>
+[8] <a href="https://blog.csdn.net/u012328159/article/details/79413610" target="_blank" rel="noopener">决策树（decision tree）(四)——缺失值处理</a> / 天泽28</p>
 ]]></content>
       <tags>
         <tag>学习笔记</tag>
