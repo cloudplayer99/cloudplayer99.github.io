@@ -5133,9 +5133,9 @@ $$
 \dfrac{\partial J(\theta)}{\partial \theta} = \dfrac{\partial }{\partial \theta}\dfrac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y}) = 0
 $$
 <p>方程化简</p>
-$$X X^T \theta = X^T \vec{y}$$
+$$X^T X \theta = X^T \vec{y}$$
 <p>于是我们得到了最小化 $J(\theta)$ 的 $\theta$ 最优解的闭式解</p>
-$$\theta = (X X^T)^{-1} X^T \vec{y}$$
+$$\theta = (X^T X)^{-1} X^T \vec{y}$$
 <h4 id="逻辑回归（Logistic-Regression）"><a class="header-anchor" href="#逻辑回归（Logistic-Regression）">¶</a>逻辑回归（Logistic Regression）</h4>
 <p>Logistic Regression is used when the dependent variable(target) is categorical.</p>
 <p>Data is fit into linear regression model, which then be acted upon by a logistic function predicting the target categorical dependent variable.</p>
