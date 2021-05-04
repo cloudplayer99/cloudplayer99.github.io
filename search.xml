@@ -6642,7 +6642,7 @@ $S/N$：存在于信道中的信噪比。</p>
 ]]></content>
       <tags>
         <tag>学习笔记</tag>
-        <tag>通信技术</tag>
+        <tag>通信原理与技术</tag>
       </tags>
   </entry>
   <entry>
@@ -7304,6 +7304,392 @@ CTI 中断（UnIIR[3:1]=110）是一个第二优先级中断，当 UARTn Rx FIFO
       <tags>
         <tag>DIGITAL</tag>
         <tag>ARM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一些机器学习问题的数学求解参考</title>
+    <url>/2021/05/03/%E4%B8%80%E4%BA%9B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%AD%A6%E6%B1%82%E8%A7%A3%E5%8F%82%E8%80%83/</url>
+    <content><![CDATA[<p>本文将要介绍的这些问题涉及到的机器学习方法如下</p>
+<blockquote>
+<p>线性回归<br>
+逻辑回归<br>
+朴素贝叶斯分类器<br>
+决策树<br>
+对偶问题<br>
+支持向量机<br>
+BP神经网络</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="多元线性回归求解"><a class="header-anchor" href="#多元线性回归求解">¶</a>多元线性回归求解</h2>
+<p>多元线性回归试图学得 $h(x^{(i)}) = \sum\limits^{n}_{j=0} \theta_j x^{(i)}_j $，$\text{where } x^{(i)}_0 = 1$，使得 $h(x^{(i)}) \simeq y^{(i)}$，其中，$j = 1,2,…,n$，$n$ 为样本的特征数，$i = 1,2,…,m$，$m$ 为训练集的样本个数，采用最小二乘法，将代价函数矩阵化并对其求导，令导数等于 $0$，化简得到最小二乘估计的正规方程为</p>
+$$\boldsymbol{X}^\mathrm{T} \boldsymbol{X} \boldsymbol{\theta} = \boldsymbol{X}^\mathrm{T} \boldsymbol{y}$$
+<p>求解正规方程，得到最终学得的多元线性回归模型的参数为</p>
+$$\boldsymbol{\theta} = (\boldsymbol{X}^\mathrm{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathrm{T} \boldsymbol{y}$$
+<p>其中，矩阵 $\boldsymbol{X}$ 与 矩阵 $\boldsymbol{y}$ 的结构为</p>
+$$
+\boldsymbol{X}=
+\begin{bmatrix}
+x_0^{(1)} & x_1^{(1)} & \cdots & x_n^{(1)} \\
+x_0^{(2)} & x_1^{(2)} & \cdots & x_n^{(2)} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_0^{(m)} & x_1^{(m)} & \cdots & x_n^{(m)} \\
+\end{bmatrix}
+,
+~~
+\boldsymbol{y} =
+\begin{bmatrix}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+y^{(m)} 
+\end{bmatrix}
+$$
+<p><strong>矩阵求逆</strong></p>
+<p>矩阵求逆常用的有三种方法，分别为待定系数法，初等行变换法，伴随矩阵法</p>
+<p>待定系数法：<br>
+待定逆矩阵的所有元素，将原矩阵与逆矩阵作矩阵乘法，使其结果为单位矩阵</p>
+<p>初等行变换法：<br>
+利用初等行变换，将 $(\boldsymbol A, \boldsymbol E)$ 变换为 $(\boldsymbol E, \boldsymbol B)$，矩阵 $\boldsymbol B$ 即为 $\boldsymbol A^{-1}$</p>
+<p>伴随矩阵法：<br>
+利用公式 $\boldsymbol A^{-1} = \dfrac{1}{|\boldsymbol A|} \boldsymbol A^{*}$ 求得逆矩阵，其中伴随矩阵 $\boldsymbol A^{*} = [(-1)^{i+j}M_{ij}]^{\mathrm{T}}$，$M$ 为矩阵 $\boldsymbol A$ 中元素 $a_{ij}$ 的余子式</p>
+<p><strong>问题 1</strong></p>
+<p>给定某大学若干名学生身高（Height，单位：英寸 inch）与体重（Weight，单位：磅 pound）的数据，要求根据样本数据求得以身高预测体重的线性回归模型，并根据另一位同学的身高预测出他/她的体重（为了简化运算，给出示例，此处为单变量线性回归）</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>$i$</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Height/inch</td>
+<td>$x_i$</td>
+<td>63</td>
+<td>64</td>
+<td>66</td>
+<td>69</td>
+<td>69</td>
+<td>71</td>
+<td>71</td>
+<td>72</td>
+<td>73</td>
+<td>75</td>
+</tr>
+<tr>
+<td>Weight/pound</td>
+<td>$y_i$</td>
+<td>127</td>
+<td>121</td>
+<td>142</td>
+<td>157</td>
+<td>162</td>
+<td>156</td>
+<td>169</td>
+<td>165</td>
+<td>181</td>
+<td>208</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>将这 $10$ 组数据代入多元线性回归模型的参数公式进行计算，注意：$x^{(i)}_0 = 1$</p>
+<p>根据数据得到</p>
+$$
+\boldsymbol X = 
+\begin{bmatrix}
+1 & 63 \\ 
+1 & 69 \\ 
+\vdots & \vdots \\
+1 & 75 
+\end{bmatrix}
+,
+~~
+\boldsymbol X^{\mathrm{T}} =
+\begin{bmatrix}
+1 & 1 & \cdots & 1 \\ \\
+63 & 69 & \cdots & 75
+\end{bmatrix}
+,
+~~
+\boldsymbol{y} =
+\begin{bmatrix}
+127 \\
+121 \\
+\vdots \\
+208
+\end{bmatrix}
+$$
+<p>作矩阵乘法</p>
+$$
+\boldsymbol{X}^\mathrm{T} \boldsymbol{X} =
+\begin{bmatrix}
+10 & 693 \\ \\
+693 & 48163
+\end{bmatrix}
+$$
+<p>对矩阵求逆</p>
+$$
+(\boldsymbol{X}^\mathrm{T} \boldsymbol{X})^{-1} =
+\dfrac{1}{10 \times 48163 - 693^2}
+\begin{bmatrix}
+48163 & -693 \\ \\
+-693 & 10
+\end{bmatrix}
+= \dfrac{1}{1381}
+\begin{bmatrix}
+48163 & -693 \\ \\
+-693 & 10
+\end{bmatrix}
+$$
+<p>两次矩阵乘法</p>
+$$
+(\boldsymbol{X}^\mathrm{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathrm{T} =
+\dfrac{1}{1381}
+\begin{bmatrix}
+4504 & 3811 & \cdots & -3812 \\ \\
+-63 & -53 & \cdots & 57
+\end{bmatrix}
+$$
+<br>
+$$
+\boldsymbol\theta =
+(\boldsymbol{X}^\mathrm{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathrm{T} \boldsymbol{y} =
+\dfrac{1}{1381}
+\begin{bmatrix}
+-368084 \\ \\
+8476
+\end{bmatrix}=
+\begin{bmatrix}
+-266.5344 \\ \\
+6.1376
+\end{bmatrix}
+$$
+<p>求得结果</p>
+<p>$$<br>
+w = -266.5344 + 6.1376 \cdot h<br>
+$$</p>
+<p>其中，$w$ 代表体重，$h$ 代表身高</p>
+<h2 id="二分类逻辑回归问题求解"><a class="header-anchor" href="#二分类逻辑回归问题求解">¶</a>二分类逻辑回归问题求解</h2>
+<p>设二分类问题的输出标记 $y \in \{0, 1\}$，用 $\text{sigmoid}$ 函数将线性回归模型的预测值转化为 $(0,1)$ 之间的值，即得到逻辑回归模型，可以认为逻辑回归模型的预测值是可能为 “1” 情况或者 “0” 情况的概率，若该概率大于 $0.5$ 即判定模型预测结果为其对应的情况</p>
+<p>$\text{sigmoid}$ 函数</p>
+$$\text{sigmoid}(z) = \dfrac{1}{1 + e^{-z}}$$
+<p>逻辑回归预测模型为</p>
+$$h_\theta(x) = g(\theta^T x) = \dfrac{1}{1 + e^{-\theta^T x}}$$
+<p>我们选择用梯度下降法求得最大似然估计中 $\theta$ 的最优解，其迭代一次的操作为</p>
+<p>（1）$\boldsymbol H = \text{sigmoid}(\boldsymbol X \cdot \boldsymbol \theta)$</p>
+<p>（2）$\boldsymbol\nabla = \boldsymbol X^{\mathrm{T}} (\boldsymbol H - \boldsymbol Y)$</p>
+<p>（3）$\boldsymbol \theta := \boldsymbol \theta - \alpha \cdot \boldsymbol\nabla$</p>
+<p>其中，$\alpha$ 为预设的学习率，通常为 $0.01$、$0.001$ 等值</p>
+<p>各矩阵的结构分别为</p>
+$$
+\boldsymbol{X}_{m \times (n+1)} =
+\begin{bmatrix}
+x_0^{(1)} & x_1^{(1)} & \cdots & x_n^{(1)} \\
+x_0^{(2)} & x_1^{(2)} & \cdots & x_n^{(2)} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_0^{(m)} & x_1^{(m)} & \cdots & x_n^{(m)} \\
+\end{bmatrix}
+,
+~~
+\boldsymbol{Y}_{m \times 1} =
+\begin{bmatrix}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+y^{(m)} 
+\end{bmatrix}
+$$
+<br>
+$$
+\boldsymbol{H}_{m \times 1} =
+\begin{bmatrix}
+H^{(1)} \\
+H^{(2)} \\
+\vdots \\
+H^{(m)} 
+\end{bmatrix}
+,
+~~
+~~
+~~
+~~
+\boldsymbol{\theta}_{(n+1) \times 1} =
+\begin{bmatrix}
+\theta_0 \\
+\theta_1 \\
+\vdots \\
+\theta_n 
+\end{bmatrix}
+$$
+<p><strong>问题 2</strong></p>
+<p>给定某大学若干学生的 GPA 数值与其保研情况（只有 “是” 或 “否” 两种情况），请给出基于这些数据的逻辑回归模型，并根据该模型与另一位同学的 GPA 来预测他/她是否能够保研</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>$i$</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPA</td>
+<td>$x_i$</td>
+<td>3.81</td>
+<td>3.70</td>
+<td>3.67</td>
+<td>3.63</td>
+<td>3.56</td>
+<td>3.45</td>
+<td>3.35</td>
+<td>3.18</td>
+<td>2.77</td>
+<td>2.5</td>
+</tr>
+<tr>
+<td>保研情况</td>
+<td>是/否</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>是/否对应1/0</td>
+<td>$y_i$</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>我们当然不会用梯度下降法手动迭代成千上万次直至收敛，但是我们可以聚焦于其中的一次迭代过程</p>
+<p>根据数据得到</p>
+$$
+\boldsymbol X = 
+\begin{bmatrix}
+1 & 3.81 \\ 
+1 & 3.70 \\
+1 & 3.67 \\
+\vdots & \vdots \\
+1 & 2.50 
+\end{bmatrix}
+,
+~~
+\boldsymbol{Y} =
+\begin{bmatrix}
+1 \\
+1 \\
+0 \\
+\vdots \\
+0 
+\end{bmatrix}
+$$
+<p>设初始的 $\boldsymbol\theta$ 矩阵为</p>
+$$
+\boldsymbol{\theta} =
+\begin{bmatrix}
+0 \\ \\
+0 
+\end{bmatrix}
+$$
+<p>则有</p>
+$$
+\boldsymbol X \cdot \boldsymbol{\theta} =
+\begin{bmatrix}
+0 \\
+0 \\
+\vdots \\
+0 
+\end{bmatrix}
+,
+~~
+~~
+~~
+~~
+\boldsymbol H =
+\begin{bmatrix}
+0.5 \\ 
+0.5 \\ 
+\vdots \\
+0.5
+\end{bmatrix}
+$$
+<br>
+$$
+\boldsymbol\nabla = \boldsymbol X^{\mathrm{T}} (\boldsymbol H - \boldsymbol Y) =
+\begin{bmatrix}
+2.00 \\ \\
+5.67
+\end{bmatrix}
+$$
+<p>设学习率 $\alpha$ 为 $0.01$，得到更新的 $\boldsymbol\theta$ 矩阵为</p>
+$$
+\boldsymbol{\theta} =
+\begin{bmatrix}
+-0.02000 \\ \\
+-0.05670 
+\end{bmatrix}
+$$
+<p>在计算机中迭代一百万次后得到 $\boldsymbol\theta^{\mathrm{T}} = \begin{bmatrix}-82.78829 & 22.73134 \end{bmatrix}$，此时若有一位同学的GPA为 $3.60$，根据此逻辑回归模型有</p>
+$$\text{hypothesis} = \dfrac{1}{1 + e^{-\theta^T x}} \approx 0.27779$$
+<p>可以预测，该同学不能保研</p>
+]]></content>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通信蒟蒻面对LLL最后的挣扎</title>
+    <url>/2021/05/03/%E9%80%9A%E4%BF%A1%E8%92%9F%E8%92%BB%E9%9D%A2%E5%AF%B9LLL%E6%9C%80%E5%90%8E%E7%9A%84%E6%8C%A3%E6%89%8E/</url>
+    <content><![CDATA[<h1>通信电子电路</h1>
+<a id="more"></a>
+<h2 id="小信号调谐放大器"><a class="header-anchor" href="#小信号调谐放大器">¶</a>小信号调谐放大器</h2>
+<h2 id="高频功率放大器"><a class="header-anchor" href="#高频功率放大器">¶</a>高频功率放大器</h2>
+<h2 id="正弦波振荡器"><a class="header-anchor" href="#正弦波振荡器">¶</a>正弦波振荡器</h2>
+<h2 id="振幅调制与解调"><a class="header-anchor" href="#振幅调制与解调">¶</a>振幅调制与解调</h2>
+<h2 id="角度调制与解调"><a class="header-anchor" href="#角度调制与解调">¶</a>角度调制与解调</h2>
+<h2 id="变频器"><a class="header-anchor" href="#变频器">¶</a>变频器</h2>
+<h2 id="锁相环路及其他反馈控制电路"><a class="header-anchor" href="#锁相环路及其他反馈控制电路">¶</a>锁相环路及其他反馈控制电路</h2>
+]]></content>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>通信原理与技术</tag>
       </tags>
   </entry>
 </search>
