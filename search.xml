@@ -5167,9 +5167,9 @@ $$
 \end{array}
 $$
 <p>最大化 $ℓ(\theta)$ 等价于最小化 $-ℓ(\theta)$，可以使用经典的数值优化算法如梯度下降法（gradient descent）或者牛顿法（Newton method），来求得其最优解，这里以梯度下降法为例，其迭代公式为</p>
-$$\theta := \theta + \alpha \nabla_\thetaℓ(\theta).$$
+$$\theta := \theta - \alpha \nabla_\thetaℓ(\theta).$$
 <p>化简得</p>
-$$\theta := \theta + \alpha \big( y^{(i)} - h_\theta(x^{(i)}) \big)x_j^{(i)}$$
+$$\theta := \theta - \alpha \big(y^{(i)} - h_\theta(x^{(i)}) \big)x_j^{(i)}$$
 <h3 id="朴素贝叶斯分类器（Naive-Bayes-Classifiers"><a class="header-anchor" href="#朴素贝叶斯分类器（Naive-Bayes-Classifiers">¶</a>朴素贝叶斯分类器（Naïve Bayes Classifiers)</h3>
 <h4 id="贝叶斯准则（Bayes-Rule）"><a class="header-anchor" href="#贝叶斯准则（Bayes-Rule）">¶</a>贝叶斯准则（Bayes Rule）</h4>
 <p>贝叶斯准则是关于随机事件 $A$ 和 $B$ 的条件概率和边缘概率的。</p>
