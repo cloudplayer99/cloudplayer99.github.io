@@ -7668,6 +7668,137 @@ $$
 <p>在计算机中迭代一百万次后得到 $\boldsymbol\theta^{\mathrm{T}} = \begin{bmatrix}-82.78829 & 22.73134 \end{bmatrix}$，此时若有一位同学的GPA为 $3.60$，根据此逻辑回归模型有</p>
 $$\text{hypothesis} = \dfrac{1}{1 + e^{-\theta^T x}} \approx 0.27779$$
 <p>可以预测，该同学不能保研</p>
+<h2 id="运用贝叶斯判定准则进行分类"><a class="header-anchor" href="#运用贝叶斯判定准则进行分类">¶</a>运用贝叶斯判定准则进行分类</h2>
+<p>对于分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。假设有 $K$ 种可能的类别标记，即 $\gamma = \{ C_1, C_2, ... , C_K \}$，那么最小化分类器错误率的贝叶斯最优分类器为</p>
+$$
+h(\boldsymbol x) = \mathop{\arg\max}_{k \in \{ 1, \dots, K \}} \mathrm P(C_k ~|~ \boldsymbol x)
+$$
+<p>即对每个样本 $\boldsymbol x$，选择能使后验概率 $\mathrm P(C_k ~|~ \boldsymbol x)$ 最大的类别标记</p>
+<p>假设特征条件之间相互独立，上式基于贝叶斯公式推导得到的贝叶斯判定准则为</p>
+$$
+\widehat y = \mathop{\arg\max}_{k \in \{ 1, \dots, K \}} \mathrm P(C_k)\prod^{n}_{i=1} \mathrm P(x_i~|~C_k)
+$$
+<p>其中，$n$ 为样本属性个数，$x_i$ 为 $\boldsymbol x$ 在第 $i$ 个属性上的取值</p>
+<p>$p(C_k)$ 是好求的，当属性或者说特征为离散值时，$p(x_i~|~C_k)$ 亦不难求得，而当其为连续值时，则需考虑其概率密度函数，假定 $p(x_i~|~C_k) \sim \mathcal{N}(\mu_{C_k, i}, \sigma^2_{C_k, i})$，其中 $\mu_{C_k, i}, \sigma^2_{C_k, i}$ 分别是第 $k$ 类样本在第 $i$ 个属性上取值的均值和方差，则有</p>
+$$p(x_i~|~C_k) = \dfrac{1}{\sqrt{2\pi}\mu_{C_k, i}}\exp\Big( -\dfrac{(x_i - \mu_{C_k, i})^2}{2\sigma^2_{C_k, i}} \Big)$$
+<p><strong>问题 3.1</strong></p>
+<p>Given a dataset about the relationship between whether Xiao E plays outside or not and the weather and temperature that day, if the weather tomorrow is overcast, and the temperature is mild, will he go out to play tomorrow?</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weather</td>
+<td>Sunny</td>
+<td>Sunny</td>
+<td>Overcast</td>
+<td>Rainy</td>
+<td>Rainy</td>
+<td>Rainy</td>
+<td>Overcast</td>
+<td>Sunny</td>
+<td>Sunny</td>
+<td>Rainy</td>
+<td>Sunny</td>
+<td>Overcast</td>
+<td>Overcast</td>
+<td>Rainy</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>Hot</td>
+<td>Hot</td>
+<td>Hot</td>
+<td>Mild</td>
+<td>Cool</td>
+<td>Cool</td>
+<td>Cool</td>
+<td>Mild</td>
+<td>Cool</td>
+<td>Mild</td>
+<td>Mild</td>
+<td>Mild</td>
+<td>Hot</td>
+<td>Mild</td>
+</tr>
+<tr>
+<td>Play</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>二分类问题，先求先验概率与似然</p>
+$$\mathrm P(\text{play=Yes}) = \dfrac{9}{14}, ~~~~\mathrm P(\text{play=No}) = \dfrac{5}{14}$$
+<p>因为是离散值，很容易即可求得</p>
+$$\mathrm P(\text{weather=Overcast | play=Yes}) = \dfrac{4}{9}, ~~~~\mathrm P(\text{Temperature=Mild | play=Yes}) = \dfrac{4}{9}$$
+$$\mathrm P(\text{weather=Overcast | play=No}) = \dfrac{0}{5}, ~~~~\mathrm P(\text{Temperature=Mild | play=No}) = \dfrac{2}{5}$$
+<p>根据贝叶斯判定准则有</p>
+$\mathrm P(\text{play=Yes | weather=Overcast, Temperature=Mild})$
+<br>
+$\Longrightarrow \mathrm P(\text{play=Yes}) \cdot \mathrm P(\text{weather=Overcast | play=Yes})\cdot \mathrm P(\text{Temperature=Mild | play=Yes}) = \dfrac{9}{14} \cdot \dfrac{4}{9} \cdot \dfrac{4}{9} = 0.1270$
+<br>
+$\mathrm P(\text{play=No | weather=Overcast, Temperature=Mild})$
+<br>
+$\Longrightarrow \mathrm P(\text{play=No}) \cdot \mathrm P(\text{weather=Overcast | play=No})\cdot \mathrm P(\text{Temperature=Mild | play=No}) = \dfrac{5}{14} \cdot \dfrac{0}{5} \cdot \dfrac{2}{5} = 0$
+<br>
+$$
+\mathrm P(\text{play=Yes | weather=Overcast, Temperature=Mild}) > \mathrm P(\text{play=No | weather=Overcast, Temperature=Mild})
+$$
+<p>结论是，根据天气与温度情况，我们推断小 E 明天将会出去玩</p>
+<br>
+<p>在上面的计算过程中，$\mathrm P(\text{weather=Overcast | play=No}) = 0$，使得乘积结果一定为 $0$，于是其他属性携带的信息都被抹去，产生了零概率问题，于是我们在估计概率值时进行拉普拉斯平滑来解决这个问题</p>
+$$\mathrm P(\text{play=Yes}) = \dfrac{9+1}{14+2} = \dfrac{10}{16}, ~~~~\mathrm P(\text{play=No}) = \dfrac{5+1}{14+2} = \dfrac{6}{16}$$
+$$\mathrm P(\text{weather=Overcast | play=Yes}) = \dfrac{4+1}{9+3} = \dfrac{5}{12}, ~~~~\mathrm P(\text{Temperature=Mild | play=Yes}) = \dfrac{4+1}{9+3} = \dfrac{5}{12}$$
+$$\mathrm P(\text{weather=Overcast | play=No}) = \dfrac{0+1}{5+3} = \dfrac{1}{8}, ~~~~\mathrm P(\text{Temperature=Mild | play=No}) = \dfrac{2+1}{5+3} = \dfrac{3}{8}$$
+$$\mathrm P(\text{play=Yes | weather=Overcast, Temperature=Mild}) \Longrightarrow \dfrac{10}{16} \cdot \dfrac{5}{12} \cdot \dfrac{5}{12} = 0.1085$$
+$$\mathrm P(\text{play=No | weather=Overcast, Temperature=Mild}) \Longrightarrow \dfrac{6}{16} \cdot \dfrac{1}{8} \cdot \dfrac{3}{8} = 0.0176$$
+<p>结论一致</p>
+<p><strong>问题 3.2</strong></p>
+<p>给定一个西瓜数据集，请你用它训练一个朴素贝叶斯分类器，对测试例 “测一” 进行分类</p>
+<div align=center><img width = '600' height ='400' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/CS229:%20Machine%20Learning/%E8%A5%BF%E7%93%9C%E6%95%B0%E6%8D%AE%E9%9B%863.0.PNG"/></div>
+<div align=center><img width = '600' height ='100' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/CS229:%20Machine%20Learning/%E8%A5%BF%E7%93%9C1.png"/></div>
+<br>
+<p>首先估计类先验概率 $\mathrm P(C_k)$，显然有</p>
+<div align=center><img width = '240' height ='80' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/CS229:%20Machine%20Learning/%E7%B1%BB%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87.png"/></div>
+<p>然后，为每个属性估计条件概率 $\mathrm P(x_i~|~C_k)$</p>
+<div align=center><img width = '480' height ='540' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/CS229:%20Machine%20Learning/%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87.png"/></div>
+<p>连续值处理，假设密度和含糖率满足正态分布，计算时应注意均值和方差</p>
+<div align=center><img width = '600' height ='450' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/CS229:%20Machine%20Learning/%E8%BF%9E%E7%BB%AD%E5%80%BC%E5%A4%84%E7%90%86.png"/></div>
+<p>于是有</p>
+<div align=center><img width = '600' height ='200' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/CS229:%20Machine%20Learning/%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87.png"/></div>
+<p>由于 $0.038 &gt; 6.80\times 10^{-5}$，因此，朴素贝叶斯分类器将测试样本 “测一” 判别为 “好瓜”</p>
+<p>在实践中，常通过取对数的方式将连乘转化为连加，以避免数值下溢</p>
 ]]></content>
       <tags>
         <tag>学习笔记</tag>
@@ -7677,15 +7808,12 @@ $$\text{hypothesis} = \dfrac{1}{1 + e^{-\theta^T x}} \approx 0.27779$$
   <entry>
     <title>通信蒟蒻面对LLL最后的挣扎</title>
     <url>/2021/05/03/%E9%80%9A%E4%BF%A1%E8%92%9F%E8%92%BB%E9%9D%A2%E5%AF%B9LLL%E6%9C%80%E5%90%8E%E7%9A%84%E6%8C%A3%E6%89%8E/</url>
-    <content><![CDATA[<h1>通信电子电路</h1>
+    <content><![CDATA[<p>祈愿平安通过</p>
 <a id="more"></a>
-<h2 id="小信号调谐放大器"><a class="header-anchor" href="#小信号调谐放大器">¶</a>小信号调谐放大器</h2>
-<h2 id="高频功率放大器"><a class="header-anchor" href="#高频功率放大器">¶</a>高频功率放大器</h2>
-<h2 id="正弦波振荡器"><a class="header-anchor" href="#正弦波振荡器">¶</a>正弦波振荡器</h2>
-<h2 id="振幅调制与解调"><a class="header-anchor" href="#振幅调制与解调">¶</a>振幅调制与解调</h2>
-<h2 id="角度调制与解调"><a class="header-anchor" href="#角度调制与解调">¶</a>角度调制与解调</h2>
-<h2 id="变频器"><a class="header-anchor" href="#变频器">¶</a>变频器</h2>
-<h2 id="锁相环路及其他反馈控制电路"><a class="header-anchor" href="#锁相环路及其他反馈控制电路">¶</a>锁相环路及其他反馈控制电路</h2>
+<h2 id="通信电子电路"><a class="header-anchor" href="#通信电子电路">¶</a>通信电子电路</h2>
+<p><br><div align=center><img width = '' height ='' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/%E9%80%9A%E4%BF%A1%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E5%A4%A7%E7%BA%B2.jpg"/></div><br></p>
+<h2 id="无线通信基础"><a class="header-anchor" href="#无线通信基础">¶</a>无线通信基础</h2>
+<p><br><div align=center><img width = '' height ='' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80%E5%A4%A7%E7%BA%B2.jpg"/></div><br></p>
 ]]></content>
       <tags>
         <tag>学习笔记</tag>
