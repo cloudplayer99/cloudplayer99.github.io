@@ -5241,7 +5241,7 @@ $$
 </blockquote>
 <br>
 <p>$p(C_k)$ 是好求的，当属性或者说特征为离散值时，$p(x_i~|~C_k)$ 亦不难求得，而当其为连续值时，则需考虑其概率密度函数，假定 $p(x_i~|~C_k) \sim \mathcal{N}(\mu_{C_k, i}, \sigma^2_{C_k, i})$，其中 $\mu_{C_k, i}, \sigma^2_{C_k, i}$ 分别是第 $k$ 类样本在第 $i$ 个属性上取值的均值和方差，则有</p>
-$$p(x_i~|~C_k) = \dfrac{1}{\sqrt{2\pi}\mu_{C_k, i}}\exp\Big( -\dfrac{(x_i - \mu_{C_k, i})^2}{2\sigma^2_{C_k, i}} \Big)$$
+$$p(x_i~|~C_k) = \dfrac{1}{\sqrt{2\pi}\sigma_{C_k, i}}\exp\Big( -\dfrac{(x_i - \mu_{C_k, i})^2}{2\sigma^2_{C_k, i}} \Big)$$
 <h4 id="拉普拉斯平滑（Laplace-smoothing）"><a class="header-anchor" href="#拉普拉斯平滑（Laplace-smoothing）">¶</a>拉普拉斯平滑（Laplace smoothing）</h4>
 <p>如果某个属性上的概率为 $0$，该样本的其他属性携带的信息将会被抹去，产生零概率问题，为了避免这种情况，在估计概率值时可进行 <strong>拉普拉斯平滑</strong>，修正后的公式为：</p>
 $$\widehat P(C_k)=\dfrac{|D_{C_k}|+1}{|D|+N},~~~~\widehat P(x_i~|~C_k) = \dfrac{|D_{C_k, x_i}|+1}{|D_{C_k}|+N_i}$$
@@ -7680,7 +7680,7 @@ $$
 $$
 <p>其中，$n$ 为样本属性个数，$x_i$ 为 $\boldsymbol x$ 在第 $i$ 个属性上的取值</p>
 <p>$p(C_k)$ 是好求的，当属性或者说特征为离散值时，$p(x_i~|~C_k)$ 亦不难求得，而当其为连续值时，则需考虑其概率密度函数，假定 $p(x_i~|~C_k) \sim \mathcal{N}(\mu_{C_k, i}, \sigma^2_{C_k, i})$，其中 $\mu_{C_k, i}, \sigma^2_{C_k, i}$ 分别是第 $k$ 类样本在第 $i$ 个属性上取值的均值和方差，则有</p>
-$$p(x_i~|~C_k) = \dfrac{1}{\sqrt{2\pi}\mu_{C_k, i}}\exp\Big( -\dfrac{(x_i - \mu_{C_k, i})^2}{2\sigma^2_{C_k, i}} \Big)$$
+$$p(x_i~|~C_k) = \dfrac{1}{\sqrt{2\pi}\sigma_{C_k, i}}\exp\Big( -\dfrac{(x_i - \mu_{C_k, i})^2}{2\sigma^2_{C_k, i}} \Big)$$
 <p><strong>问题 3.1</strong></p>
 <p>Given a dataset about the relationship between whether Xiao E plays outside or not and the weather and temperature that day, if the weather tomorrow is overcast, and the temperature is mild, will he go out to play tomorrow?</p>
 <table>
