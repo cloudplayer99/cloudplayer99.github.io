@@ -20,16 +20,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2021.4.8 16:59</title>
-    <url>/2021/04/08/2020.4.8/</url>
-    <content><![CDATA[<p>我们终将渐行渐远，这是不争的事实。</p>
-<div align=right>——— 翀</div>
-]]></content>
-      <tags>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2020.12.9 20:16</title>
     <url>/2020/12/09/2020.12.9/</url>
     <content><![CDATA[<blockquote>
@@ -7311,13 +7301,8 @@ CTI 中断（UnIIR[3:1]=110）是一个第二优先级中断，当 UARTn Rx FIFO
     <url>/2021/05/03/%E4%B8%80%E4%BA%9B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%AD%A6%E6%B1%82%E8%A7%A3%E5%8F%82%E8%80%83/</url>
     <content><![CDATA[<p>本文将要介绍的这些问题涉及到的机器学习方法如下</p>
 <blockquote>
-<p>线性回归<br>
-逻辑回归<br>
-朴素贝叶斯分类器<br>
-决策树<br>
-对偶问题<br>
-支持向量机<br>
-神经网络的反向传播</p>
+<p>线性回归 $~~~~$ 逻辑回归 $~~~~$ 朴素贝叶斯分类器 $~~~~$ 决策树<br>
+对偶问题 $~~~~$ 支持向量机 $~~~~$ 神经网络的反向传播</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="多元线性回归求解"><a class="header-anchor" href="#多元线性回归求解">¶</a>多元线性回归求解</h2>
@@ -8143,6 +8128,29 @@ $$\boldsymbol{w}^\mathrm{T} \boldsymbol{x} + b = 0 ~, ~~~~~~~~\text{where}~~~~\b
       <tags>
         <tag>学习笔记</tag>
         <tag>Assembly Language</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2021.4.8 16:59</title>
+    <url>/2021/04/08/2021.4.8/</url>
+    <content><![CDATA[<p>我们终将渐行渐远，这是不争的事实。</p>
+<div align=right>——— 翀</div>
+]]></content>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2021.6.24 22:00</title>
+    <url>/2021/06/24/2021.6.24/</url>
+    <content><![CDATA[<p>我看不懂，但是我大受震撼。</p>
+<p><a href="https://www.bilibili.com/read/cv11846484" target="_blank" rel="noopener">看到他们说***我才明白*** B站 up:BB姬Studio 怪物马戏团 | 文</a><a id="more"></a></p>
+<p>本来想转载的，但是文章禁止转载或摘编，把链接放在这里，书和漫画只能以后拜读了。</p>
+<div align=left><img width = '' height ='' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/%E6%97%A5%E5%BF%97/%E5%A4%A7%E5%8F%97%E9%9C%87%E6%92%BC.jpg"/></div>
+<div align=left><img width = '' height ='' src ="https://gitee.com/cloudplayer99/blog_pic/raw/master/%E6%97%A5%E5%BF%97/%E5%8F%8D%E6%AD%A3%E5%A4%A7%E5%8F%97%E9%9C%87%E6%92%BC.jpg"/></div>
+]]></content>
+      <tags>
+        <tag>日志</tag>
       </tags>
   </entry>
 </search>
