@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="使用教材： 清华大学电子学教研组编 . 杨素行主编 . 模拟电子技术基础简明教程 . 3版 . 北京：高等教育出版社，2006. 作业内容： 模电作业是这样的： 第六章可以做1 2 3 6 7 8题以及PPT上一题 5月8号前交">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模电第四次作业">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/05/04/%E6%A8%A1%E7%94%B5%E7%AC%AC%E5%9B%9B%E6%AC%A1%E4%BD%9C%E4%B8%9A/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="使用教材： 清华大学电子学教研组编 . 杨素行主编 . 模拟电子技术基础简明教程 . 3版 . 北京：高等教育出版社，2006. 作业内容： 模电作业是这样的： 第六章可以做1 2 3 6 7 8题以及PPT上一题 5月8号前交">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-3-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-3.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-5.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-a-3.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-b-3.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-c-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-d-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-e-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-f-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-f-3.png">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-f-5.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-3-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-3.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-a-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-b-2.png">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-c-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-d-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-e-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-f-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-6-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-6-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-7-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-8-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-8-3.png">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/ppt-6.jpg">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/ppt-6-1.jpg">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-addition.jpg">
+<meta property="article:published_time" content="2020-05-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="ANALOG">
+<meta property="article:tag" content="作业区">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-1.PNG">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/05/04/%E6%A8%A1%E7%94%B5%E7%AC%AC%E5%9B%9B%E6%AC%A1%E4%BD%9C%E4%B8%9A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>模电第四次作业 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/05/04/%E6%A8%A1%E7%94%B5%E7%AC%AC%E5%9B%9B%E6%AC%A1%E4%BD%9C%E4%B8%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          模电第四次作业
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-04T00:00:00+08:00">2020-05-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>使用教材：<br>
+清华大学电子学教研组编 . 杨素行主编 . 模拟电子技术基础简明教程 . 3版 . 北京：高等教育出版社，2006.<br>
+作业内容：<br>
+模电作业是这样的：<br>
+第六章可以做1 2 3 6 7 8题以及PPT上一题<br>
+5月8号前交</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="6-1-6-3"><a class="header-anchor" href="#6-1-6-3">¶</a>6-1 &amp;&amp; 6-3</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-3-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-3.PNG" alt="avatar"><br>
+<br><br>
+<strong>反馈的极性可以使用瞬时极性法判断：</strong><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-5.PNG" alt="avatar"><br>
+<br><br>
+<strong>交流负反馈的组态判断：</strong></p>
+<p>（1）从输出端的判别上分为电压、电流负反馈<br>
+使用<strong>交流短路法</strong>：将输出电压 $u_o$ 交流短路，分析反馈信号是否还存在<br>
+若反馈信号消失，则为电压负反馈，反之，则为电流负反馈</p>
+<p>（2）从反馈信号与输入信号在输入回路中的<strong>叠加方式</strong>上分为串联、并联负反馈<br>
+若反馈信号与输入信号在输入回路中以电压形式求和，则为串联负反馈<br>
+若反馈信号与输入信号在输入回路中以电流形式求和，则为并联负反馈<br>
+简单的说，看反馈信号与输入信号在不在同一个端子上，<strong>异串同并</strong></p>
+<h3 id="a"><a class="header-anchor" href="#a">¶</a>a</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-a-3.PNG" alt="avatar"></p>
+<p>上图中共有四个反馈支路：<br>
+由 $R_F$ 和 $C_F$ 引回的级间反馈是<strong>交流正反馈</strong><br>
+由 $R_{e1}$ 既引入了交流负反馈也引入了直流负反馈，其中交流负反馈的组态为<strong>电流串联负反馈</strong><br>
+可以稳定本级工作电流，提高输入电阻<br>
+由 $R_{e2}$ 与 $C_e$ 引入的是<strong>直流负反馈</strong>（由于旁路电容 $C_e$ 的存在）<br>
+由 $R_{e3}$ 既引入了交流负反馈也引入了直流负反馈，其中交流负反馈的组态为<strong>电压串联负反馈</strong><br>
+可以稳定输出电压，提高本级输入电阻，降低输出电阻</p>
+<h3 id="b"><a class="header-anchor" href="#b">¶</a>b</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-b-3.PNG" alt="avatar"></p>
+<p>上图中共有四个反馈支路：<br>
+由 $R_F$ 引回的级间反馈既有交流负反馈也有直流负反馈，且交流负反馈的组态为<strong>电流串联负反馈</strong><br>
+可以稳定输出电流，提高输入电阻<br>
+由 $R_{e1}$ 既引入了直流负反馈也引入了交流负反馈，其中交流负反馈的组态为<strong>电流串联负反馈</strong><br>
+可以稳定本级工作电流，提高输入电阻<br>
+由 $R_{e2}$ 与 $C_e$ 引入的是<strong>直流负反馈</strong>（由于旁路电容 $C_e$ 的存在）<br>
+由 $R_{e3}$ 引入了交直流负反馈，其中交流负反馈的组态为<strong>电流串联负反馈</strong><br>
+对本级作用与 $R_{e1}$ 相同</p>
+<p>以（b）为例，说明一下<strong>瞬时极性法的使用步骤</strong>：</p>
+<blockquote>
+<p>首先，不妨设输入端的正极性端有一个瞬时的电压正增量<br>
+那么就会引起 $VT_1$ 管的基极电压出现一个正增量，从而引起 $VT_1$ 管有一个向下的电流增量<br>
+使得发射极电位有一个正增量，可判断 $R_{e1}$ 所在支路引起的是本级的负反馈<br>
+集电极电位出现一个负增量，使得 $VT_2$ 管的基极电位有一个负增量<br>
+$VT_2$ 管是一个PNP型的管子，分析方法与NPN管类似<br>
+由$VT_2$ 管的基极电位负增量引起由发射极向集电极方向的电流增量<br>
+使得发射极电位出现一个负增量，可判断 $R_{e2}$ 与 $C_e$ 所在支路引入的是本级的负反馈<br>
+集电极电位出现一个正增量<br>
+于是 $VT_3$ 管的情况与 $VT_1$ 管的情况一样，发射极电位出现一个正增量<br>
+即 $R_{e3}$ 引入了本级的负反馈<br>
+$R_F$ 所在支路使得 $VT_3$ 管发射极的正增量影响到 $VT_1$ 管的发射极又有一个正增量<br>
+于是 $R_F$ 所在支路引入了级间的负反馈</p>
+</blockquote>
+<h3 id="c"><a class="header-anchor" href="#c">¶</a>c</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-c-2.PNG" alt="avatar"></p>
+<p>上图中共有三个反馈支路：<br>
+由 $R_F$ 引回的级间反馈是交直流负反馈，且交流负反馈的组态为<strong>电流并联负反馈</strong><br>
+可以稳定输出电流<br>
+由 $R_{e1}$ 引入了交直流负反馈，其中交流负反馈的组态为<strong>电流串联负反馈</strong><br>
+可以稳定本级工作电流，提高本级输入电阻<br>
+由 $R_{e2}$ 与 $C_e$ 引入的是<strong>直流负反馈</strong>（由于旁路电容 $C_e$ 的存在）</p>
+<h3 id="d"><a class="header-anchor" href="#d">¶</a>d</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-d-2.PNG" alt="avatar"></p>
+<p>上图中共有两个反馈支路：<br>
+由 $R_F$ 引回的级间反馈是交流负反馈，其组态为<strong>电压并联负反馈</strong><br>
+可以稳定输出电压，降低输出电阻<br>
+由 $R_{e1}$ 引入了交直流负反馈，其中交流负反馈的组态为<strong>电流串联负反馈</strong><br>
+可以稳定本级工作电流，提高输入电阻</p>
+<h3 id="e"><a class="header-anchor" href="#e">¶</a>e</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-e-2.PNG" alt="avatar"></p>
+<p>上图中共有两个反馈支路：<br>
+由 $R_F$ 引回的级间反馈是交直流负反馈，其中交流负反馈的组态为<strong>电压串联负反馈</strong><br>
+可以稳定输出电压，提高输入电阻，降低输出电阻<br>
+由 $R_{e3}$ 引入了交直流负反馈，其中交流负反馈的组态为<strong>电流串联负反馈</strong><br>
+可以稳定本级工作电流，提高本级输入电阻</p>
+<h3 id="f"><a class="header-anchor" href="#f">¶</a>f</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-f-2.PNG" alt="avatar"></p>
+<p>上图中共有两个反馈支路：<br>
+由 $C_3$ 与 $R_b$ 引回的本级反馈为<strong>交流正反馈</strong>（电压并联）<br>
+由 $R_e$ 引入了交直流负反馈，其中交流负反馈为<strong>电压串联负反馈</strong><br>
+即射极输出器本身的电压串联负反馈，故有稳定输出电压，提高输入电阻，降低输出电阻的作用</p>
+<p><strong>其实 $C_3$ 还有一个作用呢qwq</strong></p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-f-3.png" alt="avatar"></p>
+<p>如果没有接电容 $C_3$ ，如上图所示，可知其输入电阻约为：$R_i=R_b+R_1//R_2$<br>
+（即忽略基极电流）<br>
+现由$C_3$ 与 $R_b$ 引回一个交流正反馈，由其交流通路：<br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-1-f-5.PNG" alt="avatar"><br>
+在中频段时，电容 $C_3$ 可视为短路，则电阻 $R_b$ 两端电压约为 $\dot U_i-\dot U_o$<br>
+则流过电阻 $R_b$ 的电流约为 ${\dfrac {\dot U_i-\dot U_o}{R_b}}$<br>
+忽略基极电流，则可将流过电阻 $R_b$ 的电流视为输入电流</p>
+<p>则可求得输入电阻为：$R_i={\dfrac {\dot U_i}{\dot I_i}}={\dfrac{\dot U_i}{\dfrac {\dot U_i-\dot U_o}{R_b}}}={\dfrac {\dot U_i\cdot R_b}{\dot U_i-\dot U_o}}$</p>
+<p>又由于该电路为射极输出器电路，其电压放大倍数近似于 $1$ （$&lt;1$）</p>
+<p>即其基极电位与发射极电位近似，有：$\dot U_i\approx \dot U_o$ 那么则有：$R_i\to\infty$</p>
+<p>大大地提高了其输入电阻</p>
+<p>这种方法又称为“<strong>自举</strong>”：将输出电压通过电容引回到输入回路以提高输入电阻</p>
+<p>可通过看书上 <strong>例6.4.3</strong> 加深理解</p>
+<hr>
+<h2 id="6-2-6-3"><a class="header-anchor" href="#6-2-6-3">¶</a>6-2 &amp;&amp; 6-3</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-2.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-3-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-3.PNG" alt="avatar"></p>
+<h3 id="a-v2"><a class="header-anchor" href="#a-v2">¶</a>a</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-a-1.PNG" alt="avatar"><br>
+<strong>正反馈</strong><br>
+（正反馈也有组态的吗？ 如果有的话，这里应为电压并联吧）</p>
+<h3 id="b-v2"><a class="header-anchor" href="#b-v2">¶</a>b</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-b-2.png" alt="avatar"><br>
+由 $R_{F1}$ 引入的是<strong>电压并联负反馈</strong><br>
+可以稳定输出电压，降低输出电阻<br>
+由 $R_{F2}$ 引入的是<strong>正反馈</strong>（电压串联）</p>
+<h3 id="c-v2"><a class="header-anchor" href="#c-v2">¶</a>c</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-c-1.PNG" alt="avatar"><br>
+<strong>电压并联负反馈</strong><br>
+可以稳定输出电压，降低输出电阻</p>
+<h3 id="d-v2"><a class="header-anchor" href="#d-v2">¶</a>d</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-d-1.PNG" alt="avatar"><br>
+<strong>电流串联负反馈</strong><br>
+可以稳定输出电流，提高输入电阻</p>
+<h3 id="e-v2"><a class="header-anchor" href="#e-v2">¶</a>e</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-e-1.PNG" alt="avatar"><br>
+<strong>电压串联负反馈</strong><br>
+可以稳定输出电压，提高输入电阻，降低输出电阻</p>
+<h3 id="f-v2"><a class="header-anchor" href="#f-v2">¶</a>f</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-2-f-1.PNG" alt="avatar"><br>
+<strong>电流并联负反馈</strong><br>
+可以稳定输出电流</p>
+<hr>
+<h2 id="6-6"><a class="header-anchor" href="#6-6">¶</a>6-6</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-6-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-6-2.PNG" alt="avatar"></p>
+<p>由题意可知，其临界状态为：</p>
+${\dfrac {\mathrm{d}A_f/A_f}{\mathrm{d}A/A}}={\dfrac {1}{25}}$
+<p>因为有：${\dfrac {\mathrm{d}A_f}{A_f}}={\dfrac {1}{1+AF}}\cdot {\dfrac {\mathrm{d}A_f}{A_f}}$</p>
+<p>则可知：${\dfrac {1}{1+AF}}={\dfrac {1}{25}}，1+AF=25，AF=24$</p>
+<p>又有：$A_f={\dfrac {A}{1+AF}}$</p>
+<p>故：$A=(1+AF)A_f=25\times 100=2500$</p>
+$F={\dfrac {24}{2500}}=9.6\times 10^{-3}$
+<hr>
+<h2 id="6-7"><a class="header-anchor" href="#6-7">¶</a>6-7</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-7-1.PNG" alt="avatar"></p>
+<p>由题意可知：</p>
+$\dot A_{um}=-100 \ \ \ \ f_L=30Hz\ \ \ \ f_H=3kHz\ \ \ \ \dot F_{uu}=-10\%$
+<p>那么则有：</p>
+$\dot A_{uf}={\dfrac {\dot A_{um}}{1+\dot A_{um}\dot F_{uu}}}={\dfrac {-100}{1+(-100)\cdot(-0.1)}}\approx -9.09$
+<br>
+$f_{Lf}={\dfrac {f_L}{1+\dot A_{um}\dot F_{uu}}}={\dfrac {30}{11}}Hz\approx 2.73Hz$
+<br>
+$f_{Hf}=(1+\dot A_{um}\dot F_{uu})\cdot f_H=11\times 3kHz=33kHz$
+<hr>
+<h2 id="6-8"><a class="header-anchor" href="#6-8">¶</a>6-8</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-8-1.PNG" alt="avatar"></p>
+<p>啥都不用管，先整上<strong>瞬时极性法</strong><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-8-3.png" alt="avatar"></p>
+<p>（1）<br>
+共有两条支路为级间反馈：<br>
+由 $R_{F1}$ 引入<strong>电压串联负反馈</strong><br>
+由 $R_{F2}$ 引入<strong>电流并联负反馈</strong><br>
+又有两条支路为本级反馈：<br>
+由 $R_{e1}$ 和 $R_{e2}$ 分别引入<strong>电流串联负反馈</strong></p>
+<p>（2）<br>
+接一个隔直电容 $C_{F1}$ 与 $R_{F1}$ 串联<br>
+再接一个旁路电容 $C_{F2}$ 与 $R_{F2}$ 并联</p>
+<p>（3）<br>
+$C_{F1}$ 与 $R_{F1}$ 引入的交流电压串联负反馈可以稳定输出电压，提高输入电阻，降低输出电阻<br>
+$C_{F2}$ 与 $R_{F2}$ 引入的直流负反馈可以稳定各级Q点</p>
+<p>（4）<br>
+若满足深度负反馈条件<br>
+则电压放大倍数可如此估算：</p>
+$\dot F_{uu}={\dfrac {\dot U_f}{\dot U_o}}={\dfrac {R_{e1}}{R_{F1}+R_{e1}}}$
+<br>
+$\dot A_{uf}={\dfrac {1}{\dot F_{uu}}}=1+{\dfrac {R_{F1}}{R_{e1}}}=21$
+<hr>
+<h2 id="附加题"><a class="header-anchor" href="#附加题">¶</a>附加题</h2>
+<p>PPT上一题<br>
+瞬时极性法判断正负反馈与组态<br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/ppt-6.jpg" alt="avatar"><br>
+<strong>正反馈</strong><br>
+如果有组态的话，我想应该是电压串联<br>
+附：如果做完了前边的题就一定感觉到了这是道水题（手动狗头）<br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/ppt-6-1.jpg" alt="avatar"></p>
+<h2 id="附图：分立元件反馈判定"><a class="header-anchor" href="#附图：分立元件反馈判定">¶</a>附图：分立元件反馈判定</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E5%9B%9B%EF%BC%89/6-addition.jpg" alt="avatar"></p>
+<hr>
+<p>参考文献：<br>
+模拟电子技术基础简明教程第3版及其教学指导书</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/05/04/%E6%A8%A1%E7%94%B5%E7%AC%AC%E5%9B%9B%E6%AC%A1%E4%BD%9C%E4%B8%9A/" title="模电第四次作业">https://cloudplayer99.github.io/2020/05/04/模电第四次作业/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ANALOG/" rel="tag"># ANALOG</a>
+              <a href="/tags/%E4%BD%9C%E4%B8%9A%E5%8C%BA/" rel="tag"># 作业区</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/24/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%B8%89%E6%AC%A1%E4%BD%9C%E4%B8%9A/" rel="prev" title="模电第三次作业">
+      <i class="fa fa-chevron-left"></i> 模电第三次作业
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/07/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%BA%94%E6%AC%A1%E4%BD%9C%E4%B8%9A/" rel="next" title="模电第五次作业">
+      模电第五次作业 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-6-3"><span class="nav-number">1.</span> <span class="nav-text">6-1 &amp;&amp; 6-3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a"><span class="nav-number">1.1.</span> <span class="nav-text">a</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b"><span class="nav-number">1.2.</span> <span class="nav-text">b</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c"><span class="nav-number">1.3.</span> <span class="nav-text">c</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d"><span class="nav-number">1.4.</span> <span class="nav-text">d</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#e"><span class="nav-number">1.5.</span> <span class="nav-text">e</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f"><span class="nav-number">1.6.</span> <span class="nav-text">f</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-6-3"><span class="nav-number">2.</span> <span class="nav-text">6-2 &amp;&amp; 6-3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-v2"><span class="nav-number">2.1.</span> <span class="nav-text">a</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-v2"><span class="nav-number">2.2.</span> <span class="nav-text">b</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-v2"><span class="nav-number">2.3.</span> <span class="nav-text">c</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-v2"><span class="nav-number">2.4.</span> <span class="nav-text">d</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#e-v2"><span class="nav-number">2.5.</span> <span class="nav-text">e</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f-v2"><span class="nav-number">2.6.</span> <span class="nav-text">f</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6"><span class="nav-number">3.</span> <span class="nav-text">6-6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-7"><span class="nav-number">4.</span> <span class="nav-text">6-7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-8"><span class="nav-number">5.</span> <span class="nav-text">6-8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附加题"><span class="nav-number">6.</span> <span class="nav-text">附加题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附图：分立元件反馈判定"><span class="nav-number">7.</span> <span class="nav-text">附图：分立元件反馈判定</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

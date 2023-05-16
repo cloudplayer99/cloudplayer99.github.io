@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="¶致谢 感谢 daycun 同学在通信相关课程上对本人不遗余力的教导">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通信原理笔记">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/03/29/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="¶致谢 感谢 daycun 同学在通信相关课程上对本人不遗余力的教导">
+<meta property="article:published_time" content="2021-03-29T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:04.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="通信原理与技术">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/03/29/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>通信原理笔记 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/03/29/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          通信原理笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-29 12:00:00" itemprop="dateCreated datePublished" datetime="2021-03-29T12:00:00+08:00">2021-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:04" itemprop="dateModified" datetime="2022-03-27T16:10:04+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="致谢"><a class="header-anchor" href="#致谢">¶</a>致谢</h2>
+<p>感谢 <a href="https://github.com/daycun" target="_blank" rel="noopener">daycun</a> 同学在通信相关课程上对本人不遗余力的教导<a id="more"></a></p>
+<h2 id="参考教材"><a class="header-anchor" href="#参考教材">¶</a>参考教材</h2>
+<ol>
+<li>张会生，通信原理 . 北京：高等教育出版社，2011</li>
+<li>樊昌信、曹丽娜，通信原理（第七版）. 北京：国防工业出版社，2017.</li>
+</ol>
+<h2 id="第一章-绪论"><a class="header-anchor" href="#第一章-绪论">¶</a>第一章 绪论</h2>
+<blockquote>
+<p>考察重点: 待定<br>
+信息量与平均信息量的计算<br>
+码元传输速率与信息传输速率的计算与互换</p>
+</blockquote>
+<h3 id="通信的基本概念"><a class="header-anchor" href="#通信的基本概念">¶</a>通信的基本概念</h3>
+<p>广义的 <strong>通信</strong>：是指由一地向另一地进行消息的有效传递。<br>
+通信的再定义：利用电子等技术手段，借助电信号（含光信号）实现从一地向另一地进行消息的有效传递称为通信。</p>
+<p><strong>通信系统</strong>：实现信息传递所需的一切 <strong>技术设备</strong> 和 <strong>传输媒质</strong> 的总和称为通信系统。</p>
+<p>通信系统的一般模型：</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E4%B8%80%E8%88%AC%E6%A8%A1%E5%9E%8B.PNG"/></div><br>
+<p><strong>信源</strong>（信息源、发终端）：把待传输的消息转换成原始电信号。<br>
+<strong>发送设备</strong>：产生适合于在信道中传输的信号，即将信源和信道 <strong>匹配</strong>。如：调制。<br>
+<strong>信道</strong>：信号传输的通道。将来自发送设备的信号传送到接收端的物理媒质，分为 <strong>有线信道</strong> 和 <strong>无线信道</strong> 两大类。<br>
+<strong>噪声源</strong>：信道中的所有噪声以及分散在通信系统中其它各处噪声的集合。<br>
+<strong>接收设备</strong>：从受到减损（干扰）的接收信号中正确恢复出原始电信号。<br>
+<strong>信宿</strong>（受信者、收终端 ）：将复原的原始电信号还原成相应的消息。</p>
+<p>按照信道中传输的是模拟信号还是数字信号，将通信系统分为 <strong>模拟通信系统</strong> 与 <strong>数字通信系统</strong>。</p>
+<p><strong>通信方式</strong>：</p>
+<p>按消息传送的方向与时间分可分为单工通信、半双工通信及全双工通信三种。</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F.PNG"/></div><br>
+<p>按数字信号排序分可分为串序传输和并序传输。串行传输是将数字信号码元序列以串行方式一个码元接一个码元地在一条信道上传输，并行传输是将代表信息的数字信号码元序列以成组的方式在两条或两条以上的并行信道上同时传输。</p>
+<h3 id="信息的概念"><a class="header-anchor" href="#信息的概念">¶</a>信息的概念</h3>
+<p>经典Shannon信息定义：<strong>信息是不确定性的消除</strong>。</p>
+<p>信息可被理解为消息中包含的有意义的内容，消息中所含信息量仅与消息内容的不确定性有关，由概率论可知，事件的不确定程度，可用事件出现的概率来描述——信息量与消息出现概率关系。</p>
+<ul>
+<li>消息 $x$ 中所含信息量 $I$ 是消息出现概率 $P(x)$ 的函数，即</li>
+</ul>
+$$I = I[P(x) ]$$
+<ul>
+<li>消息出现的概率越小，它所含信息量越大，反之信息量越小。特别是</li>
+</ul>
+$$I = 0~~~~\text{when}~~~~P(x) = 1$$
+$$I = 1~~~~\text{when}~~~~P(x) = 0$$
+<ul>
+<li>若干个互相独立事件构成的消息$（x1,x2,\cdots）$所含信息量等于各独立事件$x1$，$x2$，$\cdots$ 信息量的和，即</li>
+</ul>
+$$I[P(x_1 ) ⋅ P(x_2 ) ⋅ \cdots] = I[P(x_1 )] + I[P(x_2) ] + \cdots$$
+<p>于是定义消息 $x$ 所含的信息量为</p>
+$$I = \log_{a}\dfrac{1}{P(x)} = -\log_{a}P(x)$$
+<p>信息量 $I$ 的单位取决于对数底数 $a$ 的取值</p>
+<div align=center>a = 2 单位为比特（bit，简写为b）；</div>
+<div align=center>a = e 单位为奈特（nat，简写为n）；</div>
+<div align=center>a = 10 单位为哈特莱（Hartley）。</div><br>
+<p>通常广泛使用的单位为比特，即有</p>
+$$I = \log_{2}\dfrac{1}{P(x)} = -\log_{2}P(x)$$
+<p>二进制离散信源，数字 $0$ 或 $1$ 以相等的概率出现时，每个符号的信息量相等，为 $1\text{bit}$。独立等概情况下 $M$ 进制的每一符号包含的信息量，是二进制每一符号包含信息量的 $K$ 倍。（$K$ 是每一个 $M$ 进制符号用二进制符号表示时所需的符号数目，即 $M=2^K$）。</p>
+<p>当各个符号出现的概率不相等时，计算消息的信息量常用到 <strong>平均信息量</strong> 的概念。</p>
+<p>多进制时，设各符号出现的概率为</p>
+$$
+\begin{bmatrix}
+x_1, & x_2, & \cdots, & x_n \\
+P(x_1), & P(x_2), & \cdots, & P(x_n)
+\end{bmatrix}
+~~~~\text{and}~~~~
+\sum^{n}_{i=1}P(x_i) = 1
+$$
+<p>则每个符号所含信息的统计平均值（平均信息量）</p>
+$$
+\begin{array}{lcl}
+\bar {I}
+& = &P(x_1)[-\log_{2} P(x_1)] + P(x_2)[-\log_{2} P(x_2)] + \cdots + P(x_n)[-\log_{2} P(x_n)] \\
+& = & -\sum\limits^{n}_{i=1}P(x_i)\log_{2}P(x_i) ~~~~ (\text{bit}/符号)
+\end{array}
+$$
+<p>又称 $\bar{I}$ 为 <strong>信息源的熵</strong>。</p>
+<p>显然，当信源中每个符号独立等概率出现时，有</p>
+$$\bar{I} = \log_{2} M = \log_{2} 2^K = K ~~~~ (\text{bit}/符号)$$
+<p>可以证明，此时信息源的熵为最大值。</p>
+<p>关于连续消息的信息量可以用 <strong>概率密度函数</strong> 来描述。可以证明，<strong>连续消息的平均信息量</strong> 为</p>
+$$H(x) = -\int^{\infty}_{-\infty} f(x) \log_{a} f(x) \mathrm{d}x$$
+<h3 id="通信系统的性能指标"><a class="header-anchor" href="#通信系统的性能指标">¶</a>通信系统的性能指标</h3>
+<p>有效性指标用传输速率来衡量，通常有两种表示方法，分别为码元传输速率 $R_B$ 与信息传输速率 $R_b$，码元传输速率 $R_b$ 是指单位时间（每秒）内传输码元的数目，单位为 $\text{Baud(B)}$，信息传输速率 $R_b$ 是指单位时间（每秒）内传送的信息量，单位为 $\text{bit/s(b/s or bps)}$。</p>
+<p>$R_b$ 与 $R_B$ 的互换公式为</p>
+$$R_{bM} = R_{BM} \cdot \log_{2}M$$
+<p>其中，$M$ 为信号进制数，所以二进制时，有 $R_{b2} = R_{B2} \cdot \log_{2}2 = R_{B2}$</p>
+<p>可靠性的指标是利用信号在传输过程中出错的概率即差错率来描述的，即差错占总体的比例，通常也有两种表示方法，分别为码元差错率（误码率）$P_e$ 与信息差错率（误信率）$P_b$，二进制时，有 $P_b=P_e$，在非二进制时，注意两者的不同。</p>
+<h2 id="第二章-随机信号与噪声分析"><a class="header-anchor" href="#第二章-随机信号与噪声分析">¶</a>第二章 随机信号与噪声分析</h2>
+<blockquote>
+<p>考察重点: 待定<br>
+求随机过程的数字特征<br>
+勿忘积化和差公式<br>
+判断随机过程是否平稳 …</p>
+</blockquote>
+<h3 id="随机过程"><a class="header-anchor" href="#随机过程">¶</a>随机过程</h3>
+<p>通信是在噪声背景下信号通过通信系统的过程，分析与研究通信系统，总是离不开对信号和噪声的分析。尽管随机信号和随机噪声是不可预测的、随机的，但它们具有一定的统计规律。从统计学的观点看，均可表示为 <strong>随机过程</strong>。</p>
+<h4 id="基本概念"><a class="header-anchor" href="#基本概念">¶</a>基本概念</h4>
+<p>随机过程是一类随时间作随机变化的过程，它不能用确切的时间函数描述。随机过程 $X(t)$ 对应不同随机试验结果的 <strong>随机函数</strong>（时间过程）的集合 $\{ x_1(t), x_2(t), \dots, x_n(t) \}$，是 <strong>随机变量</strong> 概念的延伸，即 $X(t)$ 在任一时刻 $t_1$ 上的取值 $X(t_1)$ 不是确定的，是一个随机变量。</p>
+<h4 id="分布函数"><a class="header-anchor" href="#分布函数">¶</a>分布函数</h4>
+<ul>
+<li>一维分布函数</li>
+</ul>
+$$F_1(x_1, t_1) = P[X(t_1) \le x_1]$$
+<ul>
+<li>一维概率密度函数(偏导存在)</li>
+</ul>
+$$f_1(x_1, t_1) = \dfrac{\partial F_1(x_1, t_1)}{\partial x_1}$$
+<ul>
+<li>$n$ 维分布函数</li>
+</ul>
+$$F_n(x_1, x_2, \cdots, x_n; t_1, t_2, \cdots, t_n)\\=P\{ X(t_1) \le x_1, X(t_2) \le x_2, \cdots, X(t_n) \le x_n,\}$$
+<ul>
+<li>$n$ 维概率密度函数(偏导存在)</li>
+</ul>
+$$f_n(x_1, x_2, \cdots, x_n; t_1, t_2, \cdots, t_n) = \dfrac{\partial^{n} F_1(x_1, x_2, \cdots, x_n; t_1, t_2, \cdots, t_n)}{\partial x_1\partial x_2\cdots\partial x_n}$$
+<h4 id="统计独立"><a class="header-anchor" href="#统计独立">¶</a>统计独立</h4>
+<p>对于任何 $n$ 个随机变量 $X(t_1)$，$X(t_2)$，$\dots$，$X(t_n)$，如果下式成立</p>
+$$f_n(x_1, x_2, \cdots, x_n; t_1, t_2, \cdots, t_n) = f_1(x_1, t_1)f_1(x_2, t_2) \dots f_1(x_n, t_n)$$
+<p>则称这些变量是 <strong>统计独立</strong> 的，否则就是不独立的或相关的。</p>
+<h4 id="数字特征"><a class="header-anchor" href="#数字特征">¶</a>数字特征</h4>
+<h5 id="随机过程的数学期望"><a class="header-anchor" href="#随机过程的数学期望">¶</a>随机过程的数学期望</h5>
+<p>随机过程 $X(t)$ 在任意给定时刻 $t_1$ 的取值 $X(t_1)$ 是一个随机变量，其 <strong>数学期望（均值）</strong> 为</p>
+$$E[X(t_1)] = \int^{\infty}_{-\infty} x_1 f_1(x_1, t_1) \mathrm{d}x$$
+<p>其中 $f_1 (x_1, t_1)$ 为 $X(t_1)$ 的概率密度函数。<br>
+由于 $t_1$ 是任取的，所以可以把 $t_1$ 直接写为 $t$，$x_1$改为 $x$，这样便可得到随机过程在任意给定时刻 $t$ 的数学期望</p>
+$$E[X(t)] = \int^{\infty}_{-\infty} x f_1(x, t) \mathrm{d}x \longrightarrow a(t)$$
+<p>$X (t)$ 的数学期望是时间的确定函数，常记作 $a(t)$，它表示随机过程的 $n$ 个样本函数曲线的摆动中心，故又常被称为统计平均或均值。</p>
+<p><br><div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B.PNG"/></div><br></p>
+<h5 id="方差"><a class="header-anchor" href="#方差">¶</a>方差</h5>
+<p>随机过程的 <strong>方差</strong> 定义为</p>
+$$D[X(t)] = E\{ [ X(t) - a(t) ]^2 \} \longrightarrow \sigma^2(t)$$
+<p>这里也把任意时刻 $t_1$ 直接写成了 $t$。由方差的定义式可推导得到</p>
+$$D[X(t)] = E[X^2(t)] - a^2(t) = \int^{\infty}_{-\infty} x^2 f_1(x, t)\mathrm{d}x - [a(t)]^2$$
+<p>可知方差等于均方值与均值平方之差，它表示随机过程在时刻 $t$ 相对于均值 $a ( t )$ 的偏离程度。</p>
+<h5 id="相关函数与协方差"><a class="header-anchor" href="#相关函数与协方差">¶</a>相关函数与协方差</h5>
+<p>设 $X(t_1)$ 和 $X(t_2)$ 分别是在 $t_1$ 和 $t_2$ 时刻观测得到的随机变量。</p>
+<p>随机过程的（自）<strong>相关函数</strong>（同一随机过程的相关程度），定义为</p>
+$$R(t_1, t_2) = E[X(t_1)X(t_2)] = \int^{\infty}_{-\infty}\int^{\infty}_{-\infty} x_1x_2f_2(x_1, x_2; t_1, t_2)\mathrm{d}x_1\mathrm{d}x_2 = R(t, \tau)$$
+<p>其中 $f_2(x_1, x_2; t_1, t_2)$ 为 $X(t)$ 的二维概率密度函数;<br>
+令 $t = t_1$，$\tau = t_2 - t_1$，则 $R(t_1, t_2)$ 可表示为 $R(t, \tau)$;<br>
+可以看出 $R(t_1, t_2)$ 是两个变量 $t_1$ 和 $t_2$ 的确定函数。</p>
+<p>随机过程的 <strong>协方差函数</strong> 定义为</p>
+$$B(t_1, t_2) = E{[X(t_1) - a(t_1)][X(t_2) - a(t_2)]} \\= \int^{\infty}_{-\infty}\int^{\infty}_{-\infty} [x_1 - a(t_1)][x_2 - a(t_2)]f_2(x_1, x_2; t_1, t_2)\mathrm{d}x_1\mathrm{d}x_2$$
+<p>显然，相关函数和协方差函数之间有如下关系</p>
+$$B(t_1, t_2) = R(t_1, t_2) - a(t_1)a(t_2)$$
+<p>引申到两个随机过程，有</p>
+<ul>
+<li>互相关函数</li>
+</ul>
+$$R_{XY}(t_1, t_2) = E[X(t_1)Y(t_2)] $$
+<ul>
+<li>互协方差函数</li>
+</ul>
+$$B_{XY}(t_1, t_2) = E\{ [X(t_1) - a_X(t_1)][Y(t_2) - a_Y(t_2)]\}$$
+<h3 id="平稳随机过程"><a class="header-anchor" href="#平稳随机过程">¶</a>平稳随机过程</h3>
+<p>若一个随机过程 $X(t)$，它的任意 $n$ 维分布或概率密度函数与时间起点无关，即对于任意的正整数 $n$ 和所有实数 $\Delta$，有</p>
+$$f_n(x_1, x_2, \cdots, x_n; t_1, t_2, \cdots, t_n) \\= f_n(x_1, x_2, \cdots, x_n; t_1 + \Delta, t_2 + \Delta, \cdots, t_n + \Delta)$$
+<p>则称X(t)是 <strong>平稳随机过程</strong>。</p>
+<h4 id="性质"><a class="header-anchor" href="#性质">¶</a>性质</h4>
+<p>平稳随机过程的统计特性不随时间的推移而改变。</p>
+<ul>
+<li>一维概率密度函数与时间 $t$ 无关</li>
+</ul>
+$$f_1(x_1, t_1) = f_1(x_1)$$
+<ul>
+<li>二维概率密度函数只与时间间隔 $\tau = t_2 – t_1$ 有关</li>
+</ul>
+$$f_2(x_1, x_2; t_1, t_2) = f_2(x_1, x_2; \tau)$$
+<h4 id="数字特征-v2"><a class="header-anchor" href="#数字特征-v2">¶</a>数字特征</h4>
+<p>（1）均值与 $t$ 无关，为常数 $a$</p>
+$$E[X(t)] = \int^{\infty}_{-\infty} x_1 f_1(x_1) \mathrm{d}x = a$$
+<p>（2）自相关函数只与时间间隔 $\tau$ 有关</p>
+$$R(t_1, t_2) = E[X(t_1)X(t_1 + \tau)] = \int^{\infty}_{-\infty}\int^{\infty}_{-\infty} x_1x_2f_2(x_1, x_2; \tau)\mathrm{d}x_1\mathrm{d}x_2 = R(\tau)$$
+<p>把同时满足（1）和（2）的随机过程定义为 <strong>广义平稳随机过程</strong>。</p>
+<h4 id="平稳随机过程的各态历经性"><a class="header-anchor" href="#平稳随机过程的各态历经性">¶</a>平稳随机过程的各态历经性</h4>
+<p><strong>各态历经性</strong> 的含义：随机过程中的任何一次实现都经历了随机过程的所有可能状态，其任一样本都蕴含着平稳随机过程的全部统计信息。<br>
+具有各态历经性的过程，其数字特征（均为统计平均）完全可由随机过程中的任一实现的时间平均值来代替。</p>
+<h5 id="各态历经性条件"><a class="header-anchor" href="#各态历经性条件">¶</a>各态历经性条件</h5>
+<p>设：$x_i(t)$ 是平稳过程 $X(t)$ 的任意一次实现（样本），则其 <strong>时间均值</strong> 和 <strong>时间相关函数</strong> 分别定义为</p>
+$$\overline{a} = \overline {x(t)} = \lim_{T \to \infty}\dfrac{1}{T}\int^{T/2}_{-T/2}x(t)\mathrm{d}t$$
+$$\overline{R(\tau)} = \overline{x(t)x(t + \tau)} = \lim_{T \to \infty}\dfrac{1}{T}\int^{T/2}_{-T/2}x(t)x(t+\tau)\mathrm{d}t$$
+<p>如果平稳过程使下式成立</p>
+$$
+\begin{cases}
+& a = \overline{a} \\
+& R(\tau) = \overline{R(\tau)}
+\end{cases}
+$$
+<p>则称该平稳过程具有各态历经性。</p>
+<h4 id="平稳过程的自相关函数"><a class="header-anchor" href="#平稳过程的自相关函数">¶</a>平稳过程的自相关函数</h4>
+<p>平稳过程自相关函数的定义</p>
+$$R(\tau) = R(t_1, t_2) = E[X(t_1)X(t_2)]$$
+<p>平稳过程自相关函数的性质</p>
+<ul>
+<li>$R(\tau) = R(-\tau) ~~~~~~~~~~~~~~~~~~~~$ —— $\tau$ 的偶函数</li>
+<li>$|R(\tau)| \le R(0) ~~~~~~~~~~~~~~~~~~~~$ —— $R(\tau)$ 的上界，$R(\tau)$ 在 $\tau = 0$ 有最大值</li>
+<li>$R(0) = E[X^2(t)] ~~~~~~~~~~~~~~~~$ —— $X(t)$ 的平均功率</li>
+<li>$R(\infty) = E^2[X(t)] = a^2 ~~~~$ —— $X(t)$ 的直流功率</li>
+<li>$R(0) - R(\infty) = \sigma^2 ~~~~~~~~~~~~$ —— $X(t)$ 的交流功率</li>
+</ul>
+<p>通常，通信信道中噪声的均值 $a=0$，由此得到噪声的平均功率 $R(0) = \sigma^2$。</p>
+<h4 id="平稳随机过程的功率谱密度"><a class="header-anchor" href="#平稳随机过程的功率谱密度">¶</a>平稳随机过程的功率谱密度</h4>
+<p>设：$X(t)$ 平稳，$R(\tau)$ 绝对可积 $\int^{\infty}_{-\infty}|R(\tau)|\mathrm{d}\tau < \infty$</p>
+<p>则</p>
+$$P_X(\omega) = \int^{\infty}_{-\infty} R(\tau)e^{-j\omega\tau}\mathrm{d}\tau$$
+$$R(\tau) = \dfrac{1}{2\pi}\int^{\infty}_{-\infty} P_X(\omega)e^{j\omega\tau} \mathrm{d}\omega$$
+<p>简记为</p>
+$$R(\tau) \Leftrightarrow P_X(\omega) \tag{维纳-辛钦关系}$$
+<p>即平稳随机过程的自相关函数与其功率谱密度之间互为傅里叶关系。<strong>维纳-辛钦关系</strong> 在平稳随机过程的理论和应用中是一个非常重要的工具，它是联系频域和时域两种分析方法的基本关系式。</p>
+<p>推论</p>
+<ul>
+<li>对功率谱密度进行积分，可得平稳过程的平均功率，从频域的角度给出了过程平均功率的计算方法</li>
+</ul>
+$$R(0) = \int^{\infty}_{-\infty} P_X(f) \mathrm{d}f$$
+<ul>
+<li>各态历经过程的任一实现的功率谱密度等于过程的功率谱密度，即任一实现的谱特性都能很好地表现整个过程的谱特性</li>
+</ul>
+$$P_X(\omega) = P_x(\omega)$$
+<h3 id="高斯随机过程"><a class="header-anchor" href="#高斯随机过程">¶</a>高斯随机过程</h3>
+<p>若随机过程 $X(t)$  的任意 $n$ 维分布（$n=1,2,…$）均服从正态分布，则称它为正态过程或高斯过程。</p>
+<p>$n = 1$ 时，其一维正态概率密度函数为</p>
+$$f_1(x_1, t_1) = \dfrac{1}{\sqrt{2\pi} \sigma_1} \exp\Big[ -\dfrac{(x_1 - a_1)^2}{2\sigma_1^2} \Big]$$
+<p>此即为高斯过程 $X(t)$ 在时刻 $t_1$ 取值所得随机变量 $X(t_1)$ 的一维概率密度函数，$a_1$，$\sigma_1^2$ 分别为 $X(t_1)$ 的均值和方差</p>
+<h4 id="性质-v2"><a class="header-anchor" href="#性质-v2">¶</a>性质</h4>
+<ul>
+<li>高斯过程若广义平稳，则必狭义平稳。</li>
+<li>高斯过程中的随机变量 $X(t_1), X(t_2), X(t_3), \dots$ 之间若不相关，则它们也必是统计独立的。这种情况下，随机过程极其复杂的 $n$ 维正态概率密度函数表示可转化为 $n$ 个简单的一维分布的乘积。</li>
+</ul>
+$$
+\begin{array}{lcl}
+f_n(x_1, x_2, \cdots, x_n; t_1, t_2, \cdots, t_n)
+& = & f_1(x_1, t_1)f_2(x_2, t_2) \cdots f_n(x_n, t_n) \\
+& = & \prod\limits^{n}_{j = 1}\dfrac{1}{\sqrt{2\pi} \sigma_j} \exp\Big[ -\dfrac{(x_j - a_j)^2}{2\sigma_j^2} \Big]
+\end{array}
+$$
+<ul>
+<li>若干个高斯过程之和仍是高斯过程。</li>
+<li>高斯过程经线性变换后，仍是高斯过程。</li>
+</ul>
+<h4 id="高斯随机变量"><a class="header-anchor" href="#高斯随机变量">¶</a>高斯随机变量</h4>
+<p>若随机变量 $x$ 的概率密度函数可表示成</p>
+$$f(x) = \dfrac{1}{\sqrt{2\pi} \sigma} \exp\Big[ -\dfrac{(x - a)^2}{2\sigma^2} \Big]$$
+<p>则称 $x$ 为服从正态分布的随机变量，也称高斯随机变量。</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/%E9%AB%98%E6%96%AF%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F.PNG"/></div><br>
+<p>性质</p>
+<ul>
+<li>对称于直线 $x=a$；</li>
+<li>在 $(-\infty, a)$ 内单调上升，在 $(a, +\infty)$ 内单调下降，且在 a 点处达到极大值；</li>
+<li>
+$\int^{\infty}_{-\infty}f(x)\mathrm{d}x = 1$，$\int^{\infty}_{a}f(x)\mathrm{d}x = \int^{a}_{-\infty}f(x)\mathrm{d}x = \dfrac{1}{2}$
+</li>
+<li>$a$ 表示分布中心，$\sigma$ 表示集中的程度，$\sigma$ 减小使得 $f(x)$ 变得高窄。</li>
+</ul>
+<h4 id="正态分布函数与误差函数"><a class="header-anchor" href="#正态分布函数与误差函数">¶</a>正态分布函数与误差函数</h4>
+<p>正态分布函数的一般表示式为</p>
+$$F(x) = \int^{x}_{-\infty}f(z)\mathrm{d}z = \int^{x}_{-\infty}\dfrac{1}{\sqrt{2\pi} \sigma} \exp\Big[ -\dfrac{(x - a)^2}{2\sigma^2} \Big]\mathrm{d}z$$
+<p>误差函数（可补充）</p>
+<h3 id="平稳随机过程通过线性系统"><a class="header-anchor" href="#平稳随机过程通过线性系统">¶</a>平稳随机过程通过线性系统</h3>
+<p>设 $X(t)$ 是平稳的输入随机过程，其均值为 $a_X$，其自相关函数为 $R_X(\tau)$，其功率谱密度为 $P_X(\omega)$，通过线性系统，输出过程 $Y(t)$，有</p>
+$$Y(t) = X(t) * h(t) = \int^{\infty}_{-\infty}h(\tau)X(t-\tau)\mathrm{d}\tau$$
+<ul>
+<li>
+<p>$Y(t)$ 的均值：<br>
+$E[Y(t)] = a_XH(0) = a_Y$（输入过程均值与系统直流增益的乘积，与 $t$ 无关）</p>
+</li>
+<li>
+<p>$Y(t)$ 的相关函数：<br>
+$R_Y(t, t+\tau) = R_Y(\tau)$（即 $Y(t)$ 平稳）</p>
+</li>
+<li>
+<p>$Y(t)$ 的功率谱密度：<br>
+$P_Y(\omega) = |H(\omega)|^2 P_X(\omega)$</p>
+</li>
+<li>
+<p>$Y(t)$ 的概率分布函数：</p>
+</li>
+</ul>
+$Y(t) = \lim\limits_{\Delta \tau_k \rightarrow 0} \sum^{\infty}_{k=-\infty} h(\tau_k) X(t-\tau_k)\Delta\tau_k$
+<p>（高斯过程经过线性变换后认为高斯过程）</p>
+<h3 id="窄带随机过程"><a class="header-anchor" href="#窄带随机过程">¶</a>窄带随机过程</h3>
+<p>（可补充）</p>
+<h3 id="正弦波加窄带高斯噪声"><a class="header-anchor" href="#正弦波加窄带高斯噪声">¶</a>正弦波加窄带高斯噪声</h3>
+<p>（可补充）</p>
+<h3 id="高斯白噪声和带限白噪声"><a class="header-anchor" href="#高斯白噪声和带限白噪声">¶</a>高斯白噪声和带限白噪声</h3>
+<h4 id="白噪声"><a class="header-anchor" href="#白噪声">¶</a>白噪声</h4>
+<p>凡功率谱密度在整个频域内都是均匀分布的噪声，称为白噪声。<br>
+只要噪声的功率谱均匀分布的频率范围远大于通信系统的工作频带，就可视为白噪声。</p>
+<ul>
+<li>双边谱密度：$P_n(\omega) = \dfrac{n_0}{2}~~~~~~~~(-\infty&lt; \omega &lt;+\infty)$</li>
+<li>单边谱密度：$P_n(\omega) = n_0~~~~~~~~~(0&lt; \omega &lt;+\infty)$</li>
+</ul>
+<p>其中：$n_0$ 为常数，$\text{W/Hz}$。一般默认白噪声为平稳的。</p>
+<p>自相关函数：$P_n(\omega) = \dfrac{n_0}{2}\leftrightarrow R_n(\tau) = \dfrac{n_0}{2}\delta(\tau)$（互为傅氏变换对）</p>
+<p>平均功率：$R(0) = \dfrac{n_0}{2}\delta(0) = \infty$</p>
+<h4 id="高斯白噪声"><a class="header-anchor" href="#高斯白噪声">¶</a>高斯白噪声</h4>
+<p>在通信系统的抗噪声性能分析时，常把通信信道中的噪声源视为高斯白噪声。<br>
+高斯白噪声是指噪声取值的概率密度函数满足正态分布统计特性，同时它的功率谱密度函数是常数的一类噪声。</p>
+<h4 id="带限白噪声"><a class="header-anchor" href="#带限白噪声">¶</a>带限白噪声</h4>
+<p>带限白噪声指白噪声功率被限制在一定范围的噪声</p>
+<h5 id="低通白噪声"><a class="header-anchor" href="#低通白噪声">¶</a>低通白噪声</h5>
+<p>白噪声经理想低通滤波器或理想低通信道后而形成的噪声，被称为低通白噪声。</p>
+<p>功率谱密度：</p>
+$$
+P_n(\omega) =
+\begin{cases}
+\dfrac{n_0}{2}, & |\omega| \le \omega_H\\
+0, & \text{else}
+\end{cases}
+$$
+<p>自相关函数：对 $P_n(\omega)$ 取傅里叶变换：$R(\tau)=n_0 f_H Sa(\omega_H\tau)$</p>
+<p>低通白噪声的功率：$N = R(0) = n_0 f_H = n_0 B$</p>
+<h5 id="带通白噪声"><a class="header-anchor" href="#带通白噪声">¶</a>带通白噪声</h5>
+<p>如果白噪声通过理想矩形的带通滤波器或理想带通信道，则其输出的噪声称为带通白噪声。</p>
+<p>设理想带通滤波器的传输特性为</p>
+$$
+H(f) =
+\begin{cases}
+1, & f_c - \dfrac{B}{2} \le |f| \le f_c + \dfrac{B}{2}\\
+0, & \text{else}
+\end{cases}
+$$
+<p>式中：$f_c$－中心频率，$B$－通带宽度。</p>
+<p>则带通白噪声的功率谱密度为</p>
+$$
+P_n(\omega) =
+\begin{cases}
+\dfrac{n_0}{2}, & f_c - \dfrac{B}{2} \le |f| \le f_c + \dfrac{B}{2}\\
+0, & \text{else}
+\end{cases}
+$$
+<p>自相关函数：$R(\tau) = n_0 B \cdot Sa \pi B \tau \cdot cos\omega_c\tau$</p>
+<p>带通白噪声的功率：$N=R(0)=n_0 B$</p>
+<p>理想低通与理想带通皆为线性系统，当输入的白噪声为高斯型时，其输<br>
+出也必为高斯的，且均值为 $0$，方差为 $n_0 B$。</p>
+<h2 id="信道与噪声"><a class="header-anchor" href="#信道与噪声">¶</a>信道与噪声</h2>
+<blockquote>
+<p>考察重点: 待定<br>
+勿忘求相频特性的方法</p>
+</blockquote>
+<h3 id="信道"><a class="header-anchor" href="#信道">¶</a>信道</h3>
+<p>通俗地说，信道是指以传输媒介为基础的信号通路，可大体分成狭义信道和广义信道。</p>
+<h4 id="调制信道模型"><a class="header-anchor" href="#调制信道模型">¶</a>调制信道模型</h4>
+<p>调制信道即传输已调信号的信道。</p>
+<p>可用一个二对端（或多对端）的时变线性网络来表示调制信道，</p>
+$$e_0 (t) = k(t) \cdot e_i(t) + n(t).$$
+<p>信道对信号的影响可归纳为两点：一是乘性干扰 $k(t)$，二是加性干扰（噪声） $n(t)$。不同特性的信道，仅反映信道模型有不同的 $k(t)$ 及 $n(t)$。</p>
+<p>根据信道中 $k(t)$ 的特性不同，可以将信道分为：</p>
+<ul>
+<li>恒参信道: $k(t) \sim t$ 不变或慢变；</li>
+<li>变参信道（随参信道）: $k(t) \sim t$ 随机快变。</li>
+</ul>
+<h3 id="恒参信道及其对所传信号的影响"><a class="header-anchor" href="#恒参信道及其对所传信号的影响">¶</a>恒参信道及其对所传信号的影响</h3>
+<p>恒参信道可以等效为一个线性时不变网络。</p>
+<p>网络的传输特性：$H(\omega) = |H(\omega)|e^{j\varphi(\omega)}$</p>
+<p>信号不失真传输条件</p>
+<p>要使任意一个信号通过线性网络不产生波形失真，网络的传输特性应该具备以下两个理想条件：</p>
+<ul>
+<li>网络的幅频特性 $|H(\omega)|$ 是一个不随频率变化的常数；</li>
+<li>网络的相频特性 $\varphi(\omega)$ 应与频率成负斜率直线关系。其中 $t_0$ 为传输时延常数。</li>
+</ul>
+<p>网络的相频特性还常采用群迟延-频率特性 $\tau(\omega)$ 来衡量，有</p>
+$$\tau(\omega) = \dfrac{\mathrm{d}\varphi(\omega)}{\mathrm{d} \omega}$$
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/%E7%90%86%E6%83%B3%E4%B8%8D%E5%A4%B1%E7%9C%9F.PNG"/></div><br>
+<p>随参信道及其对所传信号的影响<br>
+一般的多径传播 信号带宽（可补充）</p>
+<h3 id="信道容量"><a class="header-anchor" href="#信道容量">¶</a>信道容量</h3>
+<p>在信息论中，称信道无差错传输信息的最大信息速率为信道容量，记之为 $C$。</p>
+<p>假设连续信道的加性高斯带限白噪声功率为 $N（\text{W}）$，信道的带宽为 $B（\text{Hz}）$，信号功率为 $S（\text{W}）$，则该信道的信道容量 $C$ 为：</p>
+$$C = B\log_{2}(1 + \dfrac{S}{N}) = B\log_2(1 + \dfrac{S}{n_0 B})~~~~(\text{bit/s})$$
+<p>其中：<br>
+$n_0$：高斯白噪声的单边功率谱密度 $(\text{W/Hz})$；<br>
+$S/N$：存在于信道中的信噪比。</p>
+<p>关于香农公式的几点讨论（可补充）</p>
+<h2 id="模拟调制系统"><a class="header-anchor" href="#模拟调制系统">¶</a>模拟调制系统</h2>
+<h3 id="幅度调制的原理"><a class="header-anchor" href="#幅度调制的原理">¶</a>幅度调制的原理</h3>
+<p>常规双边带调幅（AM, Amplitude Modulation）<br>
+抑制载波的双边带调幅（DSB-SC，Double Side-Band-Suppressed Carrier）<br>
+单边带调制（SSB，Single Side Band）<br>
+残留边带调制（VSB）</p>
+<h1>To Be Continued…</h1>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/03/29/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/" title="通信原理笔记">https://cloudplayer99.github.io/2021/03/29/通信原理笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E4%B8%8E%E6%8A%80%E6%9C%AF/" rel="tag"># 通信原理与技术</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/21/written_by_T0ST/" rel="prev" title="转载：How I cut GTA Online loading times by 70 percent">
+      <i class="fa fa-chevron-left"></i> 转载：How I cut GTA Online loading times by 70 percent
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/03/%E4%B8%80%E4%BA%9B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%AD%A6%E6%B1%82%E8%A7%A3%E5%8F%82%E8%80%83/" rel="next" title="一些机器学习问题的数学求解参考">
+      一些机器学习问题的数学求解参考 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#致谢"><span class="nav-number">1.</span> <span class="nav-text">致谢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考教材"><span class="nav-number">2.</span> <span class="nav-text">参考教材</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-绪论"><span class="nav-number">3.</span> <span class="nav-text">第一章 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通信的基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">通信的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息的概念"><span class="nav-number">3.2.</span> <span class="nav-text">信息的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通信系统的性能指标"><span class="nav-number">3.3.</span> <span class="nav-text">通信系统的性能指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-随机信号与噪声分析"><span class="nav-number">4.</span> <span class="nav-text">第二章 随机信号与噪声分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随机过程"><span class="nav-number">4.1.</span> <span class="nav-text">随机过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">4.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布函数"><span class="nav-number">4.1.2.</span> <span class="nav-text">分布函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计独立"><span class="nav-number">4.1.3.</span> <span class="nav-text">统计独立</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字特征"><span class="nav-number">4.1.4.</span> <span class="nav-text">数字特征</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#随机过程的数学期望"><span class="nav-number">4.1.4.1.</span> <span class="nav-text">随机过程的数学期望</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方差"><span class="nav-number">4.1.4.2.</span> <span class="nav-text">方差</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#相关函数与协方差"><span class="nav-number">4.1.4.3.</span> <span class="nav-text">相关函数与协方差</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平稳随机过程"><span class="nav-number">4.2.</span> <span class="nav-text">平稳随机过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#性质"><span class="nav-number">4.2.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字特征-v2"><span class="nav-number">4.2.2.</span> <span class="nav-text">数字特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平稳随机过程的各态历经性"><span class="nav-number">4.2.3.</span> <span class="nav-text">平稳随机过程的各态历经性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#各态历经性条件"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">各态历经性条件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平稳过程的自相关函数"><span class="nav-number">4.2.4.</span> <span class="nav-text">平稳过程的自相关函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平稳随机过程的功率谱密度"><span class="nav-number">4.2.5.</span> <span class="nav-text">平稳随机过程的功率谱密度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯随机过程"><span class="nav-number">4.3.</span> <span class="nav-text">高斯随机过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#性质-v2"><span class="nav-number">4.3.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯随机变量"><span class="nav-number">4.3.2.</span> <span class="nav-text">高斯随机变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正态分布函数与误差函数"><span class="nav-number">4.3.3.</span> <span class="nav-text">正态分布函数与误差函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平稳随机过程通过线性系统"><span class="nav-number">4.4.</span> <span class="nav-text">平稳随机过程通过线性系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窄带随机过程"><span class="nav-number">4.5.</span> <span class="nav-text">窄带随机过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正弦波加窄带高斯噪声"><span class="nav-number">4.6.</span> <span class="nav-text">正弦波加窄带高斯噪声</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯白噪声和带限白噪声"><span class="nav-number">4.7.</span> <span class="nav-text">高斯白噪声和带限白噪声</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#白噪声"><span class="nav-number">4.7.1.</span> <span class="nav-text">白噪声</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯白噪声"><span class="nav-number">4.7.2.</span> <span class="nav-text">高斯白噪声</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带限白噪声"><span class="nav-number">4.7.3.</span> <span class="nav-text">带限白噪声</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#低通白噪声"><span class="nav-number">4.7.3.1.</span> <span class="nav-text">低通白噪声</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#带通白噪声"><span class="nav-number">4.7.3.2.</span> <span class="nav-text">带通白噪声</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信道与噪声"><span class="nav-number">5.</span> <span class="nav-text">信道与噪声</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信道"><span class="nav-number">5.1.</span> <span class="nav-text">信道</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调制信道模型"><span class="nav-number">5.1.1.</span> <span class="nav-text">调制信道模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恒参信道及其对所传信号的影响"><span class="nav-number">5.2.</span> <span class="nav-text">恒参信道及其对所传信号的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信道容量"><span class="nav-number">5.3.</span> <span class="nav-text">信道容量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟调制系统"><span class="nav-number">6.</span> <span class="nav-text">模拟调制系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#幅度调制的原理"><span class="nav-number">6.1.</span> <span class="nav-text">幅度调制的原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">To Be Continued…</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/03/29/通信原理笔记/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="嵌入式系统抗干扰设计知网读文献 论文篇幅不够，写一章来凑数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本科人虚假科研">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/05/07/%E6%9C%AC%E7%A7%91%E4%BA%BA%E8%99%9A%E5%81%87%E7%A7%91%E7%A0%94/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="嵌入式系统抗干扰设计知网读文献 论文篇幅不够，写一章来凑数">
+<meta property="article:published_time" content="2022-05-07T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-28T09:47:20.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="虚假科研">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/05/07/%E6%9C%AC%E7%A7%91%E4%BA%BA%E8%99%9A%E5%81%87%E7%A7%91%E7%A0%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>本科人虚假科研 | Cloud_Player's Notes</title><meta name="robots" content="noindex">
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/05/07/%E6%9C%AC%E7%A7%91%E4%BA%BA%E8%99%9A%E5%81%87%E7%A7%91%E7%A0%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          本科人虚假科研
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-07 16:00:00" itemprop="dateCreated datePublished" datetime="2022-05-07T16:00:00+08:00">2022-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-28 17:47:20" itemprop="dateModified" datetime="2023-02-28T17:47:20+08:00">2023-02-28</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>嵌入式系统抗干扰设计知网读文献<br>
+论文篇幅不够，写一章来凑数</p>
+<a id="more"></a>
+<h2 id="查的"><a class="header-anchor" href="#查的">¶</a>查的</h2>
+<p>05.07 文献</p>
+<p>[1]宋芳.单片机应用中的抗干扰技术与方法[J].农机使用与维修,2022(04):68-70.DOI:10.14031/j.cnki.njwx.2022.04.021.</p>
+<blockquote>
+<p>摘要：单片机技术作为我国智能控制技术的基础，其应用在各领域已然颇具成效，对我国工业生产及人们生活带来了巨大的效益，对我国整体的科研转换和推广具有重要意义。单片机技术作为基础技术在应用过程中难免存在不同类型的干扰，进而影响控制精准度。对此分析单片机在应用过程中的干扰因素和后果，探究单片机应用中的抗干扰技术与方法，增强单片机技术能力，促进单片机应用更具系统化、科学化。</p>
+</blockquote>
+<p>形成单片机干扰的基本因素<br>
+干扰源、传播路径、敏感零件</p>
+<p>单片机在应用过程中的干扰因素<br>
+工业区域的电磁干扰，单片机系统的供电干扰，温度、湿度的环境因素，设备的振动、噪音，单片机内部元器件布局</p>
+<p>单片机受干扰时产生的影响<br>
+数据收集的精准度下降，控制系统失效，数据破坏</p>
+<p>单片机系统的抗干扰技术<br>
+1)硬件抗干扰技术<br>
+搭配合理的元器件，电力供给技术，接地技术，隔离抗干扰<br>
+2)软件抗干扰技术<br>
+数字过滤技术，软件看门狗技术<br>
+3)隔离与屏蔽技术<br>
+4)切断干扰传播途径<br>
+5)其他抗干扰技术</p>
+<p>单片机抗干扰及系统恢复流程图<br>
+单片机看门狗软件电路示意图</p>
+<p>[2]彭春文,李永清,芦越栋,高跃,纪晓雪,张建.浅谈传感器抗干扰设计[J].电子世界,2021(22):139-141.DOI:10.19353/j.cnki.dzsj.2021.22.054.</p>
+<blockquote>
+<p>摘要：&lt;正&gt;本文介绍了产生干扰的因素,阐述了机电一体化类传感器抗干扰设计的基本原则,给出了传感器机械结构设计和电路抗干扰设计具体的抗干扰措施,对传感器的电磁兼容设计有一定的指导意义。随着电子技术和集成电路的迅速发展,机电一体化类传感器产品的应用越来越广泛,使用密度越来越高,相互干扰愈加严重,对传感器类产品可靠性要求越来越高,抗干扰设计技术尤为关键。</p>
+</blockquote>
+<p>电磁场环境因素变化带来的干扰，对传感器的稳定性和可靠性有着较大的影响。传感器的抗干扰设计中电磁抗干扰设计尤为重要。</p>
+<p>电磁干扰按干扰三要素方式分以下三种：<br>
+第一种是传导干扰，是通过电源、电缆，布线系统、接地系统等引起的串扰。<br>
+第二种是辐射干扰，在兆赫以上的高频辐射就比较明显，当导线长度超过四分之一波长时，辐射功率则相应增大。<br>
+第三种是感应及耦合引起的干扰。</p>
+<p>抗电磁干扰方法主要有三种：消除和抑制干扰源、切断干扰耦合通道、消除接受载体的敏感性。</p>
+<p>结构抗干扰设计，主要是针对辐射干扰采取措施。电路抗干扰设计，主要是针对传导干扰和感应及耦合干扰采取措施。<br>
+结构抗干扰设计技术<br>
+静电屏蔽、磁屏蔽和电磁屏蔽<br>
+电路抗干扰设计技术<br>
+引线的选用，滤波电路设计，电路隔离技术，接地的技术<br>
+软件抗干扰设计<br>
+软件滤波技术，软件“陷阱”技术，软件“看门狗”技术</p>
+<p>[3]徐靖.单片机控制系统的抗干扰措施[J].电子测试,2021(20):137-138+140.DOI:10.16520/j.cnki.1000-8519.2021.20.055.</p>
+<blockquote>
+<p>摘要：本文针对各种单片机射频控制系统的抗干扰控制问题做出了进一步的理论研究。通过实例分析单片机控制器在系统中干扰的种类及其耦合形成的方式,并从硬件、软件两个方面阐述了单片机抵御干扰的几种有效措施。</p>
+</blockquote>
+<p>地线干扰的有效遏制<br>
+采用光电信号隔离系统技术<br>
+采用”看门狗”控制电路</p>
+<p>[4]赵禹轩.电子电路设计中的抗干扰措施[J].电子技术与软件工程,2021(11):67-68.</p>
+<blockquote>
+<p>摘要：本文针对电子电路设计中的抗干扰措施展开相应研究。首先,从干扰概念着手,为后续抗干扰措施的提出提供理论依据;其次,对电子电路中较为常见的干扰进行分析;最后,通过对上述两方面的总结,给出几点电子电路设计中的抗干扰措施。</p>
+</blockquote>
+<p>【干扰的概念】</p>
+<p>电子电路中较为常见的干扰<br>
+（1）由电网所引起的干扰，比如雷电感应产生的强烈的高频浪涌电压等；<br>
+（2）由地线所引起的干扰，其属于电子系统内部干扰，是因为电子电路的电流都会通过一个公共地电阻，进而导致电压降，由此形成噪声干扰信号，影响到电子电路的正常运行；<br>
+（3）由信号通道所引起的干扰，包括信号线之间的串扰等；<br>
+（4）由空间电磁辐射所引起的干扰。</p>
+<p>电子电路设计中的抗干扰措施<br>
+抗电网干扰的措施 图解<br>
+交流稳压器，电源滤波器，有屏蔽层的电源变压器，双 T 滤波器，无极性电容<br>
+抗地线干扰的措施<br>
+抗信号通道中干扰的措施<br>
+双绞线传输抗干扰，光电耦合传输抗干扰<br>
+抗空间电磁辐射干扰的措施</p>
+<p>[5]肖必超.电子电路设计中抗干扰技术的实现[J].电子制作,2020(20):50-51.DOI:10.16589/j.cnki.cn11-3571/tn.2020.20.021.</p>
+<blockquote>
+<p>摘要：通常在电子线路的设计过程中会产生干扰现象,这种干扰为电子电路的设计工作带来很大的阻碍,为了最大程度上降低这种阻碍,所以需要设计抗干扰技术来降低电子电路设计过程中存在的干扰现象。为了切实有效的实现电子电路设计的抗干扰,需要对电子电路抗干扰技术有一个全新的认知,通过有效的抗干扰技术为电子电路提供稳定的运行环境,最终符合实际使用的需求,电路的使用时间也会由此得到增加。面对现阶段电子电路在实际应用过程中存在的问题,需要设计出一种行之有效的抗干扰技术来满足实际运作的价值与需求。</p>
+</blockquote>
+<p>分析抗干扰技术<br>
+电磁干扰，电磁兼容，印制电路板抗干扰<br>
+数字电路设计当中的硬件抗干扰技术<br>
+安全接地，避雷接地，屏蔽接地技术</p>
+<p>[6]文丹.单片机控制系统的抗干扰策略分析[J].电子元器件与信息技术,2020,4(07):12-13.DOI:10.19772/j.cnki.2096-4455.2020.7.006.</p>
+<blockquote>
+<p>摘要：科技水平的不断提高有效地促进了单片机控制系统的进一步发展,单片机在正常工作过程中由于周围环境较为复杂,会受到较大程度的干扰,无法保证良好的工作效率与质量,制约了单片机控制系统的进一步发展。这就需要通过一系列行之有效的措施,提高单片机控制系统的抗干扰能力,使之更加符合社会发展的需要。本文首先阐述了单片机控制系统的基本内容,在此基础上从硬件以及软件两个方面分析了提升抗干扰能力的策略,以供相关人士参考。</p>
+</blockquote>
+<p>单片机控制系统的抗干扰技术 概述<br>
+单片机控制系统的硬件抗干扰技术<br>
+抗电源干扰技术，传播途径抗干扰技术，地线设计抗干扰技术，屏蔽抗干扰技术<br>
+提高单片机控制系统抗干扰能力的策略（软件抗干扰）<br>
+指令冗余、掉电保护技术、睡眠抗干扰</p>
+<p>[7]张萍,李莉.传感器电路的噪声及其抗干扰技术研究[J].民营科技,2017(09):44.</p>
+<blockquote>
+<p>摘要：分析了传感器电路内部的三种常见的噪声,并提出了抗干扰技术的建议,传感器电路设计中按此方法可以减少干扰。</p>
+</blockquote>
+<p>在传感器电路设计中，如何屏蔽噪声及其抗干扰技术的研究是非常重要的 概述</p>
+<p>传感器电路的内部噪声<br>
+高频热噪声，低频噪声，半导体器件产生的散粒噪声</p>
+<p>减少传感器电路干扰的措施<br>
+合理布置电源线、地线以及元器件，采用静电、电磁、低频磁屏蔽技术，接地和隔离技术</p>
+<p>[8]刘竹琴,白泽生.传感器电路的噪声及其抗干扰技术研究[J].现代电子技术,2011,34(14):161-165.DOI:10.16652/j.issn.1004-373x.2011.14.055.</p>
+<blockquote>
+<p>摘要：尽量消除或抑制电子电路的干扰是电路设计和应用始终需要解决的问题。传感器电路通常用来测量微弱的信号,具有很高的灵敏度,如果不能解决好各类干扰的影响,将给电路及其测量带来较大误差,甚至会因干扰信号淹没正常测量信号而使电路不能正常工作。在此,研究了传感器电路设计时的内部噪声和外部干扰,并得出采取合理有效的抗干扰措施,能确保电路正常工作,提高电路的可靠性、稳定性和准确性。</p>
+</blockquote>
+<p>【7，8 类似，8 更为严谨可靠】</p>
+<p>抗干扰设计是传感器电路设计是否成功的关键【概论】</p>
+<p>传感器电路的内部噪声<br>
+高频热噪声，低频噪声，半导体器件产生的散粒噪声，电路板上的电磁元件的干扰，电阻器的噪声，晶体管的噪声，集成电路的噪声</p>
+<p>传感器电路的外部干扰<br>
+电源的干扰，地线的干扰，信号通道的干扰，空间电磁波的干扰</p>
+<p>抑制传感器电路噪声的措施<br>
+根据不同工作频率合理选择噪声低的半导体元器件<br>
+根据不同的工作频段、参数选择适当的放大电路<br>
+传感器电路中加入滤波环节<br>
+通过负反馈电路来抑制噪声<br>
+抑制和减少输入端偏置电路的噪声</p>
+<p>减少传感器电路干扰的措施<br>
+1)合理布局<br>
+地线布置的抗干扰措施，电源布线的抗干扰措施，元器件布局的抗干扰措施<br>
+2)屏蔽技术<br>
+静电屏蔽，电磁屏蔽，低频磁屏蔽<br>
+3)接地技术<br>
+一点接地，多点接地<br>
+4)隔离技术<br>
+电磁耦合隔离，光电耦合隔离</p>
+<p>抗干扰是一个非常复杂、实践性很强的问题，一种干扰现象可能是由若干因素引起的。因此，在传感器电路以及测控系统的设计中，不仅应预先采取抗干扰措施，在调试过程中还应及时分析出遇到的现象，对传感器及其系统的电路原理、具体布线、屏蔽、电源的抗干扰能力、数字地或模拟地的处理以及防护形式不断改进，以提高电路的可靠性和稳定性。</p>
+<p>05.12 文献</p>
+<p>[1]江峰.嵌入式监控系统的抗干扰设计[J].信息通信,2015(04):59.</p>
+<p>要做好高功放监控系统的抗干扰设计需从三个方面做工作，第一是抑制系统中的干扰源，第二是切断干扰源对敏感电路的耦合途径，第三是提高监控硬件电路敏感元件的抗干扰能力。</p>
+<p>抗干扰设计是嵌入式监控系统设计的重点也是难点，很多时候我们设计的嵌入式监控系统在试验台上运行稳定，一旦安装到系统中运行就会出现程序死机，控制不到位，通信不稳定等现象，这些现象都是由于抗干扰设计没有做好，监控系统受到系统内的干扰而产生的不可靠现象。</p>
+<p>[2]李英,张宇红,王健,温上捷.嵌入式系统抗干扰技术研究[J].电子质量,2012(06):18-19.</p>
+<p>系统干扰分析</p>
+<p>嵌入式系统的一部分干扰来源于自身，包括元器件的热噪声、印制电路设计不合理；另一部分干扰来源于外部环境，包括电气和电子设备的电磁干扰,电网引起的干扰以及电磁波干扰等。【对来源进行分析】</p>
+<p>硬件抗干扰技术</p>
+<p>硬件抗干扰是嵌入式系统抗干扰设计的重点，它能消除大部分的干扰。常见的硬件抗干扰措施有：印制电路抗干扰设计、光电隔离、电源抗干扰和去耦等。</p>
+<p>软件抗干扰技术</p>
+<p>硬件抗干扰是嵌入式系统抗干扰的主要手段，但由于软件抗干扰设计灵活，节省硬件资源，也是保证嵌入式系统正常工作的一个重要手段。常见的软件抗干扰方法有：指令冗余、软件陷阱、软件看门狗和数字滤波。</p>
+<p>[3]李冰,徐晖.嵌入式系统综合抗干扰技术[J].价值工程,2010,29(27):234-235.DOI:10.14018/j.cnki.cn13-1085/n.2010.27.116.</p>
+<p>总的来说，嵌入式系统的抗干扰设计应采用以硬件为主，软件为辅，软硬结合的方法。因为软件的抗干扰是被动的，只有在程序异常出现后，或复位或执行其它相关操作；而硬件抗干扰却是主动的隔离外部干扰，保证系统的稳定运行。</p>
+<p>【对干扰源、干扰途径的分析】</p>
+<p>[4]黄家彬.嵌入式计算机系统抗干扰技术初探[J].弹箭与制导学报,2008(05):197-200.</p>
+<p>【同】</p>
+<p>[5]徐小涛,王燕妮,田铖.嵌入式控制系统电路抗干扰设计研究[J].今日电子,2008(03):98-100.</p>
+<p>【单片机】</p>
+<p>[6]徐小涛,田铖,王燕妮.嵌入式系统控制总线抗干扰设计[J].安全与电磁兼容,2007(06):61.</p>
+<p>【USB 总线】</p>
+<p>[7]邱超.嵌入式测控系统的抗干扰设计[J].福建电脑,2007(03):188+171.</p>
+<p>嵌入式测控系统由于具有体积小、功能大、使用方便等优点，已经逐渐开始在工业测控领域得到应用。但由于工业现场环境复杂，干扰因素众多，嵌入式芯片本身的主频较高，PCB 布线密度较大，使得嵌入式测控系统的抗干扰能力往往不能满足工业环境稳定工作的需要。因此，研究如何提高嵌入式测控系统的抗干扰性，对于系统开发人员十分重要。</p>
+<p>【软硬件设计】</p>
+<p>[8]张志军,苏桄海,郭轶平.嵌入式系统的可靠性研究[J].上海电机学院学报,2006(04):29-31+35.【较为系统】</p>
+<p>【嵌入式系统的概念】<br>
+【干扰的形成及主要因素】<br>
+【嵌入式系统的抗干扰设计原则及方法】<br>
+针对主要因素进行针对性分析</p>
+<p>[9]刘宗平. 基于DSP的高可靠性嵌入式硬件系统设计和实现[D].大连交通大学,2005.</p>
+<p>【硕士论文】</p>
+<p>【电路设计涉及的可靠性问题】<br>
+电磁兼容<br>
+信号完整性<br>
+热散性</p>
+<p>【系统可能受到的干扰原因及解决方法】<br>
+电源可能受到的干扰及解决办法<br>
+接口电路的可能受到的干扰及解决办法<br>
+通信电路可能受到的干扰及解决办法</p>
+<p>[10]刘文,张建军.基于嵌入式控制技术的抗干扰设计思想[J].现代电子技术,2004(13):52-54+61.</p>
+<p>【干扰后果】<br>
+主要表现在以下几个方面：<br>
+数据采集误差加大<br>
+控制状态失灵<br>
+数据受干扰发生变化<br>
+程序运行失常等</p>
+<p>【软件陷阱技术】<br>
+【软件看门狗技术】</p>
+<p>【查找：印制板的抗干扰设计】<br>
+[1]董强,倪健,刘云,马晓翠.PCB的布线设计及抗干扰技术[J].舰船科学技术,2006(02):57-59+63.<br>
+[2]刘宏琨,黄健,王志立.PCB设计中的抗干扰技术[J].电子质量,2020(10):149-153.</p>
+<h2 id="写的"><a class="header-anchor" href="#写的">¶</a>写的</h2>
+<p>【1】智能小车抗干扰设计</p>
+<p>【2】抗干扰设计的必要性</p>
+<p>【智能小车作为嵌入式设备易受到干扰】<br>
+【常见的干扰】<br>
+【干扰对嵌入式设备的影响】</p>
+<p>基于ARM的智能小车作为一个典型的嵌入式系统，具有以应用为中心、专用性强、实时性好的特点，它的软件硬件皆能够进行裁剪，从而能够适应用户对功能、成本、功耗、可靠性等方面的设计要求。许多嵌入式系统在设计之初时，其设计人员往往会忽视影响系统可靠性的一个重要因素，也就是嵌入式系统的抗干扰问题，从而导致设计出来的嵌入式系统不能满足其功能需求，无法在环境较为不理想的情况下正常工作，甚至于经常出现系统故障、崩溃、停止运行等问题，使得之前的一系列在设计时付出的努力付诸东流。</p>
+<p>智能小车的工作环境具有多样性和不可预测性，可能受到大量的干扰，使得小车的系统出现故障，出现导线虚接甚至电路板损坏的情况，最直观的影响体现在传感器采集数据的误差增大、精准度下降，小车的运动控制失灵，系统各部分运作不协调，小车搭载的程序运行失常等现象上。特别是在障碍物较为集中的环境下，如果小车因为受到某种干扰而丧失了避障的能力，很有可能会因此与障碍物进行较为剧烈的碰撞，车体发生较大的振动，对小车的构件造成不可逆转的伤害。传感器电路通常用来测量微弱的信号，易受到外界或内部的一些无规则噪声或干扰信号的影响，若噪声的大小与待测信号的大小达到相同的量级，则势必将要使得测量结果出现偏差，影响传感器电路的精度，若干扰程度更大一些，原有的数据信号将会被噪声覆盖，使得传感器电路完全不能正常工作。传感器的正常运行对工作环境的理想性依赖很大，宽温区的工作环境的温度变化、强烈的机械振动、电磁场的干扰都不利于传感器的正常运行。于是传感器电路的抗干扰性能就极大地影响了小车整体的工作性能。因此，对基于ARM的智能小车这样的嵌入式系统进行抗干扰设计是绝对有必要的。</p>
+<p>【2】智能小车在应用过程中的干扰因素</p>
+<p>【电磁干扰】电磁兼容<br>
+传导干扰、辐射干扰、感应及耦合引起的干扰<br>
+【供电干扰】<br>
+【温度、湿度】<br>
+热散性<br>
+【设备振动】<br>
+【传感器电路的内部噪声】<br>
+高频热噪声，低频噪声，半导体器件产生的散粒噪声<br>
+电路板上的电磁元件的干扰，电阻器的噪声，晶体管的噪声，集成电路的噪声<br>
+【内部元器件布局】</p>
+<p>智能小车受到的干扰，就是可能导致小车无法正常、稳定地工作的不良因素，可能发生在系统内部，也可能发生在系统外部。要对系统形成干扰，需要满足三个条件，即具备干扰源、传播路径以及对干扰敏感的元器件。干扰源是指产生干扰的噪声信号、电子器件与其他设备。从内部来说，系统内部本身就存在各种能够引起干扰的元器件。从外部来说，系统所处的工作环境，包括周边的电气设备，都有可能产生对系统的干扰。传播路径是指干扰从干扰源传播到敏感器件的通路或媒介，比较常见的干扰耦合方式有静电耦合、电磁耦合、共阻抗耦合及漏电流耦合等。对干扰敏感的元器件是指容易受到干扰的对象，这样的对象广泛地存在于嵌入式系统中，比方说A/D与D/A转换器，信号放大器等，这样的元器件极易受到干扰的影响。分析干扰形成的条件与其产生的过程，更有利于对基于ARM的智能小车进行抗干扰设计。图4.1所示为智能小车受到干扰的主要途径。</p>
+<p>【分小标题】电磁干扰</p>
+<p>如今的世界是一个电气化与信息化的世界，电子设备被广泛地应用到生活与生产的各个领域，这使得它们周围空间产生的电磁场电平也在不断增加，也就是说智能小车的应用场景中一定或多或少地存在电磁环境，而在嵌入式系统普及程度最高，应用最为广泛的工业控制领域，暴露在工业生产中可能产生的强大电磁场中，对嵌入式系统的干扰极大，于是设计时就必须考虑提高智能小车在电磁环境中的抗干扰能力。</p>
+<p>电磁干扰可以分为三种，第一种是传导干扰，即通过电源、导线，布线系统、接地系统等引起的串扰，第二种是辐射干扰，第三种是电磁感应与耦合引起的干扰。传导干扰往往容易被忽略，导线在通过噪声环境的时候，可能将噪声捡拾并将其传导到其他电路，这样就造成了由传导引起的电磁干扰。比较典型的例子是干扰信号通过电源线进行传导进入电路，这又称为供电干扰。辐射干扰即由空间电磁辐射所引起的干扰，这种干扰一般由环境中的电子设备通过天线发射的电磁波引起。感应耦合可分成容性耦合与感性耦合两种，容性耦合在回路中产生感应电流，而感性耦合在回路中产生感应电压，这样对元器件形成干扰。例如，当强信号线与弱信号线距离较为接近时，就会因为电磁感应而产生两根信号线的线间干扰。由耦合形成的干扰还包括公共阻抗耦合，即来自两个不同电路的电流通过一个公共阻抗时就会产生共阻抗耦合。例如，在电路设计时，电路中的电流都会通过一个公共地电阻，从而引起一个电压降，形成了噪声。</p>
+<p>【分小标题】过温干扰（散热性能）</p>
+<p>在一般的嵌入式硬件系统设计中，很少注意到硬件系统的散热性，这是因为低速芯片的功耗一般很小，在正常的自然散热条件下，芯片的温升不会太大。而随着芯片的集成度、功率密度的日愈提高，芯片的温度越来越成为系统稳定工作、性能提升的绊脚石。Jetson Nano开发套件搭载的 Jetson Nano芯片显然属于高集成度、性能强大的智能芯片，能够提供472GFLOPs的算力，主频达到了1.43GHz。虽然Jetson Nano模块所支持的两种功耗预算方案5W与10W已经较小，但是，实际的功耗还与接入的外设和具体的使用情况有关。如果完全依靠其自带的静态散热，在运行目标检测的程序时GPU与CPU等组件的温度均已达到60℃~70℃，运行更为复杂的程序则温度更高，对芯片性能的影响很大，在实际使用的过程中会因为过温干扰导致小车无法稳定地实时完成跟踪与避障的要求，经常产生故障，这样就降低了智能小车的稳定性、工作寿命和它的环境适应能力。温度过高同时也是电子产品损坏的主要原因之一。那么，提高硬件系统的散热性能就显得尤为重要。</p>
+<p>在通常情况下，热量的传递包括三种方式：传导、对流和辐射。传导是指直接接触的物体之间热量由温度高的一个方向向温度低的一方的传递，对流是借助流体的流动传递热量，而辐射是发热体直接向周围空间释放热量，无需借助任何媒介。</p>
+<p>【塔式散热器】</p>
+<p>【分小标题】振动干扰</p>
+<p>对部署在在工业环境中的嵌入式系统来说，具有抗振性也十分重要，因为在工业环境中，冲击与振动是很常见的干扰，在其他领域，例如铁路系统与采矿业中，电子设备也必须满足抗振的标准才能够投入使用，国际铁路联盟有数据称，列车与轨道相互作用的地面振动产生的振动频率范围大约在1Hz到100Hz之间，而在采矿业中，由于挖掘与提取中使用炸药，爆炸位置周围的地面爆破振动可达2.5Grms左右，振动频率范围大约在1Hz至300Hz之间。在这样的干扰下，硬件系统中任何移动部件都可能是潜在的故障点，例如，可活动的电缆在振动干扰下就很容易发生故障。</p>
+<p>【分小标题】内部元器件布局不合理导致的干扰（重复）</p>
+<p>【分小标题】供电干扰（重复）</p>
+<p>【分小标题】传感器电路的内部噪声</p>
+<p>传感器电路的内部噪声包括由于导电体内部电子的无规则运动产生的高频热噪声，由于内部的导电微粒不连续造成的低频噪声，由于半导体PN结两端势垒区电压的变化引起累积在此区域的电荷数量改变而产生的散粒噪声，还有晶体管产生的噪声等。</p>
+<p>【2】硬件抗干扰设计</p>
+<p>【抗干扰设计的原则】<br>
+抑制干扰源、切断干扰传播路径、提高敏感器件的抗干扰性能</p>
+<p>【不分小标题】抗干扰设计的原则</p>
+<p>根据干扰形成的三个条件，可以总结出嵌入式系统抗干扰设计的总的原则，即抑制干扰源、切断干扰传播路径、提高敏感器件的抗干扰性能，依据这个原则，具体地分析消除干扰最优的方法。虽然干扰的本质并不复杂，但是它们的随机性很强，且需要考虑多种干扰叠加后抗干扰的处理方式，于是完全消除干扰就变得比较困难，作为嵌入式系统的设计人员，应当在成本允许的情况下期望将干扰降至最低。</p>
+<p>硬件抗干扰设计是嵌入式系统抗干扰设计的重点，它能够主动地隔离外部干扰，大部分予以消除，保证系统的稳定运行。常见的硬件抗干扰技术有：隔离与屏蔽技术、印制电路板抗干扰设计、电源抗干扰技术和去耦合技术等。虽然硬件抗干扰是嵌入式系统抗干扰的主要手段，但由于软件抗干扰的设计灵活，能够节省硬件资源，也是保证嵌入式系统稳定工作的一个重要手段。常见的软件抗干扰技术有：指令冗余技术、软件陷阱技术、软件看门狗技术、掉电保护技术和数字滤波技术。总的来说，嵌入式系统的抗干扰设计应采用以硬件为主，软件为辅，软硬结合的方法。</p>
+<p>【分小标题】接地技术抗干扰</p>
+<p>智能小车采用的Jetson Nano开发套件与扩展板存在接地设计的问题，合格的接地设计，应当有效地抑制外来电磁干扰的侵入，保障智能小车稳定正常的运行。</p>
+<p>（1）单点接地与多点接地问题。在低频线路中，由于信号的工作频率低于1MHz，其线路及设备之间的电感会受到的影响很小，而接地线路所产生的电流干扰影响较大，因此应该选择一次接地。在信号工作频率超过10MHz的情况下，地线的阻抗会增大，这时要尽可能减小地线的阻抗，选择就近的多点接地。在1~10MHz的工作频率下，若使用一点接地，其地线长度不得大于1/20波长，否则应采用多点接地方式。</p>
+<p>（2）数字地与模拟地问题。如果在印制电路板上同时具有逻辑电路和线性电路的情况下，要尽可能将它们分离开来，同时两者的地线也不能混淆，要分别连接到电源的地线上。应尽可能扩大线性电路的接地区。低频线路接地时，应尽可能地采用单点并联，在实际布线遇到问题时，可以将其部分串联起来，然后并联接地。高频线路的接地方式应以多个点串联，地线要短、粗，高频器件周边要有网状的大面积接地。</p>
+<p>（3）尽可能将地线加粗。地线的宽度应为信号线、控制线的1<sub>3倍，若接地线采用较细的线，将会导致接地电势随电流变化，从而影响其抗干扰能力。所以，接地导线应该加厚，如果印刷电路板的情况允许，接地线的长度应该大于2</sub>3mm。</p>
+<p>（4）接地线形成一个闭合的环路。如果印制电路板仅由数字电路构成，其接地电路布线成闭环路，大多数情况下能够提高抗干扰能力。这是因为印制电路板中有大量的集成电路器件，特别是当采用高功率器件时，由于接地导线厚度的限制，会使电位差增大，从而降低了系统的抗噪性能，如果采用环路，可以减小电位差，从而增强了电子器件的抗噪性能。</p>
+<p>【分小标题】配置解耦电容</p>
+<p>为了消除共用阻抗的不良耦合，一般的印制电路板设计方法是在电路板的各个重要部分设置合适的解耦电容。将10-100μF的电解电容器连接到电源的输入端。如果可以的话，最好是使用100μF或更高的电容器。在每个集成电路芯片上设置0.01μF的陶瓷电容器，若印制板空间不足，则每3<sub>6块芯片配置1</sub>10μF的钽电容器。电容导线不宜过长，特别是高频旁通电容，不能有引线。</p>
+<p>【分小标题】静电屏蔽</p>
+<p>对极易受电磁干扰的电路，采用导电性能优良的铜、铝等材料制成密封的金属容器，以避免电场和磁场的干扰，并与接地导线相连接，将需防护的电路放置在该金属容器内，以保证外界的干扰电场不会对内部电路造成影响，同时内部电路产生的电场也影响不到外部电路。</p>
+<p>【分小标题】散热设计</p>
+<p>Jetson Nano芯片在运行中发散出的热量需要及时进行散热，一般情况下采用风冷散热的方式，风冷散热器一般由导热管、散热鳍片、散热风扇组成，所谓风冷散热，其实就是强制对流散热，对流散热是指流体与其相接触的固体表面或流体具有不同温度时所发生的热量转移过程。散热器通过导热管和芯片相贴，中间涂抹硅脂做导热材料，芯片运行时，热量以热传导的方式通过导热管传至散热鳍片，并通过风扇与空气分子进行受迫对流带走散热鳍片上的热量，将热量发散到空气中，风扇不断向散热片吹入冷空气，流出热空气，完成散热过程。从规格上看，散热器中的导热管数目愈多、直径越大，散热鳍片总面积越大，风扇转数越大，散热效率越好。风冷散热器又分为塔式散热器与下压式散热器，下压式散热器体积较小，常见的下压式散热器的高度基本不超过100mm，而塔式散热器的高度达到了130~160mm，但其风道易于控制，可以更好的释放散热性能，出于体积的考虑，智能小车采用下压式散热器。</p>
+<p>除Jetson Nano开发套件外，扩展板的散热设计也十分重要。扩展板与开发套件应当直立安装，板与板之间的距离不应小于2cm，同一块印制电路板上的器件应该要尽可能的按其发热量大小及散热程度分区排列，发热量小或耐热性差的器件，像小规模集成电路、电解电容这些，应该放在冷却气流的入口处，发热量大或耐热性好的器件，像如功率晶体管、大规模集成电路这些，应该放在冷却气流走向的下方。在水平方向上，大功率器件尽量靠近印制板边沿布置，以便缩短传热路径；在垂直方向上，大功率器件尽量靠近印制板上方布置，以便减少这些器件工作时对其他器件温度的影响。对温度比较敏感的器件最好安置在温度最低的区域，不能将它放在发热器件的正上方，多个器件最好是在水平面上交错布设。设备内印制电路板的散热主要依靠空气流动，所以在设计时要研究空气流动路径，合理配置器件。空气流动时总是趋向于阻力小的地方流动，因此，在印制电路板上配置器件时，要避免在某个区域留有较大的空间，整机在配置时也应注意同样的问题。大量实践经验表明，设计合理的器件排列方式，可以有效地降低印制电路板的温升，从而使器件及设备的故障率明显下降。</p>
+<p>【分小标题】抗振动设计</p>
+<p>尽量减少嵌入式系统中尽可能多的活动部件，能够极大的提高其抗冲击和振动的能力。最好的情况是采用无风扇设计与无电缆设计，无风扇设计是指仅用铝和铜等高导热材料制成的散热器利用被动冷却进行散热，而无电缆设计即不允许有活动的电缆。无电缆设计可以增加抗振性能，并且解决电缆布线和电缆匹配问题，避免电缆信号的衰减和延迟。但是，这两种设计对小车来说存在实施成本较高、难度较大，不宜采用。对于小车上的活动电缆，只能尽量使其固定在车体上，对于易于松动的接口，对其进行焊接。</p>
+<p>【2】本章小结</p>
+<p>抗干扰是一个十分复杂、实践性较强的问题，一种干扰现象可能由多种干扰因素引起。抗干扰性能的优劣决定了小车能否稳定正常地工作。因此，在基于ARM的智能小车的硬件设计中，必须要进行抗干扰设计，分析可能出现的干扰因素，寻找消除干扰的方法，并在硬件调试过程中，不断改进对各种干扰的处理方式，以提高系统的可靠性和稳定性。</p>
+<h2 id="后记"><a class="header-anchor" href="#后记">¶</a>后记</h2>
+<p>生产学术垃圾，被狠狠地批斗，并要求重写</p>
+<!-- flag of hidden posts -->
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/05/07/%E6%9C%AC%E7%A7%91%E4%BA%BA%E8%99%9A%E5%81%87%E7%A7%91%E7%A0%94/" title="本科人虚假科研">https://cloudplayer99.github.io/2022/05/07/本科人虚假科研/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%99%9A%E5%81%87%E7%A7%91%E7%A0%94/" rel="tag"># 虚假科研</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查的"><span class="nav-number">1.</span> <span class="nav-text">查的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写的"><span class="nav-number">2.</span> <span class="nav-text">写的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/05/07/本科人虚假科研/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-简单数论 Password: easyshulun 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单数论">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-简单数论 Password: easyshulun 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="article:published_time" content="2022-06-22T14:00:08.000Z">
+<meta property="article:modified_time" content="2022-07-11T09:44:58.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="算法入门基础">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>简单数论 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          简单数论
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 22:00:08" itemprop="dateCreated datePublished" datetime="2022-06-22T22:00:08+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 17:44:58" itemprop="dateModified" datetime="2022-07-11T17:44:58+08:00">2022-07-11</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>b站视频链接：<a href="https://www.bilibili.com/video/BV1pE411E7RV?p=8" target="_blank" rel="noopener">北京理工大学ACM冬季培训课程</a><br>
+<a href="https://vjudge.net/contest/357573" target="_blank" rel="noopener">课程刷题地址 2020BIT冬训-简单数论</a> Password: easyshulun<br>
+本篇博文为看视频学习时的记录与自己的一些总结</p>
+</blockquote>
+<a id="more"></a>
+<h1>简单数论</h1>
+<p>比较难，之后完善</p>
+<h2 id="整除"><a class="header-anchor" href="#整除">¶</a>整除</h2>
+<p><code>a % b == 0</code> 一般被我们写作 $b \mid a$</p>
+<p>有若干性质：</p>
+<ol>
+<li>若 $a \mid b$，可知 $-a \mid b$，$a \ \mid-b$，$\left\vert a \right\vert \mid \left\vert b \right\vert$</li>
+<li>若 $a \mid b$ 且 $b \mid c$，可知 $a \mid c$</li>
+<li>若 $a \mid b$ 且 $a \mid c$，可知 $ a \mid (bx + cy) $，其中 $x$，$y$ 为任意整数</li>
+<li>若 $a \mid b$，可知 $am \mid bm$，其中 $m$ 为非零整数</li>
+<li>若 $a \mid b$，$b \mid a$，可知 $b=\pm a$，即 $\left\vert b \right\vert = \left\vert a \right\vert$</li>
+<li>若 $a \mid bc$，且 $a$ 与 $c$ 互质，则 $a \mid b$</li>
+<li>若 $a \mid b$，$a \mid c$，且 $b$ 与 $c$ 互质，则 $a \mid bc$</li>
+<li>若 $a \mid b$，$c$ 为任意整数，则 $b \mid ac$</li>
+<li>对任意整数 $a$，$b &gt; 0$，存在唯一的数对 $q$，$r$，使 $a = bq + r$，其中 $0 \le r &lt; b$，这个事实称为带余除法定理，是整除理论的基础</li>
+<li>若 $c \mid a$，$c \mid b$，则称 $c$ 是 $a$，$b$ 的公因数。若 $d$ 是 $a$，$b$ 的公因数，$d \ge 0$，且 $d$ 可被 $a$，$b$ 的任意公因数整除，则 $d$ 是 $a$，$b$ 的最大公因数。若 $a$，$b$ 的最大公因数等于 $1$，则称 $a$，$b$ 互素，也称互质。累次利用带余除法可以求出 $a$，$b$ 的最大公因数，这种方法常称为辗转相除法。又称欧几里得算法。</li>
+</ol>
+<h2 id="模"><a class="header-anchor" href="#模">¶</a>模</h2>
+<p>当 <code>a % b == c % b</code>，可以说 $a \equiv c \pmod{b}$</p>
+<p>有很多优秀的性质</p>
+<ol>
+<li>取模运算：$a % p (a \bmod p)$，表示 $a$ 除以 $p$ 的余数。</li>
+<li>模 $p$ 加法：$(a + b) % p = (a % p + b % p) % p$</li>
+<li>模 $p$ 减法：$(a - b) % p = (a % p - b % p) % p$</li>
+<li>模 $p$ 乘法：$(a * b) % p = ((a % p) * (b % p)) % p$</li>
+<li>幂模 $p$：$(a^b) % p = ((a % p)^b) % p$</li>
+<li>模运算满足结合律、交换律和分配律。</li>
+<li>$a \equiv b \pmod{n}$ 表示 $a$ 和 $b$ 模 $n$ 同余，即 $a$ 和 $b$ 除以 $n$ 的余数相等。</li>
+</ol>
+<p>同余的性质</p>
+<ol>
+<li>反身性：$a \equiv a \pmod{m}$；</li>
+<li>对称性：若 $a \equiv b \pmod{m}$，$b \equiv a \pmod{m}$；</li>
+<li>传递性：若 $a \equiv b \pmod{m}$，$b \equiv c \pmod{m}$，则 $a \equiv c \pmod{m}$；</li>
+<li>同余式相加：若 $a \equiv b \pmod{m}$，$c \equiv d \pmod{m}$，则 $a+c \equiv b+d \pmod{m}$；</li>
+<li>同余式相乘：若 $a \equiv b \pmod{m}$，$c \equiv d \pmod{m}$，则 $a c \equiv b d \pmod{m}$。</li>
+</ol>
+<h2 id="一些常见定理"><a class="header-anchor" href="#一些常见定理">¶</a>一些常见定理</h2>
+<p>欧拉定理</p>
+<p>$\gcd(a,n) = 1$，则 $a^{\phi(n)} \equiv 1 \pmod{n}$</p>
+<p>费马小定理</p>
+<p>$p$ 为质数，$\gcd(a,p) = 1$，$a^{(p-1)} \equiv 1 \pmod{p}$</p>
+<p>卢卡斯定理</p>
+<p>威尔逊定理</p>
+<h2 id="欧几里得定理"><a class="header-anchor" href="#欧几里得定理">¶</a>欧几里得定理</h2>
+<p>$\gcd(a,b) = \gcd(b,a%b)$<br>
+辗转相除，写递归<br>
+另外<br>
+$\operatorname{lcm}(m,n) * \gcd(a,b) == a*b$</p>
+<p>Gcd=d, A=cd, B=ed, Lcm=ced, Lcm*Gcd=A*B</p>
+<h2 id="扩展欧几里得算法"><a class="header-anchor" href="#扩展欧几里得算法">¶</a>扩展欧几里得算法</h2>
+<ul>
+<li>欧几里得算法（辗转相除）</li>
+<li>反向递推 ax + by = gcd(a,b) = d 的解</li>
+</ul>
+<h2 id="逆元"><a class="header-anchor" href="#逆元">¶</a>逆元</h2>
+<h2 id="中国剩余定理"><a class="header-anchor" href="#中国剩余定理">¶</a>中国剩余定理</h2>
+<h2 id="素数"><a class="header-anchor" href="#素数">¶</a>素数</h2>
+<h2 id="欧拉函数"><a class="header-anchor" href="#欧拉函数">¶</a>欧拉函数</h2>
+<h2 id="唯一分解定理"><a class="header-anchor" href="#唯一分解定理">¶</a>唯一分解定理</h2>
+<h2 id="一些算法"><a class="header-anchor" href="#一些算法">¶</a>一些算法</h2>
+<ul>
+<li>唯一分解定理 $O(\phi(n))$</li>
+<li>阶乘质因数分解</li>
+<li>Miller_Robin 素数检验 $O(s \log n)$</li>
+<li>Pollard-rho 大数因式分解 $O(\text{sqrt} 4(n))$</li>
+<li>mobius 反演</li>
+<li>原根</li>
+</ul>
+<h2 id="扩充"><a class="header-anchor" href="#扩充">¶</a>扩充</h2>
+<ul>
+<li>
+<p>哥德巴赫猜想</p>
+</li>
+<li>
+<p>黎曼猜想</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA/" title="简单数论">https://cloudplayer99.github.io/2022/06/22/简单数论/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" rel="tag"># 算法入门基础</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E4%BA%8C%E5%88%86%E4%B8%89%E5%88%86%E5%BF%AB%E9%80%9F%E5%B9%82%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/" rel="prev" title="二分三分快速幂矩阵快速幂">
+      <i class="fa fa-chevron-left"></i> 二分三分快速幂矩阵快速幂
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/DFS&&BFS&&%E5%9B%BE/" rel="next" title="DFS&&BFS&&图">
+      DFS&&BFS&&图 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">简单数论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整除"><span class="nav-number">1.1.</span> <span class="nav-text">整除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模"><span class="nav-number">1.2.</span> <span class="nav-text">模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些常见定理"><span class="nav-number">1.3.</span> <span class="nav-text">一些常见定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧几里得定理"><span class="nav-number">1.4.</span> <span class="nav-text">欧几里得定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展欧几里得算法"><span class="nav-number">1.5.</span> <span class="nav-text">扩展欧几里得算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆元"><span class="nav-number">1.6.</span> <span class="nav-text">逆元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中国剩余定理"><span class="nav-number">1.7.</span> <span class="nav-text">中国剩余定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#素数"><span class="nav-number">1.8.</span> <span class="nav-text">素数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉函数"><span class="nav-number">1.9.</span> <span class="nav-text">欧拉函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#唯一分解定理"><span class="nav-number">1.10.</span> <span class="nav-text">唯一分解定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些算法"><span class="nav-number">1.11.</span> <span class="nav-text">一些算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩充"><span class="nav-number">1.12.</span> <span class="nav-text">扩充</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/06/22/简单数论/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

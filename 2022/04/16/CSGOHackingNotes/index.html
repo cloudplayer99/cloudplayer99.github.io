@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="学习 CS:GO Hacking 的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS:GO Hacking Notes">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/04/16/CSGOHackingNotes/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="学习 CS:GO Hacking 的笔记">
+<meta property="article:published_time" content="2022-04-16T03:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-22T10:48:02.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="inline hook">
+<meta property="article:tag" content="Cheats">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/04/16/CSGOHackingNotes/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>CS:GO Hacking Notes | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/04/16/CSGOHackingNotes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS:GO Hacking Notes
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-16 11:00:00" itemprop="dateCreated datePublished" datetime="2022-04-16T11:00:00+08:00">2022-04-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-22 18:48:02" itemprop="dateModified" datetime="2022-06-22T18:48:02+08:00">2022-06-22</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习 CS:GO Hacking 的笔记</p>
+<a id="more"></a>
+<h2 id="HOOK-技术"><a class="header-anchor" href="#HOOK-技术">¶</a>HOOK 技术</h2>
+<p>Hook 技术又被称为钩子技术</p>
+<p>在系统没有调用该函数之前，钩子程序就先捕获该消息，钩子函数先得到控制权，这时钩子函数既可以加工处理（改变）该函数的执行行为，还可以强制结束消息的传递</p>
+<p>简单来说，Hook 是一种截取信息、更改程序执行流向、添加新功能的技术</p>
+<p>通俗来说，就是一条高速公路，我们去追击一个罪犯(要截获的消息或事件)，然后在他要经过的地方提前埋下埋伏，等到罪犯到来时，实现截获，并执行自己的操作</p>
+<p>DOS 时代的 Hook 技术是指修改中断向量表中的中断地址，那时操作系统提供的编程接口称为中断服务向量（即中断向量，中断向量是中断服务程序的入口地址），它以数组的形式保存，这就是中断向量表。要捕获一个中断服务程序，首先修改中断向量表中该程序的中断向量，具体是保存原程序中断地址（原中断向量），然后替换为自己函数的地址。这样，当要调用该中断服务程序时，实际调用了自己编写的函数，在该函数中，可以做一些我们需要的工作，然后可以继续通过原中断向量调用原中断服务程序，完成其原有的功能</p>
+<p>Windows 下，Hook 技术的方法比较多，常见的 Hook 方法有 Inline Hook、IAT Hook、EAT Hook、Windows 钩子等</p>
+<h2 id="Inline-Hook-内联钩子"><a class="header-anchor" href="#Inline-Hook-内联钩子">¶</a>Inline Hook 内联钩子</h2>
+<h3 id="Inline-Hook-的原理"><a class="header-anchor" href="#Inline-Hook-的原理">¶</a>Inline Hook 的原理</h3>
+<p>API 函数保存在提供的 DLL 文件中，当在程序中调用某个 API 函数并运行程序后，程序会隐式地将 API 函数所在的 DLL 文件加载入进程中，这样，程序就会像调用自己的函数一样调用 API 函数。而 Inline Hook 就是通过一种暴力的方法直接地修改 API 函数在内存中的映像，从而对 API 函数进行 Hook，其方法是，直接使用汇编指令的 jmp 指令将其代码执行流程改变，进而执行自己的代码，使得原来的函数的流程改变了，执行完自己的流程后，可以选择性地继续执行或不执行原来的函数</p>
+<p>由于这种方法是在程序流程中直接进行嵌入 jmp 指令来改变流程的，所以才将其称为 Inline Hook</p>
+<h3 id="Inline-Hook-的实现"><a class="header-anchor" href="#Inline-Hook-的实现">¶</a>Inline Hook 的实现</h3>
+<p>Inline Hook 是在程序中嵌入 jmp 汇编指令后跳转到流程处继续执行的，jmp 指令是一条无条件的跳转指令，其后跟随的参数是要跳转的目的地址，jmp 指令编译为机器码后，其长度为 5 个 byte，前一个字节为 jmp 对应的机器码（E9），后四个字节为目的地址相对于 jmp 指令的下一条指令地址的偏移量，即一个 32 位的偏移量</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00402260</span>	- E9 1334F411	<span class="keyword">jmp</span> <span class="number">12345678</span> 	<span class="comment">;偏移量为 11 F4 34 13</span></span><br></pre></td></tr></table></figure>
+<p>jmp 指令后的偏移量的计算可以使用如下公式：</p>
+<p>jmp 后的偏移量 = 目标地址 - jmp 指令的下一条指令的地址 = 目标地址 - jmp 指令的地址 - 5</p>
+<p>这样我们就得到了 Inline Hook 的流程：</p>
+<ul>
+<li>构造跳转指令</li>
+<li>在内存中找到要 HOOK 的函数地址，并保存要 HOOK 位置处的前 5 字节</li>
+<li>将构造的跳转指令写入需 HOOK 的位置处</li>
+<li>当被 HOOK 位置被执行时会跳转到自己的流程执行</li>
+<li>如果要执行原来的流程，那么取消 HOOK，也就是还原被修改的字节</li>
+<li>执行原来的流程</li>
+<li>继续 HOOK 住原来的位置</li>
+</ul>
+<p>用 C++ 封装一个 Inline Hook 的类，类的头文件与实现文件分别是 ILHook.h 与 ILHook.cpp</p>
+<figure class="highlight cpp"><figcaption><span>ILHook.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CILHook</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CILHook();				<span class="comment">// 构造函数</span></span><br><span class="line">	~CILHook();				<span class="comment">// 析构函数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Hook 函数</span></span><br><span class="line">	<span class="function">BOOL <span class="title">Hook</span><span class="params">(LPSTR pszModuleName,		<span class="comment">// Hook 的模块名称</span></span></span></span><br><span class="line"><span class="function"><span class="params">		  LPSTR pszFuncName,		<span class="comment">// Hook 的 API 函数名称</span></span></span></span><br><span class="line"><span class="function"><span class="params">		  PROC pfnHookFunc)</span></span>;		<span class="comment">// 要替换的函数名称（钩子函数）</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 取消 Hook 函数</span></span><br><span class="line">	<span class="function">VOID <span class="title">UnHook</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 重新进行 Hook 函数</span></span><br><span class="line">	<span class="function">BOOL <span class="title">ReHook</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	PROC m_pfnOrig;				<span class="comment">// 函数地址</span></span><br><span class="line">	BYTE m_bOldBytes[<span class="number">5</span>];			<span class="comment">// 函数入口代码</span></span><br><span class="line">	BYTE m_bNewBytes[<span class="number">5</span>];			<span class="comment">// Inline 代码</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>最重要的函数是 CILHook::Hook，在该成员函数中，首先获得了被 Hook 函数的函数地址，接着保存了被 Hook 函数的前 5 个字节，最后用构造好的跳转指令来修改被 Hook 函数的前 5 个字节的内容</p>
+<figure class="highlight cpp"><figcaption><span>ILHook.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ILHook.h"</span></span></span><br><span class="line"></span><br><span class="line">CILHook::CILHook()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 对成员变量的初始化</span></span><br><span class="line">	m_pfnOrig = <span class="literal">NULL</span>;</span><br><span class="line">	ZeroMemory(m_bOldBytes, <span class="number">5</span>);</span><br><span class="line">	ZeroMemory(m_bNewBytes, <span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CILHook::~CILHook()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 取消 Hook</span></span><br><span class="line">	UnHook();</span><br><span class="line"></span><br><span class="line">	m_pfnOrig = <span class="literal">NULL</span>;</span><br><span class="line">	ZeroMemory(m_bOldBytes, <span class="number">5</span>);</span><br><span class="line">	ZeroMemory(m_bNewBytes, <span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">对指定模块中的函数进行挂钩</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function">BOOL <span class="title">CILHook::Hook</span><span class="params">(LPSTR pszModuleName,</span></span></span><br><span class="line"><span class="function"><span class="params">	           LPSTR pszFuncName,		</span></span></span><br><span class="line"><span class="function"><span class="params">	           PROC pfnHookFunc)</span>		</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BOOL bRet = FALSE;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 获取指定模块中函数的地址</span></span><br><span class="line">	m_pfnOrig = (PROC)GetProcAddress(</span><br><span class="line">				GetModuleHandle(pszModuleName),</span><br><span class="line">				pszFuncName);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( m_pfnOrig!= <span class="literal">NULL</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 保存该地址处 5 字节的内容</span></span><br><span class="line">		DWORD dwNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		ReadProcessMemory(GetCurrentProcess(),	<span class="comment">// 被读取进程（远程进程）的句柄</span></span><br><span class="line">				  m_pfnOrig,		<span class="comment">// 读的（远程进程中）起始地址</span></span><br><span class="line">				  m_bOldBytes,		<span class="comment">// （本地进程中）存放读取数据缓冲区</span></span><br><span class="line">				  <span class="number">5</span>,			<span class="comment">// 一次读取的字节数</span></span><br><span class="line">				  &amp;dwNum);		<span class="comment">// 实际读取的字节数，函数返回时报告</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 构造 JMP 指令</span></span><br><span class="line">		m_bNewBytes[<span class="number">0</span>] = <span class="string">'\xe9'</span>;		<span class="comment">// jmp Opcode</span></span><br><span class="line">		<span class="comment">// pfnHookFunc 是 Hook 后的目标地址</span></span><br><span class="line">		<span class="comment">// m_pfnOrig 是原来的地址</span></span><br><span class="line">		<span class="comment">// 5 是指令长度</span></span><br><span class="line">		*(DWORD*)(m_bNewBytes + <span class="number">1</span>) = (DWORD)pfnHookFunc - (DWORD)m_pfnOrig - <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 将构造好的地址写入该地址处</span></span><br><span class="line">		WriteProcessMemory(GetCurrentProcess(),	<span class="comment">// 参数表与 ReadProcessMemory 类似</span></span><br><span class="line">				   m_pfnOrig,</span><br><span class="line">				   m_bNewBytes,</span><br><span class="line">			           <span class="number">5</span>,</span><br><span class="line">			           &amp;dwNum);</span><br><span class="line"></span><br><span class="line">		bRet = TRUE;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> bRet;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">取消函数的挂钩</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function">VOID <span class="title">CILHook::UnHook</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> ( m_pfnOrig != <span class="literal">NULL</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		DWORD dwNum = <span class="number">0</span>;</span><br><span class="line">		WriteProcessMemory(GetCurrentProcess(),</span><br><span class="line">				   m_pfnOrig,</span><br><span class="line">				   m_bOldBytes,</span><br><span class="line">			           <span class="number">5</span>,</span><br><span class="line">			           &amp;dwNum);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">重新对函数进行挂钩</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function">BOOL <span class="title">CILHook::ReHook</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BOOL bRet = FALSE;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( m_pfnOrig != <span class="literal">NULL</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		DWORD dwNum = <span class="number">0</span>;</span><br><span class="line">		WriteProcessMemory(GetCurrentProcess(),</span><br><span class="line">				   m_pfnOrig,</span><br><span class="line">				   m_bNewBytes,</span><br><span class="line">			           <span class="number">5</span>,</span><br><span class="line">			           &amp;dwNum);</span><br><span class="line">		</span><br><span class="line">		bRet = TRUE;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> bRet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，在自己实现的 Hook 函数（要替换的函数，不是上面的 CILHook::Hook）中，如果要调用原来的 API 函数，需要恢复 Inline Hook（恢复 Hook 前的状态，即恢复原来的 5 个字节），否则会进入死循环，在调用完成后，再重新对函数进行 Hook</p>
+<p>用于 CSGOhacking 项目的 inline_hook 类</p>
+<figure class="highlight cpp"><figcaption><span>inline_hook.hpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// jmp xx xx xx xx : 5 bytes</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> byte_length = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">inline_hook</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">using</span> uchar = <span class="keyword">unsigned</span> <span class="keyword">char</span>;</span><br><span class="line">	<span class="keyword">using</span> dword = DWORD;</span><br><span class="line"></span><br><span class="line">	uchar m_original_byte[byte_length];		<span class="comment">// 原始函数处的汇编指令</span></span><br><span class="line">	uchar m_self_byte[byte_length];			<span class="comment">// 我们自己构造需要改写的汇编指令</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> m_origin_address;				<span class="comment">// 原始函数的地址</span></span><br><span class="line">	<span class="keyword">int</span> m_self_address;				<span class="comment">// 改写函数的地址</span></span><br><span class="line"></span><br><span class="line">	<span class="function">dword <span class="title">motify_memory_attributes</span><span class="params">(<span class="keyword">int</span> address, dword attributes = PAGE_EXECUTE_READWRITE)</span></span></span><br><span class="line"><span class="function">	<span class="comment">// 改变内存的属性</span></span></span><br><span class="line"><span class="function">	<span class="comment">// PAGE_EXECUTE_READWRITE 需要将内存的属性设置为可读可写</span></span></span><br><span class="line"><span class="function">	<span class="comment">// 返回内存原有的属性</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		dword old_attributes;</span><br><span class="line">		<span class="comment">// VirtualProtect 是对应 Win32 函数的逻辑包装函数</span></span><br><span class="line">		<span class="comment">// 它会在呼叫处理程序的虚拟位置空间里，变更认可页面区域上的保护</span></span><br><span class="line">		VirtualProtect(<span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">void</span>*&gt;(address),</span><br><span class="line">					   byte_length,</span><br><span class="line">					   attributes,</span><br><span class="line">					   &amp;old_attributes);</span><br><span class="line">		<span class="keyword">return</span> old_attributes;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	构造函数</span></span><br><span class="line"><span class="comment">	用初始化列表初始化</span></span><br><span class="line"><span class="comment">	构造我们编写的跳转汇编指令 bytes，保存原汇编指令 bytes</span></span><br><span class="line"><span class="comment">	**/</span></span><br><span class="line">	inline_hook(<span class="keyword">int</span> origin_address, <span class="keyword">int</span> self_address) :</span><br><span class="line">		m_origin_address(origin_address),</span><br><span class="line">		m_self_address(self_address)</span><br><span class="line">	&#123;</span><br><span class="line">		m_self_byte[<span class="number">0</span>] = <span class="string">'\xe9'</span>;	<span class="comment">// \x 为转义字符，表示十六进制数</span></span><br><span class="line">						<span class="comment">// e9 为汇编指令中的 jmp 指令</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 转移的位移计算</span></span><br><span class="line">		<span class="comment">// 用转移指令的下一条指令的起始地址进行计算</span></span><br><span class="line">		<span class="keyword">int</span> offset = self_address - (origin_address + byte_length);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 构造跳转到我们函数的 byte</span></span><br><span class="line">		<span class="built_in">memcpy</span>(&amp;m_self_byte[<span class="number">1</span>], &amp;offset, byte_length - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 修改内存属性</span></span><br><span class="line">		dword attributes = motify_memory_attributes(origin_address);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 保存原始函数地址的 byte</span></span><br><span class="line">		<span class="built_in">memcpy</span>(m_original_byte, <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">void</span>*&gt;(origin_address), byte_length);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 恢复内存属性</span></span><br><span class="line">		motify_memory_attributes(origin_address, attributes);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">motify_address</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		dword attributes = motify_memory_attributes(m_origin_address);</span><br><span class="line">		<span class="comment">// 写入我们构造的 byte 实现 inline hook</span></span><br><span class="line">		<span class="built_in">memcpy</span>(<span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">void</span>*&gt;(m_origin_address), m_self_byte, byte_length);</span><br><span class="line">		motify_memory_attributes(m_origin_address, attributes);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">restore_address</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		dword attributes = motify_memory_attributes(m_origin_address);</span><br><span class="line">		<span class="comment">// 恢复原始的 byte</span></span><br><span class="line">		<span class="built_in">memcpy</span>(<span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">void</span>*&gt;(m_origin_address), m_original_byte, byte_length);</span><br><span class="line">		motify_memory_attributes(m_origin_address, attributes);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考资料"><a class="header-anchor" href="#参考资料">¶</a>参考资料</h2>
+<p>C++ 黑客编程揭秘与防范 : 第三版 / 冀云编著. —— 北京 : 人民邮电出版社，2019.2</p>
+<p><a href="https://blog.csdn.net/weixin_43742894/article/details/105244870" target="_blank" rel="noopener">CSDN : 王大碗Dw / Hook技术简介</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/04/16/CSGOHackingNotes/" title="CS:GO Hacking Notes">https://cloudplayer99.github.io/2022/04/16/CSGOHackingNotes/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/inline-hook/" rel="tag"># inline hook</a>
+              <a href="/tags/Cheats/" rel="tag"># Cheats</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/10/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90%E4%BB%A5%E6%8F%90%E9%AB%98%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%80%A7%E8%83%BD/" rel="prev" title="使用数据对齐以提高内存系统的性能">
+      <i class="fa fa-chevron-left"></i> 使用数据对齐以提高内存系统的性能
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/19/GettingStartedWithJUCE/" rel="next" title="Getting Started With JUCE">
+      Getting Started With JUCE <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HOOK-技术"><span class="nav-number">1.</span> <span class="nav-text">HOOK 技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inline-Hook-内联钩子"><span class="nav-number">2.</span> <span class="nav-text">Inline Hook 内联钩子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline-Hook-的原理"><span class="nav-number">2.1.</span> <span class="nav-text">Inline Hook 的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline-Hook-的实现"><span class="nav-number">2.2.</span> <span class="nav-text">Inline Hook 的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/04/16/CSGOHackingNotes/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

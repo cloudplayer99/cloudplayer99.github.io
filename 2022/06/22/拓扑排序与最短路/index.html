@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-拓扑排序&amp;&amp;最短路 Password: DijkstraduzuoDaiKeSiChua 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拓扑排序与最短路">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/06/22/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%9C%80%E7%9F%AD%E8%B7%AF/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-拓扑排序&amp;&amp;最短路 Password: DijkstraduzuoDaiKeSiChua 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="article:published_time" content="2022-06-22T14:00:10.000Z">
+<meta property="article:modified_time" content="2022-07-18T14:06:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="算法入门基础">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/06/22/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%9C%80%E7%9F%AD%E8%B7%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>拓扑排序与最短路 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/06/22/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%9C%80%E7%9F%AD%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          拓扑排序与最短路
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 22:00:10" itemprop="dateCreated datePublished" datetime="2022-06-22T22:00:10+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-18 22:06:06" itemprop="dateModified" datetime="2022-07-18T22:06:06+08:00">2022-07-18</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>b站视频链接：<a href="https://www.bilibili.com/video/BV1pE411E7RV?p=10" target="_blank" rel="noopener">北京理工大学ACM冬季培训课程</a><br>
+<a href="https://vjudge.net/contest/358075" target="_blank" rel="noopener">课程刷题地址 2020BIT冬训-拓扑排序&amp;&amp;最短路</a> Password: DijkstraduzuoDaiKeSiChua<br>
+本篇博文为看视频学习时的记录与自己的一些总结</p>
+</blockquote>
+<a id="more"></a>
+<h1>拓扑排序与最短路</h1>
+<h2 id="拓扑排序"><a class="header-anchor" href="#拓扑排序">¶</a>拓扑排序</h2>
+<p>所谓拓扑排序，是指将一个有向无环图 $G$ 的所有顶点排成一个线性序列，使得有向无环图 $G$ 的边集 $E$ 中的任意一条边 $\left\langle u, v \right\rangle$，始终满足 $u$ 出现在 $v$ 的前面</p>
+<p>从离散数学的角度来说，拓扑排序是由某个集合上的一个偏序得到该集合上的一个全序的过程，直观地看，偏序指集合中仅有部分成员可比较，而全序指集合中全体成员之间均可比较，这个全序也称为拓扑有序</p>
+<div align=center><img width = '' height = '' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E5%9B%BE%E8%AE%BA/%E5%81%8F%E5%BA%8F%E5%85%A8%E5%BA%8F.PNG"/></div>
+<h3 id="有向无环图-DAG"><a class="header-anchor" href="#有向无环图-DAG">¶</a>有向无环图 DAG</h3>
+<ul>
+<li>什么是有向无环图</li>
+<li>$(b)$ $©$ 皆为有向无环图，$(a)$ 不为有向无环图</li>
+</ul>
+<div align=center><img width = '' height = '' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E5%9B%BE%E8%AE%BA/isDAG.PNG"/></div>
+<h3 id="拓扑（有）序"><a class="header-anchor" href="#拓扑（有）序">¶</a>拓扑（有）序</h3>
+<ul>
+<li>在潜入类游戏中，一些敌人互相可以看到，需要暗杀掉所有人而不被发现，一个可行的暗杀序列，就是一个拓扑序</li>
+<li>在大学选课时，有些课程存在先修课，就是说你必须上完它的前置课程，你才能够开始这门课程，一个可行的选课序列，就是一个拓扑序</li>
+<li>有向无环图是存在拓扑序的充要条件</li>
+</ul>
+<h3 id="算法描述与实现"><a class="header-anchor" href="#算法描述与实现">¶</a>算法描述与实现</h3>
+<ul>
+<li>在有向无环图中找到一个没有前驱的结点（或者说是入度为 0 的结点）输出</li>
+<li>然后从图中将此结点删除并且删除以该结点为尾的弧</li>
+<li>如果所有结点都已输出，则程序结束；否则，返回步骤一</li>
+</ul>
+<p>拓扑排序的一个 C++ 实现（不是一定要用队列）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> vis[maxn];                          <span class="comment">// 没有 vis 数组会引发什么错误</span></span><br><span class="line"><span class="keyword">int</span> deg[maxn];                          <span class="comment">// 统计点 i 的度数</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; g[maxn];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;                           <span class="comment">// 把所有入度为 0 的点先扔到一个队列里</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">toposort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!q.empty()) &#123;                <span class="comment">// 队列非空</span></span><br><span class="line">        <span class="keyword">int</span> now = q.front(); q.pop();   <span class="comment">// 取队首点 P</span></span><br><span class="line">        num++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> to : g[now]) &#123;        <span class="comment">// 访问 P 的所有相邻点 Q，将其入度减 1</span></span><br><span class="line">            <span class="keyword">if</span> (vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                deg[to]--;</span><br><span class="line">                <span class="keyword">if</span> (!deg[to]) &#123;</span><br><span class="line">                    vis[to] = <span class="number">1</span>;</span><br><span class="line">                    q.push(to);         <span class="comment">// 若 Q 此时入度为 0，Q 入列</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;                                   <span class="comment">// 出列顺序就是一个拓扑序</span></span><br><span class="line">    <span class="keyword">if</span> (num == n) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;                  <span class="comment">// 队列空时，拓扑序列没达到顶点数，则不存在拓扑序</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="应用"><a class="header-anchor" href="#应用">¶</a>应用</h3>
+<h4 id="模板题-简单题"><a class="header-anchor" href="#模板题-简单题">¶</a>模板题 + 简单题</h4>
+<p>有 $N$ 个队参加比赛（$1 \le N \le 500$），队伍编号依次为 $1$，$2$，$3$，$\dots$，$N$，一共有 $M$ 场比赛，比赛结束后，裁判委员会要将所有的参赛队伍依次排名，但现在裁判委员会只知道每场比赛的结果，比如编号为 $1$ 的队伍赢了编号为 $2$ 的队伍，在输入中用 $1\ 2$ 表示，则排名时队 $1$ 应该在队 $2$ 之前，编写程序，确定最终的排名，若不唯一，则编号小的队伍在前</p>
+<p>临近春节，老板决定为每个员工发红包，为了图吉利，每个员工的红包不少于 $888$ 且为整数，一些员工可能提出自己的红包金额应该比某位员工的红包金额要大的要求，在输入中 $1\ 2$ 表示编号为 $1$ 的员工认为自己的红包要比编号为 $2$ 的员工大，员工数 $n \le 10000$，提出的要求数 $m \le 20000$，老板希望满足所有员工的要求的同时发出红包的总金额最小，编写程序计算总金额并输出，若不可能满足所有员工的要求，输出 $-1$ 即可（提示：反向建图，拓扑排序）</p>
+<h4 id="最短-长路"><a class="header-anchor" href="#最短-长路">¶</a>最短/长路</h4>
+<p>用拓扑排序快速求有向无环图的最短路</p>
+<div align=center><img width = '240' height = '240' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E5%9B%BE%E8%AE%BA/topo%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%9B%BE.png"/></div>
+<p>求上图中，2 到 5 的最短路</p>
+<ul>
+<li>仿照 BFS，定义 dis 数组表示某个点到起点的距离</li>
+<li>全部初始化为正无穷，dis[起点] = 0</li>
+<li>在拓扑排序的过程中，不断执行<br>
+dis[to] = min(dis[to], dis[from] + value)</li>
+<li>当拓扑排序完成的时候，也就求出了最短路的长度</li>
+<li>同理，可以求最长路</li>
+<li>动态规划实际上是在一张有向无环图上进行拓扑排序的过程</li>
+</ul>
+<h4 id="其他"><a class="header-anchor" href="#其他">¶</a>其他</h4>
+<p>拓扑排序经常结合其他算法一起出现<br>
+比如：拓扑 + 层次遍历、拓扑 + 并查集 等等</p>
+<h2 id="最短路"><a class="header-anchor" href="#最短路">¶</a>最短路</h2>
+<p>单源最短路</p>
+<p>BFS 的局限</p>
+<p>SPFA 算法</p>
+<p>堆优化的 Dijkstra</p>
+<p>Dijkstra</p>
+<p>Bellman-Ford</p>
+<p>多源最短路</p>
+<p>Floyd-Warshall</p>
+<h3 id="总结"><a class="header-anchor" href="#总结">¶</a>总结</h3>
+<ul>
+<li>Dijkstra 与 Bellman-Ford ：分别被堆优化 Dijkstra 与 SPFA 干掉了，实际是不用的</li>
+<li>单源最短路问题：堆优化 Dijkstra 与 SPFA
+<ul>
+<li>正权图：必须堆优化 Dijkstra，算法复杂度为 $O(E \log E)$</li>
+<li>负权图：只能 SPFA</li>
+<li>负环：没有最短路，SPFA 可以发现负环</li>
+</ul>
+</li>
+<li>多源最短路问题：
+<ul>
+<li>Floyd 算法</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/06/22/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%9C%80%E7%9F%AD%E8%B7%AF/" title="拓扑排序与最短路">https://cloudplayer99.github.io/2022/06/22/拓扑排序与最短路/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" rel="tag"># 算法入门基础</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/22/DFS&&BFS&&%E5%9B%BE/" rel="prev" title="DFS&&BFS&&图">
+      <i class="fa fa-chevron-left"></i> DFS&&BFS&&图
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E5%B9%B6%E6%9F%A5%E9%9B%86%E4%B8%8E%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" rel="next" title="并查集与最小生成树">
+      并查集与最小生成树 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">拓扑排序与最短路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑排序"><span class="nav-number">1.1.</span> <span class="nav-text">拓扑排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有向无环图-DAG"><span class="nav-number">1.1.1.</span> <span class="nav-text">有向无环图 DAG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑（有）序"><span class="nav-number">1.1.2.</span> <span class="nav-text">拓扑（有）序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述与实现"><span class="nav-number">1.1.3.</span> <span class="nav-text">算法描述与实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.1.4.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板题-简单题"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">模板题 + 简单题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最短-长路"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">最短&#x2F;长路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路"><span class="nav-number">1.2.</span> <span class="nav-text">最短路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/06/22/拓扑排序与最短路/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

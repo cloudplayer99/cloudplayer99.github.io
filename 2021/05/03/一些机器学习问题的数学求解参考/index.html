@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文将要介绍的这些问题涉及到的机器学习方法如下  线性回归 $~~~~$ 逻辑回归 $~~~~$ 朴素贝叶斯分类器 $~~~~$ 决策树 对偶问题 $~~~~$ 支持向量机 $~~~~$ 神经网络的反向传播">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些机器学习问题的数学求解参考">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/05/03/%E4%B8%80%E4%BA%9B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%AD%A6%E6%B1%82%E8%A7%A3%E5%8F%82%E8%80%83/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="本文将要介绍的这些问题涉及到的机器学习方法如下  线性回归 $~~~~$ 逻辑回归 $~~~~$ 朴素贝叶斯分类器 $~~~~$ 决策树 对偶问题 $~~~~$ 支持向量机 $~~~~$ 神经网络的反向传播">
+<meta property="article:published_time" content="2021-05-03T10:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/05/03/%E4%B8%80%E4%BA%9B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%AD%A6%E6%B1%82%E8%A7%A3%E5%8F%82%E8%80%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>一些机器学习问题的数学求解参考 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/05/03/%E4%B8%80%E4%BA%9B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%AD%A6%E6%B1%82%E8%A7%A3%E5%8F%82%E8%80%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一些机器学习问题的数学求解参考
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-03 18:00:00" itemprop="dateCreated datePublished" datetime="2021-05-03T18:00:00+08:00">2021-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>18k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文将要介绍的这些问题涉及到的机器学习方法如下</p>
+<blockquote>
+<p>线性回归 $~~~~$ 逻辑回归 $~~~~$ 朴素贝叶斯分类器 $~~~~$ 决策树<br>
+对偶问题 $~~~~$ 支持向量机 $~~~~$ 神经网络的反向传播</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="多元线性回归求解"><a class="header-anchor" href="#多元线性回归求解">¶</a>多元线性回归求解</h2>
+<p>多元线性回归试图学得 $h(x^{(i)}) = \sum\limits^{n}_{j=0} \theta_j x^{(i)}_j $，$\text{where } x^{(i)}_0 = 1$，使得 $h(x^{(i)}) \simeq y^{(i)}$，其中，$j = 1,2,…,n$，$n$ 为样本的特征数，$i = 1,2,…,m$，$m$ 为训练集的样本个数，采用最小二乘法，将代价函数矩阵化并对其求导，令导数等于 $0$，化简得到最小二乘估计的正规方程为</p>
+$$\boldsymbol{X}^\mathrm{T} \boldsymbol{X} \boldsymbol{\theta} = \boldsymbol{X}^\mathrm{T} \boldsymbol{y}\tag{1 - 1}$$
+<p>求解正规方程，得到最终学得的多元线性回归模型的参数为</p>
+$$\boldsymbol{\theta} = (\boldsymbol{X}^\mathrm{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathrm{T} \boldsymbol{y}\tag{1 - 2}$$
+<p>其中，矩阵 $\boldsymbol{X}$ 与 矩阵 $\boldsymbol{y}$ 的结构为</p>
+$$
+\boldsymbol{X}=
+\begin{bmatrix}
+x_0^{(1)} & x_1^{(1)} & \cdots & x_n^{(1)} \\
+x_0^{(2)} & x_1^{(2)} & \cdots & x_n^{(2)} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_0^{(m)} & x_1^{(m)} & \cdots & x_n^{(m)} \\
+\end{bmatrix}
+,
+~~
+\boldsymbol{y} =
+\begin{bmatrix}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+y^{(m)} 
+\end{bmatrix}
+\tag{1 - 3}
+$$
+<p><strong>矩阵求逆</strong></p>
+<p>矩阵求逆常用的有三种方法，分别为待定系数法，初等行变换法，伴随矩阵法</p>
+<p>待定系数法：<br>
+待定逆矩阵的所有元素，将原矩阵与逆矩阵作矩阵乘法，使其结果为单位矩阵</p>
+<p>初等行变换法：<br>
+利用初等行变换，将 $(\boldsymbol A, \boldsymbol E)$ 变换为 $(\boldsymbol E, \boldsymbol B)$，矩阵 $\boldsymbol B$ 即为 $\boldsymbol A^{-1}$</p>
+<p>伴随矩阵法：<br>
+利用公式 $\boldsymbol A^{-1} = \dfrac{1}{|\boldsymbol A|} \boldsymbol A^{*}$ 求得逆矩阵，其中伴随矩阵 $\boldsymbol A^{*} = [(-1)^{i+j}M_{ij}]^{\mathrm{T}}$，$M$ 为矩阵 $\boldsymbol A$ 中元素 $a_{ij}$ 的余子式</p>
+<p><strong>问题 1</strong></p>
+<p>给定某大学若干名学生身高（Height，单位：英寸 inch）与体重（Weight，单位：磅 pound）的数据，要求根据样本数据求得以身高预测体重的线性回归模型，并根据另一位同学的身高预测出他/她的体重（为了简化运算，给出示例，此处为单变量线性回归）</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>$i$</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Height/inch</td>
+<td>$x_i$</td>
+<td>63</td>
+<td>64</td>
+<td>66</td>
+<td>69</td>
+<td>69</td>
+<td>71</td>
+<td>71</td>
+<td>72</td>
+<td>73</td>
+<td>75</td>
+</tr>
+<tr>
+<td>Weight/pound</td>
+<td>$y_i$</td>
+<td>127</td>
+<td>121</td>
+<td>142</td>
+<td>157</td>
+<td>162</td>
+<td>156</td>
+<td>169</td>
+<td>165</td>
+<td>181</td>
+<td>208</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>将这 $10$ 组数据代入多元线性回归模型的参数公式进行计算，注意：$x^{(i)}_0 = 1$</p>
+<p>根据数据得到</p>
+$$
+\boldsymbol X = 
+\begin{bmatrix}
+1 & 63 \\ 
+1 & 69 \\ 
+\vdots & \vdots \\
+1 & 75 
+\end{bmatrix}
+,
+~~
+\boldsymbol X^{\mathrm{T}} =
+\begin{bmatrix}
+1 & 1 & \cdots & 1 \\ \\
+63 & 69 & \cdots & 75
+\end{bmatrix}
+,
+~~
+\boldsymbol{y} =
+\begin{bmatrix}
+127 \\
+121 \\
+\vdots \\
+208
+\end{bmatrix}
+\tag{P1 - 1}
+$$
+<p>作矩阵乘法</p>
+$$
+\boldsymbol{X}^\mathrm{T} \boldsymbol{X} =
+\begin{bmatrix}
+10 & 693 \\ \\
+693 & 48163
+\end{bmatrix}
+\tag{P1 - 2}
+$$
+<p>对矩阵求逆</p>
+$$
+(\boldsymbol{X}^\mathrm{T} \boldsymbol{X})^{-1} =
+\dfrac{1}{10 \times 48163 - 693^2}
+\begin{bmatrix}
+48163 & -693 \\ \\
+-693 & 10
+\end{bmatrix}
+= \dfrac{1}{1381}
+\begin{bmatrix}
+48163 & -693 \\ \\
+-693 & 10
+\end{bmatrix}
+\tag{P1 - 3}
+$$
+<p>两次矩阵乘法</p>
+$$
+(\boldsymbol{X}^\mathrm{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathrm{T} =
+\dfrac{1}{1381}
+\begin{bmatrix}
+4504 & 3811 & \cdots & -3812 \\ \\
+-63 & -53 & \cdots & 57
+\end{bmatrix}
+\tag{P1 - 4}
+$$
+<br>
+$$
+\boldsymbol\theta =
+(\boldsymbol{X}^\mathrm{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathrm{T} \boldsymbol{y} =
+\dfrac{1}{1381}
+\begin{bmatrix}
+-368084 \\ \\
+8476
+\end{bmatrix}=
+\begin{bmatrix}
+-266.5344 \\ \\
+6.1376
+\end{bmatrix}
+\tag{P1 - 5}
+$$
+<p>求得结果</p>
+$$
+w = -266.5344 + 6.1376 \cdot h \tag{P1 - 6}
+$$
+<p>其中，$w$ 代表体重，$h$ 代表身高</p>
+<h2 id="二分类逻辑回归问题求解"><a class="header-anchor" href="#二分类逻辑回归问题求解">¶</a>二分类逻辑回归问题求解</h2>
+<p>设二分类问题的输出标记 $y \in \{0, 1\}$，用 $\text{sigmoid}$ 函数将线性回归模型的预测值转化为 $(0,1)$ 之间的值，即得到逻辑回归模型，可以认为逻辑回归模型的预测值是可能为 “1” 情况或者 “0” 情况的概率，若该概率大于 $0.5$ 即判定模型预测结果为其对应的情况</p>
+<p>$\text{sigmoid}$ 函数</p>
+$$\text{sigmoid}(z) = \dfrac{1}{1 + e^{-z}} \tag{2 - 1}$$
+<p>逻辑回归预测模型为</p>
+$$h_\theta(x) = g(\theta^T x) = \dfrac{1}{1 + e^{-\theta^T x}} \tag{2 - 2}$$
+<p>我们选择用梯度下降法求得最大似然估计中 $\theta$ 的最优解，其迭代一次的操作为</p>
+$$
+\begin{array}{lcl} 
+& \text{(1)} & \boldsymbol H = \text{sigmoid}(\boldsymbol X \cdot \boldsymbol \theta) \\ 
+& \text{(2)} & \boldsymbol\nabla = \boldsymbol X^{\mathrm{T}} (\boldsymbol H - \boldsymbol Y) ~~~~ \text{or} ~~~~ \boldsymbol\nabla = \dfrac{1}{m} \boldsymbol X^{\mathrm{T}} (\boldsymbol H - \boldsymbol Y) \\
+& \text{(3)} & \boldsymbol \theta := \boldsymbol \theta - \alpha \cdot \boldsymbol\nabla \\
+\end{array}\tag{2 - 3}
+$$
+<br>
+<p>其中，$\alpha$ 为预设的学习率，通常为 $0.01$、$0.001$ 等值</p>
+<p>各矩阵的结构分别为</p>
+$$
+\boldsymbol{X}_{m \times (n+1)} =
+\begin{bmatrix}
+x_0^{(1)} & x_1^{(1)} & \cdots & x_n^{(1)} \\
+x_0^{(2)} & x_1^{(2)} & \cdots & x_n^{(2)} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_0^{(m)} & x_1^{(m)} & \cdots & x_n^{(m)} \\
+\end{bmatrix}
+,
+~~
+\boldsymbol{Y}_{m \times 1} =
+\begin{bmatrix}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+y^{(m)} 
+\end{bmatrix}\tag{2 - 4}
+$$
+<br>
+$$
+\boldsymbol{H}_{m \times 1} =
+\begin{bmatrix}
+H^{(1)} \\
+H^{(2)} \\
+\vdots \\
+H^{(m)} 
+\end{bmatrix}
+,
+~~
+~~
+~~
+~~
+\boldsymbol{\theta}_{(n+1) \times 1} =
+\begin{bmatrix}
+\theta_0 \\
+\theta_1 \\
+\vdots \\
+\theta_n 
+\end{bmatrix}\tag{2 - 5}
+$$
+<p><strong>问题 2</strong></p>
+<p>给定某大学若干学生的 GPA 数值与其保研情况（只有 “是” 或 “否” 两种情况），请给出基于这些数据的逻辑回归模型，并根据该模型与另一位同学的 GPA 来预测他/她是否能够保研</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>$i$</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPA</td>
+<td>$x_i$</td>
+<td>3.81</td>
+<td>3.70</td>
+<td>3.67</td>
+<td>3.63</td>
+<td>3.56</td>
+<td>3.45</td>
+<td>3.35</td>
+<td>3.18</td>
+<td>2.77</td>
+<td>2.5</td>
+</tr>
+<tr>
+<td>保研情况</td>
+<td>是/否</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>是/否对应1/0</td>
+<td>$y_i$</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>我们当然不会用梯度下降法手动迭代成千上万次直至收敛，但是我们可以聚焦于其中的一次迭代过程</p>
+<p>根据数据得到</p>
+$$
+\boldsymbol X = 
+\begin{bmatrix}
+1 & 3.81 \\ 
+1 & 3.70 \\
+1 & 3.67 \\
+\vdots & \vdots \\
+1 & 2.50 
+\end{bmatrix}
+,
+~~
+\boldsymbol{Y} =
+\begin{bmatrix}
+1 \\
+1 \\
+0 \\
+\vdots \\
+0 
+\end{bmatrix}\tag{P2 - 1}
+$$
+<p>设初始的 $\boldsymbol\theta$ 矩阵为</p>
+$$
+\boldsymbol{\theta} =
+\begin{bmatrix}
+0 \\ \\
+0 
+\end{bmatrix}\tag{P2 - 2}
+$$
+<p>则有</p>
+$$
+\boldsymbol X \cdot \boldsymbol{\theta} =
+\begin{bmatrix}
+0 \\
+0 \\
+\vdots \\
+0 
+\end{bmatrix}
+,
+~~
+~~
+~~
+~~
+\boldsymbol H =
+\begin{bmatrix}
+0.5 \\ 
+0.5 \\ 
+\vdots \\
+0.5
+\end{bmatrix}\tag{P2 - 3}
+$$
+<br>
+$$
+\boldsymbol\nabla = \boldsymbol X^{\mathrm{T}} (\boldsymbol H - \boldsymbol Y) =
+\begin{bmatrix}
+2.00 \\ \\
+5.67
+\end{bmatrix}\tag{P2 - 4}
+$$
+<p>设学习率 $\alpha$ 为 $0.01$，得到更新的 $\boldsymbol\theta$ 矩阵为</p>
+$$
+\boldsymbol{\theta} =
+\begin{bmatrix}
+-0.02000 \\ \\
+-0.05670 
+\end{bmatrix}\tag{P2 - 5}
+$$
+<p>在计算机中迭代一百万次后得到 $\boldsymbol\theta^{\mathrm{T}} = \begin{bmatrix}-82.78829 & 22.73134 \end{bmatrix}$，此时若有一位同学的GPA为 $3.60$，根据此逻辑回归模型有</p>
+$$\text{hypothesis} = \dfrac{1}{1 + e^{-\theta^T x}} \approx 0.27779\tag{P2 - 6}$$
+<p>可以预测，该同学不能保研</p>
+<h2 id="运用贝叶斯判定准则进行分类"><a class="header-anchor" href="#运用贝叶斯判定准则进行分类">¶</a>运用贝叶斯判定准则进行分类</h2>
+<p>对于分类任务来说，在所有相关概率都已知的理想情形下，贝叶斯决策论考虑如何基于这些概率和误判损失来选择最优的类别标记。假设有 $K$ 种可能的类别标记，即 $\gamma = \{ C_1, C_2, ... , C_K \}$，那么最小化分类器错误率的贝叶斯最优分类器为</p>
+$$
+h(\boldsymbol x) = \mathop{\arg\max}\limits_{k \in \{ 1, \dots, K \}} \mathrm P(C_k ~|~ \boldsymbol x) \tag{3 - 1}
+$$
+<p>即对每个样本 $\boldsymbol x$，选择能使后验概率 $\mathrm P(C_k ~|~ \boldsymbol x)$ 最大的类别标记</p>
+<p>假设特征条件之间相互独立，上式基于贝叶斯公式推导得到的贝叶斯判定准则为</p>
+$$
+\widehat y = \mathop{\arg\max}\limits_{k \in \{ 1, \dots, K \}} \mathrm P(C_k)\prod^{n}_{i=1} \mathrm P(x_i~|~C_k) \tag{3 - 2}
+$$
+<p>其中，$n$ 为样本属性个数，$x_i$ 为 $\boldsymbol x$ 在第 $i$ 个属性上的取值</p>
+<p>$p(C_k)$ 是好求的，当属性或者说特征为离散值时，$p(x_i~|~C_k)$ 亦不难求得，而当其为连续值时，则需考虑其概率密度函数，假定 $p(x_i~|~C_k) \sim \mathcal{N}(\mu_{C_k, i}, \sigma^2_{C_k, i})$，其中 $\mu_{C_k, i}, \sigma^2_{C_k, i}$ 分别是第 $k$ 类样本在第 $i$ 个属性上取值的均值和方差，则有</p>
+$$p(x_i~|~C_k) = \dfrac{1}{\sqrt{2\pi}\sigma_{C_k, i}}\exp\Big( -\dfrac{(x_i - \mu_{C_k, i})^2}{2\sigma^2_{C_k, i}} \Big) \tag{3 - 3}$$
+<p><strong>问题 3.1</strong></p>
+<p>Given a dataset about the relationship between whether Xiao E plays outside or not and the weather and temperature that day, if the weather tomorrow is overcast, and the temperature is mild, will he go out to play tomorrow?</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weather</td>
+<td>Sunny</td>
+<td>Sunny</td>
+<td>Overcast</td>
+<td>Rainy</td>
+<td>Rainy</td>
+<td>Rainy</td>
+<td>Overcast</td>
+<td>Sunny</td>
+<td>Sunny</td>
+<td>Rainy</td>
+<td>Sunny</td>
+<td>Overcast</td>
+<td>Overcast</td>
+<td>Rainy</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>Hot</td>
+<td>Hot</td>
+<td>Hot</td>
+<td>Mild</td>
+<td>Cool</td>
+<td>Cool</td>
+<td>Cool</td>
+<td>Mild</td>
+<td>Cool</td>
+<td>Mild</td>
+<td>Mild</td>
+<td>Mild</td>
+<td>Hot</td>
+<td>Mild</td>
+</tr>
+<tr>
+<td>Play</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>二分类问题，先求先验概率与似然</p>
+$$\mathrm P(\text{play=Yes}) = \dfrac{9}{14}, ~~~~\mathrm P(\text{play=No}) = \dfrac{5}{14}\tag{P3.1 - 1}$$
+<p>因为是离散值，很容易即可求得</p>
+$$\mathrm P(\text{weather=Overcast | play=Yes}) = \dfrac{4}{9} \tag{P3.1 - 2}$$
+$$\mathrm P(\text{Temperature=Mild | play=Yes}) = \dfrac{4}{9} \tag{P3.1 - 3}$$
+$$\mathrm P(\text{weather=Overcast | play=No}) = \dfrac{0}{5} \tag{P3.1 - 4}$$
+$$\mathrm P(\text{Temperature=Mild | play=No}) = \dfrac{2}{5} \tag{P3.1 - 5}$$
+<p>根据贝叶斯判定准则有</p>
+$$\mathrm P(\text{play=Yes | weather=Overcast, Temperature=Mild}) \\
+\Longrightarrow \mathrm P(\text{play=Yes}) \cdot \mathrm P(\text{weather=Overcast | play=Yes})\cdot \mathrm P(\text{Temperature=Mild | play=Yes}) \\ 
+= \dfrac{9}{14} \cdot \dfrac{4}{9} \cdot \dfrac{4}{9} = 0.1270 \tag{P3.1 - 6}$$
+$$\mathrm P(\text{play=No | weather=Overcast, Temperature=Mild}) \\
+\Longrightarrow \mathrm P(\text{play=No}) \cdot \mathrm P(\text{weather=Overcast | play=No})\cdot \mathrm P(\text{Temperature=Mild | play=No})  \\ 
+= \dfrac{5}{14} \cdot \dfrac{0}{5} \cdot \dfrac{2}{5} = 0 \tag{P3.1 - 7}$$
+<p>由于 $0.1270 &gt; 0$，结论是，根据天气与温度情况，我们推断小 E 明天将会出去玩</p>
+<br>
+<p>在上面的计算过程中，$\mathrm P(\text{weather=Overcast | play=No}) = 0$，使得乘积结果一定为 $0$，于是其他属性携带的信息都被抹去，产生了零概率问题，于是我们在估计概率值时进行拉普拉斯平滑来解决这个问题</p>
+$$\mathrm P(\text{play=Yes}) = \dfrac{9+1}{14+2} = \dfrac{10}{16}, ~~~~\mathrm P(\text{play=No}) = \dfrac{5+1}{14+2} = \dfrac{6}{16} \tag{P3.1 - 7}$$
+$$
+\mathrm P(\text{weather=Overcast | play=Yes}) = \dfrac{4+1}{9+3} = \dfrac{5}{12} \tag{P3.1 - 8}
+$$
+$$
+\mathrm P(\text{Temperature=Mild | play=Yes}) = \dfrac{4+1}{9+3} = \dfrac{5}{12} \tag{P3.1 - 9}
+$$
+$$
+\mathrm P(\text{weather=Overcast | play=No}) = \dfrac{0+1}{5+3} = \dfrac{1}{8} \tag{P3.1 - 10}
+$$
+$$
+\mathrm P(\text{Temperature=Mild | play=No}) = \dfrac{2+1}{5+3} = \dfrac{3}{8} \tag{P3.1 - 11}
+$$
+$$\mathrm P(\text{play=Yes | weather=Overcast, Temperature=Mild}) \\ \Longrightarrow \dfrac{10}{16} \cdot \dfrac{5}{12} \cdot \dfrac{5}{12} = 0.1085 \tag{P3.1 - 12}$$
+$$\mathrm P(\text{play=No | weather=Overcast, Temperature=Mild}) \\ \Longrightarrow \dfrac{6}{16} \cdot \dfrac{1}{8} \cdot \dfrac{3}{8} = 0.0176 \tag{P3.1 - 13}$$
+<p>结论一致</p>
+<p><strong>问题 3.2</strong></p>
+<p>给定一个西瓜数据集，请你用它训练一个朴素贝叶斯分类器，对测试例 “测一” 进行分类</p>
+<div align=center><img width = '600' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%A5%BF%E7%93%9C%E6%95%B0%E6%8D%AE%E9%9B%863.0.PNG"/></div>
+<div align=center><img width = '600' height ='100' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%A5%BF%E7%93%9C1.png"/></div>
+<br>
+<p>首先估计类先验概率 $\mathrm P(C_k)$，显然有</p>
+<div align=center><img width = '240' height ='80' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%B1%BB%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87.png"/></div>
+<p>然后，为每个属性估计条件概率 $\mathrm P(x_i~|~C_k)$</p>
+<div align=center><img width = '480' height ='540' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87.png"/></div>
+<p>连续值处理，假设密度和含糖率满足正态分布，计算时应注意均值和方差</p>
+<div align=center><img width = '600' height ='450' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%BF%9E%E7%BB%AD%E5%80%BC%E5%A4%84%E7%90%86.png"/></div>
+<p>于是有</p>
+<div align=center><img width = '600' height ='200' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87.png"/></div>
+<p>由于 $0.038 &gt; 6.80\times 10^{-5}$，因此，朴素贝叶斯分类器将测试样本 “测一” 判别为 “好瓜”</p>
+<p>在实践中，常通过取对数的方式将连乘转化为连加，以避免数值下溢</p>
+<h2 id="构造决策树及其剪枝策略"><a class="header-anchor" href="#构造决策树及其剪枝策略">¶</a>构造决策树及其剪枝策略</h2>
+<p>特征纯度的度量我们使用信息熵</p>
+$$\text{Entropy}(x) = -\sum^{n}_{i=0}P(x_i)\log_2P(x_i) \tag{4 - 1}$$
+<p>信息熵可以衡量一个数据集的信息“纯度”。信息越纯，熵就越低；信息越混杂，熵就越高。</p>
+<p>于是可以用信息增益来表示特征纯度的提升</p>
+$$\text{Information gain}(i) = \text{Entropy of parent table}~D~-\text{Sum}(\dfrac{n_k}{n} \cdot\\ \text{Entropy of each value}~k~\text{of subset table }S_i) \tag{4 - 2}$$
+<p>即父亲节点的信息熵减去子节点上样本熵的加权平均数。在 $\text{ID3}$ 算法中，通过测量各种切分方案的信息增益，选择具有最大信息增益的切分方式，即可确定决策树上这一个父亲节点的切分。</p>
+<p><strong>问题 4</strong></p>
+<div align=center><img width = '625' height ='305' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_DT/%E5%86%B3%E7%AD%96%E6%A0%91_%E8%A1%A8.PNG"/></div>
+<br>
+<p>Based on above training data, we can induce a decision tree as the following:</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_DT/%E5%86%B3%E7%AD%96%E6%A0%91_%E5%9B%BE.PNG"/></div>
+<br>
+<p>CSDN 作者【天泽28】在关于周志华老师的《机器学习》（西瓜书）的笔记总结中对决策树模型介绍得很好，简单易懂，尽管文中有一些小错误，但是在评论区中都有提及，不影响整体阅读</p>
+<p><a href="https://blog.csdn.net/u012328159/article/details/70184415" target="_blank" rel="noopener">决策树（decision tree）(一)——构造决策树方法</a><br>
+<a href="https://blog.csdn.net/u012328159/article/details/79285214" target="_blank" rel="noopener">决策树（decision tree）(二)——剪枝</a><br>
+<a href="https://blog.csdn.net/u012328159/article/details/79396893" target="_blank" rel="noopener">决策树（decision tree）(三)——连续值处理</a><br>
+<a href="https://blog.csdn.net/u012328159/article/details/79413610" target="_blank" rel="noopener">决策树（decision tree）(四)——缺失值处理</a></p>
+<h2 id="拉格朗日函数与对偶形式求解带约束优化问题"><a class="header-anchor" href="#拉格朗日函数与对偶形式求解带约束优化问题">¶</a>拉格朗日函数与对偶形式求解带约束优化问题</h2>
+<p>对于优化问题</p>
+$$
+\begin{array}{lcl}
+\min\limits_{\boldsymbol u} & & f(\boldsymbol u) \tag{5 - 1}\\
+\text{ s. t.} & & g_i(\boldsymbol u) \le 0, ~~~~ i = 1,2,...,m~, \\
+& & h_j(\boldsymbol u) = 0, ~~~~ j = 1,2,...,n~.
+\end{array}
+$$
+<p>定义其拉格朗日函数为</p>
+$$
+\mathcal{L}(\boldsymbol u, \boldsymbol\alpha, \boldsymbol\beta) := f(\boldsymbol u) + \sum^{m}_{i=1} \alpha_i g_i(\boldsymbol u) + \sum^{n}_{j=1} \beta_j h_j(\boldsymbol u) \tag{5 - 2}
+$$
+<p>其中 $\alpha_i \ge 0$</p>
+<p>式 (1) 描述的优化问题等价于</p>
+$$
+\begin{array}{lcl} 
+\min\limits_{\boldsymbol u}\max\limits_{\boldsymbol\alpha, \boldsymbol\beta} & & \mathcal{L}(\boldsymbol u, \boldsymbol\alpha, \boldsymbol\beta) \tag{5 - 3} \\
+~~~~\text{ s. t.} & & \alpha_i \ge 0, ~~~~ i = 1,2,...,m~. \\
+\end{array}
+$$
+<p>式 (3) 描述的优化问题在最优值处必须满足如下条件 ($\text{KKT}$ 条件)</p>
+<ul>
+<li>主问题可行：$g_i(\boldsymbol u) \le 0, h_j(\boldsymbol u) = 0;$</li>
+<li>对偶问题可行：$\alpha_i \ge 0;$</li>
+<li>互补松弛：$\alpha_i g_i(\boldsymbol u) = 0.$</li>
+</ul>
+<p>定义式 (1) 描述的优化问题的对偶问题</p>
+$$
+\begin{array}{lcl} 
+\max\limits_{\boldsymbol\alpha, \boldsymbol\beta}\min\limits_{\boldsymbol u} & & \mathcal{L}(\boldsymbol u, \boldsymbol\alpha, \boldsymbol\beta) \tag{5 - 4} \\
+~~~~\text{ s. t.} & & \alpha_i \ge 0, ~~~~ i = 1,2,...,m~. \\
+\end{array}
+$$
+<p>对偶问题是主问题的下界，即</p>
+$$
+\max\limits_{\boldsymbol\alpha, \boldsymbol\beta}\min\limits_{\boldsymbol u} \mathcal{L}(\boldsymbol u, \boldsymbol\alpha, \boldsymbol\beta)
+\le
+\min\limits_{\boldsymbol u}\max\limits_{\boldsymbol\alpha, \boldsymbol\beta} \mathcal{L}(\boldsymbol u, \boldsymbol\alpha, \boldsymbol\beta)
+\tag{5 - 5}
+$$
+<p><strong>问题 5.1</strong></p>
+<p>Problem</p>
+$$
+\begin{array}{lcl}
+\text{minimize:} & & x^2 + y^2 + 2z^2 \\
+\text{subject to:} & & 2x + 2y - 4z \ge 8 \\
+\end{array}
+$$
+<p>$$2x + 2y - 4z \ge 8 \Longleftrightarrow 8 - 2x - 2y + 4z \le 0$$</p>
+<p>The Lagrangian is:</p>
+$$
+\mathcal{L}(x, y, z, \alpha) = x^2 + y^2 + 2z^2 + \alpha(8 - 2x - 2y + 4z) \tag{P5.1 - 1}
+$$
+<p>Differentiating with respect to $x, y, z$</p>
+$$
+\dfrac{\partial{\mathcal{L}}}{\partial x} = 2x - 2\alpha = 0 \tag{P5.1 - 2}
+$$
+$$
+\dfrac{\partial{\mathcal{L}}}{\partial y} = 2y - 2\alpha = 0 \tag{P5.1 - 3}
+$$
+$$
+\dfrac{\partial{\mathcal{L}}}{\partial z} = 4z + 4\alpha = 0 \tag{P5.1 - 4}
+$$
+<p>We can conclude that</p>
+$$x = y = \alpha, ~~ z = -\alpha \tag{P5.1 - 5}$$
+<p>Substituting this into $2x + 2y - 4z = 8$ gives</p>
+$$x = 1, ~~ y = 1, ~~ z = -1 \tag{P5.1 - 6}$$
+<p>Optimal objective function value $ = 4$</p>
+<p><strong>问题 5.2</strong></p>
+$$
+\begin{array}{lcl}
+\text{minimize:} & & x_1^2 + x_2^2 \\
+\text{subject to:} & & x_1 + x_2 \ge 4 \\
+& & x_1, x_2 \ge 0
+\end{array}
+$$
+<p>Let</p>
+$$
+X := \{ x \in \mathbb{R}^2 | x_1, x_2 \ge 0 \} = \mathbb{R}^+ \tag{P5.2 - 1}
+$$
+<p>The Lagrangian is:</p>
+$$
+\mathcal{L}(\boldsymbol x, \lambda) = x_1^2 + x_2^2 + \lambda(4 - x_1 - x_2) \tag{P5.2 - 2}
+$$
+<p>The Lagrangian dual function:</p>
+$$
+\begin{array}{lcl}
+\theta(\lambda)
+& = & \min\limits_{x \in X}\{ ~x_1^2 + x_2^2 + \lambda(4 - x_1 - x_2)~ \} \\
+& = & 4\lambda + \min\limits_{x \in X}\{ ~x_1^2 + x_2^2 - \lambda x_1 - \lambda x_2~ \} \\
+& = & 4\lambda + \min\limits_{x_1 \ge 0}\{ ~x_1^2 - \lambda x_1~ \} + \min\limits_{x_2 \ge 0}\{ ~x_2^2 - \lambda x_2~ \}
+\end{array} \tag{P5.2 - 3}
+$$
+<p>For a fixed value of $\lambda \ge 0$，the minimum of $\mathcal{L}(\boldsymbol x, \lambda)$ over $x \in X$ is attained at</p>
+$$x_1(\lambda) = \dfrac{\lambda}{2}, ~~~~ x_2(\lambda) = \dfrac{\lambda}{2} \tag{P5.2 - 4}$$ 
+$$\Longrightarrow \mathcal{L}(\boldsymbol x(\lambda), \lambda) = 4 \lambda - \dfrac{\lambda^2}{2} ~~~~ \forall \lambda \ge 0 \tag{P5.2 - 5}$$ 
+<p>The dual function is concave and differentiable</p>
+<p>We want to maximize the value of the dual function</p>
+$$
+\dfrac{\partial{\mathcal{L}}}{\partial \lambda} = 4 - \lambda = 0 \tag{P5.2 - 6}
+$$
+<p>This implies</p>
+$$
+\lambda^* = 4, ~~~~ \theta(\lambda^*) = 8, ~~~~ \boldsymbol x(\lambda^*) = \boldsymbol x^* = (2, 2) \tag{P5.2 - 7}
+$$
+<h2 id="支持向量机求解线性二分类问题"><a class="header-anchor" href="#支持向量机求解线性二分类问题">¶</a>支持向量机求解线性二分类问题</h2>
+<p>给定一组数据 $\{ (\boldsymbol x_1, y_1), (\boldsymbol x_2, y_2), ... , (\boldsymbol x_m, y_m) \}$，其中 $\boldsymbol x_i \in \mathbb{R}^{d}$，$y \in \{ -1, 1 \}$，二分类任务的目标是希望从数据中学得一个假设函数 $h: \mathbb{R} \rightarrow \{ -1, 1 \}$，使得 $h(\boldsymbol x_i) = y_i$，即，线性二分类模型希望在特征空间找到一个划分超平面，将属于不同标记的样本分开，而 $\text{SVM}$ 进一步希望找到离各样本都比较远的划分超平面。</p>
+<p>线性二分类模型：<br>
+找到一组合适的参数 $(\boldsymbol w, b)$，使得</p>
+$$
+\forall i. ~~ y_i(\boldsymbol w^{\mathrm T} \boldsymbol x_i + b) > 0 \tag{6 - 1}
+$$
+<p>线性支持向量机基本型</p>
+$$
+\begin{array}{lcl}
+\mathop{\min}\limits_{\boldsymbol w, b} & & \dfrac{1}{2} \boldsymbol w^{\mathrm T} \boldsymbol w \\
+\text{ s. t.} & & y_i(\boldsymbol w^{\mathrm T} \boldsymbol x_i + b) \ge 1, ~~~~ i = 1,2,...,m
+\end{array} \tag{6 - 2}
+$$
+<p>线性支持向量机的拉格朗日函数为</p>
+$$\mathcal{L}(\boldsymbol{w}, b, \boldsymbol\alpha) = \dfrac{1}{2}\boldsymbol{w}^{\mathrm T} \boldsymbol w + \sum^{m}_{i=1} \alpha_i \Big(1 - y_i(\boldsymbol{w}^\mathrm{T} \boldsymbol{x_i} + b)\Big) \tag{6 - 3} $$
+<p>其对偶问题为</p>
+$$
+\begin{array}{lcl} 
+\max\limits_{\boldsymbol\alpha}\min\limits_{\boldsymbol w, b} & & \dfrac{1}{2}\boldsymbol{w}^{\mathrm T} \boldsymbol w + \sum\limits^{m}_{i=1} \alpha_i \Big(1 - y_i(\boldsymbol{w}^\mathrm{T} \boldsymbol{x_i} + b)\Big) \\
+~~~~\text{ s. t.} & & \alpha_i \ge 0, ~~~~ i = 1,2,...,m~. \\
+\end{array} \tag{6 - 4}
+$$
+<p>因为式 $(6 - 4)$ 对 $(\boldsymbol w, b)$ 的优化属于无约束最小化问题，令偏导等于零，得到 $(\boldsymbol w, b)$ 的最优值</p>
+$$
+\dfrac{\partial \mathcal{L}}{\partial w} = 0 \Rightarrow \boldsymbol w = \sum^{m}_{i=1} \alpha_i y_i \boldsymbol x_i, \tag{6 - 5}
+$$
+$$
+\dfrac{\partial \mathcal{L}}{\partial b} = 0 \Rightarrow \sum^{m}_{i=1} \alpha_i y_i = 0. \tag{6 - 6}
+$$
+<p>将其代入式 $(6 - 4)$，消去 $(\boldsymbol w, b)$，得到线性支持向量机的对偶型</p>
+<p>线性支持向量机的对偶问题等价于找到一组合适的参数 $\boldsymbol \alpha$，使得</p>
+$$
+\begin{array}{lcl} 
+\max\limits_{\boldsymbol\alpha} & & \sum\limits^{m}_{i=1} \alpha_i - \dfrac{1}{2}\sum\limits^{m}_{i=1}\sum\limits^{m}_{j=1} \alpha_i \alpha_j y_i y_j {\boldsymbol{x_i}}^\mathrm{T} \boldsymbol{x_j} \\
+\text{ s. t.} & & \sum\limits^{m}_{i=1} \alpha_i y_i = 0, \\
+& & \alpha_i \ge 0, ~~~~ i = 1,2,...,m. \\
+\end{array} \tag{6 - 7}
+$$
+<p>线性支持向量机的 $\text{KKT}$ 条件</p>
+<ul>
+<li>主问题可行：$1 - y_i(\boldsymbol w^{\mathrm T} x_i + b) \le 0;$</li>
+<li>对偶问题可行：$\alpha_i \ge 0;$</li>
+<li>互补松弛：$\alpha_i(1 - y_i(\boldsymbol w^{\mathrm T} x_i + b)) = 0;$</li>
+</ul>
+<p>线性支持向量机中，支持向量是距离划分超平面最近的样本，落在最大间隔边界上（即对偶变量 $\alpha_i &gt; 0$ 对应的样本），支持向量机的参数 $(\boldsymbol w, b)$ 仅由支持向量决定，与其他样本无关</p>
+<p><strong>问题 6</strong></p>
+<p>给出</p>
+$$x_1 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}，y_1 = +1 \tag{P6 - 1}$$
+$$x_2 = \begin{bmatrix} -1 \\ 2 \end{bmatrix}，y_2 = +1 \tag{P6 - 2}$$
+$$x_3 = \begin{bmatrix} -1 \\ -2 \end{bmatrix}，y_3 = -1 \tag{P6 - 3}$$
+<p>线性支持向量机的拉格朗日函数为</p>
+$$\mathcal{L}(\boldsymbol{w}, b, \boldsymbol\alpha) = \dfrac{1}{2}{\left \| \boldsymbol{w} \right \|}^2 - \sum^{m}_{i=1} \alpha_i \Big(y_i(\boldsymbol{w}^\mathrm{T} \boldsymbol{x_i} + b) - 1\Big) \tag{P6 - 4}$$
+<p>令 $\dfrac{\partial{\mathcal{L}}}{\partial{\boldsymbol{w}}} = \boldsymbol{0}$，$\dfrac{\partial{\mathcal{L}}}{\partial{b}} = 0$，可得</p>
+$$\boldsymbol{w} = \sum^{m}_{i=1} \alpha_i y_i \boldsymbol{x_i} ~, \tag{P6 - 5}$$
+$$\sum^{m}_{i=1} \alpha_i y_i = 0 ~. \tag{P6 - 6}$$
+<p>由 (4) (5) (6) 式推导可知</p>
+$$\mathcal{L} = \sum^{m}_{i=1} \alpha_i - \dfrac{1}{2}\sum^{m}_{i=1}\sum^{m}_{j=1} \alpha_i \alpha_j y_i y_j {\boldsymbol{x_i}}^\mathrm{T} \boldsymbol{x_j} \tag{P6 - 7}$$
+<p>将 (1) (2) (3) 式代入 (7) 式可得</p>
+$$\mathcal{L} = \alpha_1 + \alpha_2 + \alpha_3 - \dfrac{1}{2}\sum^{3}_{i=1}\begin{bmatrix}
+y_i(+1)\alpha_i \alpha_1 {\boldsymbol{x_i}}^\mathrm{T}\begin{bmatrix}1 \\2\end{bmatrix}\\ \\
++y_i(+1)\alpha_i \alpha_2 {\boldsymbol{x_i}}^\mathrm{T}\begin{bmatrix}-1 \\2\end{bmatrix}\\ \\
++y_i(-1)\alpha_i \alpha_3 {\boldsymbol{x_i}}^\mathrm{T}\begin{bmatrix}-1 \\-2\end{bmatrix}
+\end{bmatrix}$$
+<br>
+$$\mathcal{L} = \alpha_1 + \alpha_2 + \alpha_3 - \dfrac{1}{2}
+\begin{bmatrix}
+{\alpha_1}^2 \begin{bmatrix}1,2\end{bmatrix} \begin{bmatrix}1 \\2\end{bmatrix}
++\alpha_1\alpha_2 \begin{bmatrix}-1,2\end{bmatrix} \begin{bmatrix}1 \\2\end{bmatrix}
+-\alpha_1\alpha_3 \begin{bmatrix}-1,-2\end{bmatrix} \begin{bmatrix}1 \\2\end{bmatrix}
+\\ \\
++\alpha_2\alpha_1 \begin{bmatrix}1,2\end{bmatrix} \begin{bmatrix}-1 \\2\end{bmatrix}
++{\alpha_2}^2 \begin{bmatrix}-1,2\end{bmatrix} \begin{bmatrix}-1 \\2\end{bmatrix}
+-\alpha_2\alpha_3 \begin{bmatrix}-1,-2\end{bmatrix} \begin{bmatrix}-1 \\2\end{bmatrix}
+\\ \\
+-\alpha_3\alpha_1 \begin{bmatrix}1,2\end{bmatrix} \begin{bmatrix}-1 \\-2\end{bmatrix}
+-\alpha_3\alpha_2 \begin{bmatrix}-1,2\end{bmatrix} \begin{bmatrix}-1 \\-2\end{bmatrix}
++{\alpha_3}^2 \begin{bmatrix}-1,-2\end{bmatrix} \begin{bmatrix}-1 \\-2\end{bmatrix}
+\end{bmatrix}$$
+<br>
+$$\mathcal{L} = \alpha_1 + \alpha_2 + \alpha_3 - \dfrac{1}{2}\Big( 5{\alpha_1}^2 + 5{\alpha_2}^2 + 5{\alpha_3}^2 + 6\alpha_1\alpha_2 + 10\alpha_1\alpha_3 + 6\alpha_2\alpha_3 \Big) \tag{P6 - 8}$$
+<br>
+<p>对 (8) 式分别求偏导，并令偏导为零</p>
+$$\dfrac{\partial{\mathcal{L}}}{\partial{\alpha_1}} = 1 - 5\alpha_1 - 3\alpha_2 - 5\alpha_3 = 0 \tag{P6 - 9}$$
+$$\dfrac{\partial{\mathcal{L}}}{\partial{\alpha_2}} = 1 - 5\alpha_2 - 3\alpha_1 - 3\alpha_3 = 0 \tag{P6 - 10}$$
+$$\dfrac{\partial{\mathcal{L}}}{\partial{\alpha_3}} = 1 - 5\alpha_3 - 5\alpha_1 - 3\alpha_2 = 0 \tag{P6 - 11}$$
+<p>由 (6) (9) (10) (11) 求得</p>
+$$\alpha_2 = \alpha_3 = \dfrac{1}{8} ~~,~~ \alpha_1 = 0 \tag{P6 - 12}$$
+<p>将上式代入 (5) 式得</p>
+$$
+\begin{array}{lcl}
+\boldsymbol{w}
+& = & \sum\limits^{m}_{i=1} \alpha_i y_i \boldsymbol{x_i} \\
+\boldsymbol{w}
+& = &
+0\begin{bmatrix} 1 \\ 2 \end{bmatrix}
++\dfrac{1}{8}\begin{bmatrix} -1 \\ 2 \end{bmatrix}
+-\dfrac{1}{8}\begin{bmatrix} -1 \\ -2 \end{bmatrix}
+& = &
+\begin{bmatrix}~~ 0 ~~\\ \\ ~~\dfrac{1}{2}~~ \end{bmatrix}
+\end{array}
+$$
+<p>可得</p>
+$$\boldsymbol{w} = \begin{bmatrix}~~ 0 ~~\\ \\ \dfrac{1}{2} \end{bmatrix} \tag{P6 - 13}$$
+<p>由线性支持向量机的 $\text{KKT}$ 条件</p>
+$$\alpha_i \Big(y_i(\boldsymbol{w}^\mathrm{T} \boldsymbol{x_i} + b) - 1 \Big) = 0 \tag{P6 - 14}$$
+<p>再将 (1) 式代入得</p>
+$$
+\begin{array}{r}
+{y_i(\boldsymbol{w}^\mathrm{T} \boldsymbol{x_i} + b) - 1  =  0 }\\
+{\boldsymbol{w}^\mathrm{T} \boldsymbol{x_i} + b - 1  =  0} \\
+{\begin{bmatrix} 0, \dfrac{1}{2} \end{bmatrix}
+\begin{bmatrix} 1 \\ 2 \end{bmatrix}
++b-1 = 0} \\ {b = 0}
+\end{array}
+$$
+<p>可得</p>
+$$b=0\tag{P6 - 15}$$
+<br>
+<p>由 (13) (15) 知该线性二分类模型的划分超平面为</p>
+$$\boldsymbol{w}^\mathrm{T} \boldsymbol{x} + b = 0 ~, ~~~~~~~~\text{where}~~~~\boldsymbol{w} = \begin{bmatrix}~~ 0 ~~\\ \\ \dfrac{1}{2} \end{bmatrix}, ~b = 0 ~.\tag{P6 - 16}$$
+<h2 id="神经网络的误差反向传播法"><a class="header-anchor" href="#神经网络的误差反向传播法">¶</a>神经网络的误差反向传播法</h2>
+<ul>
+<li>
+<p>神经网络的前向传播（Forward Propagation）</p>
+<ul>
+<li>前向传播就是从input，经过一层层的layer，不断计算每一层的z和a，最后得到输出y^ 的过程，计算出了y^，就可以根据它和真实值y的差别来计算损失（loss）。</li>
+</ul>
+</li>
+<li>
+<p>神经网络的反向传播（Backward Propagation）</p>
+<ul>
+<li>反向传播就是根据损失函数L(y^,y)来反方向地计算每一层的z、a、w、b的偏导数（梯度），从而更新参数。</li>
+</ul>
+</li>
+</ul>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/5118838-e7f5f61e3aff398a.webp"/></div>
+<p>每经过一次前向传播和反向传播之后，参数就更新一次，然后用新的参数再次循环上面的过程。这就是神经网络训练的整个过程。</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png"/></div>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C2.png"/></div>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C3.png"/></div>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/05/03/%E4%B8%80%E4%BA%9B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%AD%A6%E6%B1%82%E8%A7%A3%E5%8F%82%E8%80%83/" title="一些机器学习问题的数学求解参考">https://cloudplayer99.github.io/2021/05/03/一些机器学习问题的数学求解参考/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/29/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/" rel="prev" title="通信原理笔记">
+      <i class="fa fa-chevron-left"></i> 通信原理笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/01/RS232%E9%80%9A%E8%BF%87modbus%E5%8D%8F%E8%AE%AE%E9%80%9A%E4%BF%A1/" rel="next" title="RS232通过modbus协议通信">
+      RS232通过modbus协议通信 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多元线性回归求解"><span class="nav-number">1.</span> <span class="nav-text">多元线性回归求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分类逻辑回归问题求解"><span class="nav-number">2.</span> <span class="nav-text">二分类逻辑回归问题求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运用贝叶斯判定准则进行分类"><span class="nav-number">3.</span> <span class="nav-text">运用贝叶斯判定准则进行分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造决策树及其剪枝策略"><span class="nav-number">4.</span> <span class="nav-text">构造决策树及其剪枝策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日函数与对偶形式求解带约束优化问题"><span class="nav-number">5.</span> <span class="nav-text">拉格朗日函数与对偶形式求解带约束优化问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机求解线性二分类问题"><span class="nav-number">6.</span> <span class="nav-text">支持向量机求解线性二分类问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的误差反向传播法"><span class="nav-number">7.</span> <span class="nav-text">神经网络的误差反向传播法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/05/03/一些机器学习问题的数学求解参考/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

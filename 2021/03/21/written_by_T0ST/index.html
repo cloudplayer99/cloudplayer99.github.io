@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="How I cut GTA Online loading times by 70 percent T0ST 2021-02-28 GTA Online. Infamous for its slow loading times. Having picked up the game again to finish some of the newer heists I was shocked (&#x2F;s)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载：How I cut GTA Online loading times by 70 percent">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/03/21/written_by_T0ST/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="How I cut GTA Online loading times by 70 percent T0ST 2021-02-28 GTA Online. Infamous for its slow loading times. Having picked up the game again to finish some of the newer heists I was shocked (&#x2F;s)">
+<meta property="article:published_time" content="2021-03-21T01:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-18T14:28:04.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="GTA">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/03/21/written_by_T0ST/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>转载：How I cut GTA Online loading times by 70 percent | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/03/21/written_by_T0ST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          转载：How I cut GTA Online loading times by 70 percent
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-21 09:00:00" itemprop="dateCreated datePublished" datetime="2021-03-21T09:00:00+08:00">2021-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-18 22:28:04" itemprop="dateModified" datetime="2022-07-18T22:28:04+08:00">2022-07-18</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>How I cut GTA Online loading times by 70 percent</h1>
+<p>T0ST 2021-02-28</p>
+<p>GTA Online. <a href="https://www.reddit.com/r/gtaonline/comments/9vgo0g/how_the_fuck_are_20_minute_load_times_acceptable/" target="_blank" rel="noopener">Infamous</a> for its slow loading times. Having picked up the game again to finish some of the newer heists I was <em>shocked</em> (/s) to discover that it still loads just as slow as the day it was released 7 years ago.</p>
+<p>It was time. Time to get to the bottom of this.<a id="more"></a></p>
+<h2 id="Recon"><a class="header-anchor" href="#Recon">¶</a># Recon</h2>
+<p>First I wanted to check if someone had already solved this problem. Most of the results I found pointed towards anecdata about <a href="https://metro.co.uk/2017/11/01/why-does-gta-v-take-so-long-to-load-7041927/" target="_blank" rel="noopener">how the game is so sophisticated</a> that it needs to load so long, stories on how the <a href="https://steamcommunity.com/app/271590/discussions/0/217690940938819317/" target="_blank" rel="noopener">p2p network architecture</a> is rubbish (not saying that it isn’t), some elaborate ways of <a href="https://gtaforums.com/topic/908000-fastest-way-to-load-into-gtao-single-player-first-or-straight-in/" target="_blank" rel="noopener">loading into story mode and a solo session after that</a> and a couple of mods that allowed skipping the startup R* logo video. Some more reading told me we could save a whopping 10-30 seconds with these combined!</p>
+<p>Meanwhile on my PC…</p>
+<h2 id="Benchmark"><a class="header-anchor" href="#Benchmark">¶</a># Benchmark</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Story mode load time:  ~1m 10s</span><br><span class="line">Online mode load time: ~6m flat</span><br><span class="line">Startup menu disabled, time from R* logo until in-game (social club login time isn&#39;t counted).</span><br><span class="line"></span><br><span class="line">Old but decent CPU:   AMD FX-8350</span><br><span class="line">Cheap-o SSD:          KINGSTON SA400S37120G</span><br><span class="line">We have to have RAM:  2x Kingston 8192 MB (DDR3-1337) 99U5471</span><br><span class="line">Good-ish GPU:         NVIDIA GeForce GTX 1070</span><br></pre></td></tr></table></figure>
+<p>I know my setup is dated but what on <em>earth</em> could take 6x longer to load into online mode? I couldn’t measure any difference using the story-to-online loading technique <a href="https://www.reddit.com/r/gtaonline/comments/kycy7a/gtao_loading_times_using_different_methods/" target="_blank" rel="noopener">as others have found before me</a>. Even if it did work the results would be down in the noise.</p>
+<h2 id="I-Am-Not-Alone"><a class="header-anchor" href="#I-Am-Not-Alone">¶</a># I Am (Not) Alone</h2>
+<p>If <a href="https://www.reddit.com/r/gtaonline/comments/ht4i56/your_average_online_loading_time/" target="_blank" rel="noopener">this poll</a> is to be trusted then the issue is widespread enough to mildly annoy more than 80% of the player base. It’s been 7 years R*!</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-0.png"/></div>
+<p>Looking around a bit to find who are the lucky ~20% that get sub 3 minute load times I came across <a href="https://www.youtube.com/watch?v=RdCqDdjp6iU" target="_blank" rel="noopener">a</a> <a href="https://www.youtube.com/watch?v=pJzr3qfyCyg" target="_blank" rel="noopener">few</a> <a href="https://www.youtube.com/watch?v=RK7BUFx_NGk" target="_blank" rel="noopener">benchmarks</a> with high-end gaming PCs and an online mode load time of about 2 minutes. I would <s>kill</s> <em>hack</em> for a 2 minute load time! It does seem to be hardware-dependent but something doesn’t add up here…</p>
+<p>How come their story mode still takes near a minute to load? (The M.2 one didn’t count the startup logos btw.) Also, loading story to online takes them only a minute more while I’m getting about five more. I know that their hardware specs are a lot better but surely not 5x better.</p>
+<h2 id="Highly-accurate-measurements"><a class="header-anchor" href="#Highly-accurate-measurements">¶</a># Highly accurate measurements</h2>
+<p>Armed with such powerful tools as <em>the Task Manager</em> I began to investigate what resources could be the bottleneck.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-1.png"/></div>
+<p>After taking a minute to load the common resources used for both story and online modes (which is near on par with high-end PCs) GTA decides to max out a single core on my machine for four minutes and do nothing else.</p>
+<p>Disk usage? None! Network usage? There’s a bit, but it drops basically to zero after a few seconds (apart from loading the rotating info banners). GPU usage? Zero. Memory usage? Completely flat…</p>
+<p>What, is it mining crypto or something? I smell code. <em>Really bad code</em>.</p>
+<h2 id="Single-thread-bound"><a class="header-anchor" href="#Single-thread-bound">¶</a># Single thread-bound</h2>
+<p>While my old AMD CPU has 8 cores and it does pack a punch, it was made in the olden days. Back when AMD’s <a href="https://valid.x86.fr/bench/6u7sdy/1" target="_blank" rel="noopener">single-thread performance</a> was <em>way</em> behind Intel’s. This might not explain all of the load time differences but it should explain most of it.</p>
+<p>What’s odd is that it’s using up <em>just</em> the CPU. I was expecting vast amounts of disk reads loading up resources or loads of network requests trying to negotiate a session in the p2p network. But this? This is probably a bug.</p>
+<h2 id="Profiling"><a class="header-anchor" href="#Profiling">¶</a># Profiling</h2>
+<p>Profilers are a great way of finding CPU bottlenecks. There’s only one problem - most of them rely on instrumenting the source code to get a perfect picture of what’s happening in the process. And I don’t have the source code. Nor do I need microsecond-perfect readings - I have 4 minutes’ worth of a bottleneck.</p>
+<p>Enter stack sampling: for closed source applications there’s only one option. Dump the running process’ stack and current instruction pointer’s location to build a calling tree in set intervals. Then add them up to get statistics on what’s going on. There’s only one profiler that I know of (might be ignorant here) that can do this on Windows. And it hasn’t been updated in over 10 years. It’s <a href="http://lukestackwalker.sourceforge.net/" target="_blank" rel="noopener">Luke Stackwalker</a>! Someone, please give this project some love :)</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-2.png"/></div>
+<p>Normally Luke would group the same functions together but since I don’t have debugging symbols I had to eyeball nearby addresses to guess if it’s the same place. And what do we see? Not one bottleneck but two of them!</p>
+<h2 id="Down-the-rabbit-hole"><a class="header-anchor" href="#Down-the-rabbit-hole">¶</a># Down the rabbit hole</h2>
+<p>Having borrowed <em>my friend’s</em> completely legitimate copy of the <em>industry-standard disassembler</em> (no, I really can’t afford the thing… gonna learn to <a href="https://ghidra-sre.org/" target="_blank" rel="noopener">ghidra</a> one of these days) I went to take GTA apart.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-3.png"/></div>
+<p>That doesn’t look right at all. Most high-profile games come with built-in protection against reverse engineering to keep away pirates, cheaters, and modders. Not that it has ever stopped them.</p>
+<p>There seems to be some sort of an obfuscation/encryption at play here that has replaced most instructions with gibberish. Not to worry, we simply need to dump the game’s memory while it’s executing the part we want to look at. The instructions have to be de-obfuscated before running one way or another. I had <a href="https://github.com/glmcdona/Process-Dump" target="_blank" rel="noopener">Process Dump</a> lying around, so I used that, but there are plenty of other tools available to do this sort of thing.</p>
+<h2 id="Problem-one-It’s…-strlen"><a class="header-anchor" href="#Problem-one-It’s…-strlen">¶</a># Problem one: It’s… strlen?!</h2>
+<p>Disassembling the now-less-obfuscated dump reveals that one of the addresses has a label pulled out of somewhere! It’s <code>strlen</code>? Going down the call stack the next one is labeled <code>vscan_fn</code> and after that the labels end, tho I’m fairly confident it’s <code>sscanf</code>.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-4.png"/></div>
+<p>It’s parsing something. Parsing what? Untangling the disassembly would take forever so I decided to dump some samples from the running process using <a href="https://x64dbg.com/" target="_blank" rel="noopener">x64dbg</a>. Some debug-stepping later it turns out it’s… JSON! They’re parsing JSON. A whopping <strong>10 megabytes</strong> worth of JSON with some <strong>63k item entries</strong>.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"key"</span>: <span class="string">"WP_WCT_TINT_21_t2_v9_n2"</span>,</span><br><span class="line">    <span class="attr">"price"</span>: <span class="number">45000</span>,</span><br><span class="line">    <span class="attr">"statName"</span>: <span class="string">"CHAR_KIT_FM_PURCHASE20"</span>,</span><br><span class="line">    <span class="attr">"storageType"</span>: <span class="string">"BITFIELD"</span>,</span><br><span class="line">    <span class="attr">"bitShift"</span>: <span class="number">7</span>,</span><br><span class="line">    <span class="attr">"bitSize"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"category"</span>: [<span class="string">"CATEGORY_WEAPON_MOD"</span>]</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>What is it? It appears to be data for a “net shop catalog” according to some references. I assume it contains a list of all the possible items and upgrades you can buy in GTA Online.</p>
+<p><strong>Clearing up some confusion: I beleive these are in-game money purchasable items, not directly linked with <a href="https://gta.fandom.com/wiki/Cash_Cards" target="_blank" rel="noopener">microtransactions</a></strong>.</p>
+<p>But 10 megs? That’s nothing! And using <code>sscanf</code> may not be optimal but surely it’s not that bad? Well…</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-5.png"/></div>
+<p>Yeah, that’s gonna take a while… To be fair I had no idea most <code>sscanf</code> implementations called <code>strlen</code> so I can’t blame the developer who wrote this. I would assume it just scanned byte by byte and could stop on a <code>NULL</code>.</p>
+<h2 id="Problem-two-Let’s-use-a-Hash-…-Array"><a class="header-anchor" href="#Problem-two-Let’s-use-a-Hash-…-Array">¶</a># Problem two: Let’s use a Hash- … Array?</h2>
+<p>Turns out the second offender is called right next to the first one. They’re both even called in the same <code>if</code> statement as seen in this ugly decompilation:</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-6.png"/></div>
+<p>All labels are mine, no idea what the functions/parameters are actually called.</p>
+<p>The second problem? Right after parsing an item, it’s stored in an array (or an inlined C++ list? not sure). Each entry looks something like this:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">uint64_t</span> *hash;</span><br><span class="line">    <span class="keyword">item_t</span>   *item;</span><br><span class="line">&#125; entry;</span><br></pre></td></tr></table></figure>
+<p>But before it’s stored? It checks the <em>entire</em> array, one by one, comparing the hash of the item to see if it’s in the list or not. With ~63k entries that’s <code>(n^2+n)/2 = (63000^2+63000)/2 = 1984531500</code> checks if my math is right. Most of them useless. You have unique <em>hashes</em> why not use a <em>hash map</em>.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-7.png"/></div>
+<p>I named it <code>hashmap</code> while reversing but it’s clearly <code>not_a_hashmap</code>. And it gets even better. The hash-array-list-thing is empty before loading the JSON. And all of the items in the JSON are unique! They don’t even <em>need</em> to check if it’s in the list or not! They even have a function to directly insert the items! Just use that! Srsly, WAT!?</p>
+<h2 id="PoC"><a class="header-anchor" href="#PoC">¶</a># PoC</h2>
+<p>Now that’s nice and all, but no one is going to take me seriously unless I test this so I can write a clickbait title for the post.</p>
+<p>The plan? Write a <code>.dll</code>, inject it in GTA, <a href="https://github.com/TsudaKageyu/minhook" target="_blank" rel="noopener">hook</a> some functions, ???, profit.</p>
+<p>The JSON problem is hairy, I can’t realistically replace their parser. Replacing <code>sscanf</code> with one that doesn’t depend on <code>strlen</code> would be more realistic. But there’s an even easier way.</p>
+<ul>
+<li>hook strlen</li>
+<li>wait for a long string</li>
+<li>“cache” the start and length of it</li>
+<li>if it’s called again within the string’s range, return cached value</li>
+</ul>
+<p>Something like:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">strlen_cacher</span><span class="params">(<span class="keyword">char</span>* str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span>* start;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span>* end;</span><br><span class="line">  <span class="keyword">size_t</span> len;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">size_t</span> cap = <span class="number">20000</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// if we have a "cached" string and current pointer is within it</span></span><br><span class="line">  <span class="keyword">if</span> (start &amp;&amp; str &gt;= start &amp;&amp; str &lt;= end) &#123;</span><br><span class="line">    <span class="comment">// calculate the new strlen</span></span><br><span class="line">    len = end - str;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// if we're near the end, unload self</span></span><br><span class="line">    <span class="comment">// we don't want to mess something else up</span></span><br><span class="line">    <span class="keyword">if</span> (len &lt; cap / <span class="number">2</span>)</span><br><span class="line">      MH_DisableHook((LPVOID)strlen_addr);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// super-fast return!</span></span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// count the actual length</span></span><br><span class="line">  <span class="comment">// we need at least one measurement of the large JSON</span></span><br><span class="line">  <span class="comment">// or normal strlen for other strings</span></span><br><span class="line">  len = builtin_strlen(str);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// if it was the really long string</span></span><br><span class="line">  <span class="comment">// save it's start and end addresses</span></span><br><span class="line">  <span class="keyword">if</span> (len &gt; cap) &#123;</span><br><span class="line">    start = str;</span><br><span class="line">    end = str + len;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// slow, boring return</span></span><br><span class="line">  <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>And as for the hash-array problem, it’s more straightforward - just skip the duplicate checks entirely and insert the items directly since we know the values are unique.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> __fastcall <span class="title">netcat_insert_dedupe_hooked</span><span class="params">(<span class="keyword">uint64_t</span> catalog, <span class="keyword">uint64_t</span>* key, <span class="keyword">uint64_t</span>* item)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// didn't bother reversing the structure</span></span><br><span class="line">  <span class="keyword">uint64_t</span> not_a_hashmap = catalog + <span class="number">88</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// no idea what this does, but repeat what the original did</span></span><br><span class="line">  <span class="keyword">if</span> (!(*(<span class="keyword">uint8_t</span>(__fastcall**)(<span class="keyword">uint64_t</span>*))(*item + <span class="number">48</span>))(item))</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// insert directly</span></span><br><span class="line">  netcat_insert_direct(not_a_hashmap, key, &amp;item);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// remove hooks when the last item's hash is hit</span></span><br><span class="line">  <span class="comment">// and unload the .dll, we are done here :)</span></span><br><span class="line">  <span class="keyword">if</span> (*key == <span class="number">0x7FFFD6BE</span>) &#123;</span><br><span class="line">    MH_DisableHook((LPVOID)netcat_insert_dedupe_addr);</span><br><span class="line">    unload();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Full source of PoC <a href="https://github.com/tostercx/GTAO_Booster_PoC" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="Results"><a class="header-anchor" href="#Results">¶</a># Results</h2>
+<p>Well, did it work then?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Original online mode load time:        ~6m flat</span><br><span class="line">Time with only duplication check patch: 4m 30s</span><br><span class="line">Time with only JSON parser patch:       2m 50s</span><br><span class="line">Time with both issues patched:          1m 50s</span><br><span class="line"></span><br><span class="line">(6*60 - (1*60+50)) &#x2F; (6*60) &#x3D; 69.4% load time improvement (nice!)</span><br></pre></td></tr></table></figure>
+<p>Hell yes, it did! :))</p>
+<p>Most likely, this won’t solve everyone’s load times - there might be other bottlenecks on different systems, but it’s such a gaping hole that I have no idea how R* has missed it all these years.</p>
+<h2 id="tl-dr"><a class="header-anchor" href="#tl-dr">¶</a># tl;dr</h2>
+<ul>
+<li>There’s a single thread CPU bottleneck while starting up GTA Online</li>
+<li>It turns out GTA struggles to parse a 10MB JSON file</li>
+<li>The JSON parser itself is poorly built / naive and</li>
+<li>After parsing there’s a slow item de-duplication routine</li>
+</ul>
+<h2 id="R-please-fix"><a class="header-anchor" href="#R-please-fix">¶</a># R* please fix</h2>
+<p>If this somehow reaches Rockstar: the problems shouldn’t take more than a day for a single dev to solve. Please do something about it :&lt;</p>
+<p>You could either switch to a hashmap for the de-duplication or completely skip it on startup as a faster fix. For the JSON parser - just swap out the library for a more performant one. I don’t think there’s any easier way out.</p>
+<p>ty &lt;3</p>
+<h2 id="Small-update"><a class="header-anchor" href="#Small-update">¶</a># Small update</h2>
+<p>I was expecting to get some attention but nowhere near this much! After reaching the top of <a href="https://news.ycombinator.com/item?id=26296339" target="_blank" rel="noopener">HN</a> this post has spread like wildfire! <strong>Thank you for the overwhelming response :)</strong></p>
+<p>I’ll do more writing if something interesting comes along, but don’t expect anything of this scale soon - there was a lot of luck involved.</p>
+<p>A few people suggested spamming this post to Rockstar’s support - please don’t! I’m sure they’ve seen this by now. Continuing would only bog down support tickets for everyone else. Social media is fair game in my book tho.</p>
+<p>Several HN comments suggested I add a donate button, as they would like to buy me a beer (thank you!) so I’m placing a link in the footer.</p>
+<p>Thank you for reading and all the support :)</p>
+<h2 id="Update-2021-03-15"><a class="header-anchor" href="#Update-2021-03-15">¶</a># Update 2021-03-15</h2>
+<ul>
+<li>Got confirmation from R* that this is getting a fix soon</li>
+<li>Just got awarded $10k through their H1 in-game bounty as an exception :)) (usually only for security issues)</li>
+<li>Trying to figure out what’s a W8 and how to fill it (lol)</li>
+<li>I did try asking for more technical details but they couldn’t say anything</li>
+<li>Will do another benchmark on my same old setup as soon as the update is out, I’m sure their engineers won’t disappoint :)</li>
+</ul>
+<h2 id="Update-2021-03-16"><a class="header-anchor" href="#Update-2021-03-16">¶</a># Update 2021-03-16</h2>
+<p>R* <a href="https://support.rockstargames.com/articles/360061161574/GTAV-Title-Update-1-53-Notes-PS4-Xbox-One-PC" target="_blank" rel="noopener">released the update</a>! Downloaded it and got my first run results - same hardware, same measurement - from R* logo to fully online.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E8%BD%AC%E8%BD%BD/T0ST/pasted-8.png"/></div>
+<p>Fully fixed! t0st approves!</p>
+<p>Thanks again for all the coffees, and thanks to R* for taking the time to look into this and the generous bounty!</p>
+<hr>
+<p>If you like what I do consider <a href="https://buymeacoffee.com/t0st" target="_blank" rel="noopener">☕️ buying me a coffee</a></p>
+<hr>
+<p>膜拜大神！感谢大神为广大 GTA OL 云上玩家结束了看云时代！</p>
+<p>原文链接如下：</p>
+<p><a href="https://nee.lv/2021/02/28/How-I-cut-GTA-Online-loading-times-by-70/" target="_blank" rel="noopener">T0ST: How I cut GTA Online loading times by 70%</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/03/21/written_by_T0ST/" title="转载：How I cut GTA Online loading times by 70 percent">https://cloudplayer99.github.io/2021/03/21/written_by_T0ST/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+              <a href="/tags/GTA/" rel="tag"># GTA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/10/gdb%E8%B0%83%E8%AF%95%E5%99%A8/" rel="prev" title="关于gdb使用的练习与gdb简介">
+      <i class="fa fa-chevron-left"></i> 关于gdb使用的练习与gdb简介
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/29/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/" rel="next" title="通信原理笔记">
+      通信原理笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">How I cut GTA Online loading times by 70 percent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Recon"><span class="nav-number">1.1.</span> <span class="nav-text"># Recon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Benchmark"><span class="nav-number">1.2.</span> <span class="nav-text"># Benchmark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-Am-Not-Alone"><span class="nav-number">1.3.</span> <span class="nav-text"># I Am (Not) Alone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Highly-accurate-measurements"><span class="nav-number">1.4.</span> <span class="nav-text"># Highly accurate measurements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Single-thread-bound"><span class="nav-number">1.5.</span> <span class="nav-text"># Single thread-bound</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Profiling"><span class="nav-number">1.6.</span> <span class="nav-text"># Profiling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Down-the-rabbit-hole"><span class="nav-number">1.7.</span> <span class="nav-text"># Down the rabbit hole</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-one-It’s…-strlen"><span class="nav-number">1.8.</span> <span class="nav-text"># Problem one: It’s… strlen?!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-two-Let’s-use-a-Hash-…-Array"><span class="nav-number">1.9.</span> <span class="nav-text"># Problem two: Let’s use a Hash- … Array?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PoC"><span class="nav-number">1.10.</span> <span class="nav-text"># PoC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">1.11.</span> <span class="nav-text"># Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tl-dr"><span class="nav-number">1.12.</span> <span class="nav-text"># tl;dr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-please-fix"><span class="nav-number">1.13.</span> <span class="nav-text"># R* please fix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Small-update"><span class="nav-number">1.14.</span> <span class="nav-text"># Small update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Update-2021-03-15"><span class="nav-number">1.15.</span> <span class="nav-text"># Update 2021-03-15</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Update-2021-03-16"><span class="nav-number">1.16.</span> <span class="nav-text"># Update 2021-03-16</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/03/21/written_by_T0ST/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

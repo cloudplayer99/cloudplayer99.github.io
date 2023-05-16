@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="使用教材： 清华大学电子学教研组编 . 杨素行主编 . 模拟电子技术基础简明教程 . 3版 . 北京：高等教育出版社，2006. 作业内容： P101 5, 6, 10, 11, 16, 18, 22, 25 加一道题：3-7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模电第二次作业">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/04/03/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="使用教材： 清华大学电子学教研组编 . 杨素行主编 . 模拟电子技术基础简明教程 . 3版 . 北京：高等教育出版社，2006. 作业内容： P101 5, 6, 10, 11, 16, 18, 22, 25 加一道题：3-7">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-5.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-6-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-6-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-10-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-10-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-11.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-16-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-16-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-16-3.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-18.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-22-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-22-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-25-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-25-2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-25-3.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-25-4.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/3-7-1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/3-7-2.PNG">
+<meta property="article:published_time" content="2020-04-03T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="ANALOG">
+<meta property="article:tag" content="作业区">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-5.PNG">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/04/03/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>模电第二次作业 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/04/03/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          模电第二次作业
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-03 08:00:00" itemprop="dateCreated datePublished" datetime="2020-04-03T08:00:00+08:00">2020-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>使用教材：<br>
+清华大学电子学教研组编 . 杨素行主编 . 模拟电子技术基础简明教程 . 3版 . 北京：高等教育出版社，2006.<br>
+作业内容：<br>
+P101<br>
+5, 6, 10, 11, 16, 18, 22, 25<br>
+加一道题：3-7</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="2-5"><a class="header-anchor" href="#2-5">¶</a>2-5</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-5.PNG" alt="avatar"></p>
+<p>求解如下：</p>
+<p>由直流通路可得：<br>
+$V_{CC}=(I_{BQ}+I_{CQ})R_{c}+R_{b}I_{BQ}+U_{BEQ}$<br>
+则有：</p>
+$I_{BQ}={V_{CC}-U_{BEQ} \over (1+\beta)R_c+R_b}\approx0.027$ mA，$I_{CQ}\approx2.7$ mA
+<p>那么：<br>
+$U_{CEQ}=V_{CC}-(I_{CQ}+I_{BQ})R_c\approx3.819$ V</p>
+<hr>
+<h2 id="2-6"><a class="header-anchor" href="#2-6">¶</a>2-6</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-6-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-6-2.PNG" alt="avatar"></p>
+<p>求解如下：</p>
+<p>用图解法求电路的静态工作点：<br>
+即在三极管的输出特性曲线上绘制直流负载线：<br>
+$u_{CE}=V_{CC}-i_CR_c$<br>
+其中：$V_{CC}=10$V $R_c=10k\Omega$<br>
+则有：$u_{CE}=10-10i_C$ 与 $i_B=20\mu$A 的一条特性曲线交于点 $Q_1$<br>
+可以估算 $I_{BQ}$：设$U_{BEQ}=0.7$V</p>
+$I_{BQ}={V_{CC}-U_{BEQ} \over R_b}\approx20\mu$A
+<p>$Q_1$ 即为此时的静态工作点，此时的$U_{CEQ}=u_{CE}\approx0.5$V，$I_{CQ}=i_C\approx0.95$ mA<br>
+从图中即可看出，这个静态工作点$Q_1$靠近饱和区，容易产生失真，选得并不合适。<br>
+<br></p>
+<p>为将 $U_{CEQ}$ 提高到 $5$V 左右，需将 $R_c$ 与 $R_b$ 同时减小。<br>
+<br></p>
+<p>由$I_{CQ}=2$ mA，$U_{CEQ}=2$ V：<br>
+直流负载线：$u_{CE}=V_{CC}-i_CR_c$， $R_c={V_{CC}-U_{CEQ} \over I_{CQ}}={10-2 \over 2}k\Omega=4k{\Omega}$<br>
+由直流负载线与三极管的输出特性曲线的交点可得:<br>
+$I_{BQ}=40\mu$A<br>
+则有：$R_b={V_{CC}-U_{BEQ} \over I_{BQ}}={10-0.7 \over 40{\cdot}10^{-3}}k\Omega\approx250k\Omega$</p>
+<hr>
+<h2 id="2-10"><a class="header-anchor" href="#2-10">¶</a>2-10</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-10-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-10-2.PNG" alt="avatar"></p>
+<p>求解如下：</p>
+<p>估算静态工作点：<br>
+设 $U_{BEQ}=0.7$V<br>
+则：$I_{BQ}={V_{CC}-U_{BEQ} \over R_b}={6-0.7 \over 530}$ mA $=0.01$ mA<br>
+$I_{CQ}={\beta}I_{BQ}=0.6$ mA， $U_{CEQ}={V_{CC}-I_{CQ}R_c}=(6-0.6\times5)$ V $=3$ V 即有 $U_{CEQ}\approx3$ V</p>
+<p>求$r_{be}$值：<br>
+$I_{EQ}=(1+\beta)I_{BQ}=0.61$ mA</p>
+$r_{be}=r_{bb'}+(1+\beta){U_T \over I_{EQ}}$
+<p>$r_{bb’}$ 约为 $300\Omega$， $U_T\approx26$ mA，<br>
+则 $r_{be}=300\Omega + (1+60){26 \over 0.61}\Omega=0.3k\Omega+2.6k\Omega=2.9k\Omega$</p>
+<p>求电压放大倍数$\dot {A_u}$，输入电阻$R_i$和输出电阻$R_o$：</p>
+$\dot{A_u}={\dot{u_o} \over \dot{u_i}}={-i_C{\cdot}R_L//R_c \over i_B{\cdot}r_{be}}={{-\beta}{\cdot}R_L//R_c \over r_{be}}\approx-51.72$
+$R_i=R_b//r_{be}={2.9k\cdot5k \over 2.9k+5k}\Omega\approx1.84k\Omega$
+<p>$R_o=R_c=5k\Omega$</p>
+<hr>
+<h2 id="2-11"><a class="header-anchor" href="#2-11">¶</a>2-11</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-11.PNG" alt="avatar"></p>
+<p>求解如下：</p>
+<p>首先应当估算静态工作点即Q点：<br>
+由三极管的输出特性曲线可得：<br>
+$\beta={i_C \over i_B}={12mA \over 80\mu A}=150$<br>
+设 $U_{BEQ}=0.7$ V<br>
+则由直流通路可得：</p>
+$V'_{CC}={R_{b1} \over R_{b1}+R_{b2}}V_{CC}$
+<p>$R_{b1}//R_{b2}{\cdot}I_{BQ}+R_eI_{EQ}+U_{BEQ}=V’_{CC}$</p>
+<p>求得：$I_{BQ}={V'_{CC}-U_{BEQ} \over R_{b1}//R_{b2}+(1+\beta)R_e}$</p>
+<p>将数据代入得到：$V’_{CC}={2.5k \over 2.5k+10k}\cdot 15$V $=3$ V</p>
+<p>$I_{BQ}\approx19.96 \mu $A $\approx20 \mu $A</p>
+<p>又有：$I_{EQ}=(1+\beta)I_{BQ}$</p>
+$r_{be}=r_{bb'}+(1+\beta){U_T \over I_{EQ}}$， $r_{bb'}\approx300\Omega$
+<p>则可得出：$r_{be}\approx1.6k\Omega$</p>
+$\dot {A_u}={\dot{u_o} \over \dot{u_i}}={-i_C{\cdot}R_L//R_c \over i_B{\cdot}r_{be}}={{-\beta}{\cdot}R_L//R_c \over r_{be}}={-150\times1.5k\Omega//2k\Omega \over 1.6k\Omega}\approx-80.36$
+<p>$R_i=r_{be}//R_b1//R_b2\approx0.89k\Omega$</p>
+<p>$R_o=R_c=2k\Omega$</p>
+<hr>
+<h2 id="2-16"><a class="header-anchor" href="#2-16">¶</a>2-16</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-16-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-16-2.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-16-3.PNG" alt="avatar"></p>
+<p>求解如下：<br>
+<br>1.</p>
+$I_{BQ}={V_{CC}-U_{BEQ} \over R_b+(1+\beta)R_e}={12-0.7 \over 560+101\times5.6}$ mA $\approx0.01$ mA
+<p>$I_{EQ}=(1+\beta)I_{BQ}\approx1.01$ mA</p>
+<p>$U_{CEQ}=V_{CC}-I_{EQ}R_e\approx6.4$ V<br>
+<br>2.</p>
+$\dot{A_u}={(1+\beta)R'_e \over r_{be}+(1+\beta)R'_e}$， 其中 $R'_e=R_e//R_L$
+$r_{be}=r_{bb'}+(1+\beta){U_T \over I_{EQ}}=2.9k\Omega$
+<p>当 $R_L=\infty$ 时，$R’_e=R_e//R_L=5.6k\Omega$<br>
+可得：$\dot{A_u}\approx0.99$</p>
+<p>当 $R_L=1.2k\Omega$ 时，$R'_e=R_e//R_L=0.99k\Omega$<br>
+可得：$\dot{A_u}\approx0.97$<br>
+<br>3.</p>
+$R_i=[r_{be}+(1+\beta)R'_e]//R_b$
+<p>当 $R_L=\infty$ 时，<br>
+可得：$R_i\approx282k\Omega$</p>
+<p>当 $R_L=1.2k\Omega$ 时，<br>
+可得：$R_i\approx87k\Omega$<br>
+<br>4.</p>
+$R_o={r_{be}+R'_s \over 1+\beta}//R_e\approx29\Omega$
+<hr>
+<h2 id="2-18"><a class="header-anchor" href="#2-18">¶</a>2-18</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-18.PNG" alt="avatar"></p>
+<p>求解如下：</p>
+<p>对共基极放大电路进行静态分析：</p>
+$I_{EQ}={U_{BQ}-U_{BEQ} \over R_e}\approx{1 \over R_e}\cdot(U_{BQ}-U_{BEQ})={1 \over R_e}\cdot({R_{b1} \over R_{b1}+R_{b2}}V_{CC}-U_{BEQ})\approx I_{CQ}$
+<p>（由于静态基极电流极小，相对于 $R_{b1}$ 、$R_{b2}$ 分压回路中的电流可以忽略不计）<br>
+其中：<br>
+$U_{BEQ}=0.6$ V， $\beta=50$， $r_{bb’}=300\Omega$<br>
+若要求$I_{EQ}=2$ mA<br>
+则：</p>
+$R_e={1 \over I_{EQ}}\cdot ({R_{b1} \over R_{b1}+R_{b2}}V_{CC}-U_{BEQ})={1 \over 2\times 10^{-3}}(3-0.6)\Omega=1.2k\Omega$
+<p>发射极电阻 $R_e$ 应选$1.2k\Omega$</p>
+<p>估算$I_{BQ}$ 与 $U_{CEQ}$：</p>
+$I_{BQ}={I_{EQ} \over (1+\beta)}={2mA \over (1+50)}\approx 0.04$ mA
+<p>$U_{CEQ}=V_{CC}-I_{CQ}R_c-I_{EQ}R_e\approx V_{CC}-I_{EQ}(R_c+R_e)=[15-2\times (3+1.2)]$ V $=6.6$ V</p>
+<p>求 $\dot{A_u}$， $R_i$ 与 $R_o$：</p>
+$r_{be}=r_{bb'}+(1+\beta){U_T \over I_{EQ}}\approx 300\Omega+(1+50){26mA \over 2mA}=963\Omega = 0.963k\Omega$<br>
+$\dot {A_u}={\dot{u_o} \over \dot{u_i}}={\beta {\cdot}R_L//R_c \over r_{be}}\approx77.88\approx77.9$<br>
+$R_i={r_{be} \over (1+\beta)}//R_e\approx 0.0186k\Omega \approx 18.6\Omega$<br>
+$R_o=r_{cb}//R_c\approx R_c=3k\Omega$
+<hr>
+<h2 id="2-22"><a class="header-anchor" href="#2-22">¶</a>2-22</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-22-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-22-2.PNG" alt="avatar"></p>
+<p>求解如下：</p>
+<p>对源极输出器做静态分析：<br>
+由于MOS场效应管的栅极电流几乎为零，即可认为 $R_g$ 上无电压降，又因为静态漏极电流流过电阻 $R_s$ 产生一个自偏压，则有：<br>
+$U_{GSQ}=V_{GG}-I_{DQ}R_s$<br>
+N沟道增强型MOSFET的漏极电流 $i_D$ 与栅极电压 $u_{GS}$ 之间近似满足：</p>
+$i_D=I_{DO}{({u_{GS} \over U_{GS(th)}}-1)}^2$ （ 当 $u_{GS}\ge U_{GS(th)}$ ）
+<p>则有：</p>
+$I_{DQ}=I_{DO}{({U_{GSQ} \over U_{GS(th)}}-1)}^2$
+<p>联立方程可得，静态漏极电流 $I_{DQ}$ 有两个解：<br>
+$I_{DQ1}=0.27mA$，$I_{DQ2}=0.67mA$</p>
+<p>则可求得静态栅极电压为：<br>
+$U_{GSQ1}=V_{GG}-I_{DQ1}R_s=2.73V$<br>
+$U_{GSQ2}=V_{GG}-I_{DQ2}R_s=0.85V$</p>
+<p>又因为 $U_{GSQ2}&lt;U_{GS(th)}$，舍去 $U_{GSQ2}$：<br>
+$I_{DQ}=0.27mA$， $U_{GSQ}=2.73V$</p>
+<p>静态漏极电压为：<br>
+$U_{DSQ}=V_{DD}-I_{DQ}R_S=(20-2\times 4.7)$ V $=10.6$ V</p>
+<p>对源极输出器做动态分析：<br>
+场效应管的跨导：</p>
+$g_m={2 \over U_{GS(th)}}\sqrt {I_{DO}I_{DQ}}=0.735$ mS
+<p>由场效应管的微变等效电路可知：</p>
+$\dot{A_u}={\dot{u_o} \over \dot{u_i}}={g_m\dot U_{gs}R_s \over g_m\dot U_{gs}R_s+\dot U_{gs}}={g_mR_s \over 1+g_mR_s}\approx 0.78$
+<p>采用外加电压源的方法求 $R_o$：</p>
+$R_o={\dot U_o \over \dot I_o}={1 \over g_m+{1 \over R_s}}={1 \over g_m}//R_s\approx 1.05k\Omega$
+<hr>
+<h2 id="2-25"><a class="header-anchor" href="#2-25">¶</a>2-25</h2>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-25-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-25-2.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-25-3.PNG" alt="avatar"></p>
+<p>求解如下：</p>
+<p>1.估算 $R_i$ 和 $R_o$：<br>
+根据习题2-25电路图绘出其交流通路：<br>
+从 $R_{b1}$ 向右看：用外加电源法可求得 $R'_i$：<br>
+设外加电源的电压为 $U’$，经过外加电源的电流为 $I’$，<br>
+由基尔霍夫电压定律可求得 $U'=I'\cdot r_{be1}+(1+\beta_1)I'\cdot R'_{e1}$<br>
+其中：$R'_{e1}=R_{e1}//R_{b21}//R_{b22}//r_{be2}$<br>
+解得：$R'_i={U' \over I'}=r_{be1}+(1+\beta_1)R'_{e1}\approx 303.6k \Omega$<br>
+则可求得输入电阻：$R_i=R'_i//r_{b1}\approx 252.5k \Omega$<br>
+输出电阻：$R_o=R_{c2}=12k \Omega$</p>
+<p>2.设 $R_L=\infty$，分别求出当 $R_s=0$ 和 $R_s=20k \Omega$ 时的 $\dot A_{us}$：</p>
+<p>当 $R_s=0$ 时，</p>
+$\dot A_{u1}={\dot U_{o1} \over \dot U_{i1}}={(1+\beta_1)i_{B1}R'_{e1} \over i_{B1}r_{be1}+(1+\beta_1)i_{B1}R'_{e1}}={(1+\beta_1)R'_{e1} \over r_{be1}+(1+\beta_1)R'_{e1}}\approx {298 \over 303.6}\approx 0.98$<br>
+$\dot A_{u2}={\dot U_{o2} \over \dot U_{i2}}={-\beta_2{\cdot}R_L//R_{c2} \over r_{be2}}=-{100\times 12 \over 6.2}\approx -193.5$<br>
+<p>$\dot A_{us}=\dot A_{u1}{\cdot}\dot A_{u2}=0.98\times (-193.5)=-189.6$</p>
+<p>当 $R_s=20k\Omega$ 时，</p>
+$\dot A_{us}={\dot U_o \over \dot U_s}={\dot U_o \over \dot U_i}{\cdot}{\dot U_i \over \dot U_s}$， 其中：${\dot U_o \over \dot U_i}=\dot A_u$（即当 $R_s=0$ 时得到的$\dot A_{us}$）
+<p>${\dot U_i \over \dot U_s}={R_i \over R_i+R_s}$</p>
+<p>那么则有： $\dot A_{us}=\dot A_u{\cdot}{R_i \over R_i+R_s}=(-189.6){\cdot}{252.5 \over 252.5+20}\approx -175.7$</p>
+<p>$R_s$ 从 $0$ 改变为 $20k\Omega$ ： 第二种方法（跟它硬刚？）</p>
+<p>不妨设电流 $i_{B1}=1$：<br>
+则加在 $R_{b1}$ 上的电压为：$303.6k$， 流经它的电流为：$0.2024$<br>
+则：流经 $R_s$ 的电流为：$1.2024$<br>
+$U_s=i_sR_s+i_sR_i=272.5k\times 1.2024=327654$</p>
+$i_{E1}=(1+\beta_1)i_{B1}=101$<br>$U'_{e1}=i_{E1}R'_{e1}=298k$
+<p>则：$i_{B2}=298k/6.2k=48.06$， $i_{C2}=100\times 48.06=4806$</p>
+$U_o= 12k\times(-4806)=-57672000$<br>
+$\dot A_{us}={\dot U_o \over \dot U_s}\approx -176$
+<p>3.当 $R_s=20k\Omega$ 时，去掉射极输出器：</p>
+<p>$R_i=R_{b21}//R_{b22}//r_{be2}\approx 4.86k\Omega$</p>
+<p>$\dot A_{us}={4.86 \over 4.86+20}\times (-193.5)\approx -37.8$</p>
+<p>与第二小题的计算结果相比，放大倍数急剧缩小，输入电阻也急剧缩小，可以看出将射极输出器作为输入级的好处。</p>
+<blockquote>
+<p>下图是老师给的 2-25题 交流等效电路图</p>
+</blockquote>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/2-25-4.PNG" alt="avatar"></p>
+<hr>
+<h2 id="3-7"><a class="header-anchor" href="#3-7">¶</a>3-7</h2>
+<p>乱入一道第三章的题：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/3-7-1.PNG" alt="avatar"><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%A8%A1%E7%94%B5%E4%BD%9C%E4%B8%9A/%EF%BC%88%E4%BA%8C%EF%BC%89/3-7-2.PNG" alt="avatar"></p>
+<p>求解如下：</p>
+<p>根据本题所给电路分别绘出其交流通路的低频段与高频段的等效电路：</p>
+<p>在低频段时：<br>
+将 $C_2$ 视为下一级电路的耦合电容<br>
+对 $C_1$ 构成的高通电路进行分析：<br>
+等效电阻为： $R_{eq}=R_b//r_{be}$<br>
+由于 $R_b>>r_{be}$<br>
+则有：$R_{eq}\approx r_{be}=1.6k\Omega$<br>
+则可求得时间常数为：$\tau_L=R_{eq}C_1=0.016$ S<br>
+那么下限截止频率为：$f_L={1 \over 2\pi\tau_L}\approx9.95$ Hz</p>
+<p>在高频段时：<br>
+$C_1$ 与 $C_2$ 均视为短路<br>
+对 $C’$ 构成的低通电路进行分析：</p>
+$C'=C_{b'e}+(1-\dot{K})C_{b'c}={g_m \over 2\pi f_T}+(1+g_mR_c)C_{b'c}\approx85\times10^{-11}$ F
+<p>等效电阻为：$R=r_{bb'}//r_{b'e}=(300//1300)\Omega \approx 243.75\Omega$<br>
+根据 $f_H={1 \over 2\pi \tau_H}$， $\tau_H=RC'$<br>
+得到上限截止频率为：$f_H\approx 768.168$ kHz</p>
+<hr>
+<p>参考文献：<br>
+模拟电子技术基础简明教程第3版及其教学指导书</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/04/03/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A/" title="模电第二次作业">https://cloudplayer99.github.io/2020/04/03/模电第二次作业/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ANALOG/" rel="tag"># ANALOG</a>
+              <a href="/tags/%E4%BD%9C%E4%B8%9A%E5%8C%BA/" rel="tag"># 作业区</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/01/%E5%86%99%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" rel="prev" title="转载：写技术博客的注意事项">
+      <i class="fa fa-chevron-left"></i> 转载：写技术博客的注意事项
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/24/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%B8%89%E6%AC%A1%E4%BD%9C%E4%B8%9A/" rel="next" title="模电第三次作业">
+      模电第三次作业 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5"><span class="nav-number">1.</span> <span class="nav-text">2-5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6"><span class="nav-number">2.</span> <span class="nav-text">2-6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-10"><span class="nav-number">3.</span> <span class="nav-text">2-10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-11"><span class="nav-number">4.</span> <span class="nav-text">2-11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-16"><span class="nav-number">5.</span> <span class="nav-text">2-16</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-18"><span class="nav-number">6.</span> <span class="nav-text">2-18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-22"><span class="nav-number">7.</span> <span class="nav-text">2-22</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-25"><span class="nav-number">8.</span> <span class="nav-text">2-25</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7"><span class="nav-number">9.</span> <span class="nav-text">3-7</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

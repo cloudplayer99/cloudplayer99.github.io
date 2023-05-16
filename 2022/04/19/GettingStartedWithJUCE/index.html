@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="The tutorial is from the following video C++ Programming Tutorial - Build a 3-Band Compressor Audio Plugin (w&#x2F; JUCE Framework) All operations are reproducible  Install the IDE (Visual Studio) Clone JU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Getting Started With JUCE">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/04/19/GettingStartedWithJUCE/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="The tutorial is from the following video C++ Programming Tutorial - Build a 3-Band Compressor Audio Plugin (w&#x2F; JUCE Framework) All operations are reproducible  Install the IDE (Visual Studio) Clone JU">
+<meta property="article:published_time" content="2022-04-19T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T08:38:40.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="JUCE Framework">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/04/19/GettingStartedWithJUCE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Getting Started With JUCE | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/04/19/GettingStartedWithJUCE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Getting Started With JUCE
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-19 12:00:00" itemprop="dateCreated datePublished" datetime="2022-04-19T12:00:00+08:00">2022-04-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-19 16:38:40" itemprop="dateModified" datetime="2022-06-19T16:38:40+08:00">2022-06-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>The tutorial is from the following video<br>
+<a href="https://www.youtube.com/watch?v=Mo0Oco3Vimo" target="_blank" rel="noopener">C++ Programming Tutorial - Build a 3-Band Compressor Audio Plugin (w/ JUCE Framework)</a><br>
+All operations are reproducible</p>
+<ul>
+<li>Install the IDE (Visual Studio)</li>
+<li>Clone JUCE</li>
+<li>Build Projucer</li>
+<li>Create a project</li>
+<li>Create a repository for the project</li>
+<li>Build and run the stand-alone app version of the project</li>
+<li>Set up Audio Plugin host</li>
+<li>Configure our IDE to launch APH whenever we build and run the project</li>
+<li>Configure APH so it can load our plugin and set up a FilterGraph so audio will run through our plugin</li>
+<li>Set up an AudioFilePlayer plugin so we can play audio files through our plugin</li>
+<li>Configure APH to use the AudioFilePlayer plugin to send audio into our plugin and out to the soundcard</li>
+<li>Notice: This is a tutorial for windows users. If I have a macbook, Maybe I will supplement the tutorial of MacOS<a id="more"></a></li>
+</ul>
+<h2 id="Install-the-IDE-Visual-Studio"><a class="header-anchor" href="#Install-the-IDE-Visual-Studio">¶</a>Install the IDE (Visual Studio)</h2>
+<p>open your website and search for <strong>visual studio community 2019</strong><br>
+go ahead and download it and run the installer<br>
+click the <strong>Modify</strong> button<br>
+choose the <strong>Desktop development with C++</strong> and set the installation details to set it up for C++ development<br>
+just click the <strong>install while downloading</strong> button</p>
+<p>This is not the point in this blog so we quickly go to the next step</p>
+<h2 id="Clone-JUCE"><a class="header-anchor" href="#Clone-JUCE">¶</a>Clone JUCE</h2>
+<p>the first thing<br>
+we are going to use fork which is the git gui to interact with the repository<br>
+go to <a href="https://fork.dev/" target="_blank" rel="noopener"><strong>fork.dev</strong></a></p>
+<div align=center><img width = '400' height = '160' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/fork.PNG"/></div><br>
+<p>download fork for windows</p>
+<div align=center><img width = '600' height = '360' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/WelcomeToFork.PNG"/></div><br>
+<p>launch fork and go to the file menu</p>
+<div align=center><img width = '600' height = '400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/ForkPage.PNG"/></div><br>
+<p>go to preferences and we need to specify the default clone folder<br>
+anything that we clone is going to go into that folder in its own repository<br>
+navigate to the JUCE framework and get the url for that<br>
+visit <a href="https://github.com/juce-framework/JUCE" target="_blank" rel="noopener"><strong>github.com/juce-framework/JUCE</strong></a><br>
+copy the url</p>
+<div align=center><img width = '360' height = '300' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/CopyUrl.png"/></div><br>
+<p>back to fork, choose <strong>file</strong>, then <strong>clone</strong></p>
+<div align=center><img width = '600' height = '252' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/cloneJUCE.png"/></div><br>
+<p>click the <strong>clone</strong> button and you will be downloading a copy of the JUCE repository to your computer</p>
+<div align=center><img width = '600' height = '361' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/AfterCloneJUCE.png"/></div><br>
+<p>we want to check the develop branch, not the master branch<br>
+just double click the <strong>origin/develop</strong> button and click <strong>Track</strong> button</p>
+<div align=center><img width = '600' height = '276' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/developBranch.png"/></div><br>
+<p>the next thing to do is to build the Projucer which creates JUCE projects for us</p>
+<h2 id="Build-Projucer"><a class="header-anchor" href="#Build-Projucer">¶</a>Build Projucer</h2>
+<p>click on this <strong>Open in</strong> and choose <strong>Open In File Explorer</strong></p>
+<div align=center><img width = '360' height = '257' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/OpenInFileExplorer.png"/></div><br>
+<p>navigate to <strong>extras\Projucer\Builds\VisualStudio2019</strong><br>
+open the <strong>Projucer.sln</strong><br>
+just go to the build menu and choose <strong>build solution</strong><br>
+this is going to build Projucer for us</p>
+<div align=center><img width = '600' height = '275' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/BuildSolution.png"/></div><br>
+<p>close the visual studio project</p>
+<h2 id="Create-a-project"><a class="header-anchor" href="#Create-a-project">¶</a>Create a project</h2>
+<p>navigate to <strong>JUCE\extras\Projucer\Builds\VisualStudio2019\x64\Debug\App</strong><br>
+open the <strong>Projucer.exe</strong></p>
+<div align=center><img width = '600' height = '421' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/JUCEprojucer.PNG"/></div><br>
+<p>if this is the first time you are using Projucer it’s going to ask you to sign in<br>
+if this is not the first time, go to the file menu<br>
+choose <strong>sign in</strong><br>
+if you have a JUCE account you can set that up<br>
+or you can <strong>Enable GPL Mode</strong><br>
+GPL Mode has the requirement that we make our projects open source</p>
+<div align=center><img width = '600' height = '400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/EnableGPLMode.png"/></div><br>
+<p>go to the file menu and choose <strong>Global Paths</strong><br>
+and then customize these paths here</p>
+<div align=center><img width = '600' height = '124' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/setPaths.PNG"/></div><br>
+<p>back to your Projucer<br>
+choose <strong>Basic</strong> in Plug-In and give the name to your project (this project: SimpleMBComp)<br>
+set the correct Exporters: Visual Studio 2019<br>
+then click the <strong>Create Project…</strong> button<br>
+set your project’s folder</p>
+<div align=center><img width = '600' height = '420' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/MyNewProject.PNG"/></div><br>
+<p>Enabled the <strong>Plugin copy step</strong> if needed</p>
+<div align=center><img width = '600' height = '167' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/enableCopyStep.PNG"/></div><br>
+<p>Change the C++ language Standard in Project Settings (click the little <strong>Settings</strong> button and you will see it)</p>
+<div align=center><img width = '600' height = '189' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/ChangeLanguageStandard.PNG"/></div><br>
+<p>change <strong>C++14</strong> to <strong>C++17</strong></p>
+<h2 id="Create-a-repository-for-the-project"><a class="header-anchor" href="#Create-a-repository-for-the-project">¶</a>Create a repository for the project</h2>
+<p>open fork<br>
+click <strong>file</strong>, choose <strong>init new repository</strong><br>
+and choose SimpleMBComp folder for the project</p>
+<div align=center><img width = '600' height = '361' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/initNewRepository.PNG"/></div><br>
+<p>notice that there are a ton of files here<br>
+we need to customize the .gitignore file for this project<br>
+right click and choose <strong>ignore</strong> and choose <strong>Custom Pattren</strong></p>
+<div align=center><img width = '600' height = '362' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/addIgnore.PNG"/></div><br>
+<p>Add Pattern to .gitignore</p>
+<div align=center><img width = '600' height = '369' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/AddPatternToIgnore.PNG"/></div><br>
+<p>you can see we only have the four source files, our .gitignore file and the .jucer file</p>
+<div align=center><img width = '600' height = '361' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/afterIgnore.PNG"/></div><br>
+<p>we can make our initial commit<br>
+let’s stage these by clicking the stage all button (easy to find)<br>
+and now committing them</p>
+<div align=center><img width = '600' height = '361' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/initialCommit.PNG"/></div>
+<h2 id="Build-and-run-the-stand-alone-app-version-of-the-project"><a class="header-anchor" href="#Build-and-run-the-stand-alone-app-version-of-the-project">¶</a>Build and run the stand-alone app version of the project</h2>
+<p>back to Projucer<br>
+click the <strong>Save and Open in IDE</strong> button (the symbol of Visual Studio)<br>
+this will launch visual studio one more time<br>
+right click on the StandalonePlugin in the Solution Explorer<br>
+and choose <strong>Set as Startup Project</strong></p>
+<div align=center><img width = '600' height = '400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/setAsStartupProject.PNG"/></div><br>
+<p>now we can build it and run it on this local windows debugger<br>
+and this is the default audio plugin from Projucer</p>
+<div align=center><img width = '360' height = '321' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/buildStandalonePlugin.PNG"/></div><br>
+<p>we need to come up with a test bed so that we can actually run audio through our plugin</p>
+<h2 id="Set-up-Audio-Plugin-host"><a class="header-anchor" href="#Set-up-Audio-Plugin-host">¶</a>Set up Audio Plugin host</h2>
+<p>let’s set up audio plugin host<br>
+navigate to <strong>JUCE\extras\AudioPluginHost</strong> and open the <strong>AudioPluginHost.jucer</strong> file in Projucer (Projucer.exe)</p>
+<div align=center><img width = '600' height = '420' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/AudioPluginHost.PNG"/></div><br>
+<p>click <strong>Save and Open in IDE</strong><br>
+go to the build menu and choose <strong>build solution</strong><br>
+build succeeded and we are done with audio plugin host</p>
+<div align=center><img width = '600' height = '105' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/BuildAPH.PNG"/></div>
+<h2 id="Configure-our-IDE-to-launch-APH-whenever-we-build-and-run-the-project"><a class="header-anchor" href="#Configure-our-IDE-to-launch-APH-whenever-we-build-and-run-the-project">¶</a>Configure our IDE to launch APH whenever we build and run the project</h2>
+<p>let’s configure audio plugin host to launch whenever we have the vst3 as to startup project</p>
+<p>open your project in Visual Studio<br>
+right click on the VST3 target and go down to properties</p>
+<div align=center><img width = '600' height = '757' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/setPropertiesInVS.png"/></div><br>
+<p>navigate to where it says <strong>debugging</strong> and we’re going to change the <strong>Command</strong><br>
+click on this arrow and go to <strong>&lt;Browse…&gt;</strong><br>
+and we are going to look for audio plugin host<br>
+the position:<br>
+<strong>\JUCE\extras\AudioPluginHost\Builds\VisualStudio2019\x64\Debug\App</strong><br>
+and we find the <strong>AudioPluginHost.exe</strong><br>
+click apply and ok</p>
+<div align=center><img width = '600' height = '417' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/ChangesCommand.PNG"/></div><br>
+<p>now we need to change the target from standalone to vst3, change that to the startup project<br>
+build and run<br>
+if you enabled the <strong>Plugin copy step</strong>, it’s going to fail on that copy step</p>
+<div align=center><img width = '600' height = '78' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/failOnCopyStep.PNG"/></div><br>
+<p>what we need to do is change the permissions of this folder to allow the current user to write in this folder</p>
+<p><strong>%CommonProgramW6432%</strong> resolves to <strong>C:Program Files\Common Files</strong><br>
+This is where visual studio is trying to copy this file to<br>
+navigate to <strong>C:Program Files\Common Files</strong><br>
+right click to create new folder called <strong>VST3</strong><br>
+right click on this<br>
+go to <strong>Properties</strong> and go to <strong>Security</strong><br>
+click on <strong>Edit…</strong> to change the permissions for the User to be able to modify</p>
+<div align=center><img width = '600' height = '449' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/changePermssions.PNG"/></div><br>
+<p>click apply and ok</p>
+<p>let’s build and run one more time in Visual Studio<br>
+we can see copy step completed</p>
+<div align=center><img width = '600' height = '124' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/copyCompleted.PNG"/></div><br>
+<p>launch the Juce Plug-In Host</p>
+<div align=center><img width = '600' height = '462' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/JucePluginHost.PNG"/></div>
+<h2 id="Configure-APH-so-it-can-load-our-plugin-and-set-up-a-FilterGraph-so-audio-will-run-through-our-plugin"><a class="header-anchor" href="#Configure-APH-so-it-can-load-our-plugin-and-set-up-a-FilterGraph-so-audio-will-run-through-our-plugin">¶</a>Configure APH so it can load our plugin and set up a FilterGraph so audio will run through our plugin</h2>
+<p>we need to scan for our plugin<br>
+choose <strong>options</strong><br>
+choose <strong>Edit the List of Available Plug-Ins…</strong><br>
+choose <strong>options…</strong><br>
+choose <strong>scan for new or updated VST3 plug-ins</strong><br>
+Select folders to scan:<br>
+<strong>C:Program Files\Common Files\VST3</strong></p>
+<div align=center><img width = '600' height = '132' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/scanForPlugin.PNG"/></div><br>
+<p>you will find our plugin and now we can load it<br>
+right click on your Juce Plug-In Host<br>
+find your plugin in yourcompany (you can set your company name in Projucer) and click it</p>
+<div align=center><img width = '600' height = '464' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/findedYourPlugin.PNG"/></div><br>
+<p>let’s wire it up to the outputs</p>
+<div align=center><img width = '360' height = '368' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/wireItUpToTheOutput.PNG"/></div><br>
+<p>first we save this and add to our repository</p>
+<div align=center><img width = '600' height = '172' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/SaveAndAddToRepository.PNG"/></div><br>
+<p>let’s make a commit that we added this</p>
+<div align=center><img width = '600' height = '429' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/AddedFGCommit.PNG"/></div>
+<h2 id="Set-up-an-AudioFilePlayer-plugin-so-we-can-play-audio-files-through-our-plugin"><a class="header-anchor" href="#Set-up-an-AudioFilePlayer-plugin-so-we-can-play-audio-files-through-our-plugin">¶</a>Set up an AudioFilePlayer plugin so we can play audio files through our plugin</h2>
+<p>we are going to set up audio file player so that we can run audio files through our plugin</p>
+<p>in MacOS, we can use AUAudioFilePlayer<br>
+we need a windows equivalent to this<br>
+we can use the audio file player plugin that the tutorial author created</p>
+<p>open up your browser<br>
+navigate to <a href="https://github.com/matkatmusic/AudioFilePlayer" target="_blank" rel="noopener"><strong>github.com/matkatmusic/AudioFilePlayer</strong></a></p>
+<div align=center><img width = '600' height = '249' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/GithubAudioFilePlayer.PNG"/></div><br>
+<p>copy the HTTPS to clone<br>
+Fork: <strong>File Menu -&gt; clone</strong></p>
+<div align=center><img width = '600' height = '255' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/CloneAFP.PNG"/></div><br>
+<p>open in file explorer<br>
+open up the jucer file<br>
+Save and Open in IDE<br>
+<strong>Build Solution</strong> to compile the VST3<br>
+go back to our project</p>
+<h2 id="Configure-APH-to-use-the-AudioFilePlayer-plugin-to-send-audio-into-our-plugin-and-out-to-the-soundcard"><a class="header-anchor" href="#Configure-APH-to-use-the-AudioFilePlayer-plugin-to-send-audio-into-our-plugin-and-out-to-the-soundcard">¶</a>Configure APH to use the AudioFilePlayer plugin to send audio into our plugin and out to the soundcard</h2>
+<p>Launch AudioPluginHost by running the project<br>
+scan the plugin one more time<br>
+Options menu, Edit the List of Available Plugins<br>
+Scan for VST3s<br>
+load the <strong>AudioFilePlayer</strong></p>
+<div align=center><img width = '600' height = '462' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/loadAFP.PNG"/></div><br>
+<p>load the audio file</p>
+<div align=center><img width = '600' height = '472' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/loadAudioFile.PNG"/></div><br>
+<p>save the <strong>.filtergraph</strong> file<br>
+make a commit</p>
+<div align=center><img width = '600' height = '365' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/JUCE/GettingStartedWithJUCE/makeCommitConfigureTheFGFile.PNG"/></div><br>
+<p>And this tutorial about getting started with JUCE ends here</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/04/19/GettingStartedWithJUCE/" title="Getting Started With JUCE">https://cloudplayer99.github.io/2022/04/19/GettingStartedWithJUCE/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/JUCE-Framework/" rel="tag"># JUCE Framework</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/16/CSGOHackingNotes/" rel="prev" title="CS:GO Hacking Notes">
+      <i class="fa fa-chevron-left"></i> CS:GO Hacking Notes
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/C++%E4%B8%8ESTL/" rel="next" title="C++ 与 STL">
+      C++ 与 STL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-the-IDE-Visual-Studio"><span class="nav-number">1.</span> <span class="nav-text">Install the IDE (Visual Studio)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clone-JUCE"><span class="nav-number">2.</span> <span class="nav-text">Clone JUCE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-Projucer"><span class="nav-number">3.</span> <span class="nav-text">Build Projucer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-project"><span class="nav-number">4.</span> <span class="nav-text">Create a project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-repository-for-the-project"><span class="nav-number">5.</span> <span class="nav-text">Create a repository for the project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-and-run-the-stand-alone-app-version-of-the-project"><span class="nav-number">6.</span> <span class="nav-text">Build and run the stand-alone app version of the project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up-Audio-Plugin-host"><span class="nav-number">7.</span> <span class="nav-text">Set up Audio Plugin host</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-our-IDE-to-launch-APH-whenever-we-build-and-run-the-project"><span class="nav-number">8.</span> <span class="nav-text">Configure our IDE to launch APH whenever we build and run the project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-APH-so-it-can-load-our-plugin-and-set-up-a-FilterGraph-so-audio-will-run-through-our-plugin"><span class="nav-number">9.</span> <span class="nav-text">Configure APH so it can load our plugin and set up a FilterGraph so audio will run through our plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up-an-AudioFilePlayer-plugin-so-we-can-play-audio-files-through-our-plugin"><span class="nav-number">10.</span> <span class="nav-text">Set up an AudioFilePlayer plugin so we can play audio files through our plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-APH-to-use-the-AudioFilePlayer-plugin-to-send-audio-into-our-plugin-and-out-to-the-soundcard"><span class="nav-number">11.</span> <span class="nav-text">Configure APH to use the AudioFilePlayer plugin to send audio into our plugin and out to the soundcard</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/04/19/GettingStartedWithJUCE/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

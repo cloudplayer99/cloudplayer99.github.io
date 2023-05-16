@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="¶一、前言    在我校开展科研选题的背景下，我小组决定对四旋翼飞行器的控制进行研究，并确定课题名称为“基于STM32的四旋翼飞行器控制系统的研究”, 开始对飞行器的软硬件系统以及控制逻辑进行系统化的学习。   其中，我主要参与学习了对四旋翼飞行器的飞行原理与姿态解算的分析，现撰写报告如下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于四旋翼飞行器的介绍及其飞行原理与姿态解算的分析">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/06/02/%E5%85%B3%E4%BA%8E%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E9%A3%9E%E8%A1%8C%E5%8E%9F%E7%90%86%E4%B8%8E%E5%A7%BF%E6%80%81%E8%A7%A3%E7%AE%97%E7%9A%84%E5%88%86%E6%9E%90%E5%8D%9A%E5%AE%A2%E7%89%88/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="¶一、前言    在我校开展科研选题的背景下，我小组决定对四旋翼飞行器的控制进行研究，并确定课题名称为“基于STM32的四旋翼飞行器控制系统的研究”, 开始对飞行器的软硬件系统以及控制逻辑进行系统化的学习。   其中，我主要参与学习了对四旋翼飞行器的飞行原理与姿态解算的分析，现撰写报告如下。">
+<meta property="article:published_time" content="2020-06-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="飞控">
+<meta property="article:tag" content="姿态解算">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/06/02/%E5%85%B3%E4%BA%8E%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E9%A3%9E%E8%A1%8C%E5%8E%9F%E7%90%86%E4%B8%8E%E5%A7%BF%E6%80%81%E8%A7%A3%E7%AE%97%E7%9A%84%E5%88%86%E6%9E%90%E5%8D%9A%E5%AE%A2%E7%89%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>关于四旋翼飞行器的介绍及其飞行原理与姿态解算的分析 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/06/02/%E5%85%B3%E4%BA%8E%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E9%A3%9E%E8%A1%8C%E5%8E%9F%E7%90%86%E4%B8%8E%E5%A7%BF%E6%80%81%E8%A7%A3%E7%AE%97%E7%9A%84%E5%88%86%E6%9E%90%E5%8D%9A%E5%AE%A2%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于四旋翼飞行器的介绍及其飞行原理与姿态解算的分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-02T00:00:00+08:00">2020-06-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>22k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、前言"><a class="header-anchor" href="#一、前言">¶</a>一、前言</h2>
+<blockquote>
+<p>  在我校开展科研选题的背景下，我小组决定对四旋翼飞行器的控制进行研究，并确定课题名称为“基于STM32的四旋翼飞行器控制系统的研究”, 开始对飞行器的软硬件系统以及控制逻辑进行系统化的学习。<br>
+  其中，我主要参与学习了对四旋翼飞行器的飞行原理与姿态解算的分析，现撰写报告如下。</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="二、概述与发展现状"><a class="header-anchor" href="#二、概述与发展现状">¶</a>二、概述与发展现状</h2>
+<h3 id="1-概述"><a class="header-anchor" href="#1-概述">¶</a>1. 概述</h3>
+<blockquote>
+<p>  四旋翼无人机广泛应用于民用与军事领域，例如救援、侦察、勘探等方面，其主要优点如下：</p>
+<ul>
+<li>机械结构简单</li>
+<li>飞行姿态稳定</li>
+<li>易于小型化和微型化</li>
+<li>可执行的任务多样化</li>
+<li>成本低、噪声小、易于维护</li>
+</ul>
+</blockquote>
+<h3 id="2-发展现状"><a class="header-anchor" href="#2-发展现状">¶</a>2. 发展现状</h3>
+<blockquote>
+<p>  到2012年左右，国际上普遍认为四轴飞行器的控制已经不再是学术研究问题，而是成熟的技术。学术研究的方向也转向了基于四轴飞行器做智能导航或者多飞行器的编队控制。<br>
+  四轴飞行器的智能导航指的是利用机器视觉技术、人工智能技术让四轴飞行器能像人一样在复杂环境中活动。<br>
+  多飞行器的编队控制是指同时控制多个飞行器，或者让多个飞行器自主编队飞行。</p>
+</blockquote>
+<h3 id="3-技术关键"><a class="header-anchor" href="#3-技术关键">¶</a>3. 技术关键</h3>
+<h4 id="3-1-总体设计优化"><a class="header-anchor" href="#3-1-总体设计优化">¶</a>3.1 总体设计优化</h4>
+<blockquote>
+<p>  设计微小型四旋翼飞行器时，原则上希望达到以下几个方面的要求：<br>
+即质量轻、尺寸小、速度快、能耗与成本低，但这几者之间存在相互制约与矛盾，于是要求设计者综合考虑，不断对方案进行优化。</p>
+</blockquote>
+<h4 id="3-2-能源动力系统"><a class="header-anchor" href="#3-2-能源动力系统">¶</a>3.2 能源动力系统</h4>
+<blockquote>
+<p>  能源动力装置包括了旋翼（螺旋桨）、微型直流电机、电调、机载电池等，其质量占了整个机体质量的很大部分，需要选用更轻、更高效的能源动力装置。</p>
+</blockquote>
+<h4 id="3-3-建立数学模型"><a class="header-anchor" href="#3-3-建立数学模型">¶</a>3.3 建立数学模型</h4>
+<blockquote>
+<p>  机体在飞行过程中受到多种物理效应的作用（空气动力、重力、陀螺效应和旋翼惯量矩等），且容易受到气流等外部环境的干扰，这些都给建立有效、可靠的动力学模型带来了困难。同时，微型飞行器空气动力学特性与常规飞行器有很大的不同，需要了解新的理论与研究手段。</p>
+</blockquote>
+<h4 id="3-4-飞行控制"><a class="header-anchor" href="#3-4-飞行控制">¶</a>3.4 飞行控制</h4>
+<blockquote>
+<p>  四旋翼飞行器是一个具有六自由度（位置与姿态）和四个控制输入（旋翼转速）的欠驱动系统，具有多变量、非线性、强耦合和干扰敏感的特性，且传感器性能会受到模型准确性与传感器精度的影响，需要精确控制飞行器姿态，具有较强的抗干扰与环境自适应能力。</p>
+</blockquote>
+<h4 id="3-5-定位、导航与通信"><a class="header-anchor" href="#3-5-定位、导航与通信">¶</a>3.5 定位、导航与通信</h4>
+<blockquote>
+<p>  近地面环境地形复杂、干扰源多，对定位系统、导航技术与通信链技术的可靠性、安全性与抗干扰性有着较高的要求。</p>
+</blockquote>
+<hr>
+<h2 id="三、基本飞行原理"><a class="header-anchor" href="#三、基本飞行原理">¶</a>三、基本飞行原理</h2>
+<h3 id="1-概述-v2"><a class="header-anchor" href="#1-概述-v2">¶</a>1. 概述</h3>
+<p>  四旋翼飞行器是一个 <strong>欠驱动系统</strong>（<strong>Underactuated System</strong>），即其控制自由度小于其活动自由度的系统，其拥有六个 <strong>活动自由度</strong> ，即可以分别沿三个坐标轴作平移和旋转动作，四个 <strong>控制自由度</strong> ，即四个电机的转速。飞行器由四个可以独立控制转速的外转子直流无刷电机驱动的螺旋桨提供全部动力，依据力的合成与分解及空气转动扭矩的反向性，通过各种不同的改变转速的方式，进行各种不同的飞行动作。</p>
+<p>  四旋翼飞行器从结构上来分类，主要可以分为 <strong>X模型</strong> 、 <strong>十模型</strong> 与 <strong>H模型</strong>（如图1所示），目前来说，最主流的是X模型，但是无论是哪一种模型，其基本的飞行原理是大同小异的。</p>
+<div align=center><img width = '600' height ='200' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/3model.PNG"/></div>
+<center>图1. 三种四旋翼飞行器模型</center><br>
+<p>  从上图中可以发现， <strong>相邻两个旋翼的转动方向是相反的</strong> ，也就是说，对角线上两个电机的转动方向相同，这是因为，由于空气转动扭矩的反向性，旋翼在旋转时会产生反扭距，例如，顺时针方向转动的螺旋桨在转动时，空气会产生使得四轴逆时针方向转动的反向扭矩，而当M1与M4同方向、M2与M3同方向时，反向扭矩能够相互抵消，使得飞行器在偏航方向能够保持平衡，不至于出现自旋转。与传统的单旋翼飞行器，特别是直升机相比，省去了用尾桨（又称抗扭螺旋桨）来平衡反扭距，使得四旋翼飞行器的能量利用率更高。</p>
+<p>  另外，由于相邻两个旋翼的转动方向相反，为保证他们产生的升力皆向上，M1、M4电机使用 “<strong>正桨</strong>” ，即顺时针方向转动产生上升力的桨，M2、M3电机使用 “<strong>反桨</strong>” ，即逆时针方向转动产生上升力的桨。</p>
+<p>  图2与图3以“X模型”为例，对飞行器结构进行了简单描述。</p>
+<div align=center><img width = '350' height ='280' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/Xmodel-1.PNG"/></div>
+<center>图2. 四旋翼飞行器平面结构图</center><br>
+<div align=center><img width = '350' height ='280' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/Xmodel-2.PNG"/></div>
+<center>图3. 四旋翼飞行器立体结构图</center><br>
+<h3 id="2-基本飞行动作"><a class="header-anchor" href="#2-基本飞行动作">¶</a>2. 基本飞行动作</h3>
+<p>  四旋翼飞行器可以分别沿着机体的 X、Y、Z 三个轴进行旋转或者平移运动，因此在每个轴向上有两个自由度，四旋翼飞行器有六种基本飞行动作：</p>
+<ul>
+<li>垂直（升降）运动</li>
+<li>俯仰运动</li>
+<li>横滚（滚转）运动</li>
+<li>偏航（自旋）运动</li>
+<li>前后运动</li>
+<li>侧向运动</li>
+</ul>
+<p>  下面以十字模式说明六种运动的原理：</p>
+<div align=center><img width = '350' height ='280' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/principle-1.PNG"/></div>
+<center>图4-1. 基本运动原理-1</center><br>
+<div align=center><img width = '350' height ='280' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/principle-2.PNG"/></div>
+<center>图4-2. 基本运动原理-2</center><br>
+<h4 id="2-1-垂直运动"><a class="header-anchor" href="#2-1-垂直运动">¶</a>2.1 垂直运动</h4>
+<p>  在图 a 中，因有两对电机转向相反，可以平衡其对机身的反扭矩，当同时增加四个电机的输出功率，旋翼转速增加使得总的拉力增大，当总拉力足以克服整机的重量时，四旋翼飞行器便离地垂直上升；<br>
+  反之，同时减小四个电机的输出功率，四旋翼飞行器则垂直下降，直至平衡落地，实现了沿 z 轴的垂直运动；<br>
+  当外界扰动量为零时，在旋翼产生的升力等于飞行器的自重时，飞行器便保持悬停状态；<br>
+保证四个旋翼转速同步增加或减小是垂直运动的关键；</p>
+<div align=center><img width = '300' height ='240' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/move-1.PNG"/></div>
+<center>图5-1. 垂直运动（图 a）</center><br>
+<div align=center><img width = '320' height ='180' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/hovering.PNG"/></div>
+<center>图5-2. Hovering</center><br>
+<div align=center><img width = '320' height ='180' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/lift.PNG"/></div>
+<center>图5-3. Lift</center><br>
+<h4 id="2-2-俯仰运动"><a class="header-anchor" href="#2-2-俯仰运动">¶</a>2.2 俯仰运动</h4>
+<p>  在图 b 中，电机1的转速上升，电机3的转速下降，电机2、电机4的转速保持不变；<br>
+为了不因为旋翼转速的改变引起四旋翼飞行器整体扭矩及总拉力改变，旋翼1 与 旋翼3 转速该变量的大小应相等；<br>
+  由于 旋翼1 的升力上升，旋翼3 的升力下降，产生的不平衡力矩使机身绕 y 轴旋转（方向如图所示），同理，当 电机1 的转速下降，电机3 的转速上升，机身便绕 y 轴向另一个方向旋转，实现飞行器的俯仰运动；</p>
+<div align=center><img width = '300' height ='240' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/move-2.PNG"/></div>
+<center>图6-1. 俯仰运动（图 b）</center><br>
+<div align=center><img width = '320' height ='180' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/pitch.PNG"/></div>
+<center>图6-2. Pitch</center><br>
+<h4 id="2-3-横滚运动"><a class="header-anchor" href="#2-3-横滚运动">¶</a>2.3 横滚运动</h4>
+<p>  与图 b 的原理相同，在图 c 中，改变 电机2 和 电机4 的转速，保持 电机1 和 电机3 的转速不变，则可使机身绕 x 轴旋转（正向和反向），实现飞行器的横滚（滚转）运动；</p>
+<div align=center><img width = '300' height ='240' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/move-3.PNG"/></div>
+<center>图7-1. 横滚运动（图 c）</center><br>
+<div align=center><img width = '320' height ='180' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/roll.PNG"/></div>
+<center>图7-2. Roll</center><br>
+<h4 id="2-4-偏航运动"><a class="header-anchor" href="#2-4-偏航运动">¶</a>2.4 偏航运动</h4>
+<p>  四旋翼飞行器偏航运动可以借助旋翼产生的反扭矩来实现；<br>
+  旋翼转动过程中由于空气阻力作用会形成与转动方向相反的反扭矩，为了克服反扭矩影响，可使四个旋翼中的两个正转，两个反转，且对角线上的来年各个旋翼转动方向相同；<br>
+  反扭矩的大小与旋翼转速有关，当四个电机转速相同时，四个旋翼产生的反扭矩相互平衡，四旋翼飞行器不发生转动；<br>
+  当四个电机转速不完全相同时，不平衡的反扭矩会引起四旋翼飞行器转动；<br>
+  在图 d 中，当 电机1 和 电机3 的转速上升，电机2 和 电机4 的转速下降时，旋翼1 和 旋翼3 对机身的反扭矩大于 旋翼2 和 旋翼4 对机身的反扭矩，机身便在富余反扭矩的作用下绕z轴转动，实现飞行器的偏航运动，转向与 电机1、电机3 的转向相反；<br>
+  因为电机的总升力不变，飞机不会发生垂直运动；</p>
+<div align=center><img width = '300' height ='240' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/move-4.PNG"/></div>
+<center>图8-1. 偏航运动（图 d）</center><br>
+<div align=center><img width = '320' height ='180' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/yaw.PNG"/></div>
+<center>图8-2. Yaw</center><br>
+<h4 id="2-5-前后运动"><a class="header-anchor" href="#2-5-前后运动">¶</a>2.5 前后运动</h4>
+<p>  要想实现飞行器在水平面内前后、左右的运动，必须在水平面内对飞行器施加一定的力；<br>
+  在图 e 中，增加 电机3 转速，使拉力增大，相应减小 电机1 转速，使拉力减小，同时保持其它两个电机转速不变，反扭矩仍然要保持平衡；<br>
+  按图 b 的理论，飞行器首先发生一定程度的倾斜，从而使旋翼拉力产生水平分量，因此可以实现飞行器的前飞运动，向后飞行与向前飞行正好相反；<br>
+  当然在图 b 图 c 中，飞行器在产生俯仰、翻滚运动的同时也会产生沿 x、y 轴的水平运动；</p>
+<div align=center><img width = '300' height ='240' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/move-5.PNG"/></div>
+<center>图9. 前后运动（图 e）</center><br>
+<h4 id="2-6-侧向运动"><a class="header-anchor" href="#2-6-侧向运动">¶</a>2.6 侧向运动</h4>
+<p>  在图 f 中，由于结构对称，所以侧向飞行的工作原理与前后运动完全一样；</p>
+<div align=center><img width = '300' height ='240' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/move-6.PNG"/></div>
+<center>图10. 侧向运动（图 f）</center><br>
+<h3 id="3-飞行姿态与电机转速关系"><a class="header-anchor" href="#3-飞行姿态与电机转速关系">¶</a>3. 飞行姿态与电机转速关系</h3>
+<p>  由于主流的设计思想是将四旋翼飞行器设计为X模型，这里给出X模型的飞行姿态与电机转速关系，原理与十模型基本一致。</p>
+<p>  不妨设悬停状态下4个电机的转速为M1、M2、M3、M4：</p>
+<center>
+<table border=0 cellpadding=0 cellspacing=0 width=432 style='border-collapse:
+ collapse;table-layout:fixed;width:324pt'>
+ <col width=72 span=6 style='width:54pt'>
+ <tr height=19 style='height:14.25pt'>
+  <td colspan=2 rowspan=2 height=38 class=xl638550 width=144 style='height:
+  28.5pt;width:108pt'>动作</td>
+  <td rowspan=2 class=xl638550 width=72 style='width:54pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span>电机1</td>
+  <td rowspan=2 class=xl638550 width=72 style='width:54pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span>电机2</td>
+  <td rowspan=2 class=xl638550 width=72 style='width:54pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span>电机3</td>
+  <td rowspan=2 class=xl638550 width=72 style='width:54pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span>电机4</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td rowspan=2 height=38 class=xl638550 style='height:28.5pt'>悬停</td>
+  <td class=xl638550>/</td>
+  <td rowspan=2 class=xl638550>M1</td>
+  <td rowspan=2 class=xl638550>M2</td>
+  <td rowspan=2 class=xl638550>M3</td>
+  <td rowspan=2 class=xl638550>M4</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td height=19 class=xl638550 style='height:14.25pt'>/</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td rowspan=2 height=38 class=xl638550 style='height:28.5pt'>垂直</td>
+  <td class=xl638550>上升</td>
+  <td class=xl638550>M1+</td>
+  <td class=xl638550>M2+</td>
+  <td class=xl638550>M3+</td>
+  <td class=xl638550>M4+</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td height=19 class=xl638550 style='height:14.25pt'>下降</td>
+  <td class=xl638550>M1-</td>
+  <td class=xl638550>M2-</td>
+  <td class=xl638550>M3-</td>
+  <td class=xl638550>M4-</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td rowspan=2 height=38 class=xl638550 style='height:28.5pt'>横滚</td>
+  <td class=xl638550>左移</td>
+  <td class=xl638550>M1-</td>
+  <td class=xl638550>M2+</td>
+  <td class=xl638550>M3-</td>
+  <td class=xl638550>M4+</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td height=19 class=xl638550 style='height:14.25pt'>右移</td>
+  <td class=xl638550>M1+</td>
+  <td class=xl638550>M2-</td>
+  <td class=xl638550>M3+</td>
+  <td class=xl638550>M4-</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td rowspan=2 height=38 class=xl638550 style='height:28.5pt'>俯仰</td>
+  <td class=xl638550>前移</td>
+  <td class=xl638550>M1-</td>
+  <td class=xl638550>M2-</td>
+  <td class=xl638550>M3+</td>
+  <td class=xl638550>M4+</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td height=19 class=xl638550 style='height:14.25pt'>后移</td>
+  <td class=xl638550>M1+</td>
+  <td class=xl638550>M2+</td>
+  <td class=xl638550>M3-</td>
+  <td class=xl638550>M4-</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td rowspan=2 height=38 class=xl638550 style='height:28.5pt'>偏航</td>
+  <td class=xl638550>顺时针</td>
+  <td class=xl638550>M1-</td>
+  <td class=xl638550>M2+</td>
+  <td class=xl638550>M3+</td>
+  <td class=xl638550>M4-</td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td height=19 class=xl638550 style='height:14.25pt'>逆时针</td>
+  <td class=xl638550>M1+</td>
+  <td class=xl638550>M2-</td>
+  <td class=xl638550>M3-</td>
+  <td class=xl638550>M4+</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=72 style='width:54pt'></td>
+  <td width=72 style='width:54pt'></td>
+  <td width=72 style='width:54pt'></td>
+  <td width=72 style='width:54pt'></td>
+  <td width=72 style='width:54pt'></td>
+  <td width=72 style='width:54pt'></td>
+ </tr>
+ <![endif]>
+</table>
+</center>
+<hr>
+<h2 id="四、姿态解算分析"><a class="header-anchor" href="#四、姿态解算分析">¶</a>四、姿态解算分析</h2>
+<h3 id="1-概述-v3"><a class="header-anchor" href="#1-概述-v3">¶</a>1. 概述</h3>
+<p>  四旋翼飞行器具有6个自由度，通过 <strong>IMU 惯性测量单元</strong> 实时测量飞行器三个轴向的旋转角速度和加速度，进行数据融合与姿态解算，从而控制飞行器的4个输入控制量，以达到飞行器平衡飞行的目的。</p>
+<p>  其简易控制逻辑如图11所示，其中 <strong>GYRO</strong> 指 <strong>陀螺仪（Gyroscope）</strong> ， <strong>ACC</strong> 指 <strong>加速度计（Accelerometer）</strong> ， <strong>PWM</strong> 指 <strong>脉冲宽度调制（Pulse width modulation）</strong> ， <strong>Remote</strong> 指 <strong>远端</strong> 。</p>
+<div align=center><img width = '500' height ='250' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/IMU-1.PNG"/></div>
+<center>图11. 简易控制逻辑</center><br>
+<p>  姿态解算是 <strong>捷联式惯性导航系统（SINS）</strong> 的关键技术，通过位姿矩阵可以得到载体的姿态和导航参数计算需要的数据，是捷联式惯导算法中的重要工作。载体的姿态和航向体现了载体坐标系和导航坐标系之间的方位关系，确定两个坐标系之间的方位关系需要借助矩阵法和力学中的刚体定点运动的位移定理，通过矩阵法推导方向余弦表，而刚体定点运动的位移定理表明，定点运动刚体的任何有限位移都可以绕过定点的某一轴经过一次转动来实现。那么，一个动坐标系相对参考坐标系的方位可以完全由动坐标系一次让三个不同的轴转动的三个角度，即一组欧拉角来确定。</p>
+<p>  目前，描述动坐标相对参考坐标系方位关系的方法可以简单地将其分为三类，即三参数法，四参数法和九参数法，三参数法也称 <strong>欧拉角法</strong> ，四参数法通常指 <strong>四元数法</strong> ，九参数法称为 <strong>方向余弦法</strong> 。</p>
+<p>  欧拉角法推导出的微分方程式皆含有三角函数运算，计算速度慢，方程出现“奇点”，且实时计算困难，故难以广泛用于工程实践；方向余弦法避免了奇点现象，但方程的计算量大，工作效率低；相比较而言，四元数法更能够合理地描述载体的刚体空间运动。</p>
+<h3 id="2-姿态模块"><a class="header-anchor" href="#2-姿态模块">¶</a>2. 姿态模块</h3>
+<p>  姿态模块可以使用 Invensense 公司的消费级陀螺仪传感器，如六轴系列的 <strong>MPU6050</strong> 、九轴系列的 <strong>MPU9250</strong> 等，可输出六轴数据的传感器模块包括基础的三轴（X, Y, Z）角速度数据，三轴加速度数据，而九轴系列传感器还会输出三轴地磁数据，如果在加上气压计芯片获取高度就会构成十轴传感器模块。</p>
+<p>  有了姿态模块输出角速度、加速度、地磁数据后，就能通过算法计算出四轴相对于地心坐标系偏差的角度，以及此时偏差的速度大小（角速度）。对于姿态计算可以使用 <strong>AHRS（航姿参考系统）</strong> 和 <strong>IMU（惯性测量单元）</strong> 算法。 AHRS 由加速度计、地磁计和陀螺仪构成，是一种相对广泛使用的算法。其优点是使用多组数据进行融合，保障了数据的准确性；其缺点是太过于依赖地磁数据进行融合，磁场传感器一旦受到干扰，数据融合就可能出错，造成严重后果。IMU 则放弃了地磁数据，单纯地用角速度计算出角度。当四轴处于惯性参考系中飞行效果与 AHRS 比较相差甚微，而当四轴突然加速或减速时，机体处于非惯性参考系下，加速计数据短暂失真，表现在四轴上会发生振荡现象。</p>
+<h3 id="3-IMU惯性导航姿态算法"><a class="header-anchor" href="#3-IMU惯性导航姿态算法">¶</a>3. IMU惯性导航姿态算法</h3>
+<h4 id="3-1-算法分析"><a class="header-anchor" href="#3-1-算法分析">¶</a>3.1 算法分析</h4>
+<p>  IMU惯性导航姿态算法，即利用四元数法进行姿态解算，其算法流程图如图12所示。</p>
+<p>  从流程图中可以看出，其主要思想还是利用加速度计对陀螺仪进行修正，其修正的快慢程度由参数进行控制，由于使用该方法步骤较为繁琐，涉及中间变量转换较多，且计算量较大，占用内存也较大，使用起来很不方便。为解决该问题，运动控制传感器（例如 MPU6050 ）在内部提供了 DMP 四元数解算功能，可以直接输出四元数数据，从而省略了繁琐的计算步骤，给设计带来了极大便利，大大简化了四轴飞行器的代码设计量。</p>
+<p>  <strong>DMP（数字运动处理器）</strong> ，是 MPU 内部集成的处理单元，也就是说，MPU6050，或者MPU9250，并不单单是传感器，其内部还包含了可以独立完成姿态解算算法的处理单元。因其使用的是 Invensense 公司官方提供的姿态解算算法，与入门级的开发者相比有着较高的可靠性，且能够将微处理器从算法处理的压力中解放出来，只需要等待 DMP 解算完成后产生外部中断，在中断里读取姿态解算的结果，于是，在实际设计中，一般使用 DMP 来实现传感器融合算法，这里为了学习了解算法背后的飞行控制原理，对用四元数法进行姿态解算的算法进行深入分析。</p>
+<div align=center><img width = '300' height ='700' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/%E5%9B%9B%E5%85%83%E6%95%B0%E6%B3%95%E5%A7%BF%E6%80%81%E8%A7%A3%E7%AE%97%E6%B5%81%E7%A8%8B.png"/></div>
+<center>图12. 四元数法姿态解算流程</center><br>
+<h4 id="3-2-坐标系统"><a class="header-anchor" href="#3-2-坐标系统">¶</a>3.2 坐标系统</h4>
+<p>  为获取四旋翼飞行器控制系统的数学模型，必须先建立两个基本坐标系，即“地理”坐标系（惯性坐标系）和“载体”坐标系（机体坐标系）。“地理”坐标系指的就是地球上的 <strong>“东北天（ENU）”坐标系</strong> ，而“载体”坐标系指的就是四轴自己的坐标系。</p>
+<h4 id="3-3-欧拉角与方向余弦矩阵"><a class="header-anchor" href="#3-3-欧拉角与方向余弦矩阵">¶</a>3.3 欧拉角与方向余弦矩阵</h4>
+<p>  首先给出刚体定点运动的欧拉定理，又称刚体欧拉转动定理、欧拉旋转定理。</p>
+<p><strong>刚体定点运动的欧拉定理：</strong></p>
+<center>刚体定点运动的任意位移，可以通过绕该定点的某个轴线的一次转动来实现</center><br>
+<p>  可以推知，空间中坐标系的任意旋转，等效于依次绕三个坐标系定轴的旋转，那么，一个动坐标系相对参考坐标系的方位可以完全由动坐标系一次让三个不同的轴转动的三个角度来确定。在四旋翼飞行器的控制系统中，动坐标系即指机体坐标系，而参考坐标系即为地球上的“东北天（ENU）”坐标系。</p>
+<p>  然后给出欧拉角的定义:</p>
+<p><strong>欧拉角：</strong></p>
+<p>  刚体定点运动的自由度为3，如何选择3个变量，使它们既能简单、明确、单值地确定刚体位置，又能独立变化，这对简化定点运动的描述是非常重要的，刚体力学的奠基者欧拉（Leonhard Euler,1707一1783）成功地、巧妙地解决了这个问题，他选择3个角度，即著名的 <strong>欧拉角(Euler angles)</strong> 作为描述刚体定点运动的变量，具体选择方法如下：以固定点为原点建立静正坐标系 $o-\xi\eta\zeta$ ，再以固定点为原点建立与刚体固连的动坐标系 $o-xyz$ ，如下图所示：</p>
+<div align=center><img width = '300' height ='320' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/Euler_angles.png"/></div>
+<center>图13. 欧拉角</center><br>
+<p>  确定刚体位置等价于确定动坐标的位置，这里用两个角度确定 $z$ 轴的位置，一个是 $z$ 轴对 $\zeta$ 轴的倾角 $\theta$ 角，另一个是用来确定 $z$ 轴的方位，它是 $o-xy$ 面与平均赤道面 $o-\xi\eta$ 面的交线 $ON$ 与 $\xi$ 轴的夹角，交线 $ON$ 称为节线；这两个角确定后， $z$ 轴的位置就确定了，但动坐标系还可以绕 $z$ 轴转动，若动坐标的 $x$ 轴与节线的夹角 $\psi$ 确定了，则动坐标的位置完全确定，<strong>这样选取的3个角 $\theta$ ， $\phi$ ， $\psi$ 称为 欧拉角</strong> 。</p>
+<p>  它们的量度方向如图所示，它们的变化范围分别为：$0\le\theta\le\pi，0\le\phi\le2\pi，0\le\psi\le2\pi$ 。</p>
+<p>  为了表示动坐标系与参考坐标系的关系，引入 <strong>方向余弦</strong> ，在研究两坐标系之间的运动特性时，方向余弦用矩阵的形式表示，称 <strong>方向余弦矩阵</strong> ，也称为旋转矩阵、姿态矩阵，其元素是两组坐标系单位矢量之间夹角的正余弦值。</p>
+<p><strong>方向余弦与方向余弦矩阵：</strong></p>
+<p><strong>方向余弦：</strong></p>
+<p>  在解析几何里，一个向量的三个方向余弦分别是这向量与三个坐标轴之间的角度的余弦。两个向量之间的方向余弦指的是这两个向量之间的角度的余弦。</p>
+<p><strong>方向余弦矩阵：</strong></p>
+<p>  方向余弦矩阵是由两组不同的标准正交基的基底向量之间的方向余弦所形成的矩阵。方向余弦矩阵可以用来表达一组标准正交基与另一组标准正交基之间的关系，也可以用来表达一个向量对于另一组标准正交基的方向余弦。</p>
+<p>  方向余弦方法可以用来设定附体参考系B的取向，即刚体的取向。假设沿着参考系 $S$ 的坐标轴的三个单位向量分别为 $\widehat{\boldsymbol x}_1，\widehat{\boldsymbol x}_2，\widehat{\boldsymbol x}_3$ ，沿着参考系 $B$ 的坐标轴的三个单位向量分别为 $\widehat{\boldsymbol e}_1，\widehat{\boldsymbol e}_2，\widehat{\boldsymbol e}_3$ 。定义 $\widehat{\boldsymbol e}_i$ 与 $\widehat{\boldsymbol x}_j$ 之间的方向余弦 ${a} _{ij}$ 为：</p>
+<p>$$a_{ij}\overset{\underset{\mathrm{def}}{}}{=}cos({\theta}_{ij})=\widehat{\boldsymbol e}_i\cdot\widehat{\boldsymbol x}_j；$$</p>
+<p>  其中 ${\theta} _{ij}$ 是 $\widehat{\boldsymbol e}_i$ 与 $\widehat{\boldsymbol x}_j$ 之间的夹角。</p>
+$\widehat{\boldsymbol e}_1,\widehat{\boldsymbol e}_2,\widehat{\boldsymbol e}_3$ 与 $\widehat{\boldsymbol x}_1,\widehat{\boldsymbol x}_2,\widehat{\boldsymbol x}_3$ 之间的关系分别为：
+$$\widehat{\boldsymbol e}_1=cos({\theta}_{11})\cdot\widehat{\boldsymbol x}_1+cos({\theta}_{12})\cdot\widehat{\boldsymbol x}_2+cos({\theta}_{13})\cdot\widehat{\boldsymbol x}_3=a_{11}\widehat{\boldsymbol x}_1+a_{12}\widehat{\boldsymbol x}_2+a_{13}\widehat{\boldsymbol x}_3$$
+$$\widehat{\boldsymbol e}_2=cos({\theta}_{21})\cdot\widehat{\boldsymbol x}_1+cos({\theta}_{22})\cdot\widehat{\boldsymbol x}_2+cos({\theta}_{23})\cdot\widehat{\boldsymbol x}_3=a_{21}\widehat{\boldsymbol x}_1+a_{22}\widehat{\boldsymbol x}_2+a_{23}\widehat{\boldsymbol x}_3$$
+$$\widehat{\boldsymbol e}_3=cos({\theta}_{31})\cdot\widehat{\boldsymbol x}_1+cos({\theta}_{32})\cdot\widehat{\boldsymbol x}_2+cos({\theta}_{33})\cdot\widehat{\boldsymbol x}_3=a_{31}\widehat{\boldsymbol x}_1+a_{32}\widehat{\boldsymbol x}_2+a_{33}\widehat{\boldsymbol x}_3$$
+<p>  两个参考系的坐标轴所形成的矩阵称为方向余弦矩阵 $A$ ：</p>
+$$A=\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{bmatrix}$$
+<p>  采用爱因斯坦求和约定，由于 $\widehat{\boldsymbol e}_i=\sum_{}a_{ij}\cdot\widehat{\boldsymbol x}_j$ ，给定方向余弦矩阵 $A$ ，则可设定附体参考系 $B$ 的取向，也就是刚体的取向。</p>
+<p>  给定位置向量：</p>
+$$\boldsymbol r=x_1\widehat{\boldsymbol x}_1+x_2\widehat{\boldsymbol x}_2+x_3\widehat{\boldsymbol x}_3=e_1\widehat{\boldsymbol e}_1+e_2\widehat{\boldsymbol e}_2+e_3\widehat{\boldsymbol e}_3$$
+<p>  则 $\boldsymbol r$ 与 $\widehat{\boldsymbol e}_i$ 的内积为：</p>
+$$\boldsymbol r\cdot\widehat{\boldsymbol e}_i=e_i=a_{i1}x_1+a_{i2}x_2+a_{i3}x_3=a_{ij}x_j$$
+<p>  方向余弦矩阵 $A$ 可以将从空间参考系 $S$ 观测的位置坐标，变换为从附体参考系 $B$ 观测的位置坐标，因此又称为 <strong>变换矩阵</strong> 。</p>
+<p>  变换矩阵 $A$ 是一种正交矩阵，满足正交条件：</p>
+<p>$$a_{ij}a_{jk}={\delta}_{ik}$$</p>
+<p>  其中 ${\delta}_{ik}$ 为 <strong>克罗内克函数</strong> ，满足 ${\delta}_{ik}\begin{cases} 1\ \ \ \ (i=k) \\ 0\ \ \ \ (i \neq k) \end{cases}$ 。</p>
+<p>  变换矩阵可以视为旋转矩阵。例如将附体参考系 $B$ 或刚体旋转，从 $\widehat{\boldsymbol e}_1,\widehat{\boldsymbol e}_2,\widehat{\boldsymbol e}_3$ 旋转 $\theta$ 角弧成为 $\widehat{\boldsymbol e}’_1,\widehat{\boldsymbol e}’_2,\widehat{\boldsymbol e}’_3$ ；其中， $\widehat{\boldsymbol e}_3=\widehat{\boldsymbol e}’_3$ 。对于这个旋转，旋转矩阵 $A$ 为：</p>
+$$A=\begin{bmatrix}
+cos\theta & sin\theta & 0 \\
+-sin\theta & cos\theta & 0 \\
+0 & 0 & 1
+\end{bmatrix}$$
+<p>  有了以上数学物理工具的支持，可以开始对四旋翼飞行器的空间姿态进行描述。</p>
+<h4 id="3-4-空间姿态常规描述"><a class="header-anchor" href="#3-4-空间姿态常规描述">¶</a>3.4 空间姿态常规描述</h4>
+<p>分别定义欧拉角：<br>
+  $\psi$ 为飞行器的航角， $\theta$ 为飞行器的仰角， $\phi$为飞行器的滚角。</p>
+<p>  那么需求得用三个欧拉角 $(\phi,\theta,\psi)$ 表示的机体坐标系与参考坐标系之间的方向余弦矩阵：</p>
+<p>  将机体坐标系 $b$ 的转动分解为分别绕参考坐标系 $n$ 的 $X,Y,Z$ 轴的简单转动，如图14所示：（注意笛卡尔坐标系左手系与右手系的区别，此处使用右手系）</p>
+<div align=center><img width = '800' height ='180' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2.PNG"/></div>
+<center>图14. 转动分解</center><br>
+<p>  分别求解三次简单转动的方向余弦矩阵：</p>
+<p>  这里以绕 $Z$ 轴的简单转动为例，说明求解过程，其余直接给出其方向余弦矩阵。</p>
+<p>  如图15所示，点 $v$ 绕原点旋转 $\alpha$ 角，得到点 $v’$，假设 $v$ 点的坐标为 $(x,y)$ ，那么可以推导得到 $v’$ 点的坐标 $(x’,y’)$ （设原点到点 $v$ 的距离为 $r$ ，原点到点 $v$ 的向量与 $X$ 轴的夹角为 $\beta$）：</p>
+<div align=center><img width = '200' height ='200' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/Z-1.PNG"/></div>
+<center>图15. 绕 Z 轴转动</center><br>
+<p>$$x=rcos\beta$$</p>
+<p>$$y=rsin\beta$$</p>
+<p>$$x’=rcos(\alpha+\beta)$$</p>
+<p>$$y’=rsin(\alpha+\beta)$$</p>
+<p>  通过三角函数展开得到：</p>
+<p>$$x’=rcos\alpha cos\beta - rsin\alpha sin\beta$$</p>
+<p>$$y’=rsin\alpha cos\beta + rcos\alpha sin\beta$$</p>
+<p>  将 $x,y$ 代入得：</p>
+<p>$$x’=xcos\alpha-ysin\alpha$$</p>
+<p>$$y’=xsin\alpha+ycos\alpha$$</p>
+<p>  由于 $Z$ 为旋转轴，所以 $z$ 坐标保持不变：</p>
+<p>$$z’=z$$</p>
+<p>  将方程组写成矩阵形式：</p>
+$$\begin{bmatrix}x' \\y' \\z' \end{bmatrix}=\begin{bmatrix}cos\alpha & -sin\alpha & 0 \\sin\alpha & cos\alpha & 0 \\0 & 0 & 1\end{bmatrix}\begin{bmatrix}x \\y \\z \end{bmatrix}$$
+<p>  将 $\alpha$ 角替换为飞行器的航角 $\psi$：</p>
+$$\begin{bmatrix}x' \\y' \\z' \end{bmatrix}=\begin{bmatrix}cos\psi & -sin\psi & 0 \\sin\psi & cos\psi & 0 \\0 & 0 & 1\end{bmatrix}\begin{bmatrix}x \\y \\z \end{bmatrix}$$
+<p>  即有：</p>
+$$C^{b3}_{n}=\begin{bmatrix}cos\psi & -sin\psi & 0 \\sin\psi & cos\psi & 0 \\0 & 0 & 1\end{bmatrix}$$
+<p>  同理可得：</p>
+<p>  绕 $Y$ 轴转动：</p>
+$$C^{b2}_{n}=\begin{bmatrix}cos\theta & 0 & -sin\theta \\0 & 1 & 0 \\sin\theta & 0 & cos\theta\end{bmatrix}$$
+<p>  绕 $X$ 轴转动：</p>
+$$C^{b1}_{n}=\begin{bmatrix}1 & 0 & 0 \\0 & cos\phi & sin\phi \\0 & -sin\phi & cos\phi\end{bmatrix}$$
+<p>  则用三个欧拉角 $(\phi,\theta,\psi)$ 表示的机体坐标系与参考坐标系之间的方向余弦矩阵可求得为：</p>
+$$C^b_n=C^{b1}_{n}C^{b2}_{n}C^{b3}_{n}=\begin{bmatrix}1 & 0 & 0 \\0 & cos\phi & sin\phi \\0 & -sin\phi & cos\phi\end{bmatrix}\begin{bmatrix}cos\theta & 0 & -sin\theta \\0 & 1 & 0 \\sin\theta & 0 & cos\theta\end{bmatrix}\begin{bmatrix}cos\psi & -sin\psi & 0 \\sin\psi & cos\psi & 0 \\0 & 0 & 1\end{bmatrix}$$<br>
+$$C^b_n=\begin{bmatrix}cos\theta cos\psi+sin\theta sin\psi sin\phi & sin\theta cos\psi sin\phi - cos\theta sin\psi & -sin\theta cos\phi \\sin\psi cos\phi & cos\psi cos\phi & sin\phi \\sin\theta cos\psi - cos\theta sin\psi sin\phi & -cos\theta cos\psi sin\phi - sin\theta sin\psi & cos\theta cos\phi\end{bmatrix}$$<br>
+<p>  如何应用该结论呢？</p>
+<p>  记：</p>
+$$C^n_b=\begin{bmatrix}T_{11} & T_{12} & T_{13} \\T_{21} & T_{22} & T_{23} \\T_{31} & T_{32} & T_{33}\end{bmatrix}$$
+<p>  则由于矩阵正交，有：</p>
+$$C^n_b=(C^b_n)^{T}=\begin{bmatrix}T_{11} & T_{21} & T_{31} \\T_{12} & T_{22} & T_{32} \\T_{13} & T_{23} & T_{33}\end{bmatrix}$$
+<p>  根据矩阵可以反解出三个轴的角度——欧拉角：</p>
+$$\begin{cases}
+\phi=arcsin(T_{32}) \\\\
+\theta=arctan(-{\dfrac {T_{31}}{T_{33}}}) \\\\
+\psi=arctan(\dfrac {T_{12}}{T_{22}})
+\end{cases}$$
+<p>  但该结论还不能够应用到四旋翼姿态解算中：<br>
+    (1)函数与自变量量相同；<br>
+    (2)含有大量三角运算，加重了运算负担，拖慢了运算效率。</p>
+<p>  在此思路上，希望能够换一种变量来表示该矩阵，保证方程可解的基础上还能提高运算效率。</p>
+<p>  于是引入四元数与罗德里格旋转公式。</p>
+<h4 id="3-5-四元数"><a class="header-anchor" href="#3-5-四元数">¶</a>3.5 四元数</h4>
+<p>  <strong>四元数（Quaternions）</strong> 是由爱尔兰数学家哈密顿(William Rowan Hamilton,1805-1865）在1843年发明的数学概念。它是简单的超复数。 复数是由实数加上虚数单位 $i$ 组成，其中 $i^2=-1$ 。 相似地，四元数都是由实数加上三个虚数单位 $i、j、k$ 组成，而且它们有如下的关系： $i^2 = j^2 = k^2 = -1， i^0 = j^0 = k^0 = 1$ , 每个四元数都是 $1、i、j$ 和 $k$ 的线性组合，即是四元数一般可表示为 $a + bi+ cj + dk$ ，其中 $a、b、c 、d$ 是实数。</p>
+<p>  明确地说，四元数是复数的不可交换延伸。如把四元数的集合考虑成多维实数空间的话，四元数就代表着一个四维空间，相对于复数为二维空间。</p>
+<p>  四元数有如下的表达形式：</p>
+<p>$$Q=q_0 + q_1 \dot i + q_2 \dot j+q_3 \dot k$$</p>
+<p>$$Q=cos{\dfrac \theta 2}+\vec{\lambda}sin{\dfrac \theta 2}$$</p>
+$$Q=\begin{bmatrix}q_0 \\q_1 \\q_2 \\q_3 \end{bmatrix}$$
+<h4 id="3-6-罗德里格旋转公式"><a class="header-anchor" href="#3-6-罗德里格旋转公式">¶</a>3.6 罗德里格旋转公式</h4>
+<p>  为了让空间中旋转的坐标变换过程能够与四元数之间建立关系，可以以某向量为研究对象引入更广义的空间旋转过程的计算公式——罗德里格旋转公式。</p>
+<p>  <strong>罗德里格旋转公式（Rodrigues’ rotation formula）</strong> 是计算三维空间中，一个向量绕旋转轴旋转给定角度以后得到的新向量的计算公式。这个公式使用原向量，旋转轴及它们叉积作为标架表示出旋转以后的向量。可以改写为矩阵形式，被广泛应用于空间解析几何和计算机图形学领域，成为刚体运动的基本计算公式。</p>
+<p>  四元数可以很方便地表示旋转变换。但在很多场合中，使用矩阵形式和向量形式表达旋转更有利于推导。向量旋转公式最早由法国数学家本杰明·奥伦德·罗德里格(Benjamin Olinde Rodrigues(1795–1851))导出，后来被应用在很多领域。</p>
+<div align=center><img width = '300' height ='300' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/R-3.PNG"/></div>
+<center>图16. 罗德里格旋转公式示意图-1</center><br>
+<p>  设v是一个三维空间向量，$\boldsymbol k$ 是旋转轴的单位向量，则 $\boldsymbol v$ 在右手螺旋定则意义下绕旋转轴 $\boldsymbol k$ 旋转角度 $\theta$ 得到的向量可以由三个不共面的向量 $\boldsymbol v，\boldsymbol k$ 和 $\boldsymbol k \times \boldsymbol v$ 构成的标架表示：</p>
+<p>$$\boldsymbol v_{rot}=cos\theta \cdot \boldsymbol v+(1-cos\theta)(\boldsymbol v \cdot \boldsymbol k)\boldsymbol k+sin\theta \cdot \boldsymbol k \times \boldsymbol v$$</p>
+<p>  根据此公式推导可得以下结论：</p>
+<div align=center><img width = '200' height ='250' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/R-2.PNG"/></div>
+<center>图17. 罗德里格旋转公式示意图-2</center><br>
+<p>$$\overrightarrow{D B}^{R}=U \cdot \overrightarrow{D B}^{b}$$</p>
+<p>  $U$ 为刚体旋转过程中 $b$ 系到 $R$ 系的坐标变换矩阵：</p>
+<p>$$U=C_b^R=I+2Jcos{\dfrac \theta 2}+2K$$</p>
+<p>  其中：</p>
+<p>    $I$ 为三阶单位矩阵：</p>
+$$I=\begin{bmatrix}1 & 0 & 0 \\0 & 1 & 0 \\0 & 0 & 1 \end{bmatrix}$$<br>
+$$J=\begin{bmatrix}0 & -nsin{\dfrac \theta 2} & msin{\dfrac \theta 2} \\\\nsin{\dfrac \theta 2} & 0 & -lsin{\dfrac \theta 2} \\\\-msin{\dfrac \theta 2} & lsin{\dfrac \theta 2} & 0 \end{bmatrix}$$<br>
+$$K=
+\begin{bmatrix}-(m^2+n^2)sin^2{\dfrac \theta 2} & lmsin^2{\dfrac \theta 2} & nlsin^2{\dfrac \theta 2} \\\\lmsin^2{\dfrac \theta 2} & -(l^2+n^2)sin^2{\dfrac \theta 2} & mnsin^2{\dfrac \theta 2} \\\\nlsin^2{\dfrac \theta 2} & mnsin^2{\dfrac \theta 2} & -(m^2+l^2)sin^2{\dfrac \theta 2} \end{bmatrix}$$<br>
+<p>  在 $K$ 中， $l、m、n$ 分别是向量 $\overrightarrow{D E}$ 在 $R$ 系的旋转瞬轴，结合四元数的三角表示式，令：<br>
+$$Q=cos{\dfrac \theta 2}+(l\boldsymbol i+m\boldsymbol j+n\boldsymbol k)sin{\dfrac \theta 2}$$</p>
+<p>  即有：</p>
+$$\begin{cases}
+q_0=cos{\dfrac \theta 2} \\\\
+q_1=lsin{\dfrac \theta 2} \\\\
+q_2=msin{\dfrac \theta 2} \\\\
+q_3=nsin{\dfrac \theta 2}
+\end{cases}$$
+<p>  将 $q$ 代入 $U$，$U$ 等价于方向余弦矩阵：</p>
+$$C_b^R=\begin{bmatrix}
+q_0^2+q_1^2-q_2^2-q_3^2 & 2(q_1 q_2-q_0 q_3) & 2(q_1 q_3+q_0 q_2) \\
+\\
+2(q_1 q_2+q_0 q_3) & q_0^2-q_1^2+q_2^2-q_3^2 & 2(q_3 q_2-q_0 q_1) \\
+\\
+2(q_1 q_3-q_0 q_2) & 2(q_3 q_2+q_0 q_1) & q_0^2-q_1^2-q_2^2+q_3^2
+\end{bmatrix}$$
+<p>  于是可以反解欧拉角：</p>
+$$\begin{cases}
+\phi=arcsin(T_{32})=arcsin(C_{23}) \\\\
+\theta=arctan(-{\dfrac {T_{31}}{T_{33}}})=arctan(-{\dfrac {C_{13}}{C_{33}}}) \\\\
+\psi=arctan(\dfrac {T_{12}}{T_{22}})=arctan(\dfrac {C_{21}}{C_{22}})
+\end{cases}$$
+<p>  可得：</p>
+$$\begin{cases}
+\phi=arcsin[2(-q_0 q_1+q_2 q_3)] \\\\
+\theta=-arctan({\dfrac{2(q_0 q_2+q_1 q_3)}{q_0^2-q_1^2-q_2^2+q_3^2}}) \\\\
+\psi=arctan({\dfrac{2(q_1 q_2+q_0 q_3)}{q_0^2-q_1^2+q_2^2-q_3^2}})
+\end{cases}$$
+<p>  那么现在问题就变成了如何求取四元数中的 $q_0、q_1、q_2、q_3$ 。</p>
+<h4 id="3-7-四元数的求解与一阶龙格-库塔法"><a class="header-anchor" href="#3-7-四元数的求解与一阶龙格-库塔法">¶</a>3.7 四元数的求解与一阶龙格-库塔法</h4>
+<p>  到目前为止，飞行器姿态的改变已经转换成了对应四元数的改变，因此实时的姿态计算需要实时更新四元数。于是在此构建四元数关于时间的微分方程，来研究四元数的变化规律，又因为考虑到与四元数直接相关的变量是角度，因此，利用四元数的三角表示式来建立四元数微分方程，并求解该微分方程，即可成功解出四元数。</p>
+<p>$$Q=cos{\dfrac \theta 2}+\vec{\lambda}sin{\dfrac \theta 2}$$</p>
+<p>  令该四元数对时间 $t$ 进行微分，可得微分方程为：</p>
+$$\dfrac{\mathrm{d}Q}{\mathrm{d}t}={\dfrac 1 2}
+\begin{bmatrix}
+0 & -{\omega}_x & -{\omega}_y & -{\omega}_z \\
+{\omega}_x & 0 & {\omega}_z & -{\omega}_y \\
+{\omega}_y & -{\omega}_z & 0 & {\omega}_x \\
+{\omega}_z & {\omega}_y & -{\omega}_x & 0
+\end{bmatrix}
+\begin{bmatrix}q_0 \\q_1 \\q_2 \\q_3 \end{bmatrix}$$
+<p>  记为：</p>
+<p>$$\dfrac{\mathrm{d}Q}{\mathrm{d}t}=\Phi \cdot Q$$</p>
+<p>  求解该微分方程即可得到当下的四元数。</p>
+<p>  为了在单片机中能够求解微分方程，引入一阶龙格-库塔法。</p>
+<p><strong>一阶龙格-库塔法（Runge-Kutta）：</strong></p>
+<p>  龙格-库塔(Runge-Kutta)方法是一种在工程上应用广泛的高精度单步算法，其中包括著名的欧拉法（Euler’s method），用于数值求解微分方程，该算法是构建在数学支持的基础之上的。</p>
+<p>  一阶龙格库塔法，即对应于“一阶精度欧拉公式”：</p>
+$$\begin{cases}
+y'=\dfrac{\mathrm{d}y}{\mathrm{d}x}=f(x,y) \\\\
+y_{i+1}=y_i+h\cdot K_1 \\\\
+K_1= f(x_i,y_i)
+\end{cases}$$
+<p>  其中 $h$ 为步长。</p>
+<p>  设有微分方程：</p>
+$$\dfrac{\mathrm{d}y}{\mathrm{d}x}=f(x,y)$$
+<p>  根据一阶龙格-库塔法可以得到求解 $y$ 的迭代公式：</p>
+$$y(\lambda + \Delta\lambda)=y(\lambda)+\Delta\lambda\cdot f(x(\lambda),y(\lambda))$$
+<p>  对应四元数微分方程：</p>
+$$Q(t + \Delta t)=Q(t)+\Delta t \cdot \Phi(t) \cdot Q(t)$$
+<p>  整理可得最终的计算结论：</p>
+$$\begin{bmatrix}q_0 \\q_1 \\q_2 \\q_3 \end{bmatrix}_{t+\Delta t}=\begin{bmatrix}q_0 \\q_1 \\q_2 \\q_3 \end{bmatrix}_t+{\dfrac 1 2} \cdot \Delta t \cdot
+\begin{bmatrix}
+-\omega_x \cdot q_1-\omega_y \cdot q_2-\omega_z \cdot q_3 \\
+\omega_x \cdot q_0-\omega_y \cdot q_3+\omega_z \cdot q_2 \\
+\omega_x \cdot q_3+\omega_y \cdot q_0-\omega_z \cdot q_1 \\
+-\omega_x \cdot q_2+\omega_y \cdot q_1+\omega_z \cdot q_0
+\end{bmatrix}$$<br>
+<p>  对该结论利用C语言编程，即可实现对四元数的求解，而求解过程中需要用到三轴角速度数据，要想准确获取机体的实时姿态，则要求三轴角速度数据足够准确，可行的想法是，利用加速度计对陀螺仪的数据进行修正。</p>
+<h4 id="3-8-传感器数据融合——基于四元数的互补滤波法-向量外积补偿"><a class="header-anchor" href="#3-8-传感器数据融合——基于四元数的互补滤波法-向量外积补偿">¶</a>3.8 传感器数据融合——基于四元数的互补滤波法(向量外积补偿)</h4>
+<div align=center><img width = '800' height ='180' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/CF-2.PNG"/></div>
+<center>图18. 角度计算中的误差</center><br>
+<p>  <strong>互补滤波法（Complementary Filter）</strong> 的思路是，加速度计由于其自身灵敏度较高，在振动较大的场合，加速度计的测量值容易混入振动等噪声，也就是说，加速度计在瞬时精度上容易受到外部干扰，而有很大误差，这种误差属于高频误差；陀螺仪的测量值是角速度，短时间内将角速度按时间积分得到的角度是比较准确的，但是此时得到的角度带有累积误差，这种误差属于低频误差。可以利用这两种传感器的特性来互补，得到正确的角度。</p>
+<p>  但是这里并不打算用常规的互补滤波算法来实现互补滤波，而是采用向量外积补偿的方法来实现。</p>
+<div align=center><img width = '800' height ='200' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/filter-2.PNG"/></div>
+<center>图19. 互补滤波法（Complementary Filter）</center><br>
+<div align=center><img width = '1000' height ='600' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A/filter-1.PNG"/></div>
+<center>图20. 用向量外积补偿的方式实现基于四元数的互补滤波</center><br>
+<p>  在图20中，$a_x,a_y,a_z$ 为机体坐标参考系上加速度计测出来的重力加速度分量经过单位化后得到的单位重力加速度分量，相当于是实际重力加速度分量；$v_x,v_y,v_z$ 为用三轴陀螺仪角速度数据经过换算、积分后得到的单位重力加速度分量，相当于是理论重力加速度分量。若能够表示出两者之间的误差，就能够用这个误差去补偿陀螺仪输出的角速度，从而计算出更新的四元数。</p>
+<p>  这个误差属于向量之间的误差，可以用向量外积（即向量叉积）来表示。</p>
+<p>  这个向量叉积仍然是位于机体坐标系上的，而陀螺积分误差也在机体坐标系上，而且叉积的大小与陀螺积分误差呈正比，正好拿来补偿陀螺仪角速度数据。</p>
+<h4 id="3-9-构建PI（比例-积分）控制器"><a class="header-anchor" href="#3-9-构建PI（比例-积分）控制器">¶</a>3.9 构建PI（比例-积分）控制器</h4>
+<p>  得到用向量外积表示的误差后，接下来需要构建PI（比例-积分）控制器来控制补偿值的大小与精度。（其中有关自动控制原理特性的分析，此处不再体现）</p>
+$$error\_GYRO=K_p\cdot error+K_I\cdot \int error$$
+<p>  积分项用来消除静态误差，比例项用来控制传感器的“可信度”，$K_p$ 越大，则更加信任加速度计，$K_p$ 越小，则更加信任陀螺仪。</p>
+<p>  把补偿量加到角速度上，即可得到可信度较高的陀螺仪数据，之后代入龙格库塔法即可得到当前的四元数。</p>
+$$value\_GYRO=value\_GYRO+error\_GYRO$$
+<h4 id="3-10-算法流程与总体代码分析"><a class="header-anchor" href="#3-10-算法流程与总体代码分析">¶</a>3.10 算法流程与总体代码分析</h4>
+<h5 id="3-10-1-四元数法姿态解算流程"><a class="header-anchor" href="#3-10-1-四元数法姿态解算流程">¶</a>3.10.1 四元数法姿态解算流程</h5>
+<p>(1)初始化四元数：</p>
+<p>  设当前的坐标系为机体坐标系，则四元数列向量：</p>
+$$\boldsymbol q=\begin{bmatrix}q_0 & q_1 & q_2 & q_3 \end{bmatrix}^T=
+\begin{bmatrix}1 & 0 & 0 & 0 \end{bmatrix}^T$$
+<p>(2)获取角速度、加速度：</p>
+<p>  读取三轴加速度计和三轴陀螺仪的信号，并经过IIR低通滤波器滤波滤除振动噪声，得到重力加速度分量和角速度分量 $acc_x,acc_y,acc_z$ 和角速度分量 $w_x,w_y,w_z$ 。</p>
+<p>(3)将加速度计测量值 $acc_x,acc_y,acc_z$ 转化为三维的单位向量（归一化）：</p>
+$$\begin{cases}
+a_x={\dfrac {acc_x}{\sqrt {acc_x^2+acc_y^2+acc_z^2}}} \\\\
+a_y={\dfrac {acc_y}{\sqrt {acc_x^2+acc_y^2+acc_z^2}}} \\\\
+a_z={\dfrac {acc_z}{\sqrt {acc_x^2+acc_y^2+acc_z^2}}}
+\end{cases}$$
+<p>  代码实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">norm = <span class="built_in">sqrt</span>(ax * ax + ay * ay + az * az);</span><br><span class="line">ax = ax / norm;</span><br><span class="line">ay = ay / norm;</span><br><span class="line">az = az / norm;</span><br></pre></td></tr></table></figure>
+<p>(4)用四元数表示三轴的重力分量 $V_x,V_y,V_z$：<br>
+  （对应着已求出的用四元数表示的方向余弦矩阵 $C_b^R$ 的第三行）</p>
+$$\begin{cases}
+V_x=2(q_1 q_3-q_0 q_2) \\\\
+V_y=2(q_0 q_1+q_2 q_3) \\\\
+V_z=q_0^2-q_1^2-q_2^2+q_3^2
+\end{cases}$$
+<p>  式中的 $V_x,V_y,V_z$ 即重力单位向量在机体坐标系中的分量。</p>
+<p>  代码实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vx = <span class="number">2</span> * (q1 * q3 - q0 * q2);</span><br><span class="line">vy = <span class="number">2</span> * (q0 * q1 + q2 * q3);</span><br><span class="line">vz = q0 * q0 - q1 * q1 - q2 * q2 + q3 * q3;</span><br></pre></td></tr></table></figure>
+<p>(5)求四元数所求重力分量与加速度计测量值的误差值：</p>
+$$\begin{cases}
+e_x=a_y \times V_z - a_z \times V_y \\\\
+e_y=a_z \times V_x - a_x \times V_z \\\\
+e_z=a_x \times V_y - a_y \times V_x
+\end{cases}$$
+<p>  代码实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ex = (ay * vz - az * vy);</span><br><span class="line">ey = (az * vx - ax * vz);</span><br><span class="line">ez = (ax * vy - ay * vx);</span><br></pre></td></tr></table></figure>
+<p>(6)利用所得的误差修正陀螺仪的测量值：<br>
+(式中参数 $k_i,k_p$ 用以控制加速度计修正陀螺仪误差的过程)</p>
+$$\begin{cases}
+e_{xint} = {\widehat e}_{xint}+k_i \times e_x \\
+{\dot w}_x = w_x + k_p \times e_x + e_{xint}
+\end{cases}$$
+$$\begin{cases}
+e_{yint} = {\widehat e}_{yint}+k_i \times e_y \\
+{\dot w}_y = w_y + k_p \times e_y + e_{yint}
+\end{cases}$$
+$$\begin{cases}
+e_{zint} = {\widehat e}_{zint}+k_i \times e_z \\
+{\dot w}_z = w_z + k_p \times e_z + e_{zint}
+\end{cases}$$
+<p>  代码实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">exInt = exInt + ex * Ki;</span><br><span class="line">eyInt = eyInt + ey * Ki;</span><br><span class="line">ezInt = ezInt + ez * Ki;</span><br><span class="line"></span><br><span class="line">gx = gx + Kp * ex + exInt;</span><br><span class="line">gy = gy + Kp * ey + eyInt;</span><br><span class="line">gz = gz + Kp * ez + ezInt;</span><br></pre></td></tr></table></figure>
+<p>(7)利用修正后的陀螺仪值 ${\dot w}_x,{\dot w}_y,{\dot w}_z$ 更新四元数：</p>
+$$\begin{cases}
+q_0={\widehat q}_0+{\dfrac {\mathrm{d}t}{2}}(-q_1{\dot w}_x-q_2{\dot w}_y-q_3{\dot w}_z) \\\\
+q_1={\widehat q}_1+{\dfrac {\mathrm{d}t}{2}}(q_0{\dot w}_x+q_2{\dot w}_z-q_3{\dot w}_y) \\\\
+q_2={\widehat q}_2+{\dfrac {\mathrm{d}t}{2}}(q_0{\dot w}_y-q_1{\dot w}_z+q_3{\dot w}_x) \\\\
+q_3={\widehat q}_3+{\dfrac {\mathrm{d}t}{2}}(q_0{\dot w}_z+q_1{\dot w}_y-q_2{\dot w}_x)
+\end{cases}$$
+<p>代码实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">q0 = q0 + (-q1 * gx - q2 * gy - q3 * gz) * halfT;</span><br><span class="line">q1 = q1 + (q0 * gx + q2 * gz - q3 * gy) * halfT;</span><br><span class="line">q2 = q2 + (q0 * gy - q1 * gz + q3 * gz) * halfT;</span><br><span class="line">q3 = q3 + (q0 * gz + q1 * gy - q2 * gx) * halfT;</span><br></pre></td></tr></table></figure>
+<p>(8)将得到更新后的四元数规范化：</p>
+$$\begin{cases}
+q_0={\dfrac {\widehat q_0}{\sqrt {q_0^2+q_1^2+q_2^2+q_3^2}}} \\\\
+q_1={\dfrac {\widehat q_1}{\sqrt {q_0^2+q_1^2+q_2^2+q_3^2}}} \\\\
+q_2={\dfrac {\widehat q_2}{\sqrt {q_0^2+q_1^2+q_2^2+q_3^2}}} \\\\
+q_3={\dfrac {\widehat q_3}{\sqrt {q_0^2+q_1^2+q_2^2+q_3^2}}}
+\end{cases}$$
+<p>  代码实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">norm = <span class="built_in">sqrt</span>(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);</span><br><span class="line">q0 = q0 / norm;</span><br><span class="line">q1 = q1 / norm;</span><br><span class="line">q2 = q2 / norm;</span><br><span class="line">q3 = q3 / norm;</span><br></pre></td></tr></table></figure>
+<p>(9)得到新四元数后，即完成了一次四元数法姿态融合的运算，将新的四元数作为下一次四元数运算的初始四元数，再从步骤(1)开始下一次的四元数运算。为了直观表示飞行器的姿态，可将新四元数转化成为三个欧拉角：</p>
+$$\begin{cases}
+\phi=arcsin[2(-q_0 q_1+q_2 q_3)] \\\\
+\theta=-arctan({\dfrac{2(q_0 q_2+q_1 q_3)}{q_0^2-q_1^2-q_2^2+q_3^2}}) \\\\
+\psi=arctan({\dfrac{2(q_1 q_2+q_0 q_3)}{q_0^2-q_1^2+q_2^2-q_3^2}})
+\end{cases}$$
+<p>  这里提供了两种代码进行参考：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pitch = <span class="built_in">asin</span>(<span class="number">2</span> * (q0 * q2 - q1 * q3)) * <span class="number">57.2957795f</span>;</span><br><span class="line"><span class="comment">//pitch += (float)OFFSET_PITCH;</span></span><br><span class="line">roll = <span class="built_in">asin</span>(<span class="number">2</span> * (q0 * q1 + q2 * q3)) * <span class="number">57.2957795f</span>;</span><br><span class="line"><span class="comment">//roll += (float)OFFSET_ROLL;</span></span><br><span class="line"></span><br><span class="line">angle-&gt;pit = <span class="built_in">asin</span>( <span class="number">-2</span> * q1 * q3 + <span class="number">2</span> * q0 * q2) * <span class="number">57.3</span>;</span><br><span class="line">angle-&gt;rol = -<span class="built_in">atan2</span>(<span class="number">2</span> * q2 * q3 + <span class="number">2</span> * q0 * q1, <span class="number">-2</span> * q1 * q1 - <span class="number">2</span> * q2 * q2 + <span class="number">1</span>) * <span class="number">57.3</span>;</span><br><span class="line">angle-&gt;yaw = <span class="built_in">atan2</span>( <span class="number">2</span> * (q0 * q3 + q1 * q2), <span class="number">1</span> - <span class="number">2</span> * q2 * q2 - <span class="number">2</span> * q3 * q3) * <span class="number">57.3</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="3-10-2-总体代码"><a class="header-anchor" href="#3-10-2-总体代码">¶</a>3.10.2 总体代码</h5>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********/</span></span><br><span class="line"><span class="comment">/***** Madgwick 的 IMUupdate 算法 *****/</span></span><br><span class="line"><span class="comment">/***** 数据融合 &amp;&amp; 姿态解算 *****/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Kp 1.6f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Ki 0.001f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> halfT 0.001f</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> q0 = <span class="number">1</span>, q1 = <span class="number">0</span>, q2 = <span class="number">0</span>, q3 = <span class="number">0</span>;     <span class="comment">//float idata</span></span><br><span class="line"><span class="keyword">float</span> exInt = <span class="number">0</span>, eyInt = <span class="number">0</span>, ezInt = <span class="number">0</span>;    <span class="comment">//float idata</span></span><br><span class="line"><span class="keyword">float</span> pitch, roll, yaw;                   <span class="comment">//float idata</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IMUupdate</span><span class="params">(<span class="keyword">float</span> gx, <span class="keyword">float</span> gy, <span class="keyword">float</span> gz, <span class="keyword">float</span> ax, <span class="keyword">float</span> ay, <span class="keyword">float</span> az)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="comment">/***** IMUupdate 算法中要求输入6个数据               *****/</span></span><br><span class="line">      <span class="comment">/***** gx gy gz 分别为陀螺仪测量到的3个旋转角速度分量 *****/</span></span><br><span class="line">      <span class="comment">/***** ax ay az 分别为加速度计的3个加速度分量        *****/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="keyword">float</span> norm;                         <span class="comment">//float idata</span></span><br><span class="line">      <span class="keyword">float</span> vx, vy, vz;                   <span class="comment">//float idata</span></span><br><span class="line">      <span class="keyword">float</span> ex, ey, ez;                   <span class="comment">//float idata</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***** 将加速度计测量到的3个向量转换为单位向量，即规范化处理 *****/</span></span><br><span class="line">      norm = <span class="built_in">sqrt</span>(ax * ax + ay * ay + az * az);</span><br><span class="line">      ax = ax / norm;</span><br><span class="line">      ay = ay / norm;</span><br><span class="line">      az = az / norm;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***** 根据方向余弦矩阵与欧拉角的定义，将地理坐标系的重力向量转到机体坐标系 *****/</span></span><br><span class="line">      <span class="comment">/***** 即在当前的四元数机体坐标参考系上换算出来的重力单位向量 vx vy vz     *****/</span></span><br><span class="line">      vx = <span class="number">2</span> * (q1 * q3 - q0 * q2);</span><br><span class="line">      vy = <span class="number">2</span> * (q0 * q1 + q2 * q3);</span><br><span class="line">      vz = q0 * q0 - q1 * q1 - q2 * q2 + q3 * q3;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***** 用向量的叉积来表示误差向量 *****/</span></span><br><span class="line">      <span class="comment">/***** 两者均位于机体坐标系上，叉积大小与与陀螺积分成正比 *****/</span></span><br><span class="line">      ex = (ay * vz - az * vy);</span><br><span class="line">      ey = (az * vx - ax * vz);</span><br><span class="line">      ez = (ax * vy - ay * vx);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***** 用叉积误差来做PI调节 *****/</span></span><br><span class="line">      <span class="comment">/***** 最后用得到的调节量对陀螺仪进行零偏修正 *****/</span></span><br><span class="line">      exInt = exInt + ex * Ki;</span><br><span class="line">      eyInt = eyInt + ey * Ki;</span><br><span class="line">      ezInt = ezInt + ez * Ki;</span><br><span class="line"></span><br><span class="line">      gx = gx + Kp * ex + exInt;</span><br><span class="line">      gy = gy + Kp * ey + eyInt;</span><br><span class="line">      gz = gz + Kp * ez + ezInt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***** 用一阶龙格—库塔法对陀螺仪角速度值进行处理更新得到新的四元数值 *****/</span></span><br><span class="line">      <span class="comment">/***** 其中，halfT 取值为四元数更新数据的周期的一半 *****/</span></span><br><span class="line">      q0 = q0 + (-q1 * gx - q2 * gy - q3 * gz) * halfT;</span><br><span class="line">      q1 = q1 + (q0 * gx + q2 * gz - q3 * gy) * halfT;</span><br><span class="line">      q2 = q2 + (q0 * gy - q1 * gz + q3 * gz) * halfT;</span><br><span class="line">      q3 = q3 + (q0 * gz + q1 * gy - q2 * gx) * halfT;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***** 对得到的四元数进行规范化处理 *****/</span></span><br><span class="line">      norm = <span class="built_in">sqrt</span>(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);</span><br><span class="line">      q0 = q0 / norm;</span><br><span class="line">      q1 = q1 / norm;</span><br><span class="line">      q2 = q2 / norm;</span><br><span class="line">      q3 = q3 / norm;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***** 将四元数转化为欧拉角，并可以对欧拉角进行一定的误差补偿 *****/</span></span><br><span class="line">      pitch = <span class="built_in">asin</span>(<span class="number">2</span> * (q0 * q2 - q1 * q3)) * <span class="number">57.2957795f</span>;</span><br><span class="line">      <span class="comment">//pitch += (float)OFFSET_PITCH;</span></span><br><span class="line">      roll = <span class="built_in">asin</span>(<span class="number">2</span> * (q0 * q1 + q2 * q3)) * <span class="number">57.2957795f</span>;</span><br><span class="line">      <span class="comment">//roll += (float)OFFSET_ROLL;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">/*</span></span><br><span class="line"><span class="comment">      angle-&gt;pit = asin( -2 * q1 * q3 + 2 * q0 * q2) * 57.3;</span></span><br><span class="line"><span class="comment">      angle-&gt;rol = -atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2 * q2 + 1) * 57.3;</span></span><br><span class="line"><span class="comment">      angle-&gt;yaw = atan2( 2 * (q0 * q3 + q1 * q2), 1 - 2 * q2 * q2 - 2 * q3 * q3) * 57.3;</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**********/</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、总结"><a class="header-anchor" href="#五、总结">¶</a>五、总结</h2>
+<h3 id="1-全文总结"><a class="header-anchor" href="#1-全文总结">¶</a>1. 全文总结</h3>
+<p>  本文以四旋翼飞行器的飞行原理与姿态解算的分析为背景，目的是深入研究四旋翼飞行器的姿态解算算法，从而理解其软件设计的基本原理，并为动手设计一款四旋翼飞行器奠定基础。本文主要进行的研究工作与成果如下：</p>
+<p>1)四旋翼飞行器的飞行原理。本文对四旋翼飞行器的基本飞行原理与基本结构进行了简要的描述，对飞行器能够做出的基本飞行动作的动力学原理进行了基本的分析，给出了飞行器飞行姿态与其电机转速的关系。</p>
+<p>2)四旋翼飞行器的姿态解算算法。本文基于 Madgwick 的 IMUupdate 算法，对四旋翼飞行器的姿态解算算法从其数学原理以及其算法优化上进行了深入的分析，为今后飞行器姿态解算的软件设计提供了基础。</p>
+<h3 id="2-个人总结"><a class="header-anchor" href="#2-个人总结">¶</a>2. 个人总结</h3>
+<p>  在本次科研选题训练过程中，我对该领域的知识进行了深入的认识与了解，加强了自身检索文献的能力，培养了自身撰写论文的能力，增强了小组合作探究的能力。总的来说，这是一次收获颇丰的体验。</p>
+<hr>
+<h2 id="参考资料"><a class="header-anchor" href="#参考资料">¶</a>参考资料</h2>
+<p>  看了各种各样的资料，其中有的资料中还存在一些错误，我将其一并放在这里了，如果读者有兴趣阅读，一定要注意。</p>
+<h3 id="文献"><a class="header-anchor" href="#文献">¶</a>文献</h3>
+<p>[1] 王瑞，丁晓青 编著 . 四旋翼飞行器设计与实现 . 北京：清华大学出版社, 2018.<br>
+[2] 冯新宇，范红刚，辛亮 著 . 四旋翼无人飞行器设计 . 北京：清华大学出版社, 2017.<br>
+[3] 严恭敏，翁浚 编著 . 捷联惯导算法与组合导航原理讲义 . 西北工业大学, 2016.<br>
+[4] 喻金峰 . 四旋翼飞行器设计与实现[D] . 华南理工大学, 2018.<br>
+[5] 赵杰 . 基于模型的多旋翼飞行器飞控系统设计与实现[D] . 电子科技大学, 2019.</p>
+<h3 id="网页"><a class="header-anchor" href="#网页">¶</a>网页</h3>
+<p><a href="https://blog.csdn.net/qq_35723367/article/details/79721503" target="_blank" rel="noopener">四轴飞行器基本组成及其飞行原理详解</a></p>
+<p><a href="https://blog.csdn.net/sinat_29315697/article/details/81293458" target="_blank" rel="noopener">四旋翼飞行器的原理研究和建模</a></p>
+<p><a href="https://baike.baidu.com/item/%E5%9B%9B%E8%BD%B4%E9%A3%9E%E8%A1%8C%E5%99%A8/3216074?fromtitle=%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8&amp;fromid=7293393&amp;fr=aladdin" target="_blank" rel="noopener">四旋翼飞行器百度百科</a></p>
+<p><a href="https://blog.csdn.net/nemol1990/article/details/18698927" target="_blank" rel="noopener">微型四旋翼飞行器的设计与制作</a></p>
+<p><a href="https://blog.csdn.net/nemol1990/article/details/16924745" target="_blank" rel="noopener">四旋翼飞行器的姿态解算小知识点</a></p>
+<p><a href="http://blog.sina.com.cn/s/blog_40edfdc90102xd2t.html" target="_blank" rel="noopener">捷联惯导算法与组合导航原理讲义</a></p>
+<p><a href="https://www.cnblogs.com/ilekoaiq/p/8849217.html" target="_blank" rel="noopener">Madgwick算法详细解读</a></p>
+<p><a href="https://blog.csdn.net/nemol1990/article/details/39236189" target="_blank" rel="noopener">基于四元数的姿态解算算法图解</a></p>
+<p><a href="http://www.360doc.com/content/19/0502/23/32196507_832986646.shtml" target="_blank" rel="noopener">刚体定点运动的欧拉定理（基于线性代数的证明）</a></p>
+<p><a href="https://baike.baidu.com/item/%E6%AC%A7%E6%8B%89%E8%BF%90%E5%8A%A8%E5%AD%A6%E6%96%B9%E7%A8%8B/19134800?fr=aladdin" target="_blank" rel="noopener">欧拉运动学方程百度百科</a></p>
+<p><a href="https://baike.baidu.com/item/%E6%96%B9%E5%90%91%E4%BD%99%E5%BC%A6/638712?fr=aladdin" target="_blank" rel="noopener">方向余弦百度百科</a></p>
+<p><a href="https://baike.baidu.com/item/%E5%9B%9B%E5%85%83%E6%95%B0/5795379?fr=aladdin" target="_blank" rel="noopener">四元数百度百科</a></p>
+<p><a href="https://baike.baidu.com/item/%E7%BD%97%E5%BE%B7%E9%87%8C%E6%A0%BC%E6%97%8B%E8%BD%AC%E5%85%AC%E5%BC%8F/18878562?fr=aladdin" target="_blank" rel="noopener">罗德里格旋转公式百度百科</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/52335076" target="_blank" rel="noopener">四元数、欧拉角及方向余弦矩阵的相互转化公式</a></p>
+<p><a href="https://blog.csdn.net/qq_29831163/article/details/89703598" target="_blank" rel="noopener">常微分方程的解法 (三): 龙格—库塔（Runge—Kutta）方法 、线性多步法</a></p>
+<p><a href="https://blog.csdn.net/u013007900/article/details/45922331/" target="_blank" rel="noopener">龙格-库塔(Runge-Kutta)方法数学原理及实现</a></p>
+<p><a href="https://www.sohu.com/a/168421601_464087" target="_blank" rel="noopener">一阶龙格库塔法更新四元数的原理分析</a></p>
+<h3 id="视频"><a class="header-anchor" href="#视频">¶</a>视频</h3>
+<p>  非常感谢b站up主<a href="https://space.bilibili.com/174366293?spm_id_from=333.788.b_765f7570696e666f.1" target="_blank" rel="noopener">Rick_Grimes</a>对于姿态解算算法的总结，本文在分析姿态解算算法时是基于对其视频的思路与内容的概括与提炼。视频中同样也有一些错误，但不影响对于总体算法的理解。</p>
+<p>  视频链接：<a href="https://www.bilibili.com/video/BV1px411p71z" target="_blank" rel="noopener">【教程】四旋翼飞行器姿态解算算法入门学习-Rick Grimes</a></p>
+<hr>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/06/02/%E5%85%B3%E4%BA%8E%E5%9B%9B%E6%97%8B%E7%BF%BC%E9%A3%9E%E8%A1%8C%E5%99%A8%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E9%A3%9E%E8%A1%8C%E5%8E%9F%E7%90%86%E4%B8%8E%E5%A7%BF%E6%80%81%E8%A7%A3%E7%AE%97%E7%9A%84%E5%88%86%E6%9E%90%E5%8D%9A%E5%AE%A2%E7%89%88/" title="关于四旋翼飞行器的介绍及其飞行原理与姿态解算的分析">https://cloudplayer99.github.io/2020/06/02/关于四旋翼飞行器的介绍及其飞行原理与姿态解算的分析博客版/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E9%A3%9E%E6%8E%A7/" rel="tag"># 飞控</a>
+              <a href="/tags/%E5%A7%BF%E6%80%81%E8%A7%A3%E7%AE%97/" rel="tag"># 姿态解算</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/07/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%BA%94%E6%AC%A1%E4%BD%9C%E4%B8%9A/" rel="prev" title="模电第五次作业">
+      <i class="fa fa-chevron-left"></i> 模电第五次作业
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/10/Windows%E4%B8%8A%E4%BD%BF%E7%94%A8iverilog+gtkwave%E4%BB%BF%E7%9C%9F/" rel="next" title="转载：Windows上使用iverilog+gtkwave仿真">
+      转载：Windows上使用iverilog+gtkwave仿真 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、概述与发展现状"><span class="nav-number">2.</span> <span class="nav-text">二、概述与发展现状</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概述"><span class="nav-number">2.1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-发展现状"><span class="nav-number">2.2.</span> <span class="nav-text">2. 发展现状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-技术关键"><span class="nav-number">2.3.</span> <span class="nav-text">3. 技术关键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-总体设计优化"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1 总体设计优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-能源动力系统"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 能源动力系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-建立数学模型"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3 建立数学模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-飞行控制"><span class="nav-number">2.3.4.</span> <span class="nav-text">3.4 飞行控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-定位、导航与通信"><span class="nav-number">2.3.5.</span> <span class="nav-text">3.5 定位、导航与通信</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、基本飞行原理"><span class="nav-number">3.</span> <span class="nav-text">三、基本飞行原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概述-v2"><span class="nav-number">3.1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-基本飞行动作"><span class="nav-number">3.2.</span> <span class="nav-text">2. 基本飞行动作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-垂直运动"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.1 垂直运动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-俯仰运动"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2 俯仰运动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-横滚运动"><span class="nav-number">3.2.3.</span> <span class="nav-text">2.3 横滚运动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-偏航运动"><span class="nav-number">3.2.4.</span> <span class="nav-text">2.4 偏航运动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-前后运动"><span class="nav-number">3.2.5.</span> <span class="nav-text">2.5 前后运动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-侧向运动"><span class="nav-number">3.2.6.</span> <span class="nav-text">2.6 侧向运动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-飞行姿态与电机转速关系"><span class="nav-number">3.3.</span> <span class="nav-text">3. 飞行姿态与电机转速关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、姿态解算分析"><span class="nav-number">4.</span> <span class="nav-text">四、姿态解算分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概述-v3"><span class="nav-number">4.1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-姿态模块"><span class="nav-number">4.2.</span> <span class="nav-text">2. 姿态模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-IMU惯性导航姿态算法"><span class="nav-number">4.3.</span> <span class="nav-text">3. IMU惯性导航姿态算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-算法分析"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.1 算法分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-坐标系统"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.2 坐标系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-欧拉角与方向余弦矩阵"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.3 欧拉角与方向余弦矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-空间姿态常规描述"><span class="nav-number">4.3.4.</span> <span class="nav-text">3.4 空间姿态常规描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-四元数"><span class="nav-number">4.3.5.</span> <span class="nav-text">3.5 四元数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-罗德里格旋转公式"><span class="nav-number">4.3.6.</span> <span class="nav-text">3.6 罗德里格旋转公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-四元数的求解与一阶龙格-库塔法"><span class="nav-number">4.3.7.</span> <span class="nav-text">3.7 四元数的求解与一阶龙格-库塔法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-8-传感器数据融合——基于四元数的互补滤波法-向量外积补偿"><span class="nav-number">4.3.8.</span> <span class="nav-text">3.8 传感器数据融合——基于四元数的互补滤波法(向量外积补偿)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-9-构建PI（比例-积分）控制器"><span class="nav-number">4.3.9.</span> <span class="nav-text">3.9 构建PI（比例-积分）控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-10-算法流程与总体代码分析"><span class="nav-number">4.3.10.</span> <span class="nav-text">3.10 算法流程与总体代码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-10-1-四元数法姿态解算流程"><span class="nav-number">4.3.10.1.</span> <span class="nav-text">3.10.1 四元数法姿态解算流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-10-2-总体代码"><span class="nav-number">4.3.10.2.</span> <span class="nav-text">3.10.2 总体代码</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、总结"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-全文总结"><span class="nav-number">5.1.</span> <span class="nav-text">1. 全文总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-个人总结"><span class="nav-number">5.2.</span> <span class="nav-text">2. 个人总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文献"><span class="nav-number">6.1.</span> <span class="nav-text">文献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网页"><span class="nav-number">6.2.</span> <span class="nav-text">网页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频"><span class="nav-number">6.3.</span> <span class="nav-text">视频</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

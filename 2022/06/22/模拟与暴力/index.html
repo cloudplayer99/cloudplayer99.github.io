@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-模拟与暴力 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟与暴力">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/06/22/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-模拟与暴力 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/Joseph.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/PE.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/WA.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/FalseCoin1.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/FC2.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/chicken.PNG">
+<meta property="article:published_time" content="2022-06-22T14:00:02.000Z">
+<meta property="article:modified_time" content="2022-06-22T15:20:58.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="算法入门基础">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/Joseph.PNG">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/06/22/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>模拟与暴力 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/06/22/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          模拟与暴力
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-22 22:00:02 / 修改时间：23:20:58" itemprop="dateCreated datePublished" datetime="2022-06-22T22:00:02+08:00">2022-06-22</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>b站视频链接：<a href="https://www.bilibili.com/video/BV1pE411E7RV?p=2" target="_blank" rel="noopener">北京理工大学ACM冬季培训课程</a><br>
+<a href="https://vjudge.net/contest/356465" target="_blank" rel="noopener">课程刷题地址 2020BIT冬训-模拟与暴力</a><br>
+本篇博文为看视频学习时的记录与自己的一些总结</p>
+</blockquote>
+<a id="more"></a>
+<h1>模拟 &amp;&amp; 暴力</h1>
+<h2 id="模拟（implementation）"><a class="header-anchor" href="#模拟（implementation）">¶</a>模拟（implementation）</h2>
+<h3 id="释义"><a class="header-anchor" href="#释义">¶</a>释义</h3>
+<p>在自然界和日常生活中,许多现象具有不确定的性质，有些问题甚至很难建立数学模型，或者很难用计算机建立递推、递归、枚举、回溯法等算法。在这种情况下，一般采用模拟策略。所谓模拟策略就是模拟某个过程，通过改变数学模型的各种参数，进而观察变更这些参数所引起过程状态的变化，由此展开算法设计。</p>
+<p>通俗的讲：<br>
+  <strong>找不到更高效的做法时，题目怎么描述就让程序怎么运行</strong></p>
+<h3 id="特点"><a class="header-anchor" href="#特点">¶</a>特点</h3>
+<p>思考量不大，但阅读量和代码量可以很大<br>
+可以很简单，也可以很复杂<br>
+形式多样：走迷宫，斗地主，打麻将，打三国杀，魔塔…</p>
+<p>注意：弄清题意，建立模型，注意细节</p>
+<h3 id="例题"><a class="header-anchor" href="#例题">¶</a>例题</h3>
+<h4 id="约瑟夫环"><a class="header-anchor" href="#约瑟夫环">¶</a>约瑟夫环</h4>
+<p><strong>问题背景</strong></p>
+<p><a href="https://baike.baidu.com/item/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">约瑟夫问题</a>（有时也称为约瑟夫斯置换，是一个出现在计算机科学和数学中的问题。在计算机编程的算法中，类似问题又称为约瑟夫环。又称“丢手绢问题”.）</p>
+<p>据说著名犹太历史学家 Josephus 有过以下的故事：在罗马人占领乔塔帕特后，39 个犹太人与 Josephus 及他的朋友躲到一个洞中，39 个犹太人决定宁愿死也不要被敌人抓到，于是决定了一个自杀方式，41 个人排成一个圆圈，由第 1 个人开始报数，每报数到第 3 人该人就必须自杀，然后再由下一个重新报数，直到所有人都自杀身亡为止。然而 Josephus 和他的朋友并不想遵从。首先从一个人开始，越过 k-2 个人（因为第一个人已经被越过），并杀掉第 k 个人。接着，再越过 k-1 个人，并杀掉第 k 个人。这个过程沿着圆圈一直进行，直到最终只剩下一个人留下，这个人就可以继续活着。问题是，给定了和，一开始要站在什么地方才能避免被处决？Josephus 要他的朋友先假装遵从，他将朋友与自己安排在第 16 个与第 31 个位置，于是逃过了这场死亡游戏。</p>
+<p><strong>问题描述</strong></p>
+<p>已知n个人（编号1、2、…n）围坐在一张圆桌周围。从编号为1的人开始报数，数到m的那个人出列；他的下一个又从1开始报数，数到m的那个人又出列；依次规律重复下去，直到圆桌周围的人全部出列。给定n、m，输出出列人员先后顺序和最后剩下的人。</p>
+<p><strong>实现</strong></p>
+<blockquote>
+<p>数组实现：<br>
+利用公式 (p+m-1)%n ，找出要输出数组的下标<br>
+其中 p 为开始报数的人的编号，n 为当前剩下的人数</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Joseph</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100</span>], k = <span class="number">0</span>, p = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        a[i] = i + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n &gt; <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        p = (p + m - <span class="number">1</span>) % n;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"第"</span> &lt;&lt; ++k &lt;&lt; <span class="string">"个出圈的是："</span> &lt;&lt; a[p] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = p + <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">            a[j - <span class="number">1</span>] = a[j];</span><br><span class="line">        n--;</span><br><span class="line">        <span class="keyword">if</span>(p == n) p = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"最后剩下的是："</span> &lt;&lt; a[p] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/Joseph.PNG" alt="avatar"></p>
+<h4 id="Online-judge-HDU-1073"><a class="header-anchor" href="#Online-judge-HDU-1073">¶</a>Online judge <a href="https://vjudge.net/problem/HDU-1073" target="_blank" rel="noopener">HDU-1073</a></h4>
+<p>给定两个输入，分别表示用户的输出和正确的输出，你来模拟测评机，对两个输出进行比较<br>
+完全相同输出 “Accepted”<br>
+只有空格，tab，回车的不同，输出 “Presentation Error”<br>
+否则输出 “Wrong Answer”</p>
+<p><strong>Presentation Error</strong><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/PE.PNG" alt="avatar"></p>
+<p><strong>Wrong Answer</strong><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/WA.PNG" alt="avatar"></p>
+<p><strong>分析</strong></p>
+<p>直接模拟比较过程即可</p>
+<p>先将输入的两组数据去掉 ‘\n’,’\t’ 和 ’ ’ ，得到新的两组数据，那么这两组数据如果不是完全匹配的，结果一定是 WA 。如果这两组匹配了，去掉 ‘\n’,’\t’ 和 ’ ’ 前的不完全匹配则是 PE 。如果去掉前的两组数据完全匹配，则是 AC 。</p>
+<h4 id="False-Coin-POJ-1029"><a class="header-anchor" href="#False-Coin-POJ-1029">¶</a>False Coin <a href="https://vjudge.net/problem/POJ-1029" target="_blank" rel="noopener">POJ-1029</a></h4>
+<p>给你n个硬币，k组称量结果。在这n个硬币中有一个是假的，它的重量跟其他的不一样（不知道大小），真硬币的重量都相同，每组第一个数字代表左右放置硬币的数量，后面则是硬币的编号，每组后面的符号则是称量结果。问能不能确定哪个是假币，如果不能输出0。</p>
+<p><strong>Sample Input</strong><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/FalseCoin1.PNG" alt="avatar"></p>
+<p><strong>Sample Onput</strong><br>
+<img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/FC2.PNG" alt="avatar"></p>
+<p><strong>分析</strong></p>
+<p>结果为等号两边一定是真硬币，结果为不等号肯定含有假硬币<br>
+所以对于所有的不等式，将轻硬币放在 <strong>lightCoins</strong> 里，将重硬币放在 <strong>heavyCoins</strong> 里<br>
+因为只有一个假硬币，且假硬币不会一会儿轻，一会儿重，所以最后假硬币出现在 lightCoins 或者 heavyCoins 的次数一定和不等号出现的次数相等<br>
+若恰有一个满足条件的疑似硬币，则输出</p>
+<h4 id="Lytchen-loves-JSON"><a class="header-anchor" href="#Lytchen-loves-JSON">¶</a>Lytchen loves JSON</h4>
+<p>本题来自：<a href="http://codeforces.com/gym/102426" target="_blank" rel="noopener">The 7-th BIT Campus Programming Contest for Junior Grade Group</a></p>
+<p><strong>很大的大模拟</strong><br>
+你需要编写一个程序，这个程序以一个合法的JSON文件作为输入，然后响应一系列查询，每个查询均会要求查询在这个JSON文档所包含的对象图上的一个值。</p>
+<p><s>有兴趣可以自行体验</s></p>
+<hr>
+<h2 id="暴力（brute-force）"><a class="header-anchor" href="#暴力（brute-force）">¶</a>暴力（brute force）</h2>
+<h3 id="释义-v2"><a class="header-anchor" href="#释义-v2">¶</a>释义</h3>
+<p>暴力是什么？</p>
+<p>暴力就是<strong>枚举</strong>，指的是从问题所有可能的解的集合中一一枚举各元素，用题目中给定的检验条件判定哪些是无用的，哪些是有用的。能使命题成立，即为其解。</p>
+<h3 id="特点-v2"><a class="header-anchor" href="#特点-v2">¶</a>特点</h3>
+<p>优点是算法简单，在局部地方使用枚举法，效果会十分的好<br>
+缺点是运算量过大，当问题的规模变大的时候，循环的阶数越大，执行速度越慢，计算量容易过大，可能获得一个TLE<br>
+所以需要先计算时间复杂度，并对其进行优化<br>
+<strong>一般直接暴力是不行的，需要有一些小小的优化</strong></p>
+<h3 id="时间复杂度"><a class="header-anchor" href="#时间复杂度">¶</a>时间复杂度</h3>
+<p>时间复杂度：估算算法需要执行的运算次数<br>
+题目通常有时间限制，一秒、两秒、五秒、十秒等<br>
+计算机一秒能够进行的运算次数约为 $1e8$ 次<br>
+一次运算：赋值、比较、加减乘除模等运算，虽然实际运算时间不一样，但都可以近似看做一次运算<br>
+时间复杂度表达为 $O(f(n))$，$f(n)$ 是运算次数，关于问题规模 $n$ 的函数</p>
+<p>由于近似性，可以忽略常数和低次项<br>
+$f(n)=n^2+3n+ \log_{2}(n)+4$ 与 $f(n)=n^2+3n+ \log_{2}(n)+1$ 运算次数不同，但时间复杂度相同，都为 $O(n^2)$</p>
+<p>简单的例子：</p>
+<blockquote>
+<p>求下列程序的时间复杂度</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n;)</span><br><span class="line">&#123;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$O(n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n;)</span><br><span class="line">&#123;</span><br><span class="line">    i *= <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$O(\log_{2}n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i;)</span><br><span class="line">    &#123;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$O(n^2)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span> * n;)</span><br><span class="line">&#123;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span> * m;)</span><br><span class="line">&#123;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$O(n+m)$</p>
+<h3 id="例题-v2"><a class="header-anchor" href="#例题-v2">¶</a>例题</h3>
+<h4 id="一个简单的例子"><a class="header-anchor" href="#一个简单的例子">¶</a>一个简单的例子</h4>
+<p>已知 $S_n=1+1/2+1/3+…+1/n$. 给出一个整数 $k(1\le k\le 15)$ 计算出一个最小的 $n$，使得 $S_n&gt;k$.</p>
+<p>分析：<br>
+$S_n$ 为无穷级数，不收敛，对于任意 $k$ 总能找到一个 $S_n&gt;k$<br>
+写一个程序算一下发现 $S_{1835421}&gt;15$，不用担心超时<br>
+所以直接暴力即可</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; ; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += <span class="number">1.0</span> / i;</span><br><span class="line">        <span class="keyword">if</span> (sum &gt; k) <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果每个用例有 $q(1\le q\le 100000)$ 次询问呢？<br>
+每次都重新算太费时间，预处理！</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">15</span>; i++)   ans[i] = query(i);</span><br></pre></td></tr></table></figure>
+<h4 id="百钱买百鸡问题"><a class="header-anchor" href="#百钱买百鸡问题">¶</a>百钱买百鸡问题</h4>
+<p>有一个人有100块钱，打算买100只鸡<br>
+到市场一看，公鸡一只三元，母鸡一只五元，小鸡三只一元<br>
+试求用100元买100只鸡，各为多少才合适？输出所有方案</p>
+<p>分析：</p>
+<p>根据题意我们可以得到方程组：</p>
+<p>$3X+5Y+Z/3=100$</p>
+<p>$X+Y+Z=100$</p>
+<p>问题转化为求不定方程的非负整数解</p>
+<p>解法1：for for for 枚举x，y，z，然后check              $O(n^3)$<br>
+解法2：for for 枚举x，y，让 $z=100-x-y$ ，然后check方程一   $O(n^2)$<br>
+解法3：for 枚举x，把x看作已知，解出y，z              $O(n)$</p>
+<p>解法3代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt;= <span class="number">25</span>; x++)   <span class="comment">//注意x，y，z的取值范围</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> ((<span class="number">200</span> - <span class="number">8</span> * x) % <span class="number">14</span> == <span class="number">0</span> &amp;&amp; ( <span class="number">1200</span> - <span class="number">6</span> * x ) % <span class="number">14</span> == <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">" "</span>&lt;&lt;(<span class="number">200</span> - <span class="number">8</span> * x) / <span class="number">14</span>&lt;&lt;<span class="string">" "</span>&lt;&lt;( <span class="number">1200</span> - <span class="number">6</span> * x ) / <span class="number">14</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/chicken.PNG" alt="avatar"></p>
+<h4 id="Division-Uva-725"><a class="header-anchor" href="#Division-Uva-725">¶</a>Division <a href="https://vjudge.net/problem/UVA-725" target="_blank" rel="noopener">Uva-725</a></h4>
+<p>输入正整数 $n（2\le n\le 79$），按照从小到大的顺序输出所有形如 $abcde/fghij=n$ 的表达式，其中a~j恰好为数字0到9的一个排列（可以有前导0）<br>
+Sample Input：$62$<br>
+Sample Output：$79546/01283 = 62$  $94736/01528 = 62$</p>
+<p>分析:</p>
+<p>可不可以枚举0到9的所有排列？<br>
+一共需要 $10！=3628800$ 可以接受，但是没必要<br>
+只需枚举fghij就可以算出abcde，再判断是否所有数字都不相同即可（对于判重存在多种方法）<br>
+枚举次数减少到一万以内</p>
+<p><a href="https://blog.csdn.net/qq_40738840/article/details/104440707" target="_blank" rel="noopener">点这里传送到大佬的题解</a></p>
+<p><strong>大佬提示的注意点：</strong><br>
+可用sprintf完成数值到字符串的格式转换，注意string此时不可直接作为接受字符串，需用字符数组</p>
+<p><strong>大佬的代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> N, num=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;N) == <span class="number">1</span> &amp;&amp; N != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num != <span class="number">0</span>) <span class="built_in">puts</span>(<span class="string">""</span>); num++; <span class="comment">// 连续的测试用例间需有空行</span></span><br><span class="line">        <span class="keyword">char</span> buf[<span class="number">100</span>]; <span class="built_in">string</span> s; <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> fj=<span class="number">1234</span>; ; fj++) &#123; <span class="comment">// 枚举1234 - 98765</span></span><br><span class="line">            <span class="built_in">sprintf</span>(buf, <span class="string">"%05d%05d"</span>, fj*N, fj); <span class="comment">// 分子，分母转为字符串</span></span><br><span class="line">            s = buf;</span><br><span class="line">            <span class="keyword">if</span> (s.size() &gt; <span class="number">10</span>) <span class="keyword">break</span>; <span class="comment">// 其中一个超过5位数</span></span><br><span class="line">            <span class="built_in">unordered_set</span>&lt;<span class="keyword">char</span>&gt; _set(s.begin(), s.end()); <span class="comment">// 判重</span></span><br><span class="line">            <span class="keyword">if</span> (_set.size() == <span class="number">10</span>) &#123; <span class="comment">// 刚好整除且无重复数字</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%s / %s = %d\n"</span>, s.substr(<span class="number">0</span>,<span class="number">5</span>).c_str(), s.substr(<span class="number">5</span>).c_str(), N);</span><br><span class="line">                cnt ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cnt == <span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">"There are no solutions for %d.\n"</span>, N);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Four-Operations-HDU-5938"><a class="header-anchor" href="#Four-Operations-HDU-5938">¶</a>Four Operations <a href="https://vjudge.net/problem/HDU-5938" target="_blank" rel="noopener">HDU-5938</a></h4>
+<p>给定一个全是数字的字符串（长度为 $5$ 到 $20$），按照顺序加入 $‘+’、‘-’、‘*’、‘/’$ 四个运算符<br>
+求最大的计算结果，有 $q$ 组询问$（1\le q\le 100000）$</p>
+<p>Sample Input：12345<br>
+Sample Output：1</p>
+<p>分析：</p>
+<p>直接暴力会超时，约 $20^4$ 种情况<br>
+计算形式总是 $a+b-c*d/e$，我们希望a、b、e大一些，c和d小一些<br>
+给c和d各一位，给e一位或两位，a和b中的一个拿一位，另一个拿光<br>
+共枚举4种情况即可</p>
+<h4 id="白学串"><a class="header-anchor" href="#白学串">¶</a>白学串</h4>
+<p>本题也来自：<a href="http://codeforces.com/gym/102426" target="_blank" rel="noopener">The 7-th BIT Campus Programming Contest for Junior Grade Group</a></p>
+<p>给定一个n个数的数字序列，每个数不超过 $1e9$ 有 $q$ 次询问，每次询问一个区间是否存在三个数可以组成一个三角形，输出YES或NO $（1\le q\le 100000）$</p>
+<p>分析：</p>
+<p>不难发现，一组数不能构成三角形的充要条件是排完序后的任意三个相邻的数构不成三角形<br>
+换句话说，要写出尽可能多的数就要让相邻的三个数刚好构不成三角形<br>
+不能构成三角形的极限情况，就是 <strong>斐波那契数列</strong><br>
+$1，1，2，3，5，8，13，21…$<br>
+而斐波那契数列增长很快，约第40项就达到了 $1e9$ ，而题目给的数不超过 $1e9$<br>
+所以当区间长度超过40，直接输出YES，否则排序后判断或直接暴力</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/06/22/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/" title="模拟与暴力">https://cloudplayer99.github.io/2022/06/22/模拟与暴力/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" rel="tag"># 算法入门基础</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/22/C++%E4%B8%8ESTL/" rel="prev" title="C++ 与 STL">
+      <i class="fa fa-chevron-left"></i> C++ 与 STL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="next" title="简单数据结构">
+      简单数据结构 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">模拟 &amp;&amp; 暴力</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟（implementation）"><span class="nav-number">1.1.</span> <span class="nav-text">模拟（implementation）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#释义"><span class="nav-number">1.1.1.</span> <span class="nav-text">释义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题"><span class="nav-number">1.1.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#约瑟夫环"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">约瑟夫环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Online-judge-HDU-1073"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Online judge HDU-1073</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#False-Coin-POJ-1029"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">False Coin POJ-1029</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lytchen-loves-JSON"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">Lytchen loves JSON</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴力（brute-force）"><span class="nav-number">1.2.</span> <span class="nav-text">暴力（brute force）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#释义-v2"><span class="nav-number">1.2.1.</span> <span class="nav-text">释义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-v2"><span class="nav-number">1.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">1.2.3.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题-v2"><span class="nav-number">1.2.4.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个简单的例子"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">一个简单的例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#百钱买百鸡问题"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">百钱买百鸡问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Division-Uva-725"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">Division Uva-725</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Four-Operations-HDU-5938"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">Four Operations HDU-5938</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#白学串"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">白学串</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/06/22/模拟与暴力/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

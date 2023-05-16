@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JupyterLab：程序员的笔记本神器  image  JupyterLab 对于 Jupyter Notebook 有着完全的支持  JupyterLab 是一个交互式的开发环境，是 jupyter notebook 的下一代产品，集成了更多的功能，等其正式版发布，相信那时就是 jupyter notebook 被取代的时候">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载：JupyterLab：程序员的笔记本神器">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/08/14/JupyterLab%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%A5%9E%E5%99%A8/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="JupyterLab：程序员的笔记本神器  image  JupyterLab 对于 Jupyter Notebook 有着完全的支持  JupyterLab 是一个交互式的开发环境，是 jupyter notebook 的下一代产品，集成了更多的功能，等其正式版发布，相信那时就是 jupyter notebook 被取代的时候">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-6670fdd5811eb235.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-86ee5941b8645506.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-ddbe8be12debaba9.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-4b30d4e26734afe0.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-8f93294d6359ff61.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-22c6dfd6a35496d9.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-74e3b503c903a297.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-697abe1cc8a8b5f3.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-7139f5f500a34034.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-13753abc317684a3.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-16ea97010a5d0c22.webp">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-af69697e4cc2999a.webp">
+<meta property="article:published_time" content="2020-08-14T08:06:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="JupyterLab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-6670fdd5811eb235.webp">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/08/14/JupyterLab%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%A5%9E%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>转载：JupyterLab：程序员的笔记本神器 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/08/14/JupyterLab%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%A5%9E%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          转载：JupyterLab：程序员的笔记本神器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-14 16:06:00" itemprop="dateCreated datePublished" datetime="2020-08-14T16:06:00+08:00">2020-08-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>JupyterLab：程序员的笔记本神器</h1>
+<p><br><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-6670fdd5811eb235.webp" alt="avatar"></p>
+<center>image</center><br>
+<blockquote>
+<p>JupyterLab 对于 Jupyter Notebook 有着完全的支持</p>
+</blockquote>
+<p><code>JupyterLab</code> 是一个交互式的开发环境，是 <code>jupyter notebook</code> 的下一代产品，集成了更多的功能，等其正式版发布，相信那时就是 <code>jupyter notebook</code> 被取代的时候</p>
+<a id="more"></a>
+<p>通过使用 <code>JupyterLab</code>，能够以灵活，集成和可扩展的方式处理文档和活动：</p>
+<ul>
+<li>可以开启终端，用于交互式运行代码，完全支持丰富的输出</li>
+<li>支持 <code>Markdown</code>，<code>Python</code>，<code>R</code>，<code>LaTeX</code> 等任何文本文件</li>
+<li>增强 <code>notebook</code> 功能</li>
+<li>更多插件支持</li>
+</ul>
+<p>如果你在日常生活中，有以下需求，我觉得你可以安装一个 <code>JupyterLab</code></p>
+<ul>
+<li>随时随地希望试验一些代码片段</li>
+<li>多语言、多文档支持</li>
+<li>有记笔记需求（文本+代码）</li>
+</ul>
+<blockquote>
+<p>安装</p>
+</blockquote>
+<p>接下来，我将以 <code>Python</code> 为默认语言来搭建 <code>JupyterLab</code> ，首先确认你安装好了 <code>Python</code> 基本环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 一行命令搞定</span></span><br><span class="line">pip install jupyterlab</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装ipython</span></span><br><span class="line">pip install ipython</span><br></pre></td></tr></table></figure>
+<p>如果在服务器使用的话，个人建议还是设置一下密码，配置过程如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入ipython交互环境</span></span><br><span class="line">ipython</span><br></pre></td></tr></table></figure>
+<p>生成密码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> notebook.auth <span class="keyword">import</span> passwd</span><br><span class="line">passwd()</span><br><span class="line"><span class="comment"># 输入你自己设置登录JupyterLab界面的密码 然后会有一串输出，记得复制下来，等会配置需要使用</span></span><br></pre></td></tr></table></figure>
+<p>修改 <code>JupyterLab</code> 配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter lab --generate-config</span><br></pre></td></tr></table></figure>
+<p>修改以下配置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.allow_root = <span class="literal">True</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="literal">False</span></span><br><span class="line">c.NotebookApp.password = <span class="string">'刚才复制的一串数字粘贴到这里'</span></span><br></pre></td></tr></table></figure>
+<p>为了后续能够方便地安装插件，请先安装好 <code>node</code> 环境，假设你安装好，接下来演示一下怎么安装插件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 以安装一个生成目录的插件为例</span></span><br><span class="line">jupyter labextension install @jupyterlab/toc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看安装的插件</span></span><br><span class="line">jupyter labextension list</span><br></pre></td></tr></table></figure>
+<p>安装完毕后，打开 <code>JupyterLab</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter-lab --ip=0.0.0.0</span><br></pre></td></tr></table></figure>
+<p><font color='red'> 这里在命令行使用 jupyter-lab 或 jupyter lab 命令即可 </font></p>
+<p>点击 <code>Settings-&gt;Advanced Settings Editor</code>，将 <code>false</code> 改成 <code>true</code>，如下图：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-86ee5941b8645506.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>此时在界面左侧应该可以看到一个插件管理的图标，点击就可以看到刚才安装的插件</p>
+<p>通过这个插件查询功能，你可以很方便的安装插件，安装完成后可以直接热更新，看一下我的 <code>JupyterLab</code> 首页：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-ddbe8be12debaba9.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>画流程图、写代码、写文档，各种文档渲染、多语言支持，怎么样，有兴趣你也可以搭建一个~</p>
+<blockquote>
+<p>插件</p>
+</blockquote>
+<p><code>JupyterLab</code> 目前的插件也算丰富，我目前使用的插件如下：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-4b30d4e26734afe0.webp" alt="avatar"></p>
+<center>image</center><br>
+<blockquote>
+<p>功能</p>
+</blockquote>
+<p>代码提示：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-8f93294d6359ff61.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>使用文档提示：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-22c6dfd6a35496d9.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>支持 <code>vim emacs</code> 等按键风格：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-74e3b503c903a297.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>文档查看特别方便：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-697abe1cc8a8b5f3.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>代码以及界面主题设置：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-7139f5f500a34034.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>文档多窗口：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-13753abc317684a3.webp" alt="avatar"></p>
+<center>image</center><br>
+<p><code>cell</code> 可以拖拽且输出可以新窗口显示：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-16ea97010a5d0c22.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>随时启动新的终端交互：</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/jupyter/1157824-af69697e4cc2999a.webp" alt="avatar"></p>
+<center>image</center><br>
+<p>这里只是捡了一些常见的功能说说，更多功能可以查看官方文档来发现，如果你有更好的使用技巧，欢迎交流~</p>
+<blockquote>
+<p>更多</p>
+</blockquote>
+<ul>
+<li>官方地址：<a href="https://github.com/jupyterlab" target="_blank" rel="noopener">https://github.com/jupyterlab</a></li>
+<li>文档：<a href="https://jupyterlab.readthedocs.io/en/stable/" target="_blank" rel="noopener">https://jupyterlab.readthedocs.io/en/stable/</a></li>
+<li>插件：<a href="https://github.com/topics/jupyterlab-extension" target="_blank" rel="noopener">https://github.com/topics/jupyterlab-extension</a></li>
+</ul>
+<hr>
+<p>作者：howie6879<br>
+链接：<a href="https://www.jianshu.com/p/88feebf3eb3a" target="_blank" rel="noopener">https://www.jianshu.com/p/88feebf3eb3a</a><br>
+来源：简书<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>另有一篇文章可参考：<br>
+<a href="https://zhuanlan.zhihu.com/p/87403131" target="_blank" rel="noopener">知乎：JupyterLab，极其强大的下一代notebook！</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/08/14/JupyterLab%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%A5%9E%E5%99%A8/" title="转载：JupyterLab：程序员的笔记本神器">https://cloudplayer99.github.io/2020/08/14/JupyterLab：程序员的笔记本神器/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+              <a href="/tags/JupyterLab/" rel="tag"># JupyterLab</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/12/%E6%95%B0%E7%94%B5%E7%BA%BF%E4%B8%8A%E8%80%83%E8%AF%95%E4%B8%80%E5%91%A8%E5%89%8D/" rel="prev" title="数电线上考试一周前">
+      <i class="fa fa-chevron-left"></i> 数电线上考试一周前
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/25/Ubuntu%20%E5%85%A5%E9%97%A8/" rel="next" title="Ubuntu 入门">
+      Ubuntu 入门 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">JupyterLab：程序员的笔记本神器</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

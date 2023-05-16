@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-贪心 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贪心和排序">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/06/22/%E8%B4%AA%E5%BF%83%E5%92%8C%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-贪心 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="article:published_time" content="2022-06-22T14:00:05.000Z">
+<meta property="article:modified_time" content="2022-06-22T15:41:50.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="算法入门基础">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/06/22/%E8%B4%AA%E5%BF%83%E5%92%8C%E6%8E%92%E5%BA%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>贪心和排序 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/06/22/%E8%B4%AA%E5%BF%83%E5%92%8C%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          贪心和排序
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-22 22:00:05 / 修改时间：23:41:50" itemprop="dateCreated datePublished" datetime="2022-06-22T22:00:05+08:00">2022-06-22</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>b站视频链接：<a href="https://www.bilibili.com/video/BV1pE411E7RV?p=5" target="_blank" rel="noopener">北京理工大学ACM冬季培训课程</a><br>
+<a href="https://vjudge.net/contest/356986" target="_blank" rel="noopener">课程刷题地址 2020BIT冬训-贪心</a><br>
+本篇博文为看视频学习时的记录与自己的一些总结</p>
+</blockquote>
+<a id="more"></a>
+<h1>贪心和排序</h1>
+<h2 id="贪心"><a class="header-anchor" href="#贪心">¶</a>贪心</h2>
+<h3 id="啥是贪心"><a class="header-anchor" href="#啥是贪心">¶</a>啥是贪心</h3>
+<blockquote>
+<ul>
+<li>不严格的定义：</li>
+<li>诶这题咋做啊</li>
+<li>诶这xb搞搞好像很对很有道理啊</li>
+<li>诶这题过了（蜜汁表情）</li>
+</ul>
+</blockquote>
+<h3 id="贪心是啥"><a class="header-anchor" href="#贪心是啥">¶</a>贪心是啥</h3>
+<blockquote>
+<ul>
+<li>严格（？）的定义：</li>
+<li>在对问题求解时，总是做出在当前看来是最好的选择。</li>
+<li>也就是说，</li>
+<li>不从整体最优上加以考虑，他所做出的是在某种意义上的局部最优解</li>
+</ul>
+</blockquote>
+<h3 id="luoguP1181数列分段-Section-I"><a class="header-anchor" href="#luoguP1181数列分段-Section-I">¶</a><a href="https://www.luogu.com.cn/problem/P1181" target="_blank" rel="noopener">luoguP1181数列分段 Section I</a></h3>
+<blockquote>
+<p><strong>题目描述</strong><br>
+对于给定的一个长度为 $N$ 的正整数数列 $A_i$ ，现要将其分成连续的若干段，并且每段和不超过 $M$ （可以等于 $M$ ），问最少能将其分成多少段使得满足要求。<br>
+<strong>输入格式</strong><br>
+第 $1$ 行包含两个正整数 $N,M$，表示了数列 $A_i$ 的长度与每段和的最大值，第 $2$ 行包含 $N$ 个空格隔开的非负整数 $A_i$ ，如题目所述。<br>
+<strong>输出格式</strong><br>
+一个正整数，输出最少划分的段数。<br>
+<strong>说明：</strong>$N \le 1e5，M \le 1e9$<br>
+<strong>分析：</strong><br>
+  入门题<br>
+  对于每一段，不断的加入数直到和超过M<br>
+  时间复杂度 $O(n)$</p>
+</blockquote>
+<p><strong>题解：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//这个是一开始写的，直接就TLE了</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m, num, cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num);</span><br><span class="line">        a.push_back(num);</span><br><span class="line">        <span class="keyword">if</span> (accumulate(a.begin(), a.end(), <span class="number">0</span>) &gt; m) &#123;</span><br><span class="line">            a.clear();</span><br><span class="line">            a.push_back(num);</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, cnt + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//这才是AC代码</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m, num, sum = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num);</span><br><span class="line">        a.push_back(num);</span><br><span class="line">        sum += num;</span><br><span class="line">        <span class="keyword">if</span> (sum &gt; m) &#123;</span><br><span class="line">            a.clear();</span><br><span class="line">            a.push_back(num);</span><br><span class="line">            sum = num;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, cnt + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="贪心的注意事项"><a class="header-anchor" href="#贪心的注意事项">¶</a>贪心的注意事项</h3>
+<blockquote>
+<ul>
+<li>优点</li>
+<li>一般非常好想</li>
+<li>分支比较少，复杂度低</li>
+</ul>
+</blockquote>
+<br>
+<blockquote>
+<ul>
+<li>缺点</li>
+<li>不一定对，要求保证贪心结果无后效性</li>
+</ul>
+</blockquote>
+<h3 id="一般贪心题套路"><a class="header-anchor" href="#一般贪心题套路">¶</a>一般贪心题套路</h3>
+<blockquote>
+<ul>
+<li>贪心 + 排序</li>
+<li>贪心 + 二分</li>
+</ul>
+</blockquote>
+<h3 id="luoguP1090合并果子"><a class="header-anchor" href="#luoguP1090合并果子">¶</a><a href="https://www.luogu.com.cn/problem/P1090" target="_blank" rel="noopener">luoguP1090合并果子</a></h3>
+<blockquote>
+<p><strong>题目描述</strong><br>
+在一个果园里，多多已经将所有的果子打了下来，而且按果子的不同种类分成了不同的堆。多多决定把所有的果子合成一堆。<br>
+每一次合并，多多可以把两堆果子合并到一起，消耗的体力等于两堆果子的重量之和。可以看出，所有的果子经过 $n-1$ 次合并之后， 就只剩下一堆了。多多在合并果子时总共消耗的体力等于每次合并所耗体力之和。<br>
+因为还要花大力气把这些果子搬回家，所以多多在合并果子时要尽可能地节省体力。假定每个果子重量都为 $1$ ，并且已知果子的种类 数和每种果子的数目，你的任务是设计出合并的次序方案，使多多耗费的体力最少，并输出这个最小的体力耗费值。<br>
+例如有 $3$ 种果子，数目依次为 $1$ ， $2$ ， $9$ 。可以先将 $1$ 、 $2$ 堆合并，新堆数目为 $3$ ，耗费体力为 $3$ 。接着，将新堆与原先的第三堆合并，又得到新的堆，数目为 $12$ ，耗费体力为 $12$ 。所以多多总共耗费体力 $=3+12=15$ 。可以证明 $15$ 为最小的体力耗费值。<br>
+<strong>输入格式</strong><br>
+共两行。<br>
+第一行是一个整数 $n(1\le n\le 10000)$ ，表示果子的种类数。<br>
+第二行包含 $n$ 个整数，用空格分隔，第 $i$ 个整数 $a_i(1\le a_i\le 20000)$ 是第 $i$ 种果子的数目。<br>
+<strong>输出格式</strong><br>
+一个整数，也就是最小的体力耗费值。输入数据保证这个值小于 $2^{31}$ 。<br>
+<strong>分析：</strong><br>
+  普及题<br>
+  每次合并最小两堆，用优先队列维护<br>
+  Huffman编码</p>
+</blockquote>
+<p><strong>题解：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//这是讲这一讲的学长现场写的</span></span><br><span class="line"><span class="keyword">int</span> m, n, i, j, ans;</span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt;q;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m);</span><br><span class="line">        q.push(m);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">        <span class="keyword">int</span> p1 = q.top(); q.pop();</span><br><span class="line">        <span class="keyword">int</span> p2 = q.top(); q.pop();</span><br><span class="line">        ans += p1 + p2; q.push(p1 + p2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>附优先队列用法示例（<strong>C++ reference</strong>）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">void</span> <span class="title">print_queue</span><span class="params">(T&amp; q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; q.top() &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        q.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::priority_queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : &#123;<span class="number">1</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;)</span><br><span class="line">        q.push(n);</span><br><span class="line"></span><br><span class="line">    print_queue(q);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, <span class="built_in">std</span>::greater&lt;<span class="keyword">int</span>&gt; &gt; q2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : &#123;<span class="number">1</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;)</span><br><span class="line">        q2.push(n);</span><br><span class="line"></span><br><span class="line">    print_queue(q2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Using lambda to compare elements.</span></span><br><span class="line">    <span class="keyword">auto</span> cmp = [](<span class="keyword">int</span> left, <span class="keyword">int</span> right) &#123; <span class="keyword">return</span> (left ^ <span class="number">1</span>) &lt; (right ^ <span class="number">1</span>); &#125;;</span><br><span class="line">    std::priority_queue&lt;int, std::vector&lt;int&gt;, decltype(cmp)&gt; q3(cmp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : &#123;<span class="number">1</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;)</span><br><span class="line">        q3.push(n);</span><br><span class="line"></span><br><span class="line">    print_queue(q3);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">9 8 7 6 5 4 3 2 1 0</span></span><br><span class="line"><span class="comment">0 1 2 3 4 5 6 7 8 9</span></span><br><span class="line"><span class="comment">8 9 6 7 4 5 2 3 0 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="luoguP1182数列分段-Section-II"><a class="header-anchor" href="#luoguP1182数列分段-Section-II">¶</a><a href="https://www.luogu.com.cn/problem/P1182" target="_blank" rel="noopener">luoguP1182数列分段 Section II</a></h3>
+<blockquote>
+<p><strong>题目描述</strong><br>
+对于给定的一个长度为 $N$ 的正整数数列 $A_{1\sim N}$ ，现要将其分成 $M（M\leq N）$ 段，并要求每段连续，且每段和的最大值最小。<br>
+关于最大值最小：<br>
+例如一数列 $4\ 2\ 4\ 5\ 1$ 要分成 $3$ 段。<br>
+将其如下分段：<br>
+$[4\ 2][4\ 5][1]$<br>
+第 $1$ 段和为 $6$ ，第 $2$ 段和为 $9$ ，第 $3$ 段和为 $1$ ，和最大值为 $9$ 。<br>
+将其如下分段：<br>
+$[4][2\ 4][5\ 1]$<br>
+第 $1$ 段和为 $4$ ，第 $2$ 段和为 $6$ ，第 $3$ 段和为 $6$ ，和最大值为 $6$ 。<br>
+并且无论如何分段，最大值不会小于 $6$。<br>
+所以可以得到要将数列 $4\ 2\ 4\ 5\ 1$ 要分成 $3$ 段，每段和的最大值最小为 $6$ 。<br>
+<strong>输入格式</strong><br>
+第 $1$ 行包含两个正整数 $N,M$ 。<br>
+第 $2$ 行包含 $N$ 个空格隔开的非负整数 $A_i$ ，含义如题目所述。<br>
+<strong>输出格式</strong><br>
+一个正整数，即每段和最大值最小为多少。<br>
+<strong>说明：</strong> $1\leq N\leq 10^5 ，M\leq N，A_i &lt; 10^8$ ， 答案不超过 $10^9$<br>
+<strong>分析：</strong><br>
+  普及题<br>
+  二分M，每次贪心验证是否可行<br>
+  时间复杂度 $O(n\log n)$</p>
+</blockquote>
+<p><strong>题解：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100005</span>];</span><br><span class="line"><span class="keyword">int</span> i, j, m, n, l, r = <span class="number">0</span>, sum, k, mid;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">        r += a[i];                  <span class="comment">//r为上界</span></span><br><span class="line">        <span class="keyword">if</span> (l &lt; a[i]) l = a[i];     <span class="comment">//l为下界</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r)                  <span class="comment">//二分</span></span><br><span class="line">    &#123;</span><br><span class="line">        mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        k = <span class="number">1</span>; sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (sum + a[i] &gt; mid) &#123; sum = a[i]; k++; &#125;</span><br><span class="line">            <span class="keyword">else</span> sum += a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= m) &#123; r = mid - <span class="number">1</span>; &#125;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, r + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里要注意用二分法的下界为这组数中最大的那个的值<br>
+学长 <code>while</code> 语句中写的是 <code>(l &lt; r)</code><br>
+个人觉得应改为 <code>while (l &lt;= r)</code><br>
+两个都能AC，但使用题目描述中的例子会发现用 <code>(l &lt; r)</code> 的会输出 $7$<br>
+还有别忘了变量 $r$ 的初始化</p>
+<hr>
+<h2 id="排序"><a class="header-anchor" href="#排序">¶</a>排序</h2>
+<h3 id="sort"><a class="header-anchor" href="#sort">¶</a>sort</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort(first_pointer, first_pointer + n, cmp);</span><br></pre></td></tr></table></figure>
+<p>在之前的C++STL中已讲到：<a href="https://cloudplayer99.github.io/2020/04/15/C++%E4%B8%8EC++STL/#4-4-1-sort">C++STL：sort</a></p>
+<h3 id="结构体sort"><a class="header-anchor" href="#结构体sort">¶</a>结构体sort</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">&#125;stu[<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(student p, student q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> p.score &gt; q.score;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sort(stu+<span class="number">1</span>, stu+<span class="number">1</span>+n, cmp);</span><br></pre></td></tr></table></figure>
+<h3 id="STL的排序方法"><a class="header-anchor" href="#STL的排序方法">¶</a>STL的排序方法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span></span><br><span class="line">sort(v.begin(), v.end(), cmp);</span><br><span class="line"></span><br><span class="line"><span class="built_in">queue</span> <span class="built_in">stack</span></span><br><span class="line">不能排序</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span></span><br><span class="line">本来就有序</span><br><span class="line"></span><br><span class="line"><span class="built_in">map</span></span><br><span class="line">不需要排序</span><br><span class="line"></span><br><span class="line">priority_queue</span><br><span class="line">push后自然有序</span><br></pre></td></tr></table></figure>
+<h3 id="另外"><a class="header-anchor" href="#另外">¶</a>另外</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nth_element(a+l, a+k, a+r);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>使得 a 中 [l, r) 区间的第k小处于第k位，不保证其他位置有序</li>
+<li>时间复杂度 $O(n)$</li>
+</ul>
+</blockquote>
+<br>
+<blockquote>
+<ul>
+<li><s>主要用途：过2020蓝桥杯选拔H题</s></li>
+</ul>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/06/22/%E8%B4%AA%E5%BF%83%E5%92%8C%E6%8E%92%E5%BA%8F/" title="贪心和排序">https://cloudplayer99.github.io/2022/06/22/贪心和排序/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" rel="tag"># 算法入门基础</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/" rel="prev" title="字符串入门">
+      <i class="fa fa-chevron-left"></i> 字符串入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92DP/" rel="next" title="动态规划DP">
+      动态规划DP <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">贪心和排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#贪心"><span class="nav-number">1.1.</span> <span class="nav-text">贪心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#啥是贪心"><span class="nav-number">1.1.1.</span> <span class="nav-text">啥是贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪心是啥"><span class="nav-number">1.1.2.</span> <span class="nav-text">贪心是啥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#luoguP1181数列分段-Section-I"><span class="nav-number">1.1.3.</span> <span class="nav-text">luoguP1181数列分段 Section I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪心的注意事项"><span class="nav-number">1.1.4.</span> <span class="nav-text">贪心的注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一般贪心题套路"><span class="nav-number">1.1.5.</span> <span class="nav-text">一般贪心题套路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#luoguP1090合并果子"><span class="nav-number">1.1.6.</span> <span class="nav-text">luoguP1090合并果子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#luoguP1182数列分段-Section-II"><span class="nav-number">1.1.7.</span> <span class="nav-text">luoguP1182数列分段 Section II</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">1.2.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sort"><span class="nav-number">1.2.1.</span> <span class="nav-text">sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体sort"><span class="nav-number">1.2.2.</span> <span class="nav-text">结构体sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STL的排序方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">STL的排序方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#另外"><span class="nav-number">1.2.4.</span> <span class="nav-text">另外</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

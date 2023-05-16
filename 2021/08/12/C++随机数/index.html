@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="我不生产代码，我只是代码的搬运工； 我也不生产文档，只是想替官方文档宣传宣传； 其实我也不写博客，只是拿别人的博客修修改改。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 产生伪随机数的一些参考">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/08/12/C++%E9%9A%8F%E6%9C%BA%E6%95%B0/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="我不生产代码，我只是代码的搬运工； 我也不生产文档，只是想替官方文档宣传宣传； 其实我也不写博客，只是拿别人的博客修修改改。">
+<meta property="article:published_time" content="2021-08-12T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/08/12/C++%E9%9A%8F%E6%9C%BA%E6%95%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>C++ 产生伪随机数的一些参考 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/08/12/C++%E9%9A%8F%E6%9C%BA%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++ 产生伪随机数的一些参考
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-12 12:00:00" itemprop="dateCreated datePublished" datetime="2021-08-12T12:00:00+08:00">2021-08-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>我不生产代码，我只是代码的搬运工；<br>
+我也不生产文档，只是想替官方文档宣传宣传；<br>
+其实我也不写博客，只是拿别人的博客修修改改。<a id="more"></a></p>
+<h2 id="C-库伪随机数发生器"><a class="header-anchor" href="#C-库伪随机数发生器">¶</a>C 库伪随机数发生器</h2>
+<p>定义于头文件 &lt;cstdlib&gt;<br>
+<a href="https://www.apiref.com/cpp-zh/cpp/numeric/random/rand.html" target="_blank" rel="noopener">rand</a> 生成伪随机数(函数)<br>
+<a href="https://www.apiref.com/cpp-zh/cpp/numeric/random/srand.html" target="_blank" rel="noopener">srand</a> 初始化伪随机数生成器(函数)<br>
+<a href="https://www.apiref.com/cpp-zh/cpp/numeric/random/RAND_MAX.html" target="_blank" rel="noopener">RAND_MAX</a> std::rand 生成的最大可能值(宏常量)</p>
+<p><code>rand()</code> 函数无参数，其返回值为 <code>​0</code>​ 与 <code>RAND_MAX</code> （包含 <code>0</code> 与 <code>RAND_MAX</code> ）的随机整数值，保证 <code>RAND_MAX</code> 至少为 <code>32767</code>，<code>rand()</code> 函数内部实现是用线性同余法做的，它不是真的随机数，因其周期特别长，故在一定的范围里可看成是随机的。<code>rand()</code> 每次执行时是相同的；若要不同，需要用函数 <code>srand()</code> 初始化它。<code>srand()</code> 函数用来设置 <code>rand()</code> 产生随机数时的随机数种子，参数 <code>seed</code> 必须是个整数，未设定随机数种子时，系统默认的随机数种子为 <code>1</code>。</p>
+<p>产生随机数的用法</p>
+<ol>
+<li>
+<p>给 <code>srand()</code> 提供一个 <code>unsigned int</code> 类型的种子；</p>
+</li>
+<li>
+<p>调用 <code>rand()</code>，它会根据提供给 <code>srand()</code> 的种子值返回一个随机数(在 <code>0</code> 到 <code>RAND_MAX</code> 之间)；</p>
+</li>
+<li>
+<p>根据需要多次调用 <code>rand()</code>，从而不间断地得到新的随机数；</p>
+</li>
+<li>
+<p>无论什么时候，都可以给 <code>srand()</code> 提供一个新的种子，从而进一步“随机化” <code>rand()</code> 的输出结果。</p>
+</li>
+</ol>
+<p>0~RAND_MAX之间的随机数程序</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> seed = time(<span class="literal">NULL</span>);</span><br><span class="line">	<span class="comment">// time_t 向 unsigned int 作类型转换</span></span><br><span class="line">	<span class="comment">// time(NULL) 也可作 time(0) 或 time(nullptr)</span></span><br><span class="line">	srand(seed);</span><br><span class="line">	<span class="comment">// 使用当前时钟作为随机数种子每一次运行程序可产生不同的随机数种子			 	</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; rand() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div align=left><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Cpp/Random_rand.PNG"/></div>
+<p>产生一定范围随机数的通用表示公式</p>
+<p>要取得[a,b)的随机整数，使用(rand() % (b-a))+ a;<br>
+要取得[a,b]的随机整数，使用(rand() % (b-a+1))+ a;<br>
+要取得(a,b]的随机整数，使用(rand() % (b-a))+ a + 1;<br>
+通用公式:a + rand() % n；其中的a是起始值，n是整数的范围。<br>
+要取得a到b之间的随机整数，另一种表示：a + (int)b * rand() / (RAND_MAX + 1)。<br>
+要取得0～1之间的浮点数，可以使用rand() / double(RAND_MAX)。</p>
+<p>其实现函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">RandomRangeLeftCloseRightOpen</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (rand() % (b - a)) + a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">RandomRangeLeftCloseRightClose</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (rand() % (b - a + <span class="number">1</span>)) + a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">RandomRangeLeftOpenRightClose</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (rand() % (b - a)) + a + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">RandomIntNum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + (<span class="keyword">int</span>)b * rand() / (RAND_MAX + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">RandomZeroToOne</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> rand() / <span class="keyword">double</span>(RAND_MAX);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="C-随机数库"><a class="header-anchor" href="#C-随机数库">¶</a>C++ 随机数库</h2>
+<p>在 C++11 中引入了 &lt;random&gt; 头文件，功能更完善，可以得到更精确和的随机数，能够更好地解决相关领域问题。这个标准库分为两大部分，分别是：</p>
+<ul>
+<li>生成器：定义了用来产生均匀分布的伪随机数的机制，也称为随机数引擎。</li>
+<li>分布：以生成器得到的均匀分布的随机数序列转换为某种特定数学概率分布的序列，如均匀分布、正态分布、泊松分布等。</li>
+</ul>
+<h3 id="生成器"><a class="header-anchor" href="#生成器">¶</a>生成器</h3>
+<h4 id="random-device"><a class="header-anchor" href="#random-device">¶</a>random_device</h4>
+<p>std::random_device 是生成非确定随机数的均匀分布整数随机数生成器，是所有生成器中唯一不需要随机数种子的生成方式。在 Linux 的实现中，是读取 <code>/dev/urandom</code> 设备；在 Windows 的实现中是调用 <code>rand_s</code>。这种生成器基于随机过程来产生均匀分布的随机数序列，可以视为一个真随机数。<br>
+<code>random_device</code> 在某些系统中可无法使用，会在构造函数或者调用 <code>operator()</code> 函数时抛出异常，因此对于移植性而言需要格外注意。</p>
+<p>成员函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">random_device</span>;</span></span><br><span class="line"><span class="comment">// 成员函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/***** 构造 *****/</span></span><br><span class="line"><span class="comment">// (构造函数) 构造引擎</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/***** 生成 *****/</span></span><br><span class="line"><span class="comment">// operator() 推进引擎状态并返回生成的值，即均匀分布于 [min(), max()] 的随机数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/***** 特征 *****/</span></span><br><span class="line"><span class="comment">// entropy 获得非确定随机数生成器的熵估计(公开成员函数)</span></span><br><span class="line"><span class="comment">// min[静态] 获取输出范围中的最小可能值(公开静态成员函数)</span></span><br><span class="line"><span class="comment">// max[静态] 获取输出范围中的最大可能值(公开静态成员函数)</span></span><br></pre></td></tr></table></figure>
+<p>示例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::random_device rd;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; rd.min() &lt;&lt; <span class="string">'\t'</span> &lt;&lt; rd.max() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; rd() &lt;&lt; <span class="string">'\t'</span> &lt;&lt; rd.entropy() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; rd() &lt;&lt; <span class="string">'\t'</span> &lt;&lt; rd.entropy() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可能的结果</p>
+<div align=left><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Cpp/Random_device.PNG"/></div>
+<p>确定的随机数生成器（例如伪随机数生成器）拥有零熵，之所以此处 <code>rd.entropy()</code> 的值不为 <code>0</code> ，是因为此函数在一些标准库中未完全实现。例如，版本 12 前的 LLVM libc++ 始终返回零，即使设备是非确定的（对于 libstdc++ ，见 <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=67578" target="_blank" rel="noopener">bug 67578</a> ）。与之相比， Microsoft Visual C++ 实现始终返回 <code>32</code> ，且 boost.random 返回 <code>10</code> 。</p>
+<p>示例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::random_device rd;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; hist;</span><br><span class="line">    <span class="function"><span class="built_in">std</span>::uniform_int_distribution&lt;<span class="keyword">int</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0</span>, <span class="number">9</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt; <span class="number">20000</span>; ++n) &#123;</span><br><span class="line">        ++hist[dist(rd)]; <span class="comment">// note: demo only: the performance of many </span></span><br><span class="line">                          <span class="comment">// implementations of random_device degrades sharply</span></span><br><span class="line">                          <span class="comment">// once the entropy pool is exhausted. For practical use</span></span><br><span class="line">                          <span class="comment">// random_device is generally only used to seed </span></span><br><span class="line">                          <span class="comment">// a PRNG such as mt19937</span></span><br><span class="line"></span><br><span class="line">                          <span class="comment">// 注意：仅用于演示：一旦熵池耗尽，</span></span><br><span class="line">                          <span class="comment">// 许多 random_device 实现的性能就急剧下滑</span></span><br><span class="line">                          <span class="comment">// 对于实践使用， random_device 通常仅用于</span></span><br><span class="line">                          <span class="comment">// 播种类似 mt19937 的伪随机数生成器</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> p : hist) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; p.first &lt;&lt; <span class="string">" : "</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">string</span>(p.second/<span class="number">100</span>, <span class="string">'*'</span>) &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可能的结果</p>
+<div align=left><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Cpp/Random_demo.PNG"/></div>
+<h4 id="其他"><a class="header-anchor" href="#其他">¶</a>其他</h4>
+<p>随机数引擎</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">linear_congruential_engine  <span class="comment">//实现线性同余算法(类模板)</span></span><br><span class="line">mersenne_twister_engine     <span class="comment">//实现梅森缠绕器算法(类模板)</span></span><br><span class="line">subtract_with_carry_engine  <span class="comment">//实现带进位减（一种延迟斐波那契）算法(类模板)</span></span><br></pre></td></tr></table></figure>
+<p>随机数引擎适配器</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">discard_block_engine        <span class="comment">//舍弃随机数引擎的某些输出(类模板)</span></span><br><span class="line">independent_bits_engine     <span class="comment">//将一个随机数引擎的输出打包为指定位数的块(类模板)</span></span><br><span class="line">shuffle_order_engine        <span class="comment">//以不同顺序发送一个随机数引擎的输出(类模板)</span></span><br></pre></td></tr></table></figure>
+<p>预定义随机数生成器</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">minstd_rand0</span><br><span class="line">minstd_rand</span><br><span class="line">mt19937</span><br><span class="line">mt19937_64</span><br><span class="line">ranlux24_base</span><br><span class="line">ranlux48_base</span><br><span class="line">ranlux24</span><br><span class="line">ranlux48</span><br><span class="line">knuth_b</span><br><span class="line">default_random_engine</span><br></pre></td></tr></table></figure>
+<p>所有生成器引擎都提供如下接口供使用</p>
+<ul>
+<li>min：返回最小值，静态函数</li>
+<li>max：返回最大值，静态函数</li>
+<li>seed：设置随机数生成的种子</li>
+<li>operator()：产生随机数</li>
+<li>void discard (unsigned long long z)：调用z次operator()函数</li>
+</ul>
+<p>另外，都定义了输入输出操作符和关系运算的非成员函数。<br>
+随机数引擎接收一个整数作为种子，不提供就会使用默认值。一般可以使用 <code>chrono</code> 库中的时间或者 <code>random_device</code> 生成一个随机数作为种子。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> clock = <span class="built_in">std</span>::chrono::high_resolution_clock;</span><br><span class="line">clock::time_point begin = clock::now();</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> seed = begin.time_since_epoch().count();</span><br><span class="line"><span class="function"><span class="built_in">std</span>::minstd_rand0 <span class="title">rand_gen</span><span class="params">(seed)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; rand_gen() &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="分布"><a class="header-anchor" href="#分布">¶</a>分布</h3>
+<p>通过强大的生成器引擎得到了均匀分布的随机数之后，为了满足特定场景的需求，random提供的分布可以以生成器为输入，得到满足不同分布的随机数序列，广义上看，可以认为是对生成器的进一步修饰和包装。主要有三个作用：</p>
+<ul>
+<li>利用模版参数，改变生成值的类型</li>
+<li>利用构造函数参数，改变生成值的区间范围</li>
+<li>选择不同的分布得到满足不同分布的随机数序列</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="comment">//均匀分布</span></span><br><span class="line">uniform_int_distribution        <span class="comment">//产生在一个范围上均匀分布的整数值。(类模板)</span></span><br><span class="line">uniform_real_distribution       <span class="comment">//产生在一个范围上均匀分布的实数值。(类模板)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//伯努利分布</span></span><br><span class="line">bernoulli_distribution          <span class="comment">//产生伯努利分布上的 bool 值。(类)</span></span><br><span class="line">binomial_distribution           <span class="comment">//产生二项分布上的整数值。(类模板)</span></span><br><span class="line">negative_binomial_distribution  <span class="comment">//产生负二项分布上的整数值。(类模板)</span></span><br><span class="line">geometric_distribution          <span class="comment">//产生几何分布上的整数值。(类模板)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//泊松分布</span></span><br><span class="line">poisson_distribution            <span class="comment">//产生泊松分布上的整数值。(类模板)</span></span><br><span class="line">exponential_distribution        <span class="comment">//产生指数分布上的实数值。(类模板)</span></span><br><span class="line">gamma_distribution              <span class="comment">//产生 Γ 分布上的实数值。(类模板)</span></span><br><span class="line">weibull_distribution            <span class="comment">//产生威布尔分布上的实数值。(类模板)</span></span><br><span class="line">extreme_value_distribution      <span class="comment">//产生极值分布上的实数值。(类模板)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//正态分布</span></span><br><span class="line">normal_distribution             <span class="comment">//产生标准正态（高斯）分布上的实数值。(类模板)</span></span><br><span class="line">lognormal_distribution          <span class="comment">//产生对数正态分布上的实数值。(类模板)</span></span><br><span class="line">chi_squared_distribution        <span class="comment">//产生 χ2 分布上的实数值。(类模板)</span></span><br><span class="line">cauchy_distribution             <span class="comment">//产生柯西分布上的实数值。(类模板)</span></span><br><span class="line">fisher_f_distribution           <span class="comment">//产生费舍尔 F 分布上的实数值。(类模板)</span></span><br><span class="line">student_t_distribution          <span class="comment">//产生学生 t 分布上的实数值。(类模板)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//采样分布</span></span><br><span class="line">discrete_distribution           <span class="comment">//产生离散分布上的随机整数。(类模板)</span></span><br><span class="line">piecewise_constant_distribution <span class="comment">//产生分布在常子区间上的实数值。(类模板)</span></span><br><span class="line">piecewise_linear_distribution   <span class="comment">//产生分布在定义的子区间上的实数值。(类模板)</span></span><br></pre></td></tr></table></figure>
+<p>示例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 以随机值播种，若可能</span></span><br><span class="line">    <span class="built_in">std</span>::random_device r;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 选择 1 与 6 间的随机数</span></span><br><span class="line">    <span class="function"><span class="built_in">std</span>::default_random_engine <span class="title">e1</span><span class="params">(r())</span></span>;</span><br><span class="line">    <span class="function"><span class="built_in">std</span>::uniform_int_distribution&lt;<span class="keyword">int</span>&gt; <span class="title">uniform_dist</span><span class="params">(<span class="number">1</span>, <span class="number">6</span>)</span></span>;</span><br><span class="line">    <span class="keyword">int</span> mean = uniform_dist(e1);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Randomly-chosen mean: "</span> &lt;&lt; mean &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 生成围绕平均值的正态分布</span></span><br><span class="line">    <span class="built_in">std</span>::seed_seq seed2&#123;r(), r(), r(), r(), r(), r(), r(), r()&#125;; </span><br><span class="line">    <span class="function"><span class="built_in">std</span>::mt19937 <span class="title">e2</span><span class="params">(seed2)</span></span>;</span><br><span class="line">    <span class="function"><span class="built_in">std</span>::normal_distribution&lt;&gt; <span class="title">normal_dist</span><span class="params">(mean, <span class="number">2</span>)</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; hist;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt; <span class="number">10000</span>; ++n) &#123;</span><br><span class="line">        ++hist[<span class="built_in">std</span>::round(normal_dist(e2))];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Normal distribution around "</span> &lt;&lt; mean &lt;&lt; <span class="string">":\n"</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> p : hist) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::fixed &lt;&lt; <span class="built_in">std</span>::setprecision(<span class="number">1</span>) &lt;&lt; <span class="built_in">std</span>::setw(<span class="number">2</span>)</span><br><span class="line">                  &lt;&lt; p.first &lt;&lt; <span class="string">' '</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">string</span>(p.second/<span class="number">200</span>, <span class="string">'*'</span>) &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div align=left><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Cpp/Random_demo1.PNG"/></div>
+<h2 id="Random-类的写法参考"><a class="header-anchor" href="#Random-类的写法参考">¶</a>Random 类的写法参考</h2>
+<h3 id="Random-h"><a class="header-anchor" href="#Random-h">¶</a>Random.h</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Math.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Random</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Init</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Seed the generator with the specified int</span></span><br><span class="line">	<span class="comment">// <span class="doctag">NOTE:</span> You should generally not need to manually use this</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Seed</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> seed)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Get a float between 0.0f and 1.0f</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">float</span> <span class="title">GetFloat</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Get a float from the specified range</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">float</span> <span class="title">GetFloatRange</span><span class="params">(<span class="keyword">float</span> min, <span class="keyword">float</span> max)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Get an int from the specified range</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">GetIntRange</span><span class="params">(<span class="keyword">int</span> min, <span class="keyword">int</span> max)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Get a random vector given the min/max bounds</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> Math::Vector2 <span class="title">GetVector</span><span class="params">(<span class="keyword">const</span> Math::Vector2&amp; min, <span class="keyword">const</span> Math::Vector2&amp; max)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> Math::Vector3 <span class="title">GetVector</span><span class="params">(<span class="keyword">const</span> Math::Vector3&amp; min, <span class="keyword">const</span> Math::Vector3&amp; max)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">std</span>::mt19937 sGenerator;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	mt19937是c++11中加入的新特性</span></span><br><span class="line"><span class="comment">	它是一种随机数算法，用法与rand()函数类似</span></span><br><span class="line"><span class="comment">	但是具有速度快，周期长的特点(它的名字便来自周期长度：2^19937-1)</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Random-cpp"><a class="header-anchor" href="#Random-cpp">¶</a>Random.cpp</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Random.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Random::Init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::random_device rd;</span><br><span class="line">	Random::Seed(rd());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Random::Seed</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> seed)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	sGenerator.seed(seed);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">Random::GetFloat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> GetFloatRange(<span class="number">0.0f</span>, <span class="number">1.0f</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">Random::GetFloatRange</span><span class="params">(<span class="keyword">float</span> min, <span class="keyword">float</span> max)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function"><span class="built_in">std</span>::uniform_real_distribution&lt;<span class="keyword">float</span>&gt; <span class="title">dist</span><span class="params">(min, max)</span></span>;</span><br><span class="line">	<span class="keyword">return</span> dist(sGenerator);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Random::GetIntRange</span><span class="params">(<span class="keyword">int</span> min, <span class="keyword">int</span> max)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function"><span class="built_in">std</span>::uniform_int_distribution&lt;<span class="keyword">int</span>&gt; <span class="title">dist</span><span class="params">(min, max)</span></span>;</span><br><span class="line">	<span class="keyword">return</span> dist(sGenerator);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Math::Vector2 <span class="title">Random::GetVector</span><span class="params">(<span class="keyword">const</span> Math::Vector2&amp; min, <span class="keyword">const</span> Math::Vector2&amp; max)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Math::Vector2 r = Math::Vector2(GetFloat(), GetFloat());</span><br><span class="line">	<span class="keyword">return</span> min + (max - min) * r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Math::Vector3 <span class="title">Random::GetVector</span><span class="params">(<span class="keyword">const</span> Math::Vector3&amp; min, <span class="keyword">const</span> Math::Vector3&amp; max)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Math::Vector3 r = Math::Vector3(GetFloat(), GetFloat(), GetFloat());</span><br><span class="line">	<span class="keyword">return</span> min + (max - min) * r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::mt19937 Random::sGenerator;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考文献"><a class="header-anchor" href="#参考文献">¶</a>参考文献</h2>
+<p><a href="https://blog.csdn.net/hgl868/article/details/7057843" target="_blank" rel="noopener">[1] C++ rand,srand用法 / playbar</a></p>
+<p><a href="https://blog.csdn.net/u010487568/article/details/51526337" target="_blank" rel="noopener">[2] C++标准库——random / OshynSong</a></p>
+<p><a href="https://www.cnblogs.com/egmkang/archive/2012/09/06/2673253.html" target="_blank" rel="noopener">[3] C++11带来的随机数生成器 / egmkang</a></p>
+<p><a href="https://en.cppreference.com/w/cpp/numeric/random" target="_blank" rel="noopener">[4] Pseudo-random number generation / C++ reference</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/08/12/C++%E9%9A%8F%E6%9C%BA%E6%95%B0/" title="C++ 产生伪随机数的一些参考">https://cloudplayer99.github.io/2021/08/12/C++随机数/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/30/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CAndrewNg/" rel="prev" title="Convolutional Neural Networks. Andrew Ng.">
+      <i class="fa fa-chevron-left"></i> Convolutional Neural Networks. Andrew Ng.
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/12/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E8%AE%B2%E4%B9%89%E6%91%98%E8%A6%81/" rel="next" title="线性代数讲义摘要">
+      线性代数讲义摘要 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-库伪随机数发生器"><span class="nav-number">1.</span> <span class="nav-text">C 库伪随机数发生器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-随机数库"><span class="nav-number">2.</span> <span class="nav-text">C++ 随机数库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器"><span class="nav-number">2.1.</span> <span class="nav-text">生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#random-device"><span class="nav-number">2.1.1.</span> <span class="nav-text">random_device</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">2.1.2.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布"><span class="nav-number">2.2.</span> <span class="nav-text">分布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-类的写法参考"><span class="nav-number">3.</span> <span class="nav-text">Random 类的写法参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-h"><span class="nav-number">3.1.</span> <span class="nav-text">Random.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-cpp"><span class="nav-number">3.2.</span> <span class="nav-text">Random.cpp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/08/12/C++随机数/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

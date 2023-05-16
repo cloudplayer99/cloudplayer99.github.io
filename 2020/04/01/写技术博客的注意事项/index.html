@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="个人认为写博客（Blogging）是技术总结的最佳方式，甚至可以这样子讲，博客就是积累，从一定角度上讲是酱紫的。可能是受规范约束习惯了，感觉写博客也有一些注意事项，虽然之前写了很多文章，但感觉都不是很规范，现总结写博客应该注意的几点，以随时提醒自己。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载：写技术博客的注意事项">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/04/01/%E5%86%99%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="个人认为写博客（Blogging）是技术总结的最佳方式，甚至可以这样子讲，博客就是积累，从一定角度上讲是酱紫的。可能是受规范约束习惯了，感觉写博客也有一些注意事项，虽然之前写了很多文章，但感觉都不是很规范，现总结写博客应该注意的几点，以随时提醒自己。">
+<meta property="article:published_time" content="2020-03-31T17:01:00.000Z">
+<meta property="article:modified_time" content="2021-02-21T15:35:00.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="技术博客要领">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/04/01/%E5%86%99%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>转载：写技术博客的注意事项 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/04/01/%E5%86%99%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          转载：写技术博客的注意事项
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-01 01:01:00" itemprop="dateCreated datePublished" datetime="2020-04-01T01:01:00+08:00">2020-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-21 23:35:00" itemprop="dateModified" datetime="2021-02-21T23:35:00+08:00">2021-02-21</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div id="article_content" class="article_content clearfix">
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-833878f763.css">
+                            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-833878f763.css">
+                <div class="htmledit_views" id="content_views">
+<p><span style="font-size:18px;">个人认为写博客（Blogging）是技术总结的最佳方式，甚至可以这样子讲，博客就是积累，从一定角度上讲是酱紫的。可能是受规范约束习惯了，感觉写博客也有一些注意事项，虽然之前写了很多文章，但感觉都不是很规范，现总结写博客应该注意的几点，以随时提醒自己。</span></p><a id="more"></a>
+<h2><a name="t0"></a><a name="t0"></a><span style="font-size:18px;">1. Do not Repeat Documents, link to it&nbsp;&nbsp; 不要重复文档，给出链接就好。重点写自己的心得，体会和总结。</span></h2>
+<p><span style="font-size:18px;">对于那些在官方文档中都讲的很清楚的东西就没有必要再进行重复了，给出相应的链接就好了。特别是对于像MSDN这种非常丰富的官方文档，最好不要去重复它的内容，因为你不一定比官方讲的清楚。重点应该放在自己的心得，体会和总结等，这样于自己是真正的总结和积累，能变成经验，于他人也是一种有价值的参考的。</span></p>
+<h2><a name="t1"></a><a name="t1"></a><span style="font-size:18px;">2. 进行全面的总结</span></h2>
+<p><span style="font-size:18px;">前面说了不要重复文档，那应该写什么呢？愚认为，应该是自己经过实践之后的总结：</span></p>
+<ul><li><span style="font-size:18px;">把所有可靠的方法都说一下;</span></li></ul><ul><li><span style="font-size:18px;">把注意事项说一下;</span></li></ul><ul><li><span style="font-size:18px;">把各种方法进行比较，给出各自的优缺点和适用场合;</span></li></ul><ul><li><span style="font-size:18px;">文档中没有说明的情况，比如对文档的补充，或者文档有自相矛盾的地方。</span></li></ul><h2><a name="t2"></a><a name="t2"></a><span style="font-size:18px;">3. 必须亲自实践进行验证，确保可靠可行。并附上实例（源码，资源）和运行结果（截图等）</span></h2>
+<h2><a name="t3"></a><a name="t3"></a><span style="font-size:18px;">4. 要总结与所谈内容相关且有价值的网络资料</span></h2>
+<h2><a name="t4"></a><a name="t4"></a><span style="font-size:18px;">5. 要列出参考资料，比如官方文档，别人的博客，源码等。这是对别人的尊重，也是对知识的一种尊重。</span></h2>
+<h2><a name="t5"></a><a name="t5"></a><span style="font-size:18px;">6. 可以参考，可以引用，但不要照搬，不思考式的抄袭。最重要的是要有自己的思考和理解。</span></h2>
+<p><span style="font-size:18px;">如果是受他人的博客或代码的启发，最好把关键的句子段落引用出来，然后再写自己的思考和讨论。在文章中再给出原文或出处的链接，这样以显得尊重和专业。</span></p>
+<h2><a name="t6"></a><a name="t6"></a><span style="font-size:18px;">7. 最好能有版本控制信息和修订记录</span></h2>
+<p><span style="font-size:18px;">对于代码我们都有版本控制系统来帮助维护修改记录。但对于文档，也建议这样做。对于博客，可能没有（或许我不知道）类似的工具，但可以手动来说明。比如在博客的头部或尾部加上修订历史记录，或者在文章中把后来的修改用其他字体标明，或者用括号或脚注来说明。这样自已日后看起来也很方便，也能看到自己的思考过程和成长过程。</span></p>
+<h2><a name="t7"></a><a name="t7"></a><span style="font-size:18px;">8. Less But Better精深原则</span></h2>
+<p><span style="font-size:18px;">讲的越详细越好，范围越小越好，但要深入的讲，正如那句话，十个百分之十不如一个百分之百。如果你不能深入的讲，证明你还没有到写的时候，应试再去学习或者实践，直到你能讲的很清楚，讲的很详细，讲的很深入的时候再来总结和写博客。争取做到一篇文章一个点，这样文章多了就成了网最后变成没有漏洞的面。</span></p>
+<h2><a name="t8"></a><a name="t8"></a><span style="font-size:18px;">9. 突出主题，分清主次，逻辑清楚，层次分明</span></h2>
+<p><span style="font-size:18px;">这可能是对于写作的通用要求，说起来容易，但是做起来就比较困难。其实也不难，主要表现在：</span></p>
+<ul><li><span style="font-size:18px;">列表来罗列要讲的东西</span></li><li><span style="font-size:18px;">用标题先简明概括，然后再详细讲解</span></li><li><span style="font-size:18px;">标题与正文用不同的字体样式标识</span></li><li><span style="font-size:18px;">用字体和缩进来标识标题和正文</span></li></ul><p><span style="font-size:18px;">有没有一种感觉，这好像是在讲编码规范，没错，很早就有人讲过，写文章跟写代码是一样的。所以，作为程序员的我们，可以考虑用写代码的一切，包括习惯，规范来写文章。</span></p>
+<h2><a name="t9"></a><a name="t9"></a><span style="font-size:18px;">10. 写完后多读几遍，进行校改</span></h2>
+<p><span style="font-size:18px;">这就好比写完代码后的调试与测试。好代码是改出来的，好文章也是如此。能够一蹴而就的人有，但很少。即使是像鲁迅那样的大作家写文章都还需要修改，都没有一次成型的，更何况我们呢？在写完文章后也视情况对文章进行调试和重构，直到自己读起来感到满意和舒服为止。试想，如果自己写的文章自已都不想看，别人会看吗？我们又不是在写作业，不管好坏老师总会看，而且要仔细的看。要想写出好文章，必须首先让自己认为是好文章。</span></p>
+<h2><a name="t10"></a><a name="t10"></a><span style="font-size:18px;">11. 用通俗易懂的平实的语言，对于专业术语要解释</span></h2>
+<p><span style="font-size:18px;">好的技术文章应该都非常容易看懂，即使你对所说的那门科学完全不知。去读一读《Code Complete》等之类的经典书籍的英文原版，你会发现，其实看原版书并不需要多么NB的英语水平，可以不客气的讲上过大学的人应该都能看懂。其实这重点不在你懂不懂英语，而是要看作者能否用最易懂的语言来把事情表达清楚。这确实是一种能力，平常我们所谓的沟通能力，也基本上就在这，看你能否用最简单的语言把事情表达清楚，让另一方听明白。</span></p>
+<p><span style="font-size:18px;">这里有一些技巧：</span></p>
+<ul><li><span style="font-size:18px;">多用比喻，用大家熟悉的东西来比喻，这是让人最容易理解的一种方式。比如把软件构建比作建房子;把软件架构师比作楼房的设计师等。</span></li><li><span style="font-size:18px;">多用图示，用图解。很多时候一张图能抵上几百字的文字叙述，但还不一定能说明白。给出一张图就什么都明明白白了。</span></li><li><span style="font-size:18px;">图文并茂是讲解的最佳方式，合理的安排图片，再加之文字描述会达到事半功倍的效果。</span></li></ul><h2><a name="t11"></a><a name="t11"></a><span style="font-size:18px;">12. 用事实说话</span></h2>
+<p><span style="font-size:18px;">有图有真相，有代码有真相。说完了，讲过了，最好附上真实事例，代码和截图。否则别人可能会质疑，至少我在看到别人只“说”，没“做”的时候会质疑的。<br></span></p>
+<hr>
+<p>转自：<a href="https://blog.csdn.net/hitlion2008/article/details/6950493" target="_blank" rel="noopener">https://blog.csdn.net/hitlion2008/article/details/6950493</a></p>
+<hr>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/04/01/%E5%86%99%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="转载：写技术博客的注意事项">https://cloudplayer99.github.io/2020/04/01/写技术博客的注意事项/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E8%A6%81%E9%A2%86/" rel="tag"># 技术博客要领</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/31/%E5%85%B3%E4%BA%8E%E5%AF%B9CC%E7%B3%BB%E5%88%97%E7%9F%A5%E8%AF%86%E5%85%B1%E4%BA%AB%E8%AE%B8%E5%8F%AF%E8%AF%81%E3%80%90CC%20BY-SA%204.0%E3%80%91%20%E7%9A%84%E7%90%86%E8%A7%A3%E5%8F%8A%E6%95%B4%E7%90%86/" rel="prev" title="转载：关于对CC系列知识共享许可证【CC BY-SA 4.0】 的理解及整理">
+      <i class="fa fa-chevron-left"></i> 转载：关于对CC系列知识共享许可证【CC BY-SA 4.0】 的理解及整理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/03/%E6%A8%A1%E7%94%B5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A/" rel="next" title="模电第二次作业">
+      模电第二次作业 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">1.</span> <span class="nav-text">1. Do not Repeat Documents, link to it&amp;nbsp;&amp;nbsp; 不要重复文档，给出链接就好。重点写自己的心得，体会和总结。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">2.</span> <span class="nav-text">2. 进行全面的总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">3.</span> <span class="nav-text">3. 必须亲自实践进行验证，确保可靠可行。并附上实例（源码，资源）和运行结果（截图等）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">4.</span> <span class="nav-text">4. 要总结与所谈内容相关且有价值的网络资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">5.</span> <span class="nav-text">5. 要列出参考资料，比如官方文档，别人的博客，源码等。这是对别人的尊重，也是对知识的一种尊重。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">6.</span> <span class="nav-text">6. 可以参考，可以引用，但不要照搬，不思考式的抄袭。最重要的是要有自己的思考和理解。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">7.</span> <span class="nav-text">7. 最好能有版本控制信息和修订记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">8.</span> <span class="nav-text">8. Less But Better精深原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">9.</span> <span class="nav-text">9. 突出主题，分清主次，逻辑清楚，层次分明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">10.</span> <span class="nav-text">10. 写完后多读几遍，进行校改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">11.</span> <span class="nav-text">11. 用通俗易懂的平实的语言，对于专业术语要解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content_views"><span class="nav-number">12.</span> <span class="nav-text">12. 用事实说话</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-树状数组&amp;线段树 但是没得密码。。。 本篇博文为看视频学习时的记录与自己的一些总结 学习笔记合集：算法入门基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树状数组与线段树">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/06/22/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-树状数组&amp;线段树 但是没得密码。。。 本篇博文为看视频学习时的记录与自己的一些总结 学习笔记合集：算法入门基础">
+<meta property="article:published_time" content="2022-06-22T14:00:12.000Z">
+<meta property="article:modified_time" content="2022-07-16T14:51:46.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="算法入门基础">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/06/22/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>树状数组与线段树 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/06/22/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树状数组与线段树
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 22:00:12" itemprop="dateCreated datePublished" datetime="2022-06-22T22:00:12+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-16 22:51:46" itemprop="dateModified" datetime="2022-07-16T22:51:46+08:00">2022-07-16</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>b站视频链接：<a href="https://www.bilibili.com/video/BV1pE411E7RV?p=12" target="_blank" rel="noopener">北京理工大学ACM冬季培训课程</a><br>
+<a href="https://vjudge.net/contest/358521" target="_blank" rel="noopener">课程刷题地址 2020BIT冬训-树状数组&amp;线段树</a> 但是没得密码。。。<br>
+本篇博文为看视频学习时的记录与自己的一些总结<br>
+学习笔记合集：<a href="https://cloudplayer.top/2022/06/23/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" target="_blank" rel="noopener">算法入门基础</a></p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>树状数组与线段树
+<ul>
+<li>树状数组
+<ul>
+<li>由前缀和引入
+<ul>
+<li>导引问题</li>
+</ul>
+</li>
+<li>引入树状数组
+<ul>
+<li>$\text{lowbit}(x)$ 的求法</li>
+<li>构造树状数组 $C_i$</li>
+<li>区间查询操作</li>
+<li>单点更新操作</li>
+<li>二维树状数组模板</li>
+</ul>
+</li>
+<li>树状数组应用
+<ul>
+<li>求逆序对</li>
+<li>对上面问题的引申——离散化</li>
+<li>区间更新，单点查询</li>
+<li>区间修改，区间查询</li>
+</ul>
+</li>
+<li>树状数组的优缺点</li>
+</ul>
+</li>
+<li>线段树
+<ul>
+<li>导引问题</li>
+<li>引入线段树
+<ul>
+<li>线段树的属性</li>
+<li>线段树的定义</li>
+<li>线段树的构造</li>
+<li>单点更新</li>
+<li>区间查询</li>
+</ul>
+</li>
+<li>线段树的区间更新
+<ul>
+<li>lazy 标记与延迟更新</li>
+<li>区间更新</li>
+<li>区间更新的区间查询</li>
+<li>更好的代码</li>
+</ul>
+</li>
+<li>线段树的应用
+<ul>
+<li>线段树 + 区间合并</li>
+</ul>
+</li>
+<li>线段树的优缺点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>树状数组与线段树</h1>
+<h2 id="树状数组"><a class="header-anchor" href="#树状数组">¶</a>树状数组</h2>
+<h3 id="由前缀和引入"><a class="header-anchor" href="#由前缀和引入">¶</a>由前缀和引入</h3>
+<p>$A$ 为 $N$ 个数所在的数组，$B$ 为另一个新的数组<br>
+令 $B$ 数组的第 $i$ 项为 $A$ 数组的 $A_0$ 至 $A_i$ 项之和</p>
+<p>即：</p>
+<p>$$<br>
+B_i = A_0 + A_1 + A_2 + \dots + A_i<br>
+$$</p>
+<p>则有：</p>
+<p>$$<br>
+B_i = B_{i-1} + A_i \ \ \ \ (B_0 = A_0)<br>
+$$</p>
+<p>有时为了方便，$A$、$B$ 数组下标从 $1$ 开始</p>
+<p>前缀和的应用：</p>
+<p>区间求和，求 $A$ 数组的 $100$ 至 $200$ 项之和</p>
+<p>$$<br>
+A_{100} + \dots + A_{200} = B_{200} - B_{99} \ \ \ \ O(n) \Rightarrow O(1)<br>
+$$</p>
+<p>当区间求和量比较大的时候，通过预处理前缀和数组，极大地减少了计算量</p>
+<h4 id="导引问题"><a class="header-anchor" href="#导引问题">¶</a>导引问题</h4>
+<p>有 $N$ ($N \le 50000$) 个工兵营地，已知每个营地的人数，查询一段连续的工兵营地总人数，询问的次数 $Q \le 50000$</p>
+<p>预处理前缀和数组</p>
+<p>有 $N$ ($N \le 50000$) 个工兵营地，已知每个营地的人数，但是每个工兵营地的人数都有可能多次发生变动，每次可能增加或减少若干人手，需要查询一段连续的工兵营地总人数，询问的次数 $Q \le 50000$</p>
+<p>难以维护前缀和数组，还不如暴力开数组</p>
+<h3 id="引入树状数组"><a class="header-anchor" href="#引入树状数组">¶</a>引入树状数组</h3>
+<p>提出问题<br>
+给长度为 $n$ 的数组 $A_1, A_2, \dots, A_n$，多次修改操作和查询操作，修改操作修改数组某一个元素的值，查询操作查询 $A_1 + A_2 + \dots + A_x$ 的值</p>
+<p>朴素做法</p>
+<ul>
+<li>每次 $O(1)$ 修改数组的值，$O(n)$ 求和</li>
+<li>求出前缀和数组 $sum_i = a_1 + a_2 + \dots + a_i$，每次 $O(1)$ 查询，$O(n)$ 修改</li>
+</ul>
+<p>为了引入树状数组，先构造二叉树，叶子结点代表 $A_1$ ~ $A_8$<br>
+对二叉树变形，定义每一列的顶端元素为树状数组元素，其中 $C_i$ 代表子树的叶子结点的权值之和，例如 $C_6 = A_6 + A_5$</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/%E5%BC%95%E5%85%A5%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84.PNG"/></div>
+<p>两个规律：</p>
+<ul>
+<li>$i$ 为奇，$C_i = A_i$</li>
+<li>$C_i$ 一定包含 $A_i$，且 $A_i$ 是其包含的最后一个</li>
+</ul>
+<p>引入树状数组 $C_1, C_2, \dots, C_n$，其中</p>
+<p>$$C_i = A_i + A_{i-1} + \dots + A_{i-\text{lowbit}(i)+1}$$</p>
+<p>$\text{lowbit}(i)$：将 $i$ 转换为二进制，最低位的 $1$ 所代表的值<br>
+$\text{lowbit}(i)$ 决定 $C_i$ 包含多少项</p>
+<p>$5 = (101)_2 \ \ \ \ \ \ \text{lowbit}(5) = (1)_2 = 1$<br>
+$6 = (110)_2 \ \ \ \ \ \ \text{lowbit}(6) = (10)_2 = 2$<br>
+$8 = (1000)_2 \ \ \ \ \text{lowbit}(8) = (1000)_2 = 8$</p>
+<p>$\text{lowbit}(1)=1\ \ \ \ C_1 = A_1$<br>
+$\text{lowbit}(2)=2\ \ \ \ C_2 = A_2 + A_1$<br>
+$\text{lowbit}(3)=1\ \ \ \ C_3 = A_3$<br>
+$\text{lowbit}(4)=4\ \ \ \ C_4 = A_4 + A_3 + A_2 + A_1$<br>
+$\text{lowbit}(5)=1\ \ \ \ C_5 = A_5$<br>
+$\text{lowbit}(6)=2\ \ \ \ C_6 = A_6 + A_5$<br>
+$\text{lowbit}(7)=1\ \ \ \ C_7 = A_7$<br>
+$\text{lowbit}(1)=8\ \ \ \ C_8 = A_8 + A_7 + A_6 + A_5 + A_4 + A_3 + A_2 + A_1$</p>
+<h4 id="text-lowbit-x-的求法"><a class="header-anchor" href="#text-lowbit-x-的求法">¶</a>$\text{lowbit}(x)$ 的求法</h4>
+<p>法 1：<br>
+若 $x$ 为奇，其二进制的最后一位必为 $1$，则 $x-1$ 的最后一位必为 $0$<br>
+则 $x \And (x-1) = x-1$，$x - (x \And (x - 1)) = 1$<br>
+奇数的 $\text{lowbit}$ 一定是 $1$<br>
+若 $x$ 为偶，$x \And (x-1)$ 使得从最低位的 $1$ 开始全置为 $0$<br>
+$x - (x \And (x - 1))$ 减出来的结果就是 $\text{lowbit}(x)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x - (x &amp; (x - <span class="number">1</span>));    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>法 2：<br>
+利用补码的性质<br>
+负数的二进制补码等于对应正数的反码加一<br>
+可以得到 $\text{lowbit(x) = x &amp; (-x)}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="构造树状数组-C-i"><a class="header-anchor" href="#构造树状数组-C-i">¶</a>构造树状数组 $C_i$</h4>
+<p>已知原始的 $A_i$ 数组（初始状态）<br>
+现在又有了 $\text{lowbit}(x)$ 函数<br>
+如何构造出树状数组 $C_i$ ？<br>
+其实树状数组的构造就是更新操作！</p>
+<h4 id="区间查询操作"><a class="header-anchor" href="#区间查询操作">¶</a>区间查询操作</h4>
+<p>先实现前缀和，利用 $C_i$ 求出 $A$ 数组中的前 $i$ 项的和<br>
+比如 $i = 7$ 时，前七项和为：$a_1 + a_2 + \dots + a_7$</p>
+$$\begin{array}{lcl}
+a_1 + a_2 + \dots + a_7 
+& = & (a_7) + (a_6 + a_5) + (a_4 + a_3 + a_2 + a_1)\\
+& = & c_7 + c_6 + c_4 \\
+& = & c_{(111)_2} + c_{(110)_2} + c_{(100)_2}
+\end{array}$$
+<p>规律：<br>
+$\text{lowbit}(i)$ 决定 $C_i$ 包含多少项<br>
+每加上一个 $C_i$ 就让 $i = i - \text{lowbit}(i)$</p>
+<p>求和实现代码 $O(\log n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i)</span><br><span class="line">        ret += C[i], x -= lowbit(i);</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>区间查询：$sum( R ) - sum( L - 1 )$</p>
+<h4 id="单点更新操作"><a class="header-anchor" href="#单点更新操作">¶</a>单点更新操作</h4>
+<p>$i$ 结点的父亲结点是 $i + \text{lowbit}(i)$ 结点<br>
+每次修改会影响这个结点到根结点的路径上的点</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%BB%93%E7%82%B9%E5%85%B3%E7%B3%BB.PNG"/></div>
+<p>更新代码 $O(\log n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> val)</span>             <span class="comment">// 单点更新（影响多个 C 数组元素）</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= n)</span><br><span class="line">        c[i] += val, i += lowbit(i);    <span class="comment">// 由叶子结点向上更新 C 数组</span></span><br><span class="line">&#125; <span class="comment">// 更新（从小到大）是查询（从大到小）的逆过程</span></span><br></pre></td></tr></table></figure>
+<h4 id="二维树状数组模板"><a class="header-anchor" href="#二维树状数组模板">¶</a>二维树状数组模板</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = x;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= n) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = y;</span><br><span class="line">        <span class="keyword">while</span> (j &lt;= m) &#123;</span><br><span class="line">            c[i][j] += z;</span><br><span class="line">            j += lowbit(j); </span><br><span class="line">        &#125;</span><br><span class="line">        i += lowbit(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>, i = x;</span><br><span class="line">    <span class="keyword">while</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = y;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            res += c[i][j];</span><br><span class="line">            j -= lowbit(j);</span><br><span class="line">        &#125;</span><br><span class="line">        i -= lowbit(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="树状数组应用"><a class="header-anchor" href="#树状数组应用">¶</a>树状数组应用</h3>
+<h4 id="求逆序对"><a class="header-anchor" href="#求逆序对">¶</a>求逆序对</h4>
+<p>给定 $n$ ($n \le 100000$) 个正整数，希望对其从小到大排序，如果采用冒泡排序算法，请计算需要进行的交换次数</p>
+<p>冒泡排序的基本思想是比较相邻的元素，逆序则交换，那么交换次数的本质就是逆序对的总数，问题就转换成了如何求逆序对的总数</p>
+<p>基本思想：开一个数组 $a[n+1]$，初始化为 $0$，$a$ 数组下标代表对应的正整数，每计一个数 $i$，就令 $a[i] = 1$，通过计算 $a[i+1]$ ~ $a[n]$ 中有多少个 $1$ 来求出 $i$ 的逆序数，这里需要多次区间求和，于是开一个树状数组 $c[n+1]$，初始化为 $0$，当计一个数 $i$ 时，就向上更新 $c$ 数组，当求 $i$ 的逆序数时，只需计算 $\text{sum}(n)-\text{sum}(i)$ 即可</p>
+<h4 id="对上面问题的引申——离散化"><a class="header-anchor" href="#对上面问题的引申——离散化">¶</a>对上面问题的引申——离散化</h4>
+<p>给定 $n$ ($n \le 100000$) 个正整数 $A_i$ 组成的数列 ($A_i \le 10^9$，$1 \le i \le n$)，希望对其从小到大排序，如果采用冒泡排序算法，请计算需要进行的交换次数</p>
+<p>之前的算法使用数组下标代表对应的正整数，这里正整数最大达到 $10^9$，不可能开这么大的数组，需要进行 <strong>离散化</strong></p>
+<p>离散化是一种常用的技巧，有时 <strong>数据范围太大</strong>，自身无法作为数组的下标保存对应的属性，当数据只与它们之间的相对大小有关，而 <strong>与具体值无关</strong> 时，则可以进行离散化，总之，离散化是在 <strong>不改变数据相对大小</strong> 的条件下，对数据进行相应的缩小</p>
+<p>方法：把对应的数据和 $1$ 至 $N$ 建立一一映射的关系</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建立结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;        <span class="comment">// 原始数值</span></span><br><span class="line">    <span class="keyword">int</span> order;      <span class="comment">// 原始下标</span></span><br><span class="line">&#125;a[<span class="number">100001</span>];</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">100001</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对数组 a 按 val 从小到大排序；</span></span><br><span class="line"><span class="comment">// 此时，val 和结构体的新下标就是一个一一映射关系</span></span><br><span class="line"><span class="comment">// 并且满足原来的相对大小关系</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新 b 数组（离散化数组）</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">    b[a[i].order] = i;</span><br></pre></td></tr></table></figure>
+<p>离散化示例</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/%E7%A6%BB%E6%95%A3%E5%8C%96.PNG"/></div>
+<p>重复元素处理</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sort(a+<span class="number">1</span>, a+<span class="number">1</span>+N, cmp);</span><br><span class="line">b[a[<span class="number">1</span>].order] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">2</span>, count = <span class="number">1</span>; i &lt;= N; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (a[i].val == a[i - <span class="number">1</span>].val)   b[a[i].order] = count;</span><br><span class="line">    <span class="keyword">else</span> b[a[i].order] = ++count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="区间更新，单点查询"><a class="header-anchor" href="#区间更新，单点查询">¶</a>区间更新，单点查询</h4>
+<p>有 $N$ ($N \le 100000$) 个气球排成一排，从左到右依次编号为 $1$，$2$，$3$，$\dots$，$N$，每次给定两个整数 $a$ 和 $b$ ($a \le b$)，表示从气球 $a$ 到气球 $b$ 依次给每个气球涂一次颜色，$N$ 次涂色后，计算每个气球被涂过几次颜色</p>
+<p>变化：更新的是区间，查询的是单点</p>
+<p>需要一个“区间更新，单点查询”的树状数组<br>
+通过 <strong>差分</strong> 的方法，数组中记录每个元素与前一个元素的差，这样把问题转化为常规树状数组！</p>
+<p>单点查询<br>
+若原数组为 $a[i]$，设数组 $d[i] = a[i] - a[i-1]$ ($a[0] = 0$)，则可以通过求 $d[i]$ 的前缀和实现单点查询 $a[i]$<br>
+区间修改<br>
+当给区间 $[l,r]$ 加上 $x$ 的时候，只需给 $d[l]$ 加上 $x$，给 $d[r+1]$ 减去 $x$ 即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单点更新差分，为区间修改做准备（c 为树状数组）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (p &lt;= n) c[p] += x, p += p &amp; -p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 区间修改（通过两个端点的更新，实现区间修改的目的）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">range_add</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    add(l, x), add(r + <span class="number">1</span>, -x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 单点查询（因为差分，所以单点值即前缀和）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (p) res += c[p], p -= p &amp; -p;</span><br><span class="line">    <span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="区间修改，区间查询"><a class="header-anchor" href="#区间修改，区间查询">¶</a>区间修改，区间查询</h4>
+<p>金箍棒由 $N$ 段相同长度的金属棒连接而成，初始每段金属棒的值都是 $1$，并且从 $1$ 至 $N$ 编号，可以增加金箍棒任意连续的一段的所有金属棒的值，可以查询（$Q$ 次）执行 $M$ 次操作后某一段金箍棒的总值</p>
+<p>变化：区间修改，区间查询</p>
+<p>位置 $p$ 的前缀和：</p>
+$$\begin{array}{lcl}
+\sum\limits_{i=1}^{p}a[i] 
+& = & \sum\limits_{i=1}^{p}\sum\limits_{j=1}^{i}d[j] \\
+& = & \sum\limits_{i=1}^{p}d[i] * (p - i + 1) \\
+& = & (p + 1)\sum\limits_{i=1}^{p}d[i] - \sum\limits_{i=1}^{p}d[i] * i
+\end{array}$$
+<p>维护两个数组的前缀和（树状数组）即可，$c1[i] = d[i]$，$c2[i] = d[i] * i$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 维护两个树状数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = p; i &lt;= n; i += i &amp; -i)</span><br><span class="line">        c1[i] += x, c2[i] += x * p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 区间修改</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">range_add</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    add(l, x), add(r + <span class="number">1</span>, -x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 前缀和查询，即查询区间 [1, p] 的和</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = p; i; i -= i &amp; -i)</span><br><span class="line">        res += (p + <span class="number">1</span>) * c1[i] - c2[i];</span><br><span class="line">    <span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 区间查询</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">range_ask</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ask(r) - ask(l - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="树状数组的优缺点"><a class="header-anchor" href="#树状数组的优缺点">¶</a>树状数组的优缺点</h3>
+<p>优点：代码短小，实现简单；</p>
+<p>缺点：只能求和，不能求最大/小值</p>
+<h2 id="线段树"><a class="header-anchor" href="#线段树">¶</a>线段树</h2>
+<h3 id="导引问题-v2"><a class="header-anchor" href="#导引问题-v2">¶</a>导引问题</h3>
+<p>金箍棒升级了！<br>
+金箍棒由 $N$ 段相同长度的金属棒连接而成，初始每段金属棒的值都是 $1$，并且从 $1$ 至 $N$ 编号，可以改变金箍棒任意连续的一段的所有金属棒的值，可以查询（$Q$ 次）执行 $M$ 次操作后某一段金箍棒的总值</p>
+<p>区间更新，但不是增加或减少，而是直接修改<br>
+树状数组不能解决这个问题</p>
+<p>新的数据结构：线段树</p>
+<h3 id="引入线段树"><a class="header-anchor" href="#引入线段树">¶</a>引入线段树</h3>
+<p>假设有编号从 $1$ 到 $n$ 的 $n$ 个点，每个点都存了一些信息，用 $[L, R]$ 表示下标从 $L$ 到 $R$ 的区间信息</p>
+<p>线段树原理：<br>
+将 $[1, n]$ 分解成若干特定的子区间（数量不超过 $4 * n$），然后，将每个区间 $[L, R]$ 都分解为少量特定的子区间，通过对这些少量子区间的修改或者统计，来实现快速对 $[L, R]$ 的修改或者统计</p>
+<p>线段树（Segment Tree）又称为区间树（Internal Tree），是一颗平衡二叉树，非完全二叉树，树上的每一个节点代表一段区间</p>
+<p>线段树划分区间采用的是二分的思想，比树状数组更加直白</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%A4%BA%E4%BE%8B.PNG"/></div>
+<h4 id="线段树的属性"><a class="header-anchor" href="#线段树的属性">¶</a>线段树的属性</h4>
+<ul>
+<li>每个区间的长度是区间内整数的个数</li>
+<li>叶子结点长度为 $1$，不能再分</li>
+<li>若一个结点对应的区间是 $[a, b]$，则其子区间对应的节点分别是 $[a, \dfrac{(a+b)}{2}]$ 和 $[\dfrac{(a+b)}{2} + 1, b]$</li>
+<li>线段树的高度是：$\left\lceil \log_{2} (b-a+1) \right\rceil + 1$</li>
+<li>线段树把区间上的任意一条线段都分成不超过 $2 \log N$ 条（每层不超过两个）</li>
+</ul>
+<h4 id="线段树的定义"><a class="header-anchor" href="#线段树的定义">¶</a>线段树的定义</h4>
+<p>定义 SegmentNode 结构体与线段树 SegTree 数组</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SegmentNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    LL val;             <span class="comment">// 结点值，例如区间最大值 </span></span><br><span class="line">    LL lazy;            <span class="comment">// 懒惰标记，又称延迟更新标记</span></span><br><span class="line">                        <span class="comment">// 可以根据题目增加更多的元素</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> A[maxn];            <span class="comment">// 原始数组</span></span><br><span class="line">SegmentNode SegTree[maxn&lt;&lt;<span class="number">2</span>];       <span class="comment">// 定义线段树，开原始数组的 4 倍大</span></span><br><span class="line"><span class="comment">// SegmentNode SegTree[4*maxn];</span></span><br><span class="line"><span class="comment">// 数组存二叉树，用完全二叉树的编号作为数组下标</span></span><br></pre></td></tr></table></figure>
+<h4 id="线段树的构造"><a class="header-anchor" href="#线段树的构造">¶</a>线段树的构造</h4>
+<p>PushUp 函数更新结点信息<br>
+build 函数构造根为 $rt$，$A$ 区间为 $[l, r]$ 的线段树<br>
+在 build 函数中调用 PushUp 函数，用于在函数回溯时向上更新线段树的结点信息</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PushUp 函数更新结点信息，这里以求和为例</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PushUp</span><span class="params">(<span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    SegTree[rt].val = SegTree[rt&lt;&lt;<span class="number">1</span>].val + SegTree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].val;</span><br><span class="line">    <span class="comment">// SegTree[rt].val = SegTree[2*rt].val + SegTree[2*rt + 1].val; </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 建树</span></span><br><span class="line"><span class="comment">// 构造根为 rt，A 区间为 [l, r] 的线段树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r)                     <span class="comment">// 叶子结点</span></span><br><span class="line">    &#123;</span><br><span class="line">        SegTree[rt].val = A[l];</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    build(<span class="number">2</span>*rt, l, mid);            <span class="comment">// 递归构造左子树</span></span><br><span class="line">    build(<span class="number">2</span>*rt + <span class="number">1</span>, mid + <span class="number">1</span>, r);    <span class="comment">// 递归构造右子树</span></span><br><span class="line">    PushUp(rt);                     <span class="comment">// 回溯，向上更新</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="单点更新"><a class="header-anchor" href="#单点更新">¶</a>单点更新</h4>
+<p>假设 $A[L] += k$，区间信息为区间的和</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8D%95%E7%82%B9%E6%9B%B4%E6%96%B0%E7%A4%BA%E4%BE%8B.PNG"/></div>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tl，tr 表示当前结点区间，rt 表示当前线段树的根结点编号</span></span><br><span class="line"><span class="comment">// k 为变化值，L 为更新点的下标</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> tr, <span class="keyword">int</span> tl, <span class="keyword">int</span> tr, <span class="keyword">int</span> L, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (tl == tr)                               <span class="comment">// 叶结点，直接修改</span></span><br><span class="line">    &#123;</span><br><span class="line">        SegTree[tr].val += k;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (tl + tr) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= mid) Update(<span class="number">2</span>*rt, tl, mid, L, k);</span><br><span class="line">    <span class="keyword">else</span> Update(<span class="number">2</span>*tr+<span class="number">1</span>, mid+<span class="number">1</span>, tr, L, k);</span><br><span class="line">    PushUp(rt);                                 <span class="comment">// 回溯，向上更新</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="区间查询"><a class="header-anchor" href="#区间查询">¶</a>区间查询</h4>
+<p>假设询问 $A[L, R]$ 的和</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%9F%A5%E8%AF%A2%E7%A4%BA%E4%BE%8B.PNG"/></div>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [tl, tr] 表示当前区间，[l, r] 表示操作区间</span></span><br><span class="line"><span class="comment">// rt 表示当前结点编号</span></span><br><span class="line"><span class="function">LL <span class="title">ask</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> tl, <span class="keyword">int</span> tr, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (tl == l &amp;&amp; tr == r) <span class="keyword">return</span> SegTree[tr].val;</span><br><span class="line">    <span class="keyword">int</span> mid = (tl + tr) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (r &lt;= mid) <span class="keyword">return</span> ask(<span class="number">2</span>*rt, tl, mid, l, r); <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> (l &gt; mid) <span class="keyword">return</span> ask(<span class="number">2</span>*rt + <span class="number">1</span>, mid + <span class="number">1</span>, tr, l, r); <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ask(<span class="number">2</span>*x, tl, mid, l, mid) + ask(<span class="number">2</span>*x + <span class="number">1</span>, mid + <span class="number">1</span>, tr, mid + <span class="number">1</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一种写法：在函数递归时保持 $[l, r]$ 操作区间不变<br>
+采用这种写法为模板</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [tl, tr] 表示当前区间，[l, r] 表示操作区间</span></span><br><span class="line"><span class="comment">// rt 表示当前结点编号</span></span><br><span class="line"><span class="function">LL <span class="title">Query</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> tl, <span class="keyword">int</span> tr, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &lt;= tl &amp;&amp; tr &lt;= r)                 <span class="comment">// 完全包含</span></span><br><span class="line">        <span class="keyword">return</span> SegTree[rt].val;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; tr || r &lt; tl)                   <span class="comment">// 完全不包含</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = (tl + tr) &gt;&gt; <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ANS = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (l &lt;= mid) ANS += Query(rt&lt;&lt;<span class="number">1</span>, tl, mid, l, r);</span><br><span class="line">    <span class="comment">// 左子区间与 [l, r] 有重叠，递归</span></span><br><span class="line">    <span class="keyword">if</span> (r &gt; mid) ANS += Query(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>, mid+<span class="number">1</span>, tr, l, r);</span><br><span class="line">    <span class="comment">// 右子区间与 [l, r] 有重叠，递归</span></span><br><span class="line">    <span class="keyword">return</span> ANS;</span><br><span class="line">    <span class="comment">// return Query(rt&lt;&lt;1, tl, mid, l, r) + Query(rt&lt;&lt;1|1, mid+1, tr, l, r);</span></span><br><span class="line">    <span class="comment">// 这一句与上面四句结果等价，写的时候只写这一句就好了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="线段树的区间更新"><a class="header-anchor" href="#线段树的区间更新">¶</a>线段树的区间更新</h3>
+<p>区间更新：<br>
+是指更新某个区间内的所有叶子结点的值，因为叶子结点会影响其相应的非叶父结点，那么回溯需要更新的非叶子结点也会有很多，如果一次性更新完，操作的时间复杂度可达 $O(n)$，$N$ 次更新操作时间复杂度就到了 $O(n^2)$</p>
+<p>为此，引入了线段树中的延迟标记概念（lazy 标记）</p>
+<h4 id="lazy-标记与延迟更新"><a class="header-anchor" href="#lazy-标记与延迟更新">¶</a>lazy 标记与延迟更新</h4>
+<p>lazy 标记记录线段树当前结点是否进行了某种将要影响到其子结点的修改，记录后就可以偷懒不向下更新（不将影响传播至子结点），当查询到该结点的时候或者修改到该结点的子结点的时候再向下更新</p>
+<p>多次更新，一次下推 / 无需要，不下推</p>
+<p>加入 lazy 标记的线段树的 build 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造根为 rt，A 区间为 [l, r] 线段树</span></span><br><span class="line"><span class="comment">// 有 lazy 标记</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SegTree[rt].lazy = <span class="number">0</span>;           <span class="comment">// 初始化延时标记为 0</span></span><br><span class="line">    <span class="keyword">if</span> (l == r)                     <span class="comment">// 叶子结点</span></span><br><span class="line">    &#123;</span><br><span class="line">        SegTree[rt].val = A[l];</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    build(<span class="number">2</span>*rt, l, mid);            <span class="comment">// 递归构造左子树</span></span><br><span class="line">    build(<span class="number">2</span>*rt + <span class="number">1</span>, mid + <span class="number">1</span>, r);    <span class="comment">// 递归构造右子树</span></span><br><span class="line">    PushUp(rt);                     <span class="comment">// 回溯，向上更新</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="区间更新"><a class="header-anchor" href="#区间更新">¶</a>区间更新</h4>
+<p>假设 $A[L, R] += k$</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8C%BA%E9%97%B4%E4%BF%AE%E6%94%B9%E7%A4%BA%E4%BE%8B.PNG"/></div>
+<p>区间更新 change 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [tl, tr] 表示当前区间，[l, r] 表示操作区间</span></span><br><span class="line"><span class="comment">// rt 表示当前结点编号，k 代表区间进行的更新</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> tl, <span class="keyword">int</span> tr, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (tl == l &amp;&amp; tr == r)</span><br><span class="line">    &#123;</span><br><span class="line">        SegTree[rt].lazy += k;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (SegTree[rt].lazy) PushDown(rt, tl, tr);</span><br><span class="line">    <span class="keyword">int</span> mid = (tl + tr) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (r &lt;= mid) change(<span class="number">2</span>*rt, tl, mid, l, r, k); <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> (l &gt; mid) change(<span class="number">2</span>*rt + <span class="number">1</span>, mid + <span class="number">1</span>, tr, l, r, k); <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        change(<span class="number">2</span>*rt, tl, mid, l, mid, k);</span><br><span class="line">        change(<span class="number">2</span>*rt + <span class="number">1</span>, mid + <span class="number">1</span>, tr, mid + <span class="number">1</span>, r, k);</span><br><span class="line">    &#125;</span><br><span class="line">    SegTree[rt].val = SegTree[<span class="number">2</span>*rt].val + (mid - tl + <span class="number">1</span>)*SegTree[<span class="number">2</span>*rt].lazy + SegTree[<span class="number">2</span>*rt + <span class="number">1</span>].val + (tr - mid)*SegTree[<span class="number">2</span>*rt + <span class="number">1</span>].lazy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下推更新 PushDown 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PushDown</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> tl, <span class="keyword">int</span> tr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SegTree[rt].val = SegTree[rt].val + (tr - tl + <span class="number">1</span>)*SegTree[rt].lazy;</span><br><span class="line">    <span class="keyword">if</span> (tl != tr)</span><br><span class="line">    &#123;</span><br><span class="line">        SegTree[<span class="number">2</span>*rt].lazy += SegTree[rt].lazy;</span><br><span class="line">        SegTree[<span class="number">2</span>*rt + <span class="number">1</span>].lazy += SegTree[rt].lazy;</span><br><span class="line">    &#125;</span><br><span class="line">    SegTree[rt].lazy = <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="区间更新的区间查询"><a class="header-anchor" href="#区间更新的区间查询">¶</a>区间更新的区间查询</h4>
+<p>假设询问 $A[L, R]$ 的和</p>
+<p>区间查询 ask 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LL <span class="title">ask</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> tl, <span class="keyword">int</span> tr, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (SegTree[rt].lazy) update(x, tl, tr);</span><br><span class="line">    <span class="keyword">if</span> (tl == l &amp;&amp; tr == r) <span class="keyword">return</span> SegTree[x].sum;</span><br><span class="line">    <span class="keyword">int</span> mid = (tl + tr) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (r &lt;= mid) <span class="keyword">return</span> ask(<span class="number">2</span>*rt, tl, mid, l, r); <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> (l &gt; mid) <span class="keyword">return</span> ask(<span class="number">2</span>*rt + <span class="number">1</span>, mid + <span class="number">1</span>, tr, l, r); <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ask(<span class="number">2</span>*rt, tl, mid, l, mid) + ask(<span class="number">2</span>*rt + <span class="number">1</span>, mid + <span class="number">1</span>, tr, mid + <span class="number">1</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="更好的代码"><a class="header-anchor" href="#更好的代码">¶</a>更好的代码</h4>
+<p>上面的区间更新的代码更符合直觉，但下面的代码更加流畅简洁<br>
+采用下面的代码作为模板<br>
+注意到，同样是完成区间更新功能的函数<br>
+上面的 change 函数在进第一个 if（return 前）时不更新当前结点的 val，而下面的 Update 函数是要更新的<br>
+并且 change 函数在递归过程中可能改变操作区间，而 Update函数在递归时保持 $[l, r]$ 操作区间不变<br>
+还要注意到两个函数 if 分类讨论情况的不同</p>
+<p>区间更新 Update 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [tl, tr] 表示当前区间，[l, r] 表示操作区间</span></span><br><span class="line"><span class="comment">// rt 表示当前结点编号，k 代表区间进行的更新</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> k, <span class="keyword">int</span> tl, <span class="keyword">int</span> tr, <span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &lt;= tl &amp;&amp; tr &lt;= r)&#123;</span><br><span class="line">        SegTree[rt].val += k*(tr-tl+<span class="number">1</span>);                 <span class="comment">// 更新数字和，向上保持正确</span></span><br><span class="line">        SegTree[rt].lazy += k;                          <span class="comment">// 累加还是赋值，看需求</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (tl+tr)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    PushDown(rt, mid-tl+<span class="number">1</span>, tr-mid);                     <span class="comment">// 下推以后，才准确更新子结点</span></span><br><span class="line">                                                        <span class="comment">// 一定要搞清楚这里为什么下推，不下推有什么后果</span></span><br><span class="line">    <span class="keyword">if</span> (l &lt;= mid) Update(l, r, k, tl, mid, rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (r &gt; mid) Update(l, r, k, mid+<span class="number">1</span>, tr, rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">    PushUp(rt);                                         <span class="comment">// 更新本结点信息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下推更新 PushDown 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ln，rn 分别为左子树和右子树的区间大小</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PushDown</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> ln, <span class="keyword">int</span> rn)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(SegTree[rt].lazy)&#123;                               <span class="comment">// 下推标记</span></span><br><span class="line">        SegTree[rt&lt;&lt;<span class="number">1</span>].lazy += SegTree[rt].lazy;</span><br><span class="line">        SegTree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].lazy += SegTree[rt].lazy;</span><br><span class="line">        SegTree[rt&lt;&lt;<span class="number">1</span>].val += SegTree[rt].lazy*ln;</span><br><span class="line">        SegTree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].val += SegTree[rt].lazy*rn;</span><br><span class="line"></span><br><span class="line">        SegTree[rt].lazy = <span class="number">0</span>;                           <span class="comment">// 清除本结点标记</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>区间查询 Query 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [tl, tr] 表示当前区间，[l, r] 表示操作区间</span></span><br><span class="line"><span class="comment">// rt 表示当前结点编号</span></span><br><span class="line"><span class="function">LL <span class="title">Query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> tl, <span class="keyword">int</span> tr, <span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &lt;= tl &amp;&amp; tr &lt;= r)</span><br><span class="line">        <span class="keyword">return</span> SegTree[rt].val;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; tr || r &lt; tl)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = (tl+tr)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    PushDown(rt, mid-tl+<span class="number">1</span>, tr-mid);                     <span class="comment">// 下推后才准确查询子结点</span></span><br><span class="line">    <span class="keyword">return</span> Query(l, r, tl, mid, rt&lt;&lt;<span class="number">1</span>) + Query(l, r, mid+<span class="number">1</span>, tr, rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，可以根据自己的习惯定义结构体，加入一些参数使得计算更方便</p>
+<h3 id="线段树的应用"><a class="header-anchor" href="#线段树的应用">¶</a>线段树的应用</h3>
+<p>要用线段树统计，必须符合区间“加法”<br>
+否则不可以通过二分子区间来得到 $[L, R]$ 的统计结果<br>
+常见的例子有：<br>
+区间数字之和 = 左区间数字之和 + 右区间数字之和<br>
+区间最大值 = $\max$ ( 左区间最大值，右区间最大值 )<br>
+区间最大公因树(GCD) = $\gcd$( 左区间 GCD，右区间 GCD )</p>
+<p>一个问题只要能转化成对一些连续点的修改与统计问题，基本可以使用线段树来解决</p>
+<h4 id="线段树-区间合并"><a class="header-anchor" href="#线段树-区间合并">¶</a>线段树 + 区间合并</h4>
+<p>给定 $n$ 个整数和 $m$ 个操作，输出查询结果，操作有两类：<br>
+U A B：将第 $A$ 个元素替换为 $B$（索引从 $0$ 开始计数）<br>
+Q A B：输出 $[a, b]$ 中最长的连续递增子序列（LCIS）的长度</p>
+<p>$[a, b]$ 中最长的连续递增子序列 $\neq$ $\text{MAX}$ ( 左区间 $max$，右区间 $max$ )<br>
+有可能跨越左右两个区间，涉及区间合并的思想</p>
+<p>对任意一个结点：<br>
+$max$ 为当前结点综合整个区间得到的 LCIS 长度<br>
+$lmax$ 为从当前结点最左端开始的 LCIS 长度；$rmax$ 为从当前结点最右端结束的 LCIS 长度</p>
+<p>分类讨论：</p>
+<ul>
+<li>左区间最右边的值 $\ge$ 右区间最左边的值<br>
+$max$ = $\text{MAX}$ ( 左区间 $max$，右区间 $max$)</li>
+<li>左区间最右边的值 $&lt;$ 右区间最左边的值，即 $a[mid] &lt; a[mid + 1]$<br>
+$lmax$ =（左区间 $lmax$ == 左区间长度 $llen$）? 左区间长度 $llen$ + 右区间 $lmax$ : 左区间 $lmax$<br>
+$rmax$ =（右区间 $rmax$ == 右区间长度 $rlen$）? 右区间长度 $rlen$ + 左区间 $rmax$ : 右区间 $rmax$<br>
+$max = \text{MAX}$ ( 左区间的 $max$，右区间的 $max$，左区间 $rmax$ + 右区间 $lmax$ )</li>
+</ul>
+<h3 id="线段树的优缺点"><a class="header-anchor" href="#线段树的优缺点">¶</a>线段树的优缺点</h3>
+<p>优点：应用范围广，经常用于辅助实现其他算法的优化，并且可以完全代替树状数组</p>
+<p>缺点：代码实现稍显麻烦</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/06/22/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/" title="树状数组与线段树">https://cloudplayer99.github.io/2022/06/22/树状数组与线段树/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" rel="tag"># 算法入门基础</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E5%B9%B6%E6%9F%A5%E9%9B%86%E4%B8%8E%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" rel="prev" title="并查集与最小生成树">
+      <i class="fa fa-chevron-left"></i> 并查集与最小生成树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/23/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" rel="next" title="算法入门基础">
+      算法入门基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">树状数组与线段树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#树状数组"><span class="nav-number">1.1.</span> <span class="nav-text">树状数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#由前缀和引入"><span class="nav-number">1.1.1.</span> <span class="nav-text">由前缀和引入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导引问题"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">导引问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入树状数组"><span class="nav-number">1.1.2.</span> <span class="nav-text">引入树状数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#text-lowbit-x-的求法"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">$\text{lowbit}(x)$ 的求法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造树状数组-C-i"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">构造树状数组 $C_i$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间查询操作"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">区间查询操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单点更新操作"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">单点更新操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二维树状数组模板"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">二维树状数组模板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树状数组应用"><span class="nav-number">1.1.3.</span> <span class="nav-text">树状数组应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#求逆序对"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">求逆序对</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对上面问题的引申——离散化"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">对上面问题的引申——离散化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间更新，单点查询"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">区间更新，单点查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间修改，区间查询"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">区间修改，区间查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树状数组的优缺点"><span class="nav-number">1.1.4.</span> <span class="nav-text">树状数组的优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线段树"><span class="nav-number">1.2.</span> <span class="nav-text">线段树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导引问题-v2"><span class="nav-number">1.2.1.</span> <span class="nav-text">导引问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入线段树"><span class="nav-number">1.2.2.</span> <span class="nav-text">引入线段树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线段树的属性"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">线段树的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线段树的定义"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">线段树的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线段树的构造"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">线段树的构造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单点更新"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">单点更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间查询"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">区间查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树的区间更新"><span class="nav-number">1.2.3.</span> <span class="nav-text">线段树的区间更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lazy-标记与延迟更新"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">lazy 标记与延迟更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间更新"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">区间更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间更新的区间查询"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">区间更新的区间查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更好的代码"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">更好的代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树的应用"><span class="nav-number">1.2.4.</span> <span class="nav-text">线段树的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线段树-区间合并"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">线段树 + 区间合并</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树的优缺点"><span class="nav-number">1.2.5.</span> <span class="nav-text">线段树的优缺点</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/06/22/树状数组与线段树/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

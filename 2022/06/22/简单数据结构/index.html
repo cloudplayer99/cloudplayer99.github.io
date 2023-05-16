@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-简单数据结构 但是没得密码。。。 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单数据结构">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-简单数据结构 但是没得密码。。。 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="article:published_time" content="2022-06-22T14:00:03.000Z">
+<meta property="article:modified_time" content="2022-06-25T06:34:14.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="算法入门基础">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>简单数据结构 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          简单数据结构
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 22:00:03" itemprop="dateCreated datePublished" datetime="2022-06-22T22:00:03+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-25 14:34:14" itemprop="dateModified" datetime="2022-06-25T14:34:14+08:00">2022-06-25</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>b站视频链接：<a href="https://www.bilibili.com/video/BV1pE411E7RV?p=3" target="_blank" rel="noopener">北京理工大学ACM冬季培训课程</a><br>
+<a href="https://vjudge.net/contest/356434" target="_blank" rel="noopener">课程刷题地址 2020BIT冬训-简单数据结构</a> 但是没得密码。。。<br>
+本篇博文为看视频学习时的记录与自己的一些总结</p>
+</blockquote>
+<a id="more"></a>
+<h1>简单数据结构</h1>
+<h2 id="前缀和"><a class="header-anchor" href="#前缀和">¶</a>前缀和</h2>
+<h3 id="定义"><a class="header-anchor" href="#定义">¶</a>定义</h3>
+<p>若 $S[i] = \sum\limits^{i}_{j=1} A[j]$，则称 $S$ 是 $A$ 的前缀和</p>
+<p>前缀和是一种重要的预处理，能大大降低查询的时间复杂度。可以简单理解为“数列的前 $n$ 项的和”。有以下性质：</p>
+<p>$$sum[l, r] = \sum^{r}_{i=1} A[i] = S[r] - S[l - 1]$$</p>
+<ul>
+<li>给定 $A$ 数列，长度为 $n$，$m$ 次询问，每次询问 $L_i, R_i$ 求 $\sum^{R_i}_{j=L_i} A[j]$（区间和）</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用 O(n) 前缀和预处理，O(m) 询问</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) sum[i] = sum[i - <span class="number">1</span>] + a[i]; <span class="comment">//O(n)</span></span><br><span class="line"><span class="keyword">while</span>(m--)  <span class="comment">//O(m)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> L, R; <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;L, &amp;R);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, sum[R] - sum[L - <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给定 $A$ 数列，长度为 $n$，先 $m$ 次修改，再 $q$ 次询问，每次修改为在 $A$ 数组的区间 $[ L_i, R_i ]$ 内都加上一个数 $x$，即 $A[j] += x, j \in [ L_i, R_i ], j \in R$， 每次询问 $L_i, R_i$ 求 $\sum^{R_i}_{j=L_i} A[j]$（区间和）<br>
+在这里实际上引入了差分的思想，由于要进行 $m$ 次的修改，每次修改都是对一个区间长度内的所有元素做加法，这样明显是一个不太聪明的做法，我们可以先将原数组处理为其差分数组，将对原数组在区间上的修改转变成为对其差分数组的头与尾后的修改，修改完成后，对差分数组再求前缀和即可得到原数组（利用前缀和与差分互为逆运算的性质），再利用原数组去求区间和。</li>
+</ul>
+<div align=center><img width = '560' height ='150' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%A5%E9%97%A8/差分与前缀和.PNG"/></div>
+<ul>
+<li>若 $A$ 数组的差分数组为 $B$ 数组，$A[j] += x, j \in [ L_i, R_i ], j \in R$ 就等价于 $B[L_i] += x, B[R_i+1] -= x$</li>
+</ul>
+<div align=center><img width = '700' height ='300' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%A5%E9%97%A8/%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E5%8C%BA%E9%97%B4%E4%BF%AE%E6%94%B9.PNG"/></div>
+<ul>
+<li>如果 $n$ 很大怎么办？<br>
+可以对用到的下标做离散化</li>
+</ul>
+<h3 id="扩展"><a class="header-anchor" href="#扩展">¶</a>扩展</h3>
+<h4 id="异或前缀和"><a class="header-anchor" href="#异或前缀和">¶</a>异或前缀和</h4>
+<p>若 $S[1] = A[1]$，$S[i] = S[i-1] \text{ xor } A[i]$，则称 $S$ 是 $A$ 的异或前缀和，有以下性质：</p>
+<p>$$sum[l, r] = A[l] \text{ xor } A[l + 1] \dots \text{ xor } A[r] = S[r] \text{ xor } S[l - 1]$$</p>
+<h4 id="二维-多维前缀和"><a class="header-anchor" href="#二维-多维前缀和">¶</a>二维/多维前缀和</h4>
+<p>一维前缀和扩展到二维前缀和</p>
+<p>若 $S[i][j] = \sum\limits^{i}_{p=1}\sum\limits^{j}_{q=1} A[p][q]$，则称 $S$ 是 $A$ 的二维前缀和，多维前缀和的普通求解方法几乎都是基于容斥原理，有以下性质：</p>
+<p>递推公式：</p>
+<p>$$S[i][j] = S[i-1][j] + S[i][j-1] - S[i-1][j-1] + A[i][j]$$</p>
+<p>总矩阵中的任意一个子矩阵求和（容斥原理）：</p>
+<p>$$sum[L_1, R_1, L_2, R_2] = S[L_2][R_2] - S[L_2][R_1] - S[L_1][R_2] + S[L_1][R_1]$$</p>
+<div align=center><img width = '500' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%A5%E9%97%A8/matrix_sum.PNG"/></div>
+<h2 id="链表"><a class="header-anchor" href="#链表">¶</a>链表</h2>
+<h3 id="定义-v2"><a class="header-anchor" href="#定义-v2">¶</a>定义</h3>
+<p>每个链表中的节点都包含两个值，该节点的权值和指向下一个节点的指针（或者是下一个节点的地址）</p>
+<div align=center><img width = '450' height ='150' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%A5%E9%97%A8/linked_list.PNG"/></div>
+<h3 id="扩展-v2"><a class="header-anchor" href="#扩展-v2">¶</a>扩展</h3>
+<p>邻接链表</p>
+<p>如果邻接矩阵来存图，用 $a[i][j]$ 表示 $i$ 与 $j$ 连边的情况，空间的大小是 $N^2$（ $N$ 为图的点数），但是要存的边数可能是很少的，譬如稀疏图，于是可能会浪费很多的空间，那么我们可以用邻接链表来优化存图</p>
+<div align=center><img width = '550' height ='330' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%A5%E9%97%A8/yjw123456_4.png"/></div>
+<p>邻接链表存图的核心思想是将读入的每一条边编号，并记录下从每个点出发的第一条边的编号，并且记录下每条边的“下一条边”的编号，这样一来，当我们需要遍历从一个点出发的所有边时，只需要从该点的第一条边开始，遍历完成后找到该边的“下一条边”继续遍历</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> cnt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> to;     <span class="comment">//这条边的终点</span></span><br><span class="line">    <span class="keyword">int</span> next;   <span class="comment">//这条边的下一条边</span></span><br><span class="line">    <span class="keyword">int</span> val;    <span class="comment">//这条边的权值</span></span><br><span class="line">&#125;e[maxn];</span><br><span class="line"><span class="keyword">int</span> head[maxn]; <span class="comment">//head[i]表示i节点的第一条边的编号</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[++cnt].to = v;</span><br><span class="line">    e[cnt].val = w;</span><br><span class="line">    e[cnt].next = head[u];</span><br><span class="line">    head[u] = cnt;  <span class="comment">//链表从头部插入新元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="栈与队列"><a class="header-anchor" href="#栈与队列">¶</a>栈与队列</h2>
+<h3 id="栈"><a class="header-anchor" href="#栈">¶</a>栈</h3>
+<p>栈（stack）又名堆栈，它是一种运算受限的线性表。限定仅在表尾进行插入和删除操作的线性表。这一端被称为栈顶，相对地，把另一端称为栈底。向一个栈插入新元素又称作进栈，入栈或压栈，它是把新元素放到栈顶元素的上面，使之成为新的栈顶元素；从一个栈删除元素又称作出栈或退栈，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。</p>
+<p>性质：后进先出（last in first out）</p>
+<div align=center><img width = '600' height ='600' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%A5%E9%97%A8/stack.png"/></div>
+<p>一个手写的栈：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> top;</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">stack</span>[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(top)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">stack</span>[top--];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>[++top] = x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C++ STL</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">s.empty();      <span class="comment">//如果栈为空则返回true，否则返回false；</span></span><br><span class="line">s.size();       <span class="comment">//返回栈中元素的个数</span></span><br><span class="line">s.top();        <span class="comment">//返回栈顶元素，但不删除该元素</span></span><br><span class="line">s.pop();        <span class="comment">//弹出栈顶元素，但不返回其值</span></span><br><span class="line">s.push();       <span class="comment">//将元素压入栈顶</span></span><br></pre></td></tr></table></figure>
+<h4 id="括号匹配问题"><a class="header-anchor" href="#括号匹配问题">¶</a>括号匹配问题</h4>
+<p>例题：判断一串括号序列是否合法<br>
+思路：读取序列，若当前符号和栈顶符号匹配，则弹出栈顶，否则压入当前符号进栈</p>
+<p>给定一个由 (、)、[、] 四种符号构成的字符串，判断其中的括号是否匹配。<br>
+如果匹配，输出 “yes”，否则输出 “no”。<br>
+Sample Input<br>
+(()()[(())])<br>
+[((]))<br>
+Sample Output<br>
+yes<br>
+no</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="built_in">string</span> s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s) &#123;</span><br><span class="line">        <span class="keyword">if</span> (check(s)) <span class="built_in">cout</span> &lt;&lt; <span class="string">"yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; p;</span><br><span class="line">    p.push(<span class="string">'#'</span>);        <span class="comment">// 设置“哨兵”，防 RE </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> c = s[i];  <span class="comment">// string 的访问方式</span></span><br><span class="line">        <span class="comment">// 注意一次匹配失败即无需进行后面的判断，可以直接给出 false</span></span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">')'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (p.top() != <span class="string">'('</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">else</span> p.pop();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">']'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (p.top() != <span class="string">'['</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">else</span> p.pop();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> p.push(c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (p.size() == <span class="number">1</span>);	<span class="comment">// 是否只剩“哨兵” </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="排队问题"><a class="header-anchor" href="#排队问题">¶</a>排队问题</h4>
+<p>例题：</p>
+<p>描述：有 n 个人站队，所有的人全部向右看，个子高的可以看到个子低的人发型（高个子会挡住低个子的视线，这里的身高大于是严格大于），给出每个人的身高，问所有人能看到其他人发型数量的总和是多少。<br>
+输入：4 3 7 1<br>
+输出：2<br>
+解释：个子为 4 的可以看到个子为 3 的发型（因为被 7 挡住所以看不到 1），个子为 7 可以看到个子为 1 的身高，所以 1+1 = 2<br>
+输入：3 4<br>
+输出：0<br>
+解释：3 看不到 4 的</p>
+<p>思路：维护一个单调的栈</p>
+<p>可以求每个人被看到的次数，即这个人向左单调递增的区间长度。</p>
+<p>从左到右依次读取当前人的高度，从栈顶开始把高度小于或等于当前人的高度的那些元素删除，此时栈中剩下的元素的数量就是可以看见当前人的其他人的数量。</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%A5%E9%97%A8/%E9%AB%98%E4%B8%AA%E5%AD%90%E9%97%AE%E9%A2%98.PNG"/></div>
+<h3 id="队列"><a class="header-anchor" href="#队列">¶</a>队列</h3>
+<p>队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。</p>
+<p>性质：先进先出（first in first out）</p>
+<div align=center><img width = '476' height ='302' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%A5%E9%97%A8/queue_1.png"/></div>
+<p>一个手写的队列：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> head=<span class="number">0</span>, tail=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> q[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head&lt;tail)</span><br><span class="line">        <span class="keyword">return</span> q[head++];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    q[tail++]=x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以写成循环队列以优化空间复杂度</p>
+<p>C++ STL</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">q.empty();      <span class="comment">// 如果队列为空返回 true，否则返回false</span></span><br><span class="line">q.size();       <span class="comment">// 返回队列中元素的个数</span></span><br><span class="line">q.pop();        <span class="comment">// 删除队列首元素但不返回其值</span></span><br><span class="line">q.front();      <span class="comment">// 返回队首元素的值，但不删除该元素</span></span><br><span class="line">q.push();       <span class="comment">// 在队尾压入新元素</span></span><br><span class="line">q.back();       <span class="comment">// 返回队尾元素的值，但不删除该元素</span></span><br></pre></td></tr></table></figure>
+<p>队列的 BFS 搜索</p>
+<p>Description：定义一个二维数组：</p>
+<pre><code>int maze[5][5] = {
+    0, 1, 0, 0, 0,
+    0, 1, 0, 1, 0,
+    0, 0, 0, 0, 0,
+    0, 1, 1, 1, 0,
+    0, 0, 0, 1, 0,
+};
+</code></pre>
+<p>它表示一个迷宫，其中的 1 表示墙壁，0 表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。<br>
+Input<br>
+一个 5 x 5 的二维数组，表示一个迷宫。数据保证有唯一解。<br>
+Output<br>
+左上角到右下角的最短路径。</p>
+<p>思路：</p>
+<p>一道比较简单的 BFS 搜索题目，在 BFS 过程中记得记录该节点的前驱</p>
+<ol>
+<li>将起点压入队列</li>
+<li>取出队首元素 now，若 now 为终点则结束，<br>
+否则从 now 向外扩展其他可行的点（若出界或者已经访问过或者是障碍物则不可行），<br>
+将新点压入队列，返回第二步开始</li>
+</ol>
+<h3 id="双端队列"><a class="header-anchor" href="#双端队列">¶</a>双端队列</h3>
+<p>即在队首和队尾都支持插入和删除操作的数据结构</p>
+<h2 id="优先队列（堆）"><a class="header-anchor" href="#优先队列（堆）">¶</a>优先队列（堆）</h2>
+<p>优先队列中，元素被赋予优先级。当访问元素时具有最高优先级的元素最先删除。优先队列具有最高级先出（first in, largest out）的行为特征。</p>
+<p>top 访问队头元素<br>
+empty 队列是否为空<br>
+size 返回队列内元素个数<br>
+push 插入元素到队尾（并排序）<br>
+emplace 原地构造一个元素并插入队列<br>
+pop 弹出队头元素</p>
+<p>复杂度分析按堆来分析</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 升序队列</span></span><br><span class="line">priority_queue &lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; q;</span><br><span class="line"><span class="comment">// 降序队列</span></span><br><span class="line">priority_queue &lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt; &gt; q;</span><br></pre></td></tr></table></figure>
+<p>自己写自己的结构体：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tmp1</span> //运算符重载&lt;</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="class">    int x;</span></span><br><span class="line"><span class="class">    tmp1(int a) &#123; x = a; &#125;</span></span><br><span class="line"><span class="class">    bool operator&lt;(const tmp1&amp; a) const</span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line"><span class="class">        return x &lt; a.x;     // 大顶堆</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">// 方法2</span></span><br><span class="line"><span class="class">struct tmp2 //重写仿函数</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="class">    bool operator() (tmp1 a, tmp1 b)</span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line"><span class="class">        return a.x &lt; b.x;   // 大顶堆</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;;</span></span><br><span class="line"><span class="class">    priority_queue&lt;tmp1&gt; d;</span></span><br><span class="line"><span class="class">    priority_queue&lt;tmp1, vector&lt;tmp1&gt;, tmp2&gt; f;</span></span><br></pre></td></tr></table></figure>
+<p>例题：</p>
+<p>两个排好序的序列A、B（长度为 n，n 为 1e5），求前 n 大的 A[i]+B[j]，分别是多少？A、B 都是降序</p>
+<p>思路：</p>
+<p>使用一个优先队列，一开始先将 A 序列中最大的那个和 B 序列所有元素依次相加存进队列中，每次弹出最大的和组合（$A_i, B_j, A_i + B_j$）再新加入（$A_{i+1}, B_j, A_{i+1} + B_j$）<br>
+但好像并不需要优先队列，用双指针遍历 n 次就能解决问题了</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="简单数据结构">https://cloudplayer99.github.io/2022/06/22/简单数据结构/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" rel="tag"># 算法入门基础</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E6%A8%A1%E6%8B%9F%E4%B8%8E%E6%9A%B4%E5%8A%9B/" rel="prev" title="模拟与暴力">
+      <i class="fa fa-chevron-left"></i> 模拟与暴力
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/" rel="next" title="字符串入门">
+      字符串入门 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">简单数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前缀和"><span class="nav-number">1.1.</span> <span class="nav-text">前缀和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">1.1.2.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异或前缀和"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">异或前缀和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二维-多维前缀和"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">二维&#x2F;多维前缀和</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">1.2.</span> <span class="nav-text">链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-v2"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展-v2"><span class="nav-number">1.2.2.</span> <span class="nav-text">扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈与队列"><span class="nav-number">1.3.</span> <span class="nav-text">栈与队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">1.3.1.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#括号匹配问题"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">括号匹配问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排队问题"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">排队问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.3.2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双端队列"><span class="nav-number">1.3.3.</span> <span class="nav-text">双端队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先队列（堆）"><span class="nav-number">1.4.</span> <span class="nav-text">优先队列（堆）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/06/22/简单数据结构/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

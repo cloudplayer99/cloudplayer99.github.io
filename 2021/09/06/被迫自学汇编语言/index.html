@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="《汇编语言（第四版）》 . 王爽著 . 清华大学出版社 . 2019">
+<meta property="og:type" content="article">
+<meta property="og:title" content="被迫自学汇编语言">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/09/06/%E8%A2%AB%E8%BF%AB%E8%87%AA%E5%AD%A6%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="《汇编语言（第四版）》 . 王爽著 . 清华大学出版社 . 2019">
+<meta property="article:published_time" content="2021-09-06T09:00:20.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:04.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="Assembly Language">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/09/06/%E8%A2%AB%E8%BF%AB%E8%87%AA%E5%AD%A6%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>被迫自学汇编语言 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/09/06/%E8%A2%AB%E8%BF%AB%E8%87%AA%E5%AD%A6%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          被迫自学汇编语言
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-06 17:00:20" itemprop="dateCreated datePublished" datetime="2021-09-06T17:00:20+08:00">2021-09-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:04" itemprop="dateModified" datetime="2022-03-27T16:10:04+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>《汇编语言（第四版）》 . 王爽著 . 清华大学出版社 . 2019<a id="more"></a></p>
+<h2 id="汇编语言实验合集"><a class="header-anchor" href="#汇编语言实验合集">¶</a>汇编语言实验合集</h2>
+<p><a href="https://cloudplayer.top/2021/09/06/%E8%A2%AB%E8%BF%AB%E8%87%AA%E5%AD%A6%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" target="_blank" rel="noopener">汇编语言实验合集</a></p>
+<p><a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E4%B8%80/" target="_blank" rel="noopener">实验 1 查看 CPU 和内存，用机器指令和汇编指令编程</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E4%BA%8C/" target="_blank" rel="noopener">实验 2 用机器指令和汇编指令编程</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E4%B8%89/" target="_blank" rel="noopener">实验 3 编程、编译、连接、跟踪</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%9B%9B/" target="_blank" rel="noopener">实验 4 [bx] 和 loop 的使用</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E4%BA%94/" target="_blank" rel="noopener">实验 5 编写、调试具有多个段的程序</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%85%AD/" target="_blank" rel="noopener">实验 6 实践课程中的程序</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E4%B8%83/" target="_blank" rel="noopener">实验 7 寻址方式在结构化数据访问中的应用</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%85%AB/" target="_blank" rel="noopener">实验 8 分析一个奇怪的程序</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E4%B9%9D/" target="_blank" rel="noopener">实验 9 根据材料编程</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%8D%81/" target="_blank" rel="noopener">实验 10 编写子程序</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E4%B8%80/" target="_blank" rel="noopener">课程设计 1</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%8D%81%E4%B8%80/" target="_blank" rel="noopener">实验 11 编写子程序</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%8D%81%E4%BA%8C/" target="_blank" rel="noopener">实验 12 编写 0 号中断的处理程序</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%8D%81%E4%B8%89/" target="_blank" rel="noopener">实验 13 编写、应用中断例程</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%8D%81%E5%9B%9B/" target="_blank" rel="noopener">实验 14 访问 CMOS RAM</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%8D%81%E4%BA%94/" target="_blank" rel="noopener">实验 15 安装新的 int9 中断例程</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%8D%81%E5%85%AD/" target="_blank" rel="noopener">实验 16 编写包含多个功能子程序的中断例程</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E9%AA%8C%E5%8D%81%E4%B8%83/" target="_blank" rel="noopener">实验 17 编写包含多个功能子程序的中断例程</a><br>
+<a href="https://cloudplayer.top/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E4%BA%8C/" target="_blank" rel="noopener">课程设计 2</a></p>
+<h2 id="Debug-工具"><a class="header-anchor" href="#Debug-工具">¶</a>Debug 工具</h2>
+<p>Debug 是 DOS、Windows 都提供的实模式（8086 方式）程序的调试工具。使用它，可以查看 CPU 各种寄存器中的内容、内存的情况和在机器码级跟踪程序的运行。</p>
+<h3 id="Debug-功能"><a class="header-anchor" href="#Debug-功能">¶</a>Debug 功能</h3>
+<p><strong>A 命令</strong>：将指令直接汇编成机器码输入到内存中，用于小段程序的汇编及修改目标程序，所有输入的数字均采用十六进制，用户装入内存的汇编语句是连续存放的，若没有指定地址，并且前面没有使用汇编命令，该语句被汇编到 <strong>CS:0100</strong> 区域；</p>
+<p><strong>D 命令</strong>：查看内存中的内容，可以带参数也可省略参数，当省略参数时，命令 D 显示内容以 <strong>DS:0100</strong> 为起始，每次显示 128 个字节的内容。以后再执行不带参数的命令 D 时，Debug 将按上次的位置接着显示下去，带参数的方式有 <strong>d [起始位置]、d [起始位置] [结束位置]、d [起始位置] [L长度]</strong>。</p>
+<p><strong>R 命令</strong>：查看、改变 CPU 寄存器的内容，当直接输入 r 时，Debug 将会显示出当前所有寄存器和标志位的状态，输入 <strong>r [寄存器]</strong> 可以改变 CPU 寄存器的内容；</p>
+<p><strong>E 命令</strong>：改写内存中的内容，使用方式为：<strong>e [起始位置]</strong>，可修改当前字节的值，如果还要修改后续的内容，可以按空格键继续；</p>
+<p><strong>U 命令</strong>：将内存中的机器指令翻译成汇编指令，使用方法是：<strong>e [范围]</strong>；</p>
+<p><strong>T 命令</strong>：单步执行，每次只执行一条代码语句，遇到子程序后进入子程序逐条执行代码，可以理解为 step into，默认从 <strong>CS:IP</strong> 处开始运行；</p>
+<p><strong>P 命令</strong>：类似 T 命令，不过遇到子程序调用的时候直接执行完子程序代码，不会进入子程序逐条执行，可以理解为 step over。另外，在遇到循环指令时，会直接执行到 <strong>CX=0</strong>。</p>
+<p><strong>G 命令</strong>：该命令后面可以跟地址和断点，即格式为 <strong>g [=address] [breakpoints]</strong>，运行到内存指定位置的代码后暂停，如果不加参数默认是从当前 <strong>IP</strong> 运行到程序结束。</p>
+<h3 id="标志寄存器在-Debug-中的表示"><a class="header-anchor" href="#标志寄存器在-Debug-中的表示">¶</a>标志寄存器在 Debug 中的表示</h3>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AE%9E%E9%AA%8C11/11_0_1.PNG"/></div><br>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>值为 1 的标记</th>
+<th>值为 0 的标记</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>of</td>
+<td>OV</td>
+<td>NV</td>
+</tr>
+<tr>
+<td>sf</td>
+<td>NG</td>
+<td>PL</td>
+</tr>
+<tr>
+<td>zf</td>
+<td>ZR</td>
+<td>NZ</td>
+</tr>
+<tr>
+<td>pf</td>
+<td>PE</td>
+<td>PO</td>
+</tr>
+<tr>
+<td>cf</td>
+<td>CY</td>
+<td>NC</td>
+</tr>
+<tr>
+<td>df</td>
+<td>DN</td>
+<td>UP</td>
+</tr>
+</tbody>
+</table>
+<p><br><div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AE%9E%E9%AA%8C11/11_0_2.PNG"/></div></p>
+<p><strong>CF：进位标志位</strong><br>
+进行无符号数运算的时候，若存在运算结果的最高有效位向更高位的进位，或是从更高位借位，CF = 1，否则 CF = 0；<br>
+<strong>OF：溢出标志位</strong><br>
+进行有符号数运算的时候，结果超过了机器所能表示的范围（溢出），则 OF = 1，否则 OF = 0；<br>
+<strong>DF：方向标志位</strong><br>
+cld 指令将 DF 位置 0，si 与 di 递增，std 指令 将 DF 位置 1，si 与 di 递减；<br>
+<strong>SF：符号标志位</strong><br>
+相关指令执行后，若结果为负，SF = 1，若为非负，SF = 0；<br>
+<strong>ZF：零标志位</strong><br>
+相关指令执行后，若结果为 0，ZF = 1，若不为 0，ZF = 0；<br>
+<strong>PF：奇偶标志位</strong><br>
+相关指令执行后，若其结果的所有 bit 位中 1 的个数是为偶数，PF = 1，若为奇数 PF = 0；</p>
+<p>这里的相关指令指 add，sub，mul，div，inc，or，and 等，它们大都是运算指令（进行逻辑或算术运算），不包括 mov，push，pop 等传送指令。</p>
+<h2 id="8086-CPU-寄存器总结"><a class="header-anchor" href="#8086-CPU-寄存器总结">¶</a>8086 CPU 寄存器总结</h2>
+<h3 id="基本介绍（引自百度）"><a class="header-anchor" href="#基本介绍（引自百度）">¶</a>基本介绍（引自百度）</h3>
+<p>Intel 8086 拥有四个 16 位的通用寄存器，也能够当作八个 8 位寄存器来存取，以及四个 16 位索引寄存器（包含了堆栈指标）。资料寄存器通常由指令隐含地使用，针对暂存值需要复杂的寄存器配置。它提供 64K 8 位元的输出输入（或 32K 16 位元），以及固定的向量中断。大部分的指令只能够存取一个内存位址，所以其中一个操作数必须是一个寄存器。运算结果会储存在操作数中的一个寄存器。</p>
+<p>Intel 8086 有四个内存区段（segment)寄存器，可以从索引寄存器来设定。区段寄存器可以让 CPU 利用特殊的方式存取 1 MB 内存。8086 把段地址左移 4 位然后把它加上偏移地址。大部分的人都认为这是一个很不好的设计，因为这样的结果是会让各分段有重叠。尽管这样对组合语言而言大部分被接受（也甚至有用），可以完全地控制分段，使在编程中使用指针（如C编程语言） 变得困难。它导致指针的高效率表示变得困难，且有可能产生两个指向同一个地方的指针拥有不同的地址。更坏的是，这种方式产生要让内存扩充到大于 1 MB 的困难。而 8086 的寻址方式改变让内存扩充较有效率。</p>
+<p>8086 处理器的时钟频率介于 4.77MHz（在原先的IBM PC频率）和 10 MHz之间。8086 没有包含浮点指令部分（FPU），但是可以通过外接数学辅助处理器来增强浮点计算能力。Intel 8087 是标准版本。</p>
+<h3 id="寄存器介绍"><a class="header-anchor" href="#寄存器介绍">¶</a>寄存器介绍</h3>
+<p>8086 拥有 4 个段寄存器，分别是：</p>
+<ol>
+<li>CS(code segment)：16位的代码段寄存器；</li>
+<li>DS(data segment)：16位的数据段寄存器；</li>
+<li>ES(extra segment)：16位的扩展段寄存器；</li>
+<li>SS(stack segment)：16位的堆栈段寄存器；</li>
+</ol>
+<p>8086 通过 CS 与 16 位的指令指针寄存器 IP 一起来指示 CPU 当前要读取指令的地址(CS:IP)，于是可以通过改变 CS、IP 中的内容来控制 CPU 执行目标指令。</p>
+<p>8086 还拥有 8 个通用寄存器：即 AX、BX、CX、DX、BP、SP、SI、DI，其中：</p>
+<ol>
+<li>4 个数据寄存器：AX、BX、CX、DX；</li>
+<li>2 个地址指针寄存器：BP(base pointer)、SP(stack pointer)；</li>
+<li>2 个变址寄存器：SI(source index)、DI(destination index)。</li>
+</ol>
+<p>4 个数据寄存器也能够当作 8 个 8 位寄存器来存取，即 AL、AH、BL、BH、CL、CH、DL、DH。</p>
+<p>AX、DX 在使用 div 指令和 mul 指令时，总是 DX 为高 16 位，AX 为低 16 位，两者可以表示一个 32 位的双字型数据。</p>
+<p>CX 默认为 loop 指令的循环计数器。</p>
+<p>在以栈的方式访问内存空间时，通常将栈顶的段地址存放在段寄存器 SS 中，偏移地址存放在 SP 中，使得任意时刻，SS:SP 指向栈顶元素。</p>
+<p>标志寄存器 FR(flags register)，共 16 位，其中存储的信息通常被称为程序状态字(PSW)，用来存储相关指令的某些执行结果、为 CPU 执行相关指令提供行为依据、控制 CPU 的相关工作方式。</p>
+<h3 id="寻址方式"><a class="header-anchor" href="#寻址方式">¶</a>寻址方式</h3>
+<p>8086 采用一种在内部用两个 16 位地址合成的方法来形成一个 20 位的物理地址，<br>
+即：<strong>物理地址=段地址×16+偏移地址</strong>。</p>
+<p>存放段地址的寄存器可以是默认的(DS)，也可以显性给出。</p>
+<p>给定内存单元偏移地址定位内存单元的方法被称为寻址方式。</p>
+<p><br><div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AE%9E%E9%AA%8C7/7_0_1.PNG"/></div></p>
+<h2 id="指令系统总结"><a class="header-anchor" href="#指令系统总结">¶</a>指令系统总结</h2>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AE%9E%E9%AA%8C15/15_0_1.PNG"/></div>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AE%9E%E9%AA%8C15/15_0_2.PNG"/></div>
+<hr>
+<h2 id="参考博文"><a class="header-anchor" href="#参考博文">¶</a>参考博文</h2>
+<p>以下也包括做实验时参考过的一些文章和视频</p>
+<p><a href="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%88%E7%8E%8B%E7%88%BD%EF%BC%89%E7%AD%94%E6%A1%88.pdf" target="_blank" rel="noopener">汇编语言答案 / HK_Mayfly</a></p>
+<p><a href="https://blog.csdn.net/OrangeHap/article/details/89790492" target="_blank" rel="noopener">CSDN: OrangeHap / 汇编语言（第三版）实验</a></p>
+<p><a href="https://blog.csdn.net/shaco_?type=blog" target="_blank" rel="noopener">CSDN: shaco_的博客</a></p>
+<p><a href="https://blog.csdn.net/qq_39654127/article/details/88698911" target="_blank" rel="noopener">CSDN: 洋葱汪 / 王爽《汇编语言》笔记（详细）</a></p>
+<p><a href="https://blog.csdn.net/sxhelijian/article/details/69338661" target="_blank" rel="noopener">CSDN: 迂者-贺利坚 / no stack segment警告为何还在？</a></p>
+<p><a href="https://blog.csdn.net/sxhelijian/article/details/109397338" target="_blank" rel="noopener">CSDN: 迂者-贺利坚 / 调整DOSBox的窗口大小：跨过三连坑</a></p>
+<p><a href="https://blog.csdn.net/shidan77/article/details/84443358" target="_blank" rel="noopener">CSDN: shidan77 / DEBUG 中T、P、G命令的用法与区别</a></p>
+<p><a href="https://www.cnblogs.com/xinyugarden/p/11993388.html" target="_blank" rel="noopener">CSDN: _毛豆豆 / Debug命令详解</a></p>
+<p><a href="https://www.bilibili.com/video/BV1mt411R7Xv?p=1" target="_blank" rel="noopener">bilibili: 紫狐遗梦 / 汇编语言从0开始 重制版</a></p>
+<p><a href="https://baike.baidu.com/item/8086/7716347?fr=aladdin" target="_blank" rel="noopener">百度百科: 8086</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/09/06/%E8%A2%AB%E8%BF%AB%E8%87%AA%E5%AD%A6%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" title="被迫自学汇编语言">https://cloudplayer99.github.io/2021/09/06/被迫自学汇编语言/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/Assembly-Language/" rel="tag"># Assembly Language</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/06/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E4%BA%8C/" rel="prev" title="《汇编语言》（第四版） 课程设计 2">
+      <i class="fa fa-chevron-left"></i> 《汇编语言》（第四版） 课程设计 2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/24/%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B%EF%BC%8C%E7%AE%80%E5%8D%95%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99/" rel="next" title="套接字编程，简单程序的编写">
+      套接字编程，简单程序的编写 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#汇编语言实验合集"><span class="nav-number">1.</span> <span class="nav-text">汇编语言实验合集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debug-工具"><span class="nav-number">2.</span> <span class="nav-text">Debug 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debug-功能"><span class="nav-number">2.1.</span> <span class="nav-text">Debug 功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标志寄存器在-Debug-中的表示"><span class="nav-number">2.2.</span> <span class="nav-text">标志寄存器在 Debug 中的表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8086-CPU-寄存器总结"><span class="nav-number">3.</span> <span class="nav-text">8086 CPU 寄存器总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本介绍（引自百度）"><span class="nav-number">3.1.</span> <span class="nav-text">基本介绍（引自百度）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寄存器介绍"><span class="nav-number">3.2.</span> <span class="nav-text">寄存器介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻址方式"><span class="nav-number">3.3.</span> <span class="nav-text">寻址方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令系统总结"><span class="nav-number">4.</span> <span class="nav-text">指令系统总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考博文"><span class="nav-number">5.</span> <span class="nav-text">参考博文</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/09/06/被迫自学汇编语言/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Icarus Verilog和GTKwave使用简析  上一篇转载文章的参考文章，整理得更加细致，更有参考价值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载：Icarus Verilog和GTKwave使用简析">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/06/10/Icarus%20Verilog%E5%92%8CGTKwave%E4%BD%BF%E7%94%A8%E7%AE%80%E6%9E%90/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="Icarus Verilog和GTKwave使用简析  上一篇转载文章的参考文章，整理得更加细致，更有参考价值">
+<meta property="article:published_time" content="2020-06-10T13:40:00.000Z">
+<meta property="article:modified_time" content="2021-02-21T15:33:48.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="Verilog HDL">
+<meta property="article:tag" content="DIGITAL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/06/10/Icarus%20Verilog%E5%92%8CGTKwave%E4%BD%BF%E7%94%A8%E7%AE%80%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>转载：Icarus Verilog和GTKwave使用简析 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/06/10/Icarus%20Verilog%E5%92%8CGTKwave%E4%BD%BF%E7%94%A8%E7%AE%80%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          转载：Icarus Verilog和GTKwave使用简析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-10 21:40:00" itemprop="dateCreated datePublished" datetime="2020-06-10T21:40:00+08:00">2020-06-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-21 23:33:48" itemprop="dateModified" datetime="2021-02-21T23:33:48+08:00">2021-02-21</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 class="title-article">Icarus Verilog和GTKwave使用简析</h1>
+<blockquote>
+<p>上一篇转载文章的参考文章，整理得更加细致，更有参考价值<a id="more"></a></p>
+</blockquote>
+<p>本文简要介绍Icarus Verilog和GTKwave的使用，使用iverilog（Icarus Verilog）编译仿真verilog而使用GTKWave查看仿真数据波形</p>
+<p></p><div class="toc"><div class="toc">
+<ul>
+<ul>
+<li><a href="#下载安装" rel="nofollow" target="_self">下载安装</a></li>
+<li><a href="#基本使用" rel="nofollow" target="_self">基本使用</a><ul>
+<li><a href="#iverilog使用" rel="nofollow" target="_self">iverilog使用</a></li>
+<li><a href="#gtkwave使用" rel="nofollow" target="_self">GTKWave使用</a></li>
+</ul>
+</li>
+<li><a href="#iverilog常用选项" rel="nofollow" target="_self">iverilog常用选项</a><ul>
+<li><a href="#选项-g" rel="nofollow" target="_self">选项-g</a></li>
+<li><a href="#选项-o" rel="nofollow" target="_self">选项-o</a></li>
+<li><a href="#选项-y" rel="nofollow" target="_self">选项-y</a></li>
+<li><a href="#选项-i" rel="nofollow" target="_self">选项-I</a></li>
+<li><a href="#选项-d" rel="nofollow" target="_self">选项-D</a></li>
+<li><a href="#选项-t" rel="nofollow" target="_self">选项-t</a></li>
+</ul>
+</li>
+<li><a href="#使用库" rel="nofollow" target="_self">使用库</a><ul>
+<li><a href="#xilinx" rel="nofollow" target="_self">Xilinx</a><ul>
+<li><a href="#vivado" rel="nofollow" target="_self">vivado</a></li>
+</ul>
+</li>
+<li><a href="#lattice" rel="nofollow" target="_self">Lattice</a><ul>
+<li><a href="#ecp3" rel="nofollow" target="_self">ECP3</a></li>
+<li><a href="#machox2" rel="nofollow" target="_self">MachOX2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#注意事项" rel="nofollow" target="_self">注意事项</a><ul>
+<li><a href="#verilog源码" rel="nofollow" target="_self">verilog源码</a></li>
+<li><a href="#编译命令" rel="nofollow" target="_self">编译命令</a></li>
+<li><a href="#其它" rel="nofollow" target="_self">其它</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p></p>
+<p>最近看一本书中有提到GTKwave这个软件，所以就去了解下，发现都是讲iverilog+GTKWave的使用，索性就再解了一下iverilog。这两个软件都是开源软件，而且两个软件安装包总共不足10MB，而且基本的verilog仿真都支持，普通FPGA设计的仿真完全够用。 <br>
+由于其他文章都只是很简单的介绍了hello world的一个简单的例子，没有对使用各FPGA公司库的使用做介绍，所以才有本文的产生。本文从安装开始介绍；然后基本使用，最终给出包含Xilinx或Lattice IP的verilog设计的仿真方法；最后给出一些注意事项和使用技巧</p>
+<p>本文测试文件在windows10和windows7上测试通过，其它平台请参考官方文档</p>
+<h2 id="下载安装"><a name="t0"></a><a name="t0"></a>下载安装</h2>
+<p>由于Icarus Verilog中已经包含了GTKWave所以直接从<a href="http://bleyer.org/icarus/" target="_blank" rel="nofollow noopener">http://bleyer.org/icarus/</a>下载安装，这里提供的为Windows版，我下载的为当前时间最新版：iverilog-10.1.1-x64_setup.exe，整个安装包才9.77MB，安装后也只有不到50MB。经测试，其实安装后只要把安装所在目录打包复制到其它电脑也可以用，即下载的这个安装类似一个自解压文件，但会增加两个路径到PATH。所以将安装目录打包复制到其它电脑后只要将以下两个目录（iverilog和gtkwave可执行文件所在目录）加入系统PATH环境变量中即可（这里假设放入其它电脑的目录为E:\iverilog）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\iverilog\bin</span><br><span class="line">E:\iverilog\gtkwave\bin</span><br></pre></td></tr></table></figure>
+<p>或者在运行批处理文件前加入如下代码即可（即使用前将这两个路径临时加入PATH）：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set iverilog_path=d:\iverilog\bin;</span><br><span class="line">set gtkwave_path=d:\iverilog\gtkwave\bin;</span><br><span class="line">set path=%iverilog_path%%gtkwave_path%%path%</span><br></pre></td></tr></table></figure>
+<p>下面给出可能会用到的网址：</p>
+<ul>
+<li>iverilog 官网：<a href="http://iverilog.icarus.com/" target="_blank" rel="nofollow noopener">http://iverilog.icarus.com/</a></li>
+<li>iverilog windows版本：<a href="http://bleyer.org/icarus/" target="_blank" rel="nofollow noopener">http://bleyer.org/icarus/</a></li>
+<li>iverilog User Guide：<a href="http://iverilog.wikia.com/wiki/User_Guide" target="_blank" rel="nofollow noopener">http://iverilog.wikia.com/wiki/User_Guide</a></li>
+<li>iverilog GitHub：<a href="https://github.com/steveicarus/iverilog" target="_blank" rel="noopener">https://github.com/steveicarus/iverilog</a></li>
+<li>GTKWave 官网：<a href="http://gtkwave.sourceforge.net/" target="_blank" rel="nofollow noopener">http://gtkwave.sourceforge.net/</a></li>
+<li>GTKWave 手册：<a href="http://gtkwave.sourceforge.net/gtkwave.pdf" target="_blank" rel="nofollow noopener">http://gtkwave.sourceforge.net/gtkwave.pdf</a></li>
+</ul>
+<h2 id="基本使用"><a name="t1"></a><a name="t1"></a>基本使用</h2>
+<p>这里给出一个简单的hello world例程，先对使用方法有一个大概的了解</p>
+<h3 id="iverilog使用"><a name="t2"></a><a name="t2"></a>iverilog使用</h3>
+<p>仿真当然首先要提供verilog源代码，这里简单的实现了一个打印”hello world!”的例子，由于涉及到GTKWave的使用所以加入了clk和rst_n两个信号，以便介绍GTKWave的使用</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****</span></span><br><span class="line"><span class="comment">**  文件名称：hello_world_tb.v</span></span><br><span class="line"><span class="comment">**  创 建 人：hsp</span></span><br><span class="line"><span class="comment">**  创建日期：2017-03-05</span></span><br><span class="line"><span class="comment">**  功能描述：一个iverilog和GTKWave使用方式介绍的hello world例子</span></span><br><span class="line"><span class="comment">*****/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// synopsys translate_off</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1 ns / 1 ps</span></span><br><span class="line"><span class="comment">// synopsys translate_on</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> hello_world_tb;</span><br><span class="line">    <span class="keyword">parameter</span> PERI = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">reg</span> clk;</span><br><span class="line">    <span class="keyword">reg</span> rst_n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span> <span class="variable">#(PERI/2)</span> clk = ~clk;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="built_in">$dumpfile</span>(<span class="string">"hello_world_tb.vcd"</span>);</span><br><span class="line">        <span class="built_in">$dumpvars</span>(<span class="number">0</span>,hello_world_tb);</span><br><span class="line">        <span class="built_in">$display</span>(<span class="string">"hello world!"</span>);</span><br><span class="line">        clk = <span class="number">0</span>;</span><br><span class="line">        rst_n = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">repeat</span>(<span class="number">10</span>) @(<span class="keyword">posedge</span> clk);</span><br><span class="line">        rst_n = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">repeat</span>(<span class="number">100</span>) @(<span class="keyword">posedge</span> clk);</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>以上verilog:</p>
+<ul>
+<li>首先定义了一个参数<code>PERI</code>，用于指定<code>clk</code>输出周期</li>
+<li>然后定义了用于观察的两个<code>reg</code>：<code>clk</code>和<code>rst_n</code></li>
+<li>然后一个<code>always</code>给出了时钟信号<code>clk</code>的输出</li>
+<li>之后一个<code>initial</code> <br>
+<ul><li>通过<code>$dumpfile</code>指定要保存仿真波形数据需要存储到的文件，指定保存在当前目录中<code>hello_world_tb.vcd</code>文件中（GTKWave还支持LXT,LXT2,VZT,FST和GHW等类型文件）</li>
+<li>通过<code>$dumpvars</code>指定要保存仿真波形数据的信号，这里指定为<code>hello_world_tb</code>模块（即本模块）之下及其子模块中的所有信号，当然这个例子中没有子模块，所以仿真数据被存储的为本模块中仅有的两个信号：<code>clk</code>和<code>rst_n</code></li>
+<li><code>$display</code>打印<code>hello world!</code></li>
+<li>之后就是对<code>clk</code>和<code>rst_n</code>的赋值操作</li>
+<li>最后结束仿真，这里要注意最好用<code>$finish</code>而不是<code>$stop</code>，因为若使用<code>$stop</code>在iverilog仿真完后需要手动停止，而用<code>$finish</code>则会自动停止</li></ul></li>
+</ul>
+<p><strong>注意：</strong>以上代码最好保存为名称为<code>hello_world_tb.v</code>的文件，即模块名和文件名（不包括后缀）相同</p>
+<p>之后就是仿真命令的问题，可使用以下批处理使用iverilog执行仿真并最后使用GTKWave打开仿真波形（将以下代码保存为xxx.bat或.cmd后缀的文件并放入以上verilog相同目录即可）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">rem 若没有设置路径到PATH则关闭以下注释</span><br><span class="line">rem set iverilog_path=d:\iverilog\bin;</span><br><span class="line">rem set gtkwave_path=d:\iverilog\gtkwave\bin;</span><br><span class="line">rem set path=%iverilog_path%%gtkwave_path%%path%</span><br><span class="line"></span><br><span class="line">set testbentch_module=hello_world_tb</span><br><span class="line">set testbentch_file="./%testbentch_module%.v"</span><br><span class="line"></span><br><span class="line">iverilog -o "%testbentch_module%.vvp" %testbentch_file%</span><br><span class="line">vvp "%testbentch_module%.vvp"</span><br><span class="line"></span><br><span class="line">set gtkw_file="%testbentch_module%.gtkw"</span><br><span class="line">if exist %gtkw_file% (gtkwave %gtkw_file%) else (gtkwave "%testbentch_module%.vcd")</span><br></pre></td></tr></table></figure>
+<p>以上批处理:</p>
+<ul>
+<li>第一行关闭显示包括本行，非必须，不要也可以</li>
+<li>设置iverilog和GTKWave可执行文件路径到PATH，若没有加入到PATH才需要，这里直接注释</li>
+<li>然后设置两个变量，后面会使用 <br>
+<ul><li><code>testbentch_module</code>设置为前面verilog模块名相同</li>
+<li><code>testbentch_file</code>设置为verilog文件名，即模块名+.v</li></ul></li>
+<li>然后使用<code>iverilog</code>编译verilog <br>
+<ul><li><code>-o</code>指定输出文件名，这里使用模块名+.vvp</li>
+<li>之后指定源文件</li></ul></li>
+<li>然后使用<code>vvp</code>开始仿真，参数为上面<code>iverilog</code>的输出文件</li>
+<li>之后开始仿真数据波形显示 <br>
+<ul><li>设置了一个变量，为GTKWave保存文件的文件名，这里使用模块名+.gtkw</li>
+<li>然后判断GTKWave保存文件是否存在，若存在则直接使用GTKWave打开该.gtkw文件，否则打开刚仿真生成的.vcd文件（原因请参考下一节）</li></ul></li>
+</ul>
+<h3 id="gtkwave使用"><a name="t3"></a><a name="t3"></a>GTKWave使用</h3>
+<p>通过上面批处理最后一条中<code>gtkwave</code>命令即可打开GTKWave软件，同时打开了对应的.gtkw或.vcd文件；首次运行打开的为.vcd文件，此时可以看到GTKWave软件界面的Signals和Waves窗口并没有信号显示，需要：</p>
+<ul>
+<li>在左上角的SST窗口选中一个模块，此时在其下面窗口就可以看到对应模块的所有信号</li>
+<li>在显示信号的窗口选中要查看的信号（ctrl+a全选，ctrl和shift可多选），然后点击其下面的Append按钮即可将这些信号显示到Signals和Waves窗口</li>
+<li>在Signals窗口选中各信号，然后按<code>G</code>可以将信号分组，推荐将不同模块的信号分为不同的组，这样方便查看</li>
+<li>这样操作后若不保存（类似modelsim也需要保存），下次再次打开.vcd文件仍然为初次打开一样Signals和Waves窗口都没有信号，所以此时ctrl+s将其保存，保存文件名推荐为模块名+.gtkw（配合上面的批处理），这样下次上面的批处理发现存在.gtkw文件则直接打开这个.gtkw文件，这样上面添加显示的信号和分组都存在，而波形数据也为最新的仿真数据</li>
+</ul>
+<p><strong>注：</strong>查看.gtkw文件可以发现其保存的内容不包括波形数据而只包括.vcd文件路径和GTKWave的一些设置（如添加的信号和分组等）</p>
+<h2 id="iverilog常用选项"><a name="t4"></a><a name="t4"></a>iverilog常用选项</h2>
+<p>直接运行<code>iverilog -help</code>或<code>iverilog</code>则会显示以下帮助信息，显示了iverilog支持的参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Usage: iverilog [-ESvV] [-B base] [-c cmdfile|-f cmdfile]</span><br><span class="line">                [-g1995|-g2001|-g2005|-g2005-sv|-g2009|-g2012] [-g&lt;feature&gt;]</span><br><span class="line">                [-D macro[=defn]] [-I includedir]</span><br><span class="line">                [-M [mode=]depfile] [-m module]</span><br><span class="line">                [-N file] [-o filename] [-p flag=value]</span><br><span class="line">                [-s topmodule] [-t target] [-T min|typ|max]</span><br><span class="line">                [-W class] [-y dir] [-Y suf] source_file(s)</span><br></pre></td></tr></table></figure>
+<p>下面简单列举几个常用的参数的简单说明，详细参数列表请查看<a href="http://iverilog.wikia.com/wiki/Iverilog_Flags" target="_blank" rel="nofollow noopener">http://iverilog.wikia.com/wiki/Iverilog_Flags</a></p>
+<h3 id="选项-g"><a name="t5"></a><a name="t5"></a>选项-g</h3>
+<p>指定使用verilog的版本，推荐使用最新的<code>-g2012</code>基本的SystemVerilog语法都支持（不完全支持），方便使用SV仿真。如上帮助信息显示支持：</p>
+<ul>
+<li>-g1995</li>
+<li>-g2001</li>
+<li>-g2005</li>
+<li>-g2005</li>
+<li>-g2009</li>
+<li>-g2012</li>
+</ul>
+<p>还支持：</p>
+<ul>
+<li>verilog-ams</li>
+<li>assertions/no-assertions</li>
+<li>relative-include/no-relative-include</li>
+<li>specify/no-specify</li>
+<li>strict-ca-eval/no-strict-ca-eval</li>
+<li>strict-expr-width/no-scrict-expr-width</li>
+<li>xtypes/no-xtypes</li>
+<li>io-range-error/no-io-range-error</li>
+</ul>
+<h3 id="选项-o"><a name="t6"></a><a name="t6"></a>选项-o</h3>
+<p>指定编译后输出文件，若不指定默认为<code>a.out</code></p>
+<h3 id="选项-y"><a name="t7"></a><a name="t7"></a>选项-y</h3>
+<p>指定库的目录，编译时发现了一个没有定义的模块时会到这个参数指定的目录中查找，此选项在使用Xilinx和Lattice库时会用到</p>
+<h3 id="选项-i"><a name="t8"></a><a name="t8"></a>选项-I</h3>
+<p>指定verilog中<code>`include</code>包含文件的搜索目录，会按<code>-I</code>出现顺序查找</p>
+<h3 id="选项-d"><a name="t9"></a><a name="t9"></a>选项-D</h3>
+<p>传递一个宏定义，如<code>-DIS_DEF</code>同<code>-DIS_DEF=1</code>，则在verilog中就可以用IS_DEF这个宏定义</p>
+<h3 id="选项-t"><a name="t10"></a><a name="t10"></a>选项-t</h3>
+<p>使用<code>-tvhdl</code>可将verilog转换为VHDL，如将上面的例子转换为VHDL：<code>iverilog -tvhdl -o hello_world_tb.vhd hello_world_tb.v</code></p>
+<h2 id="使用库"><a name="t11"></a><a name="t11"></a>使用库</h2>
+<p>若要仿真使用了各FPGA公司IP的设计则需要支持对应公司的库，这里简单介绍使用Xilinx和Lattice公司库的方法</p>
+<h3 id="xilinx"><a name="t12"></a><a name="t12"></a>Xilinx</h3>
+<h4 id="vivado">vivado</h4>
+<p>本人安装的为vivado 2015.3，安装在E盘：<code>E:\Xilinx\Vivado\2015.3</code>；则在使用iverilog编译时使用以下命令即可（替换上面例子中iverilog命令那行）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set vivado_dir=E:\Xilinx\Vivado\2015.3\data\verilog\src</span><br><span class="line">set vivado_lib="-y%vivado_dir%" "-y%vivado_dir%\retarget" "-y%vivado_dir%\unifast" "-y%vivado_dir%\unimacro" "-y%vivado_dir%\unisims" "-y%vivado_dir%\xeclib"</span><br><span class="line"></span><br><span class="line">iverilog -g2012 -o "%testbentch_module%.vvp" %vivado_lib% %rtl_file% %testbentch_file% %vivado_dir%/glbl.v</span><br></pre></td></tr></table></figure>
+<p>以上命令：</p>
+<ul>
+<li>设置vivado 2015.3仿真库目录</li>
+<li>并通过<code>-y</code>选项列出仿真库各子目录： <br>
+<ul><li>retarget</li>
+<li>unifast</li>
+<li>unimacro</li>
+<li>unisims</li>
+<li>xeclib</li></ul></li>
+<li>在iverilog命令中增加了<code>%vivado_dir%/glbl.v</code>，否则IP编译出错</li>
+</ul>
+<p><strong>注意：</strong>以上iverilog中还增加了一个<code>%rtl_file%</code>，为要仿真RTL文件，类似<code>%testbentch_file%</code>的变量需要在之前设置</p>
+<h3 id="lattice"><a name="t13"></a><a name="t13"></a>Lattice</h3>
+<p>Lattice的库仿真，编译较简单只要指定使用到的芯片的库即可（不同于Xilinx，Lattice各芯片的仿真库不同），只是在仿真测试文件中（如上面例子中的hello_world_tb.v文件）模块中需要例化两个模块：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//  lattice库使用testbentch模块中要加</span><br><span class="line">GSR GSR_INST(.GSR(1'b1));</span><br><span class="line">PUR PUR_INST(.PUR(1'b1));</span><br></pre></td></tr></table></figure>
+<p>本机安装Diamond3.5，安装目录在E盘</p>
+<h4 id="ecp3">ECP3</h4>
+<p>则在使用iverilog编译时使用以下命令即可（替换上面例子中iverilog命令那行）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set lattice_dir=E:\lscc\diamond\3.5_x64\cae_library\simulation\verilog</span><br><span class="line">set ecp3_lib="-y%lattice_dir%\ecp3" "-y%lattice_dir%\pmi"</span><br><span class="line">iverilog -g2012 -o "%testbentch_module%.vvp" %ecp3_lib% %rtl_file% %testbentch_file%</span><br></pre></td></tr></table></figure>
+<p>以上命令：</p>
+<ul>
+<li>diamond 3.5仿真库目录</li>
+<li>并通过<code>-y</code>选项列出ECP3芯片仿真库子目录： <br>
+<ul><li>pmi</li>
+<li>ecp3</li></ul></li>
+</ul>
+<h4 id="machox2">MachOX2</h4>
+<p>则在使用iverilog编译时使用以下命令即可（替换上面例子中iverilog命令那行）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set lattice_dir=E:\lscc\diamond\3.5_x64\cae_library\simulation\verilog</span><br><span class="line">set machxo2_lib="-y%lattice_dir%\machxo2" "-y%lattice_dir%\pmi"</span><br><span class="line">iverilog -g2012 -o "%testbentch_module%.vvp" %machxo2_lib% %rtl_file% %testbentch_file%</span><br></pre></td></tr></table></figure>
+<p>以上命令：</p>
+<ul>
+<li>diamond 3.5仿真库目录</li>
+<li>并通过<code>-y</code>选项列出MachOX2芯片仿真库子目录： <br>
+<ul><li>pmi（同ECP3）</li>
+<li>machxo2</li></ul></li>
+</ul>
+<h2 id="注意事项"><a name="t14"></a><a name="t14"></a>注意事项</h2>
+<p>这里列出我在使用中遇到的一些问题或建议</p>
+<h3 id="verilog源码"><a name="t15"></a><a name="t15"></a>verilog源码</h3>
+<ul>
+<li>代码文件名最好为模块名+.v方式，因为通过<code>-y</code>方式指定目录时查找模块时iverilog要求模块名和文件名要相同，否则可能导致无法找到对应模块（这个要求也是平时写verilog应该有的好习惯）</li>
+<li>testbentch中结束仿真推荐用<code>$finish</code>而不用<code>$stop</code>；因为<code>$finish</code>可以直接结束仿真并退出，而不需要手动退出，这样运行类似以上例子批处理后可以直接打开GTKWave窗口</li>
+</ul>
+<h3 id="编译命令"><a name="t16"></a><a name="t16"></a>编译命令</h3>
+<ul>
+<li><code>iverilog</code>命令中通过<code>-y</code>指定目录时，需要放在源文件参数之前，否则提示有错</li>
+<li><code>iverilog</code>命令中通过<code>-D</code>传递宏包含引号的方法：<code>-DIN_FILE="\"xxx.v\""</code>，这在verilog有<code>`include IN_FILE</code>时需要使用；而iverilog命令中使用<code>-DIN_FILE="xxx.v"</code>方式有错误</li>
+<li>指定源文件时可以用通配符<code>*</code>，如本人用的批处理中通常使用这种方式指定RTL文件：<code>set rtl_file="../rtl/*.v"</code></li>
+</ul>
+<h3 id="其它"><a name="t17"></a><a name="t17"></a>其它</h3>
+<ul>
+<li>加大DOS窗口高度。由于运行批处理需要在DOS窗口查看verilog中<code>$display</code>的打印，有时iverilog编译打印的信息较多时会导致部分信息无法查看，所以需要加大DOS窗口的高度：在DOS窗口标题栏右键-&gt;默认值-&gt;布局中设置屏幕缓冲区中高度为较大的值(如1000)即可</li>
+<li>iverilog即使指定为<code>-g2012</code>也不支持break、static等（测试得到）</li>
+</ul>
+<hr>
+<p>转自：<a href="https://blog.csdn.net/husipeng86/article/details/60469543" target="_blank" rel="noopener">https://blog.csdn.net/husipeng86/article/details/60469543</a></p>
+<hr>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/06/10/Icarus%20Verilog%E5%92%8CGTKwave%E4%BD%BF%E7%94%A8%E7%AE%80%E6%9E%90/" title="转载：Icarus Verilog和GTKwave使用简析">https://cloudplayer99.github.io/2020/06/10/Icarus Verilog和GTKwave使用简析/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+              <a href="/tags/Verilog-HDL/" rel="tag"># Verilog HDL</a>
+              <a href="/tags/DIGITAL/" rel="tag"># DIGITAL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/10/Windows%E4%B8%8A%E4%BD%BF%E7%94%A8iverilog+gtkwave%E4%BB%BF%E7%9C%9F/" rel="prev" title="转载：Windows上使用iverilog+gtkwave仿真">
+      <i class="fa fa-chevron-left"></i> 转载：Windows上使用iverilog+gtkwave仿真
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/12/%E6%95%B0%E7%94%B5%E7%BA%BF%E4%B8%8A%E8%80%83%E8%AF%95%E4%B8%80%E5%91%A8%E5%89%8D/" rel="next" title="数电线上考试一周前">
+      数电线上考试一周前 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Icarus Verilog和GTKwave使用简析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装"><span class="nav-number">1.1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">1.2.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iverilog使用"><span class="nav-number">1.2.1.</span> <span class="nav-text">iverilog使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gtkwave使用"><span class="nav-number">1.2.2.</span> <span class="nav-text">GTKWave使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iverilog常用选项"><span class="nav-number">1.3.</span> <span class="nav-text">iverilog常用选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-g"><span class="nav-number">1.3.1.</span> <span class="nav-text">选项-g</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-o"><span class="nav-number">1.3.2.</span> <span class="nav-text">选项-o</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-y"><span class="nav-number">1.3.3.</span> <span class="nav-text">选项-y</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-i"><span class="nav-number">1.3.4.</span> <span class="nav-text">选项-I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-d"><span class="nav-number">1.3.5.</span> <span class="nav-text">选项-D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项-t"><span class="nav-number">1.3.6.</span> <span class="nav-text">选项-t</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用库"><span class="nav-number">1.4.</span> <span class="nav-text">使用库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xilinx"><span class="nav-number">1.4.1.</span> <span class="nav-text">Xilinx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vivado"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">vivado</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lattice"><span class="nav-number">1.4.2.</span> <span class="nav-text">Lattice</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ecp3"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">ECP3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#machox2"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">MachOX2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">1.5.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#verilog源码"><span class="nav-number">1.5.1.</span> <span class="nav-text">verilog源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译命令"><span class="nav-number">1.5.2.</span> <span class="nav-text">编译命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">1.5.3.</span> <span class="nav-text">其它</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

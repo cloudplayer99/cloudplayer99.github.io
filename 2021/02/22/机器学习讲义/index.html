@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Stanford CS229: Machine Learning (Autumn 2018) ¶Lecture 1 - Welcome ¶Machine Learning Definition  Arthur Samuel (1959). Machine Learning: Field of study that gives computers the ability to learn witho">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习讲义">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%B2%E4%B9%89/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="Stanford CS229: Machine Learning (Autumn 2018) ¶Lecture 1 - Welcome ¶Machine Learning Definition  Arthur Samuel (1959). Machine Learning: Field of study that gives computers the ability to learn witho">
+<meta property="article:published_time" content="2021-02-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%B2%E4%B9%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>机器学习讲义 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%B2%E4%B9%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习讲义
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-22T00:00:00+08:00">2021-02-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>37k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>34 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>Stanford CS229: Machine Learning (Autumn 2018)</h1>
+<h2 id="Lecture-1-Welcome"><a class="header-anchor" href="#Lecture-1-Welcome">¶</a>Lecture 1 - Welcome</h2>
+<h3 id="Machine-Learning-Definition"><a class="header-anchor" href="#Machine-Learning-Definition">¶</a>Machine Learning Definition</h3>
+<ul>
+<li>Arthur Samuel (1959). Machine Learning:<br>
+Field of study that gives computers the ability to learn without being explicitly programmed.</li>
+<li>Tom Mitchell (1998) Well-posed Learning Problem:<br>
+A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measure by P, improves with experience E.<a id="more"></a></li>
+</ul>
+<h3 id="Supervised-Learning"><a class="header-anchor" href="#Supervised-Learning">¶</a>Supervised Learning</h3>
+<p>The most widely used machine learning tool today is supervised learning.<br>
+One Example: a database of housing prices</p>
+<div align=center><img width = '600' height ='200' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/Housing_prices_table.PNG"/></div>
+<p>We can plot this data:</p>
+<div align=center><img width = '900' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/Housing_prices_map.PNG"/></div>
+<p>Given this dataset, one thing you can do is, um, fit a straight line to it. And then you could estimate or predicts the price to be whatever value you read off on the, um, vertical axis.</p>
+<p>So in supervised learning, you are given a dataset with inputs X and labels Y, and you goal is to learn a mapping from X to Y.</p>
+<p>Now, fitting a straight line to data is maybe the simplest possible learning algorithm. Given a dataset like this, there are many possible ways to learn a mapping, to learn the function mapping from the input size to estimated price. And so, maybe you wanna fit a quadratic function instead, maybe that actually fits the data a little better.</p>
+<p>To define a few more things, this example is a problem called a <strong>regression</strong> problem. And the term regression refers to that the value y you’re trying to predict is continuous.</p>
+<p>In contrast, here’s a different type of problem. It was a healthcare problem. They were looking at breast cancer or breast tumors, and trying to decide if a tumor is benign or malignant. A tumor is a lump in a woman’s breast and it can be malign or cancerous, or benign meaning roughly it’s not that harmful.</p>
+<div align=center><img width = '500' height ='320' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/tumor.PNG"/></div>
+<p>So this is an example of a <strong>classification</strong> problem and the term classification refers to that Y here takes on a discrete number of variables. For a regression problem, Y is a real number. So we call housing price prediction to be a regression problem, whereas if you have two values of possible output, 0 and 1, call it a classification problem. Um, if you have K discrete outputs, that’s also a classification problem.</p>
+<p>Now, I wanna find a different way to visualize this dataset. Let me draw a line on top and map all this data on the horizontal axis upward onto a line. And I use O’s to denote negative examples and I use crosses to denote positive examples.</p>
+<div align=center><img width = '500' height ='320' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/tumor_line.PNG"/></div>
+<p>For most of machine learning applications you work with, the input X will be multi-dimensional. You won’t be given just one number and asked to predict another number. Instead, you’ll often be given multiple features and multiple numbers to predict another number. So for example, instead of just using a tumor size to predict- to estimate malignant versus benign tumors, you may have two features where one is tumor size and the second is age of the patient, and be given a dataset that looks like that. where now you task is given two input features, you know, like a two-dimensional vector, to predict whether a given tumor is malignant or benign.</p>
+<div align=center><img width = '500' height ='320' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/tumor_age_size.PNG"/></div>
+<p>So if a new patient walks in a doctor’s office and that the tumor size is here and the age is here, so that point there, then hope you can conclude that, you know, this patient’s tumor is probably benign, right? Corresponding the O, that negative example.</p>
+<div align=center><img width = '500' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/tumor_new_patient.PNG"/></div>
+<p>And so, one thing you’ll learn next week is a learning algorithm(the logistic regression algorithm) that can fit a straight line to the data as follows, kinda like that, to separate out the positive and nagative examples.</p>
+<div align=center><img width = '500' height ='320' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/tumor_algorithm.PNG"/></div>
+<p>For an actual breast cancer prediction problem, were using many other features such as clump thickness, uniformity of cell size, uniformity of cell shape, adhesion … A lot more features than just two, which means that you actually can’t plot this data.</p>
+<p>you’ll also learn about an algorithm called the <strong>Support Vector Machine</strong> which uses not one or two or three or 10 or 100 or a million input features, but uses an infinite number of input features(infinite-dimensional vector) to represent a patient.</p>
+<p>At the heart of supervised learning is the idea that during training, you are given inputs X together with the labels Y and You give it both at the same time, and the job of you algorithm is to find a mapping so that given a new X, you can map it to the most appropriate output Y.</p>
+<h3 id="Unsupervised-Learning"><a class="header-anchor" href="#Unsupervised-Learning">¶</a>Unsupervised Learning</h3>
+<p>Unsupervised learning is that giving you a dataset with no labels, which means you’re just given inputs X and no Y, and you’re asked to find me something interesting in this data, figure out interesting structure in this data.</p>
+<div align=center><img width = '500' height ='320' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/unsupervised.PNG"/></div>
+<p>Clustering Algorithm:<br>
+Organize computing clusters, figure out what machines workflows are more related to each other and organize computing clusters appropriately<br>
+Social network like Linkedln or Facebook or other social networks and figure out which are the groups of friends and which are the cohesive communities within a social network<br>
+Market segmentation, look at the customer database and cluster the users together<br>
+Astronomical data analysis, group together galaxies</p>
+<p>Cocktail party problem:<br>
+How can you have an algorithm separate out these voices so you get clean recordings of just one voice at a time. The algorithm you use to do this is called ICA, independent Components Analysis.</p>
+<h3 id="Something-Else"><a class="header-anchor" href="#Something-Else">¶</a>Something Else</h3>
+<p>During this lecture, the instructor also mentioned about machine learning strategy, deep learning and reinforcement learning.</p>
+<p>An example of reinforcement learning:<br>
+I don’t know what’s the optimal way to fly a helicopter. So you let the helicopter do whatever it wants and then whenever it flies well, you know, does some maneuver you want, or flies accurately without jetting around too much, you go, “Oh, good helicopter”. And when it crashes you go, “Bad helicopter” and it’s the job of the reinforcement learning algorithms to figure out how to control it over time so as to get more of the good helicopter things and fewer of the bad helicopter things.</p>
+<h2 id="Lecture-2-Linear-Regression-and-Gradient-Descent"><a class="header-anchor" href="#Lecture-2-Linear-Regression-and-Gradient-Descent">¶</a>Lecture 2 - Linear Regression and Gradient Descent</h2>
+<ul>
+<li>Outline
+<ul>
+<li>Linear Regression</li>
+<li>Batch and stochastic gradient descent</li>
+<li>Normal Equation</li>
+</ul>
+</li>
+</ul>
+<h3 id="Linear-Regression"><a class="header-anchor" href="#Linear-Regression">¶</a>Linear Regression</h3>
+<p>You remember the ALVINN video, the autonomous driving video that I had shown in class on Monday, um, for the self-driving car video, that was a supervised learning problem. And the term supervised learning meant that you were given Xs which was a picture of what’s in front of the car, and the algorithm had to map that to an output Y which was the steering direction. And that was a regression problem, because the output Y that you want is a continuous value, right? As opposed to a classification problem where Y is the speed.</p>
+<p>So I think the simplest, maybe the simplest possible learning algorithm, a supervised learning regression problem, is linear regression. And to motivate that, rather than using a self-driving car example which is quite complicated, we’ll build up a supervised learning algorithm using a simpler example.</p>
+<p>Back to our housing prices prediction example, let’s say you want to predict or estimate the prices of houses.</p>
+<div align=center><img width = '600' height ='200' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/Housing_prices_table.PNG"/></div>
+<div align=center><img width = '900' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/Housing_prices_map.PNG"/></div>
+<p>This is data from Portland, Oregon. So you have some dataset like that. And what we’ll end up doing today is fit a straight line to this data.</p>
+<p>The process of supervised learning</p>
+<div align=center><img width = '400' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/the_process_of_supervised_learning.PNG"/></div>
+<p>The job of the learning algorithm is to output a function, uh, to make predictions about housing prices. And by convention, I’m gonna call this a function that it outputs a <strong>hypothesis</strong>. And the job of the hypothesis is, you know, it can input the size of a new house, or the size of a different house that you haven’t seen yet, and will output the estimated price.</p>
+<p>So when designing a learning algorithm the first thing we need to ask is, how do you represent the hypothesis, H. And in linear regression, for the purpose of this lecture, we’re going to say that, the hypothesis is going to be that:</p>
+$$h(x) = \theta_0 + \theta_1 x.$$
+<p>The machine learning sometimes just calls this a linear function, but technically it’s an affine function. Doesn’t matter.</p>
+<p>More generally, if you have multiple input features, so if you have more information about these houses, such as number of bedrooms. (&quot;#bedroom&quot; stands for the number of bedrooms.)</p>
+<div align=center><img width = '500' height ='250' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/housing_example_more_interesting.PNG"/></div>
+$$h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ~~~~~~~~(x_1 = \text{size, } x_2 = \text{# bedrooms})$$
+<p>In order to make that notation a little bit more compact, we want to write a hypothesis.</p>
+$$h(x) = \sum^{2}_{j=0} \theta_j x_j ~~~~~~~~\text{where } x_0 = 1$$
+<p>And so here theta becomes a three-dimensional parameter:</p>
+$$\theta =
+\begin{bmatrix}
+\theta_0 \\
+\theta_1 \\
+\theta_2 \\
+\end{bmatrix}
+$$
+<p>The features become a three dimensional feature vector:</p>
+$$x =
+\begin{bmatrix}
+x_0 \\
+x_1 \\
+x_2 \\
+\end{bmatrix}
+$$
+<p>To introduce a bit more terminology: $~~~~\theta\text{ : parameters}$<br>
+and the job of the learning algorithm is to choose parameters theta, that allows you to make good predictions about your prices of houses.</p>
+$m : \text{# training examples}\\~~~~~~\text{# rows in the table above}\\n : \text{# features}\\x : \text{inputs / feature} ~~~~ y : \text{output / target variable}\\(x,y) : \text{training example}\\(x^{(i)}, y^{(i)}) : \text{the } i^{th} \text{ training example}$
+<p><br>Back to the problem:</p>
+<p>$$\text{choose } \theta \text{ such that } h(x) \text{ is close to } y \text{ for the training examples}$$</p>
+<p>Notice: a abbreviation in notation, $h_{\theta}(x) : h(x)$, we use $h_\theta(x)$ to emphasize that the hypothesis depends both on the parameters and on the input features $x$.</p>
+<p>So in order to learn a set of parameters what we’ll want to do is choose a parameters $\theta$ so that at least for the houses whose prices you know, that, you know, the learning algorithm outputs prices that are close to what you know where the correct price is for that set of houses.</p>
+<p>More formally, in the linear regression algorithm, also called ordinary least squares, we want to</p>
+$$\text{choose values of}~~\theta~~\text{that minimizes }\sum^{m}_{i=1}(h_\theta(x^{(i)}) - y^{(i)})^2. $$
+<p>And so in linear regression, we’re gonna define the cost function:</p>
+$$J(\theta) = \dfrac{1}{2}\sum^{m}_{i=1}(h_\theta(x^{(i)}) - y^{(i)})^2.$$
+<p>so next let’s see how you can implement an algorithm to find the value of Theta that the cost function J of Theta. We’re going to use an algorithm called gradient descent.</p>
+<h3 id="Gradient-Descent"><a class="header-anchor" href="#Gradient-Descent">¶</a>Gradient Descent</h3>
+<p>We are going to start with some value of $~\theta~$(say $\theta = \vec{0}$), and we’re going to keep changing $\theta$ to reduce $J(\theta)$</p>
+<p>let me show you a visualization of gradient descent, and then we’ll write out the math.</p>
+<div align=center><img width = '400' height ='300' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/Gradient_Descent_point.PNG"/></div><br>
+<p>One property of gradient descent is that, depend on where you initialize parameters, you can get to local different points. If you had run gradient descent from a new point, then you would have gotten to a different local optimum, to a different local minima. It turns out that when you run gradient descents on linear regression, there will not be local optimum.</p>
+<p>So let’s formalize the gradient descent algorithm.</p>
+$$\theta_j := \theta_j - \alpha \dfrac{\partial}{\partial \theta_j}J(\theta)$$
+<p>The notation “$:=$” denote assignment. And $\alpha$ is called the learning rate.</p>
+<p>Q: How do you determine the learning rate?</p>
+<p>A: uh, you know, there’s a theory and there’s a practice.<br>
+Uh, in practice, you set to 0.01. [LAUGHTER]</p>
+<p>In order to implement this algorithm, we have to work out what is the partial derivative term on the right hand side. Lets first work it out for the case of if we have only one training example $(x, y)$, so that we can neglect the sum in the definition of $J$. We have:</p>
+$$\begin{array}{lcl}
+\dfrac{\partial}{\partial \theta_j}J(\theta)
+& = & \dfrac{\partial}{\partial \theta_j}\dfrac{1}{2}(h_\theta(x) - y)^2
+\\
+& = & 2\cdot\dfrac{1}{2}(h_\theta(x) - y)\cdot\dfrac{\partial}{\partial \theta_j}(h_\theta(x) - y)
+\\
+& = & (h_\theta(x) - y)\cdot\dfrac{\partial}{\partial \theta_j}\Big(\sum\limits^{n}_{i=0} \theta_i x_i - y \Big)
+\\
+& = & (h_\theta(x) - y) x_j
+\end{array}$$
+<p>For a single training example:</p>
+$$\theta_j := \theta_j - \alpha (h_\theta(x) - y) x_j$$
+<p>So I did this with one training example, but, this kind of used definition of $J(\theta)$ defined using just one single training example, you actually have M training examples. Um, the derivative, you know, the derivative of a sum is the sum of the derivatives:</p>
+$$\theta_j := \theta_j - \alpha\sum^{m}_{i=1}(h_{\theta}(x^{(i)}) - y^{(i)}) x_j^{(i)}$$
+<p>So the gradient descent algorithm:</p>
+$~~~~~~~~\text{Repeat until convergence }\{\\~~~~~~~~ ~~~~~~~~\theta_j := \theta_j + \alpha\sum\limits^{m}_{i=1}(y^{(i)}-h_{\theta}(x^{(i)})) x_j^{(i)}~~~~~~~~(\text{for every }j)\\~~~~~~~~ \}$
+<p><br>This method looks at every example in the entire training set on every step, and is called <strong>batch gradient descent</strong>.</p>
+<p>Unlike the earlier diagram above which has local optima, it turns out that if $J(\theta)$ is defined the way that, you know, we just defined it for linear regression, is the sum of squared terms, then $J(\theta)$ turns out to be a quadratic function, and so, $J(\theta)$ will always look like a big bowl like this.</p>
+<div align=center><img width = '400' height ='300' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/big_bowl.PNG"/></div><br>
+<p>And so $J(\theta)$ does not have local optima, or the only local optima is also the global optimum.</p>
+<p>The other way to look at the function is taking horizontal slices and plotting.</p>
+<div align=center><img width = '500' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/contours_of_quadratic_function.PNG"/></div>
+<p>As you take steps downhill, because there’s only one global minimum, this algorithm will eventually converge to the global minimum.</p>
+<p>And so the question just now about the choice of the learning rate $\alpha$. Um, if you set $\alpha$ to be very very large, then they can overshoot. The steps you take can be too large and you can run past the minimum. If you set to be too small, then you need a lot of iterations and the algorithm will be slow. And so what happens in practice is, uh, usually you try a few values and and and see what value of the learning rate allows you to most efficiently, you know, drive down the value of $J(\theta)$.</p>
+<p>I want to visualize this in one other way, which is with the data. So this is the actual dataset, and there are actually 49 points in this dataset, the number of training examples is 49. When we run batch gradient descent to fit $\theta$ on our previous dataset, to learn to predict housing price as a function of living area, we obtain $\theta_0 = 71.27$, $\theta_1 = 0.1345$. If we plot $h_\theta(x)$ as a function of $x$ (area), along with the training data, we obtain the following figure:</p>
+<div align=center><img width = '500' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/run_batch_gradient_descent.PNG"/></div>
+<p>If the number of bedrooms were included as one of the input features as well, we get $\theta_0 = 89.60$, $\theta_1 = 0.1392$, $\theta_2 = 8.738$.</p>
+<p>The main disadvantage of batch gradient descent is, every single step of gradient descent requires that you read through your entire data-set, maybe terabytes of data-sets, maybe tens or hundreds of terabytes of data, before you can even update the parameters just once. And if gradient descent needs hundreds of iterations to converge, then you’ll be scanning through your entire data-set hundreds of times. And so this gets expensive. So there’s an alternative to batch gradient descent.</p>
+<p>Consider the following algorithm:</p>
+$~~~~~~~~ \text{Repeat }\{ \\~~~~~~~~ ~~~~~~~~\text{for i = 1 to m, }\{ \\~~~~~~~~ ~~~~~~~~~~~~~~~~\theta_j := \theta_j + \alpha(y^{(i)}-h_{\theta}(x^{(i)})) x_j^{(i)}~~~~~~~~(\text{for every }j) \\~~~~~~~~ ~~~~~~~~\} \\~~~~~~~~ \}$
+<p><br>In this algorithm, we repeatedly run through the training set, and each time we encounter a training example, we update the parameters according to the gradient of the error with respect to that single training example only. This algorithm is called <strong>stochastic gradient descent</strong> (also <strong>incremental gradient descent</strong>).</p>
+<p>Whereas batch gradient descent has to scan through the entire training set before taking a single step—a costly operation if $m$ is large—stochastic gradient descent can start making progress right away, and continues to make progress with each example it looks at. Often, stochastic gradient descent gets $\theta$ “close” to the minimum much faster than batch gradient descent. (Note however that it may never “converge” to the minimum, and the parameters $\theta$ will keep oscillating around the minimum of $J(\theta)$; but in practice most of the values near the minimum will be reasonably good approximations to the true minimum.) For these reasons, particularly when the training set is large, stochastic gradient descent is often preferred over batch gradient descent.</p>
+<h3 id="Normal-Equation"><a class="header-anchor" href="#Normal-Equation">¶</a>Normal Equation</h3>
+<p>Gradient descent gives one way of minimizing $J$. Lets discuss a second way of doing so, this time performing the minimization explicitly and without resorting to an iterative algorithm. In this method, we will minimize $J$ by explicitly taking its derivatives with respect to the $\theta_j$'s, and setting them to zero. To enable us to do this without having to write reams of algebra and pages full of matrices of derivatives, lets introduce some notation for doing calculus with matrices.</p>
+<h4 id="Matrix-derivatives"><a class="header-anchor" href="#Matrix-derivatives">¶</a>Matrix derivatives</h4>
+<p>For a function $f$ : $\mathbb{R}^{m \times n}\longmapsto \mathbb{R}$ mapping from $m$-by-$n$ matrices to the real numbers, we define the derivative of $f$ with respect to $A$ to be:</p>
+$$
+\nabla_A f(A) =
+\begin{bmatrix}
+\dfrac{\partial f}{\partial A_{11}} & \cdots & \dfrac{\partial f}{\partial A_{1n}} \\
+\vdots & \ddots & \vdots \\
+\dfrac{\partial f}{\partial A_{m1}} & \cdots & \dfrac{\partial f}{\partial A_{mn}}
+\end{bmatrix}
+$$
+<p>Thus, the gradient $\nabla_A f(A)$ is itself an $m$-by-$n$ matrix, whose $(i, j)$-element is $\partial f/\partial A_{ij}$. For example, suppose $A = \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{bmatrix}$ is a $2$-by-$2$ matrix, and the function $f$ : $\mathbb{R}^{m \times n}\longmapsto \mathbb{R}$ is given by</p>
+$$f(A) = \dfrac{3}{2}A_{11} + 5A^2_{12} + A_{21}A_{22}.$$
+<p>Here, $A_{ij}$ denotes the $(i, j)$ entry of the matrix $A$. We then have</p>
+$$
+\nabla_Af(A) =
+\begin{bmatrix}
+\frac{3}{2} & 10A_{12} \\
+A_{22} & A_{21}
+\end{bmatrix}.
+$$
+<p>We also introduce the <strong>trace</strong> operator, written “tr.” For an $n$-by-$n$ (square) matrix $A$, the trace of $A$ is defined to be the sum of its diagonal entries:</p>
+$$\text{tr }A = \sum_{i=1}^{n} A_{ii}$$
+<p>If $a$ is a real number (i.e., a $1$-by-$1$ matrix), then $\text{tr } a = a$. (If you haven’t seen this “operator notation” before, you should think of the trace of $A$ as $\text{tr}(A)$, or as application of the “trace” function to the matrix $A$. It’s more commonly written without the parentheses, however.)</p>
+<p>The trace operator has the property that for two matrices $A$ and $B$ such that $AB$ is square, we have that $\text{tr}AB = \text{tr}BA$. (Check this yourself!) As corollaries of this, we also have, e.g.,</p>
+<p>$$\text{tr}ABC = \text{tr}CAB = \text{tr}BCA,$$</p>
+<p>$$\text{tr}ABCD = \text{tr}DABC = \text{tr}CDAB = \text{tr}BCDA.$$</p>
+<p>The following properties of the trace operator are also easily verified. Here, $A$ and $B$ are square matrices, and $a$ is a real number:</p>
+<p>$$\text{tr}A = \text{tr}A^T$$</p>
+<p>$$\text{tr}(A+B) = \text{tr}A + \text{tr}B$$</p>
+<p>$$\text{tr}aA = a\text{tr}A$$</p>
+<p>We now state without proof some facts of matrix derivatives (we won’t need some of these until later this quarter). Equation $(4)$ applies only to non-singular square matrices $A$, where $|A|$ denotes the determinant of $A$. We have:</p>
+$$\nabla_A\text{tr}AB = B^T \tag{1}$$
+$$\nabla_{A^T} f(A) = (\nabla_A f(A))^T \tag{2}$$
+$$\nabla_A\text{tr}ABA^TC = CAB + C^TAB^T \tag{3}$$
+$$\nabla_A|A| = |A|(A^{-1})^T. \tag{4}$$
+<p>The proofs of these equations are left as an exercise to the reader.</p>
+<h4 id="Least-squares-revisited"><a class="header-anchor" href="#Least-squares-revisited">¶</a>Least squares revisited</h4>
+<p>Armed with the tools of matrix derivatives, let us now proceed to find in closed-form the value of $\theta$ that minimizes $J(\theta)$. We begin by re-writing $J$ in matrix-vectorial notation.</p>
+<p>Giving a training set, define the <strong>design matrix</strong> $X$ to be the $m$-by-$n$ matrix (actually $m$-by-$n$ $+ 1$, if we include the intercept term) that contains the training examples’ input values in its rows:</p>
+$$
+X =
+\begin{bmatrix}
+ — ~~(x^{(1)})^T~~ —\\
+ — ~~(x^{(2)})^T~~ —\\
+ — ~~(x^{(3)})^T~~ —\\
+\vdots \\
+ — ~~(x^{(m)})^T~~ —\\
+\end{bmatrix}.
+$$
+<p>Also, let $\vec{y}$ be the $m$-dimensional vector containing all the target values from the training set:</p>
+$$
+\vec{y} =
+\begin{bmatrix}
+&y^{(1)}&\\
+&y^{(2)}&\\
+&\vdots& \\
+&y^{(m)}&\\
+\end{bmatrix}.
+$$
+<p>Now, since $h_\theta(x^{(i)}) = (x^{(i)})^T \theta$, we can easily verify that</p>
+$$\begin{array}{lcl}
+X\theta - \vec{y}
+& = & \begin{bmatrix}
+&(x^{(1)})^T\theta&\\
+&\vdots& \\
+&(x^{(m)})^T\theta&\\
+\end{bmatrix}
+-\begin{bmatrix}
+&y^{(1)}&\\
+&\vdots& \\
+&y^{(m)}&\\
+\end{bmatrix}
+\\
+& = & \begin{bmatrix}
+&h_\theta(x^{(i)}) - y^{(1)}& \\
+&\vdots& \\
+&h_\theta(x^{(i)}) - y^{(1)}&
+\end{bmatrix}.
+\end{array}$$
+<p>Thus, using the fact that for a vector $z$, we have that $zz^T = \sum_i z_i^2$:</p>
+$$\begin{array}{lcl}
+\dfrac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y})
+& = & \dfrac{1}{2}\sum\limits^{m}_{i=1}(h_\theta(x^{(i)}) - y^{(i)})^2 \\
+& = & J(\theta)
+\end{array}$$
+<p>Finally, to minimize $J$, lets find its derivatives with respect to $\theta$. Combining Equations $(2)$ and $(3)$, we find that</p>
+$$\nabla_{A^T}\text{tr}ABA^TC = B^TA^TC^T + BA^TC \tag{5}$$
+<p>Hence,</p>
+$$\begin{array}{lcl}
+\nabla_\theta J(\theta)
+& = & \nabla_\theta\dfrac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y})\\
+& = & \dfrac{1}{2}\nabla_\theta(\theta^T X^T - \vec{y}^T)(X\theta - \vec{y})\\
+& = & \dfrac{1}{2}\nabla_\theta(\theta^TX^TX\theta - \theta^TX^T\vec{y} - \vec{y}^TX\theta + \vec{y}^T\vec{y})\\
+& = & \dfrac{1}{2}\nabla_\theta \text{tr}(\theta^TX^TX\theta - \theta^TX^T\vec{y} - \vec{y}^TX\theta + \vec{y}^T\vec{y})\\
+& = & \dfrac{1}{2}\nabla_\theta(\text{tr }\theta^TX^TX\theta - 2\text{tr }\vec{y}^TX\theta)\\
+& = & \dfrac{1}{2}(X^TX\theta + X^TX\theta - 2X^T\vec{y})\\
+& = & X^TX\theta - X^T\vec{y}
+\end{array}$$
+<p>In the fourth step, we used the fact that the trace of a real number is just the real number; the fourth step used the fact that $\text{tr}A = \text{tr}A^T$, and the sixth step used Equation $(5)$ with $A^T = \theta$, $B = B^T = X^T X$, and $C = I$, and Equation $(1)$. To minimize $J$, we set its derivatives to zero, and obtain the <strong>normal equations</strong>:</p>
+$$X^T X \theta = X^T \vec{y}$$
+<p>Thus, the value of $\theta$ that minimizes $J(\theta)$ is given in closed form by the equation</p>
+$$\theta = (X^TX)^{-1}X^T\vec{y}.$$
+<p>A common question I get is what if X is non-invertible. Uh, that usually means you have redundant features, that your features are linearly dependent, so go and figure out what features are actually repeated leading to this problem.</p>
+<h2 id="Lecture-3-Locally-Weighted-Logistic-Regression"><a class="header-anchor" href="#Lecture-3-Locally-Weighted-Logistic-Regression">¶</a>Lecture 3 - Locally Weighted &amp; Logistic Regression</h2>
+<ul>
+<li>Outline
+<ul>
+<li>Linear regression (recap)</li>
+<li>Locally weighted regression</li>
+<li>Probabilistic interpretation</li>
+<li>Logistic regression</li>
+<li>Newton’s method</li>
+</ul>
+</li>
+</ul>
+<p>So last Wednesday, you saw the linear regression algorithm, uh, including both gradient descent, how to formulate the problem, then gradient descent, and then the normal equations. What I’d like to do today is, um, talk about locally weighted regression which is a way to modify linear regressions and make it fit very non-linear functions so you aren’t just fitting straight lines. And then I’ll talk about a probabilistic interpretation of linear regression and that will lead us into the first classification algorithm you see in this class called logistic regression, and we’ll talk about an algorithm called Newton’s method for logistic regression.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/linear_regression_dependency.PNG"/></div>
+<h3 id="Recap-the-notation"><a class="header-anchor" href="#Recap-the-notation">¶</a>Recap the notation</h3>
+<p>We use this notation $\big(x^{(i)}, y^{(i)}\big)$ to denote a single training example $(i^{th} \text{example})$ where $x^{(i)} \in \mathbb{R}^{n+1}$ $(x_0 = 1)$, $y^{(i)} \in \mathbb{R}$. And $m$ is the number of training examples and $n$ is the number of features.</p>
+$$h_\theta(x) = \sum^{n}_{j = 0}\theta_j x_j = \theta^Tx$$
+<p>the hypothesis, which is a linear function of the features $x$, including this feature $x_0$ which is always set to $1.$</p>
+$$J(\theta) = \dfrac{1}{2}\sum^{m}_{i=1} \Big(h_\theta\big(x^{(i)}\big) - y^{(i)} \Big)^2$$
+<p>$J$ was the cost function you would minimize, you minimize this to find the parameters $\theta$ for your straight line fit to the data.</p>
+<h3 id="Locally-weighted-linear-regression"><a class="header-anchor" href="#Locally-weighted-linear-regression">¶</a>Locally weighted linear regression</h3>
+<p>What I want to share with you today is a different way(not feature selection algorithms) of addressing this problem of whether the data isn’t just fit well by a straight line and in particular I wanna share with you an idea called, locally weighted regression or locally weighted linear regression.</p>
+<p>Consider the problem of predicting $y$ from $x \in \mathbb{R}$ (or say $x \in \mathbb{R}^2$ and $x_0 = 1$). The leftmost figure below shows the result of fitting a $y = \theta_0 + \theta_1 x$ to a dataset. We see that the data doesn’t really lie on straight line, and so the fit is not very good.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/under_over_fited_0.PNG"/></div><br>
+<p>Instead, if we had added an extra feature $x^2$, and fit $y = \theta_0 + \theta_1x + \theta_2x^2$, then we obtain a slightly better fit to the data. (See middle figure) Naively, it might seem that the more features we add, the better. However, there is also a danger in adding too many features: The rightmost figure is the result of fitting a 5-th order polynomial $y = \sum^{5}_{j=0} \theta_jx^j$. We see that even though the fitted curve passes through the data perfectly, we would not expect this to be a very good predictor of, say, housing prices $(y)$ for different living areas $(x)$. Without formally defining what these terms mean, we’ll say the figure on the left shows an instance of <strong>underfitting</strong>—in which the data clearly shows structure not captured by the model—and the figure on the right is an example of <strong>overfitting</strong>. (Later in this class, when we talk about learning theory we’ll formalize some of these notions, and also define more carefully just what it means for a hypothesis to be good or bad.)</p>
+<p>As discussed previously, and as shown in the example above, the choice of features is important to ensuring good performance of a learning algorithm. (When we talk about model selection, we’ll also see algorithms for automatically choosing a good set of features.) In this section, let us talk briefly talk about the locally weighted linear regression (LWR) algorithm which, assuming there is sufficient training data, makes the choice of features less critical. This treatment will be brief, since you’ll get a chance to explore some of the properties of the LWR algorithm yourself in the homework.</p>
+<p>To evaluate $h$ at certain $x$ :</p>
+<p>LR algorithm: $~~~~ \text{Fit} ~\theta~ \text{to minimize} ~~\dfrac{1}{2} \sum\limits^{}_{i} \big( y^{(i)} - \theta^T x^{(i)} \big)^2~~ \text{Return} ~~ \theta^T x$</p>
+<p>LWR algorithm: $~~~~ \text{Fit} ~\theta~ \text{to minimize} ~~\sum\limits^{m}_{i=1}w^{(i)} \big(y^{(i)} - \theta^T x^{(i)} \big)^2~~\text{Return} ~~ \theta^T x$</p>
+<p>Here, the $w^{(i)}$'s are non-negative valued weights. Intuitively, if $w^{(i)}$ is large for a particular value of $i$, then in picking $\theta$, we’ll try hard to make $\big(y^{(i)} - \theta^T x^{(i)}\big)^2$ small. If $w^{(i)}$ is small, then the $\big(y^{(i)} - \theta^T x^{(i)}\big)^2$ error term will be pretty much ignored in the fit.</p>
+<p>A fairly standard choice for the weights is</p>
+$$w^{(i)} = \exp \Big( -\dfrac{(x^{(i)} - x)^2}{2 \tau^2} \Big)$$
+<p>If $x$ is vector-valued, this is generalized to be</p>
+$$w^{(i)} = \exp\Big(-\dfrac{(x^{(i)}-x)^T(x^{(i)}-x)}{2\tau^2}\Big),$$
+<p>or</p>
+$$w^{(i)} = \exp\Big(-\dfrac{(x^{(i)}-x)^T\Sigma^{-1}(x^{(i)}-x)}{2}\Big),$$
+<p>for an appropriate choice of $\tau$ or $\Sigma$.</p>
+<p>Note that the weights depend on the particular point $x$ at which we’re trying to evaluate $x$. Moreover, if $|x^{(i)} - x|$ is small, then $w^{(i)}$ is close to $1$; and if $|x^{(i)} - x|$ is large, then $w^{(i)}$ is small. Hence, $\theta$ is chosen giving a much higher “weight” to the (errors on) training examples close to the query point $x$. (Note also that while the formula for the weights takes a form that is cosmetically similar to the density of a Gaussian distribution, the $w^{(i)}$'s do not directly have anything to do with Gaussians, and in particular the $w^{(i)}$ are not random variables, normally distributed or otherwise.) The parameter $\tau$ controls how quickly the weight of a training example falls off with distance of its $x^{(i)}$ from the query point $x$; $\tau$ is called the <strong>bandwidth</strong> parameter, and is also something that you’ll get to experiment with in your homework.</p>
+<p>Locally weighted linear regression is the first example we’re seeing of a <strong>non-parametric</strong> algorithm. The (unweighted) linear regression algorithm that we saw earlier is known as a <strong>parametric</strong> learning algorithm, because it has a fixed, finite number of parameters (the $\theta_i$'s), which are fit to the data. Once we’ve fit the $\theta_i$'s and stored them away, we no longer need to keep the training data around to make future predictions. In contrast, to make predictions using locally weighted linear regression, we need to keep the entire training set around. The term “non-parametric” (roughly) refers to the fact that the amount of stuff we need to keep in order to represent the hypothesis $h$ grows linearly with the size of the training set.</p>
+<p>So I tend to use locally weighted linear regression when I have a relatively low dimensional data set, when the number of features is not too big. So when $n$ is quite small like $2$ or $3$ or something and we have a lot of data. And you don’t wanna think about what features to use, right. So that’s the scenario. So if you actually have a data set that looks like these up in drawing, you know, locally weighted linear regression is a pretty good algorithm.</p>
+<h3 id="Probabilistic-interpretation"><a class="header-anchor" href="#Probabilistic-interpretation">¶</a>Probabilistic interpretation</h3>
+<p>When faced with a regression problem, why might linear regression, and specifically why might the least-squares cost function $J$, be a reasonable choice? In this section, we will give a set of probabilistic assumptions, under which least-squares regression is derived as a very natural algorithm.</p>
+<p>Let us assume that the target variables and the inputs are related via the equation</p>
+$$y^{(i)} = \theta^T x^{(i)} + \epsilon^{(i)},$$
+<p>where $\epsilon^{(i)}$ is an error term that captures either unmodeled effects (such as if there are some features very pertinent to predicting housing price, but that we’d left out of the regression), or random noise. Let us further assume that the $\epsilon^{(i)}$ are distributed IID (independently and identically distributed) according to a Gaussian distribution (also called a Normal distribution) with mean zero and some variance $\sigma^2$. We can write this assumption as $“\epsilon^{(i)} \sim \mathcal{N}(0, \sigma^2).”$ I.e., the density of $\epsilon^{(i)}$ is given by</p>
+$$p(\epsilon^{(i)}) = \dfrac{1}{\sqrt{2\pi} \sigma} \exp\Big( -\dfrac{(\epsilon^{(i)})^2}{2 \sigma^2} \Big)$$
+<p>This implies that</p>
+$$p(y^{(i)}|x^{(i)}; \theta) = \dfrac{1}{\sqrt{2\pi}\sigma} \exp \Big( -\dfrac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2} \Big)$$
+<p>The notation $“p(y^{(i)}|x^{(i)}; \theta)”$ indicates that this is the distribution of $y^{(i)}$ given $x^{(i)}$ and parameterized by $\theta$. Note that we should not condition on $\theta(“p(y^{(i)}|x^{(i)}, \theta)”)$, since $\theta$ is not a random variable. We can also write the distribution of $y^{(i)}$ as $y^{(i)} | x^{(i)}$; $\theta ∼ \mathcal{N} (\theta^T x^{(i)}, \sigma^2)$.</p>
+<p>Given $X$ ( the design matrix, which contains all the $x^{(i)}$'s ) and $\theta$, what is the distribution of the $y^{(i)}$'s? The probability of the data is given by $p(\vec{y}|X; \theta)$. This quantity is typically viewed a function of $\vec{y}$ (and perhaps $X$), for a fixed value of $\theta$. When we wish to explicitly view this as a function of $\theta$, we will instead call it the <strong>likelihood</strong> function:</p>
+$$\mathscr{L}(\theta) = \mathscr{L}(\theta; X, \vec{y}) = p(\vec{y}|X; \theta).$$
+<p>Note that by the independence assumption on the $\epsilon^{(i)}$'s (and hence also the $y^{(i)}$'s given the $x^{(i)}$'s), this can also be written</p>
+$$
+\begin{array}{lcl}
+\mathscr{L}(\theta)
+& = & \prod\limits^{m}_{i=1} p(y^{(i)}|x^{(i)}; \theta)\\
+& = & \prod\limits^{m}_{i=1} \dfrac{1}{\sqrt{2\pi}\sigma} \exp \Big( -\dfrac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2} \Big)
+\end{array}
+$$
+<p>Now, given this probabilistic model relating the $y^{(i)}$'s and the $x^{(i)}$'s, what is a reasonable way of choosing our best guess of the parameters $\theta$? The principal of <strong>maximum likelihood</strong> (MLE) says that we should should choose $\theta$ so as to make the data as high probability as possible. I.e., we should choose $\theta$ to maximize $\mathscr{L}(\theta)$.</p>
+<p>Instead of maximizing $\mathscr{L}(\theta)$, we can also maximize any strictly increasing function of $\mathscr{L}(\theta)$. In particular, the derivations will be a bit simpler if we instead maximize the <strong>log likelihood</strong> $ℓ(\theta)$:</p>
+$$
+\begin{array}{lcl}
+ℓ(\theta)
+& = & \log \mathscr{L}(\theta)\\
+& = & \log \prod\limits^{m}_{i=1} \dfrac{1}{\sqrt{2\pi}\sigma} \exp \Big( -\dfrac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2} \Big)\\
+& = & \sum\limits^{m}_{i=1} \log \dfrac{1}{\sqrt{2\pi}\sigma} \exp \Big( -\dfrac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2} \Big)\\
+& = & m\log\dfrac{1}{\sqrt{2\pi}\sigma} - \dfrac{1}{\sigma^2} \cdot \dfrac{1}{2} \sum\limits^{m}_{i=1} \big(y^{(i)} - \theta^T x^{(i)}\big)^2
+\end{array}
+$$
+<p>Hence, maximizing $ℓ(\theta)$ gives the same answer as minimizing</p>
+$$\dfrac{1}{2} \sum^{m}_{i=1} \big(y^{(i)} - \theta^T x^{(i)}\big)^2,$$
+<p>which we recognize to be $J(\theta)$, our original least-squares cost function.</p>
+<p>To summarize: Under the previous probabilistic assumptions on the data, least-squares regression corresponds to finding the maximum likelihood estimate of $\theta$. This is thus one set of assumptions under which least-squares regression can be justified as a very natural method that’s just doing maximum likelihood estimation. (Note however that the probabilistic assumptions are by no means $necessary$ for least-squares to be a perfectly good and rational procedure, and there may—and indeed there are—other natural assumptions that can also be used to justify it.)</p>
+<p>Note also that, in our previous discussion, our final choice of $\theta$ did not depend on what was $\sigma^2$, and indeed we’d have arrived at the same result even if $\sigma^2$ were unknown. We will use this fact again later, when we talk about the exponential family and generalized linear models.</p>
+<p>Q &amp; A</p>
+<p>Q: what’s the difference between likelihood and probability?</p>
+<p>A: The likelihood of the parameters is exactly the same thing as the probability of the data, but the reason we sometimes talk about likelihood, and sometimes talk of probability is, um, if you think of the training set the data as a fixed thing, and then varying parameters theta, then I’m going to use the term likelihood. Whereas if you view the parameters theta as fixed and maybe varying the data, I’m gonna say probability, right?</p>
+<p>Q: why is epsilon i Gaussian?</p>
+<p>A: So, uh, uh, turns out because of central limit theorem, uh, from statistics, uh, most error distributions are Gaussian, right? If there’s an era that’s made up of lots of little noise sources which are not too correlated, then by central limit theorem it will be Gaussian. So if you think that, most perturbations are, the mood of the seller, what’s the school district, you know, what’s the weather like, or access to transportation, and all of these sources are not too correlated, and you add them up then the distribution will be Gaussian. So you can use the central limit theorem, I think the Gaussian has become a default noise distribution. But for things where the true noise distribution is very far from Gaussian, uh, this model does do that as well. And in fact, for when you see generalized linear models on Wednesday, you see how to generalize all of these algorithms to very different distributions like Poisson, and so on.</p>
+<h3 id="Logistic-regression"><a class="header-anchor" href="#Logistic-regression">¶</a>Logistic regression</h3>
+<p>Lets now talk about the classification problem. This is just like the regression problem, except that the values $y$ we now want to predict take on only a small number of discrete values. For now, we will focus on the <strong>binary classification</strong> problem in which $y$ can take on only two values, $0$ and $1$. (Most of what we say here will also generalize to the multiple-class case.) For instance, if we are trying to build a spam classifier for email, then $x^{(i)}$ may be some features of a piece of email, and $y$ may be $1$ if it is a piece of spam mail, and $0$ otherwise. $0$ is also called the <strong>negative class</strong>, and 1 the <strong>positive class</strong>, and they are sometimes also denoted by the symbols “$-$” and “$+$.” Given $x^{(i)}$, the corresponding $y^{(i)}$ is also called the <strong>label</strong> for the training example.</p>
+<p>We could approach the classification problem ignoring the fact that $y$ is discrete-valued, and use our old linear regression algorithm to try to predict $y$ given $x$. However, it is easy to construct examples where this method performs very poorly. Intuitively, it also doesn’t make sense for $h_\theta(x)$ to take values larger than $1$ or smaller than $0$ when we know that $y \in \{0, 1\}$.</p>
+<div align=center><img width = '600' height ='300' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/LR_for_classification.PNG"/></div>
+<p>To fix this, lets change the form for our hypotheses $h_\theta(x)$. We will choose</p>
+$$h_\theta(x) = g(\theta^T x) = \dfrac{1}{1 + e^{-\theta^T x}},$$
+<p>where</p>
+$$g(z) = \dfrac{1}{1 + e^{-z}}$$
+<p>is called the <strong>logistic function</strong> or the <strong>sigmoid function</strong>. Here is a plot showing $g(z)$:</p>
+<div align=center><img width = '400' height ='320' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/logistic_function.PNG"/></div>
+<p>Notice that $g(z)$ tends towards $1$ as $z \rightarrow \infty$, and $g(z)$ tends towards $0$ as $z \rightarrow −\infty$. Moreover, $g(z)$, and hence also $h(x)$, is always bounded between $0$ and $1$. As before, we are keeping the convention of letting $x_0 = 1$, so that $\theta^T x = \theta_0 + \sum\limits^{n}_{j=1} \theta_jx_j$ .</p>
+<p>For now, lets take the choice of $g$ as given. Other functions that smoothly increase from $0$ to $1$ can also be used, but for a couple of reasons that we’ll see later (when we talk about GLMs, and when we talk about generative learning algorithms), the choice of the logistic function is a fairly natural one. Before moving on, here’s a useful property of the derivative of the sigmoid function, which we write a $g′$:</p>
+$$
+\begin{array}{lcl}
+g'(z)
+& = & \dfrac{\mathrm{d}}{\mathrm{d}z} \dfrac{1}{1 + e^{-z}}\\
+& = & \dfrac{1}{(1 + e^{-z})^2} (e^{-z})\\
+& = & \dfrac{1}{(1 + e^{-z})} \cdot \Big( 1 - \dfrac{1}{(1 + e^{-z})}\Big)\\
+& = & g(z)(1 - g(z)).
+\end{array}
+$$
+<p>So, given the logistic regression model, how do we fit $\theta$ for it? Following how we saw least squares regression could be derived as the maximum likelihood estimator under a set of assumptions, lets endow our classification model with a set of probabilistic assumptions, and then fit the parameters via maximum likelihood.</p>
+<p>Let us assume that</p>
+$$P(y=1~|~x; \theta) = h_\theta(x)$$
+$$P(y=0~|~x; \theta) = 1 - h_\theta(x)$$
+<p>Note that this can be written more compactly as</p>
+$$P(y~|~x; \theta) = (h_\theta(x))^y (1 - h_\theta(x))^{1-y}$$
+<p>Assuming that the $m$ training examples were generated independently, we can then write down the likelihood of the parameters as</p>
+$$
+\begin{array}{lcl}
+\mathscr{L}(\theta)
+& = & p(\vec{y}~|~X; \theta)\\
+& = & \prod\limits^{m}_{i=1} p(y^{(i)}~|~x^{(i)}; \theta)\\
+& = & \prod\limits^{m}_{i=1} \big(h_\theta(x^{(i)})\big)^{y^{(i)}} \big(1 - h_\theta(x^{(i)})\big)^{1-y^{(i)}}
+\end{array}
+$$
+<p>As before, it will be easier to maximize the log likelihood:</p>
+$$
+\begin{array}{lcl}
+ℓ(\theta)
+& = & \log \mathscr{L}(\theta)\\
+& = & \sum\limits^{m}_{i=1} y^{(i)} \log h(x^{(i)}) + (1 - y^{(i)}) \log (1 - h(x^{(i)}))
+\end{array}
+$$
+<p>How do we maximize the likelihood? Similar to our derivation in the case of linear regression, we can use gradient ascent. Written in vectorial notation, our updates will therefore be given by</p>
+$$\theta := \theta + \alpha \nabla_\thetaℓ(\theta).$$
+<p>(Note the positive rather than negative sign in the update formula, since we’re maximizing, rather than minimizing, a function now.) Lets start by working with just one training example $(x, y)$, and take derivatives to derive the stochastic gradient ascent rule:</p>
+$$
+\begin{array}{lcl}
+\dfrac{\partial}{\partial \theta_j} ℓ(\theta)
+& = & \Big( y \dfrac{1}{g(\theta^T x)} - (1-y) \dfrac{1}{1 - g(\theta^T x)}\Big) \dfrac{\partial}{\partial \theta_j}g(\theta^T x)\\
+& = & \Big( y \dfrac{1}{g(\theta^T x)} - (1-y) \dfrac{1}{1 - g(\theta^T x)}\Big)g(\theta^T x)(1 - g(\theta^T x)) \dfrac{\partial}{\partial \theta_j} \theta^T x\\
+& = & \big( y (1 - g(\theta^T x)) - (1-y) g(\theta^T x)\big) x_j\\
+& = & (y - h_\theta(x)) x_j
+\end{array}
+$$
+<p>Above, we used the fact that $g′(z) = g(z)(1 - g(z))$. This therefore gives us the stochastic gradient ascent rule</p>
+$$\theta := \theta + \alpha \big( y^{(i)} - h_\theta(x^{(i)}) \big)x_j^{(i)}$$
+<p>If we compare this to the LMS update rule, we see that it looks identical; but this is not the same algorithm, because $h_\theta(x^{(i)})$ is now defined as a non-linear function of $\theta^T x^{(i)}$. Nonetheless, it’s a little surprising that we end up with the same update rule for a rather different algorithm and learning problem. Is this coincidence, or is there a deeper reason behind this? We’ll answer this when get to GLM models.</p>
+<h3 id="Digression-The-perceptron-learning-algorithm"><a class="header-anchor" href="#Digression-The-perceptron-learning-algorithm">¶</a>Digression: The perceptron learning algorithm</h3>
+<p>For further information, please refer to the relevant books.</p>
+<h3 id="Newton’s-method"><a class="header-anchor" href="#Newton’s-method">¶</a>Newton’s method</h3>
+<p>Returning to logistic regression with $g(z)$ being the sigmoid function, lets now talk about a different algorithm for minimizing $ℓ(\theta)$.</p>
+<p>To get us started, lets consider Newton’s method for finding a zero of a function. Specifically, suppose we have some function $f$ : $\mathbb{R} \longmapsto \mathbb{R}$, and we wish to find a value of $\theta$ so that $f(\theta) = 0$. Here, $\theta \in \mathbb{R}$ is a real number. Newton’s method performs the following update:</p>
+$$\theta := \theta - \dfrac{f(\theta)}{f'(\theta)}.$$
+<p>This method has a natural interpretation in which we can think of it as approximating the function f via a linear function that is tangent to $f$ at the current guess $\theta$, solving for where that linear function equals to zero, and letting the next guess for $\theta$ be where that linear function is zero.</p>
+<p>Here’s a picture of the Newton’s method in action:</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/Newton's_method.PNG"/></div><br>
+<p>In the leftmost figure, we see the function $f$ plotted along with the line $y = 0$. We’re trying to find $\theta$ so that $f(\theta) = 0$; the value of $\theta$ that achieves this is about $1.3$. Suppose we initialized the algorithm with $\theta = 4.5$. Newton’s method then fits a straight line tangent to $f$ at $\theta = 4.5$, and solves for the where that line evaluates to $0$. (Middle figure.) This give us the next guess for $\theta$, which is about $2.8$. The rightmost figure shows the result of running one more iteration, which the updates $\theta$ to about $1.8$. After a few more iterations, we rapidly approach $\theta = 1.3$.</p>
+<p>Newton’s method gives a way of getting to $f(\theta) = 0$. What if we want to use it to maximize some function $ℓ$? The maxima of $ℓ$ correspond to points where its first derivative $ℓ’(\theta)$ is zero. So, by letting $f(\theta) = ℓ’(\theta)$, we can use the same algorithm to maximize $ℓ$, and we obtain update rule:</p>
+$$\theta := \theta - \dfrac{ℓ'(\theta)}{ℓ''(\theta)}.$$
+<p>(Something to think about: How would this change if we wanted to use Newton’s method to minimize rather than maximize a function?)</p>
+<p>Lastly, in our logistic regression setting, $\theta$ is vector-valued, so we need to generalize Newton’s method to this setting. The generalization of Newton’s method to this multidimensional setting (also called the Newton-Raphson method) is given by</p>
+$$\theta := \theta - H^{-1} \nabla_\thetaℓ(\theta).$$
+<p>Here, $\nabla_\theta ℓ(\theta)$ is, as usual, the vector of partial derivatives of $ℓ(\theta)$ with respect to the $\theta_i’s$; and $H$ is an $n$-by-$n$ matrix (actually, $n + 1$-by-$n + 1$, assuming that we include the intercept term) called the <strong>Hessian</strong>, whose entries are given by</p>
+$$H_{ij} = \dfrac{\partial^2 ℓ(\theta)}{\partial \theta_i \partial \theta_j}$$
+<p>Newton’s method typically enjoys faster convergence than (batch) gradient descent, and requires many fewer iterations to get very close to the minimum. One iteration of Newton’s can, however, be more expensive than one iteration of gradient descent, since it requires finding and inverting an $n$-by-$n$ Hessian; but so long as $n$ is not too large, it is usually much faster overall. When Newton’s method is applied to maximize the logistic regression log likelihood function $ℓ(\theta)$, the resulting method is also called <strong>Fisher scoring</strong>.</p>
+<h1>To Be Continued…</h1>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%B2%E4%B9%89/" title="机器学习讲义">https://cloudplayer99.github.io/2021/02/22/机器学习讲义/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/21/%E5%91%8A%E5%88%AByilia%E8%BF%8E%E6%9D%A5NexT/" rel="prev" title="告别yilia，迎来NexT">
+      <i class="fa fa-chevron-left"></i> 告别yilia，迎来NexT
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" rel="next" title="机器学习知识点总结">
+      机器学习知识点总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Stanford CS229: Machine Learning (Autumn 2018)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-1-Welcome"><span class="nav-number">1.1.</span> <span class="nav-text">Lecture 1 - Welcome</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning-Definition"><span class="nav-number">1.1.1.</span> <span class="nav-text">Machine Learning Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Supervised-Learning"><span class="nav-number">1.1.2.</span> <span class="nav-text">Supervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unsupervised-Learning"><span class="nav-number">1.1.3.</span> <span class="nav-text">Unsupervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Something-Else"><span class="nav-number">1.1.4.</span> <span class="nav-text">Something Else</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-2-Linear-Regression-and-Gradient-Descent"><span class="nav-number">1.2.</span> <span class="nav-text">Lecture 2 - Linear Regression and Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">1.2.1.</span> <span class="nav-text">Linear Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">1.2.2.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normal-Equation"><span class="nav-number">1.2.3.</span> <span class="nav-text">Normal Equation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-derivatives"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Matrix derivatives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Least-squares-revisited"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">Least squares revisited</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-3-Locally-Weighted-Logistic-Regression"><span class="nav-number">1.3.</span> <span class="nav-text">Lecture 3 - Locally Weighted &amp; Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recap-the-notation"><span class="nav-number">1.3.1.</span> <span class="nav-text">Recap the notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Locally-weighted-linear-regression"><span class="nav-number">1.3.2.</span> <span class="nav-text">Locally weighted linear regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Probabilistic-interpretation"><span class="nav-number">1.3.3.</span> <span class="nav-text">Probabilistic interpretation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-regression"><span class="nav-number">1.3.4.</span> <span class="nav-text">Logistic regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Digression-The-perceptron-learning-algorithm"><span class="nav-number">1.3.5.</span> <span class="nav-text">Digression: The perceptron learning algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Newton’s-method"><span class="nav-number">1.3.6.</span> <span class="nav-text">Newton’s method</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">To Be Continued…</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/02/22/机器学习讲义/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

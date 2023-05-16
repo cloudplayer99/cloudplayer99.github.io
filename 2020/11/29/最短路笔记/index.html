@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Dijkstra Floyd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最短路算法笔记">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/11/29/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="Dijkstra Floyd">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84C%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0/graph.png">
+<meta property="article:published_time" content="2020-11-29T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84C%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0/graph.png">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/11/29/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>最短路算法笔记 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/11/29/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          最短路算法笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-29 23:00:00" itemprop="dateCreated datePublished" datetime="2020-11-29T23:00:00+08:00">2020-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>Dijkstra</li>
+<li>Floyd</li>
+</ul>
+<a id="more"></a>
+<h2 id="Dijkstra"><a class="header-anchor" href="#Dijkstra">¶</a>Dijkstra</h2>
+<p>讨论带权有向图</p>
+<p>路径上的第一个顶点——源点（Source）<br>
+最后一个顶点——终点（Destination）</p>
+<p>从某个源点到其余各顶点的最短路径</p>
+<p>Dijkstra 算法</p>
+<p>单源最短路径算法</p>
+<p>引进一个辅助向量 $D$</p>
+<p>它的每个分量 $D[\ i \ ]$ 表示当前所找到的从始点 $v$ 到每个终点 $v_{i}$ 的最短路径的长度</p>
+<p>初态：若从 $v$ 到 $v_{i}$ 有弧，则 $D[\ i \ ]$ 为弧上的权值，否则置 $D[\ i \ ]$ 为 $\infty$</p>
+<p>从 $v$ 出发的长度最短的一条最短路径 $(v,v_{j})$ :</p>
+$D[\ j \ ] = Min\{\ D[\ i \ ] \ \big| \ v_{i} \in V \}$
+<p><font color='red'> 按路径长度递增的次序来产生各最短路径 </font></p>
+<p>下一条长度次短的最短路径：</p>
+$D[\ j \ ] = Min\{\ D[\ i \ ] \ \big| \ v_{i} \in V - S\}$
+<p>步骤表达式</p>
+<p>（1）$D[\ i \ ] = arcs[\  Locate Vex(G, v) \ ]\ [\ i \ ]\ \ \ \ v_{i} \in V$</p>
+<p>（2）$D[\ i \ ] = Min\{\ D[\ i \ ] \ \big| \ v_{i} \in V - S\}\ \ \ \ S = S  \bigcup \{j \}$</p>
+<p>（3）若$ D[\ i \ ] + arcs[\ j \ ] [\ k \ ] < D[\ k \ ]\ ,\ D[\ k \ ] = D[\ i \ ] + arcs[\ j \ ] [\ k \ ]$</p>
+<p>（4）重复(2)(3)共 $n - 1$ 次</p>
+<p>算法示例</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84C%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0/graph.png" alt="avatar"></p>
+<table>
+<thead>
+<tr>
+<th>始点</th>
+<th>终点</th>
+<th>最短路径</th>
+<th>路径长度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$v_0$</td>
+<td>$v_1$</td>
+<td>无</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$v_2$</td>
+<td>$(v_0, v_2)$</td>
+<td>$10$</td>
+</tr>
+<tr>
+<td></td>
+<td>$v_3$</td>
+<td>$(v_0, v_2, v_3)$</td>
+<td>$60$</td>
+</tr>
+<tr>
+<td></td>
+<td>$v_4$</td>
+<td>$(v_0, v_4)$</td>
+<td>$30$</td>
+</tr>
+<tr>
+<td></td>
+<td>$v_5$</td>
+<td>$(v_0, v_4, v_3, v_5)$</td>
+<td>$60$</td>
+</tr>
+</tbody>
+</table>
+<p>邻接矩阵</p>
+$\begin{pmatrix}
+\infty & \infty & 10 & \infty & 30 & 100 \\
+\infty & \infty & 5 & \infty & \infty & \infty \\
+\infty & \infty & \infty & 50 & \infty & \infty \\
+\infty & \infty & \infty & \infty & \infty & 10 \\
+\infty & \infty & \infty & 20 & \infty & 60 \\
+\infty & \infty & \infty & \infty & \infty & \infty
+\end{pmatrix}$<br><br>
+<p>（1）初始化$\ \ \ \ D[\ i \ ] = arcs[\  Locate Vex(G, v) \ ]\ [\ i \ ]\ \ \ \ v_{i} \in V$<br></p>
+$\ \ \ \ D[\ 0 \ ] = \infty\ \ \ \ D[\ 1 \ ] = \infty\ \ \ \ D[\ 2 \ ] = 10\ \ \ \ D[\ 3 \ ] = \infty\ \ \ \ D[\ 4 \ ] = 30\ \ \ \ D[\ 5 \ ] = 100$<br>
+$\ \ \ \ D[\ 0 \ ] = 0 \ \ \ \ S = \{\ 0 \ \}$ 第一个点，即始点<br>
+<p>（2）$D[\ i \ ] = Min\{\ D[\ i \ ] \ \big| \ v_{i} \in V - S\}\ \ \ \ S = S  \bigcup \{j \}$<br></p>
+$\ \ \ \ V - S = \{\ 1, 2, 3, 4, 5 \ \}$<br>
+<p>找到与 $v_0$ 最近的点：$v_2\ \ \ \ min = 10\ \ \ \ D[\ 2 \ ] = 10\ \ \ \ S = \{\ 0,2 \ \}$<br></p>
+<p>（3）若$ D[\ i \ ] + arcs[\ j \ ] [\ k \ ] < D[\ k \ ]\ ,\ D[\ k \ ] = D[\ i \ ] + arcs[\ j \ ] [\ k \ ]$<br></p>
+$\ \ \ \ 10(v_0 \rightarrow v_2) + \infty(v_2 \rightarrow v_1) > \infty(v_0 \rightarrow v_1)$ ，不满足， $D[\ 1 \ ] = \infty$<br>
+$\ \ \ \ 10(v_0 \rightarrow v_2) + 50(v_2 \rightarrow v_3) < \infty(v_0 \rightarrow v_3)$ ，满足， $D[\ 3 \ ] = 60$<br>
+<p>后面皆不满足， $D[\ 4 \ ] = 30\ \ \ \ D[\ 5 \ ] = 100$<br></p>
+<p>重复(2)(3)</p>
+<p>（2’）$D[\ i \ ] = Min\{\ D[\ i \ ] \ \big| \ v_{i} \in V - S\}\ \ \ \ S = S  \bigcup \{j \}$<br></p>
+$\ \ \ \ V - S = \{\ 1, 3, 4, 5 \ \}$<br>
+<p>找到与 $v_0$ 最近的点：$v_4\ \ \ \ min = 30\ \ \ \ D[\ 4 \ ] = 30\ \ \ \ S = \{\ 0,2,4 \ \}$<br></p>
+<p>（3’）若$ D[\ i \ ] + arcs[\ j \ ] [\ k \ ] < D[\ k \ ]\ ,\ D[\ k \ ] = D[\ i \ ] + arcs[\ j \ ] [\ k \ ]$<br></p>
+$\ \ \ \ 30(v_0 \rightarrow v_4) + \infty(v_4 \rightarrow v_1) > \infty(v_0 \rightarrow v_1)$ ，不满足， $D[\ 1 \ ] = \infty$<br>
+$\ \ \ \ 30(v_0 \rightarrow v_4) + 20(v_4 \rightarrow v_3) < 60(v_0 \rightarrow v_3)$ ，满足， $D[\ 3 \ ] = 50$<br>
+$\ \ \ \ 30(v_0 \rightarrow v_4) + 60(v_4 \rightarrow v_5) < 100(v_0 \rightarrow v_3)$ ，满足， $D[\ 3 \ ] = 90$<br>
+<p>（2’’）$D[\ i \ ] = Min\{\ D[\ i \ ] \ \big| \ v_{i} \in V - S\}\ \ \ \ S = S  \bigcup \{j \}$<br></p>
+$\ \ \ \ V - S = \{\ 1, 3, 5 \ \}$<br>
+<p>找到与 $v_0$ 最近的点：$v_3\ \ \ \ min = 50\ \ \ \ D[\ 3 \ ] = 50\ \ \ \ S = \{\ 0,2,3,4 \ \}$<br></p>
+<p>（3’’）若$ D[\ i \ ] + arcs[\ j \ ] [\ k \ ] < D[\ k \ ]\ ,\ D[\ k \ ] = D[\ i \ ] + arcs[\ j \ ] [\ k \ ]$<br></p>
+$\ \ \ \ 50(v_0 \rightarrow v_3) + \infty(v_3 \rightarrow v_1) > \infty(v_0 \rightarrow v_1)$ ，不满足， $D[\ 1 \ ] = \infty$<br>
+$\ \ \ \ 50(v_0 \rightarrow v_3) + 10(v_3 \rightarrow v_5) < 90(v_0 \rightarrow v_3)$ ，满足， $D[\ 5 \ ] = 60$<br>
+<p>（2’’’）$D[\ i \ ] = Min\{\ D[\ i \ ] \ \big| \ v_{i} \in V - S\}\ \ \ \ S = S  \bigcup \{j \}$<br></p>
+$\ \ \ \ V - S = \{\ 1, 5 \ \}$<br>
+<p>找到与 $v_0$ 最近的点：$v_5\ \ \ \ min = 60\ \ \ \ D[\ 5 \ ] = 60\ \ \ \ S = \{\ 0,2,3,4,5 \ \}$<br></p>
+<p>（3’’’）若$ D[\ i \ ] + arcs[\ j \ ] [\ k \ ] < D[\ k \ ]\ ,\ D[\ k \ ] = D[\ i \ ] + arcs[\ j \ ] [\ k \ ]$<br></p>
+$\ \ \ \ 10(v_0 \rightarrow v_5) + \infty(v_5 \rightarrow v_1) > \infty(v_0 \rightarrow v_1)$ ，不满足， $D[\ 1 \ ] = \infty$<br>
+<p>（2’’’’）$D[\ i \ ] = Min\{\ D[\ i \ ] \ \big| \ v_{i} \in V - S\}\ \ \ \ S = S  \bigcup \{j \}$<br></p>
+$\ \ \ \ V - S = \{\ 1 \ \}$<br>
+<p>找到与 $v_0$ 最近的点：$v_1\ \ \ \ min = \infty\ \ \ \ D[\ 1 \ ] = \infty\ \ \ \ S = \{\ 0,1,2,3,4,5 \ \}$<br></p>
+<p>（3’’’’）pass</p>
+<p>(2)(3)共执行 $n-1 = 6-1 = 5$ 次，得到最短路径的带权长度</p>
+<p>要想得到每条最短路径的具体路径，需持续更新 PathMatrix 二维数组</p>
+<p>下面为 C 语言描述的 Dijkstra 算法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shortestPath_DIJ</span><span class="params">(MGraph G, <span class="keyword">int</span> v0, PathMatrix &amp;P, ShortPathTable &amp;D)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 用 Dijkstra 算法求有向网 G 的 v0 顶点到其余顶点 v 的最短路径 P[v] 及其带权长度 D[v]</span></span><br><span class="line">    <span class="comment">// 若 p[v][w] 为 TRUE，则 w 是从 v0 到 v 当前求得最短路径上的顶点</span></span><br><span class="line">    <span class="comment">// final[v] 为 TRUE 当且仅当 v in S，即已经求得从 v0 到 v 的最短路径（final 为 S 集）</span></span><br><span class="line">    <span class="keyword">for</span> (v = <span class="number">0</span>; v &lt; G.vexnum; ++v) &#123;</span><br><span class="line">        <span class="keyword">final</span>[v] = FALSE; D[v] = G.arcs[v0][v];</span><br><span class="line">        <span class="keyword">for</span> (w = <span class="number">0</span>; w &lt; G.vexnum; ++w)  P[v][w] = FALSE;</span><br><span class="line">        <span class="keyword">if</span> (D[v] &lt; INFINITY) &#123;P[v][v0] = TRUE; P[v][v] = TRUE;&#125;</span><br><span class="line">    &#125; <span class="comment">// for</span></span><br><span class="line">    D[v0] = <span class="number">0</span>; <span class="keyword">final</span>[v0] = TRUE;        <span class="comment">// 初始化，v0 顶点入 S 集</span></span><br><span class="line">    <span class="comment">// 开始主循环，每次求得 v0 到某个 v 顶点的最短路径，并加 v 到 S 集</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; G.vexnum; ++i) &#123;     <span class="comment">// 其余 G.vexnum - 1 个顶点</span></span><br><span class="line">        min = INFINITY;                 <span class="comment">// 当前所知离 v0 顶点的最近距离</span></span><br><span class="line">        <span class="keyword">for</span> (w = <span class="number">0</span>; w &lt; G.vexnum; ++w)</span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">final</span>[w])              <span class="comment">// v0 in V-S 集</span></span><br><span class="line">                <span class="keyword">if</span> (D[w] &lt; min) &#123;v = w; min = D[w];&#125;</span><br><span class="line">                                        <span class="comment">// 找到与 v0 最近的顶点（最小 D[w]）</span></span><br><span class="line">        <span class="keyword">final</span>[v] = TRUE;                <span class="comment">// 找到后即加入 S 集</span></span><br><span class="line">        <span class="keyword">for</span> (w = <span class="number">0</span>; w &lt; G.vexnum; ++v)  <span class="comment">// 更新 D[w], P[w]</span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">final</span>[w] &amp;&amp; (min + G.arcs[v][w] &lt; D[w])) &#123;</span><br><span class="line">                D[w] = min + G.arcs[v][w];      <span class="comment">// w in V-S 集</span></span><br><span class="line">                P[w] = P[v]; P[w][w] = TRUE;    <span class="comment">// P[w] = P[v] + P[w]</span></span><br><span class="line">            &#125; <span class="comment">// if</span></span><br><span class="line">    &#125; <span class="comment">// for</span></span><br><span class="line">&#125; <span class="comment">// ShortestPath_DIJ</span></span><br></pre></td></tr></table></figure>
+<p>PathMatrix P 的更新</p>
+<p>邻接矩阵<br>
+<br></p>
+$\begin{pmatrix}
+\infty & \infty & 10 & \infty & 30 & 100 \\
+\infty & \infty & 5 & \infty & \infty & \infty \\
+\infty & \infty & \infty & 50 & \infty & \infty \\
+\infty & \infty & \infty & \infty & \infty & 10 \\
+\infty & \infty & \infty & 20 & \infty & 60 \\
+\infty & \infty & \infty & \infty & \infty & \infty
+\end{pmatrix}$<br><br>
+<p>$P[\ 6 \ ] [\ 6 \ ]$</p>
+<p>初始化 P 全为 FALSE</p>
+$D[\ 0 \ ] = \infty\ \ \ \ D[\ 1 \ ] = \infty\ \ \ \ D[\ 2 \ ] = 10\ \ \ \ D[\ 3 \ ] = \infty\ \ \ \ D[\ 4 \ ] = 30\ \ \ \ D[\ 5 \ ] = 100$<br>
+$if\ \ \ \ D[\ v \ ] < INFINITY \ \ \ \ P[\ v \ ] [\ v_0 \ ] = TRUE; \ \ \ \ P[\ v \ ] [\ v \ ] = TRUE;$<br>
+$\ \ \ \ P[\ 2 \ ] [\ 0 \ ] = TRUE; \ \ \ \ P[\ 2 \ ] [\ 2 \ ] = TRUE;$<br>
+$\ \ \ \ P[\ 4 \ ] [\ 0 \ ] = TRUE; \ \ \ \ P[\ 4 \ ] [\ 4 \ ] = TRUE;$<br>
+$\ \ \ \ P[\ 5 \ ] [\ 0 \ ] = TRUE; \ \ \ \ P[\ 5 \ ] [\ 5 \ ] = TRUE;$<br>
+<p><br>$\begin{pmatrix}
+ & & & & & \\
+ & & & & & \\
+T & & T & & & \\
+ & & & & & \\
+T & & & & T & \\
+T & & & & & T
+\end{pmatrix}$<br><br></p>
+$P[\ w \ ] = P[\ v \ ]$
+<p>$P[w][w] = TRUE$</p>
+<p>即 $P[\ w \ ] = P[\ v \ ] + P[\ w \ ]$<br></p>
+$10(v_0 \rightarrow v_2) + 50(v_2 \rightarrow v_3) < \infty(v_0 \rightarrow v_3)$ ，满足， $D[\ 3 \ ] = 60$<br>
+$D[\ 0 \ ] = 0\ \ \ \ D[\ 1 \ ] = \infty\ \ \ \ D[\ 2 \ ] = 10\ \ \ \ D[\ 3 \ ] = 60\ \ \ \ D[\ 4 \ ] = 30\ \ \ \ D[\ 5 \ ] = 100$<br>
+<p><br>$\begin{pmatrix}
+ & & & & & \\
+ & & & & & \\
+T & & T & & & \\
+T & & T & T & & \\
+T & & & & T & \\
+T & & & & & T
+\end{pmatrix}$<br><br></p>
+$30(v_0 \rightarrow v_4) + 20(v_4 \rightarrow v_3) < 60(v_0 \rightarrow v_3)$ ，满足， $D[\ 3 \ ] = 50$<br>
+$30(v_0 \rightarrow v_4) + 60(v_4 \rightarrow v_5) < 100(v_0 \rightarrow v_3)$ ，满足， $D[\ 3 \ ] = 90$<br>
+$D[\ 0 \ ] = 0\ \ \ \ D[\ 1 \ ] = \infty\ \ \ \ D[\ 2 \ ] = 10\ \ \ \ D[\ 3 \ ] = 50\ \ \ \ D[\ 4 \ ] = 30\ \ \ \ D[\ 5 \ ] = 90$<br>
+<p><br>$\begin{pmatrix}
+ & & & & & \\
+ & & & & & \\
+T & & T & & & \\
+T & & & T & T & \\
+T & & & & T & \\
+T & & & & T & T
+\end{pmatrix}$<br><br></p>
+$50(v_0 \rightarrow v_3) + 10(v_3 \rightarrow v_5) < 90(v_0 \rightarrow v_3)$ ，满足， $D[\ 5 \ ] = 60$<br>
+$D[\ 0 \ ] = 0\ \ \ \ D[\ 1 \ ] = \infty\ \ \ \ D[\ 2 \ ] = 10\ \ \ \ D[\ 3 \ ] = 50\ \ \ \ D[\ 4 \ ] = 30\ \ \ \ D[\ 5 \ ] = 60$<br>
+<p><br>$\begin{pmatrix}
+ & & & & & \\
+ & & & & & \\
+T & & T & & & \\
+T & & & T & T & \\
+T & & & & T & \\
+T & & & T & T & T
+\end{pmatrix}$<br><br></p>
+<p>最终结果：</p>
+$D[\ 0 \ ] = 0\ \ \ \ D[\ 1 \ ] = \infty\ \ \ \ D[\ 2 \ ] = 10\ \ \ \ D[\ 3 \ ] = 50\ \ \ \ D[\ 4 \ ] = 30\ \ \ \ D[\ 5 \ ] = 60$
+<p>改进 $P$</p>
+<p>无须二维数组，可以记录前驱</p>
+<p>只须建立一个前驱顶点数组</p>
+<p>$prev[\ i \ ]$ 的值为顶点 $v_s$ 到 $v_i$ 的最短路径所经历的全部结点中的 $v_i$ 的前驱</p>
+<p>初始化时，$prev[\ i \ ] = 0 \ \ \ \ (i = 0; i < G.vexnum; i++)$</p>
+<p>更新 D 数组时，更新 prev 数组，$prev[\ w \ ] = v$</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>i</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始</td>
+<td>prev[i]</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>prev[i]</td>
+<td></td>
+<td></td>
+<td></td>
+<td>2</td>
+<td></td>
+<td></td>
+<td>prev[3] = 2</td>
+</tr>
+<tr>
+<td></td>
+<td>prev[i]</td>
+<td></td>
+<td></td>
+<td></td>
+<td>4</td>
+<td></td>
+<td>4</td>
+<td>prev[1] = 4; prev[5] = 4</td>
+</tr>
+<tr>
+<td></td>
+<td>prev[i]</td>
+<td></td>
+<td></td>
+<td></td>
+<td>4</td>
+<td></td>
+<td>3</td>
+<td>prev[5] = 3</td>
+</tr>
+<tr>
+<td></td>
+<td>prev[i]</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>结束</td>
+<td>prev[i]</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>前驱结点初始化？？？</p>
+<p>初始化：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prev[i]</td>
+<td>$\infty$</td>
+<td>$\infty$</td>
+<td>$\infty$</td>
+<td>$\infty$</td>
+<td>$\infty$</td>
+<td>$\infty$</td>
+</tr>
+</tbody>
+</table>
+<p>邻接矩阵</p>
+<p><br>$\begin{pmatrix}
+\infty & \infty & 10 & \infty & 30 & 100 \\
+\infty & \infty & 5 & \infty & \infty & \infty \\
+\infty & \infty & \infty & 50 & \infty & \infty \\
+\infty & \infty & \infty & \infty & \infty & 10 \\
+\infty & \infty & \infty & 20 & \infty & 60 \\
+\infty & \infty & \infty & \infty & \infty & \infty
+\end{pmatrix}$<br><br></p>
+$if(D[\ v \ ] < INFINITY)\ \ \ \ prev[\ v \ ] = 0;$
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prev[i]</td>
+<td>$\infty$</td>
+<td>$\infty$</td>
+<td>0</td>
+<td>$\infty$</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>结果：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prev[i]</td>
+<td>$\infty$</td>
+<td>$\infty$</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>C++ 伪代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.vexnum; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (prev[i] == INFINITY) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">int</span> n = i;</span><br><span class="line">    <span class="keyword">while</span> (prev[n] != INFINITY) &#123;</span><br><span class="line">        path.push(n);               <span class="comment">// 入栈</span></span><br><span class="line">        n = prev[n];</span><br><span class="line">    &#125;</span><br><span class="line">    path.push(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span> (!path.empty()) &#123;</span><br><span class="line">        path.pop();                 <span class="comment">// 输出路径并出栈</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Floyd"><a class="header-anchor" href="#Floyd">¶</a>Floyd</h2>
+<p>Floyd 算法（有向无向 / 边权正负）</p>
+<p>多源最短路径算法</p>
+<p>$O(n^3)$</p>
+<p>讨论有向带权图</p>
+<p>对于稠密图，效率高于执行 $|v|$ 次 Dijkstra</p>
+<p>引入 $map$ 矩阵</p>
+<p>$map(i, j)$ 表示节点 $i$ 至 节点 $j$ 最短路径的距离</p>
+<p>对于每个节点 $k$ ，检查 $map(i, k) + map(k, j) < map(i, j)$</p>
+<p>若成立，则 $map(i, j) = map(i, k) + map(k, j)$</p>
+<p>主要步骤：</p>
+<p>（1）初始化 $map$ 矩阵</p>
+<p>若不相邻，则 $map[\ i \ ] [\ j \ ] = \infty$</p>
+<p>若是相邻（即有边），则 $map[\ i \ ] [\ j \ ] = G.arcs[\ i \ ] [\ j \ ]$</p>
+<p>若 $i = j$ ，$map[\ i \ ] [\ j \ ] = 0$</p>
+<p>（2）分别以每个顶点为中介点，更新 $map$ 矩阵</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (k = <span class="number">1</span>; k &lt;= n; k++)</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span> (k = <span class="number">1</span>; k &lt;= n; k++)</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">map</span>[i][k] + <span class="built_in">map</span>[k][j] &lt; <span class="built_in">map</span>[i][j])</span><br><span class="line">                <span class="built_in">map</span>[i][j] = <span class="built_in">map</span>[i][k] + <span class="built_in">map</span>[k][j];</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/11/29/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AC%94%E8%AE%B0/" title="最短路算法笔记">https://cloudplayer99.github.io/2020/11/29/最短路笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/24/ARM-%E5%BE%AE%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%8E%E6%8E%A5%E5%8F%A3%E6%8A%80%E6%9C%AF%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/" rel="prev" title="ARM-微控制器与接口技术代码分析">
+      <i class="fa fa-chevron-left"></i> ARM-微控制器与接口技术代码分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/30/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" rel="next" title="拓扑排序（Topological sorting）">
+      拓扑排序（Topological sorting） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dijkstra"><span class="nav-number">1.</span> <span class="nav-text">Dijkstra</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floyd"><span class="nav-number">2.</span> <span class="nav-text">Floyd</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="¶前言 在整个设计过程中，博主主要负责设计与仿真，报告内容大部分为博主的搭档完成，经得他的同意后，博主将报告整理成这篇博客。 ¶2020年北京市大学生电子设计竞赛初选设计任务书  主要内容、基本要求、主要参考资料等： 主要内容 1．阅读相关的科技文献。 2．学习使用multisim软件对模拟电路的仿真研究。 3．学会整理和总结设计文档报告。 4．学习如何查找器件手册及相关参数。 技术要求 1）大二">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020年北京市大学生电子设计竞赛初选（一）">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/03/30/2020%E5%B9%B4%E5%8C%97%E4%BA%AC%E5%B8%82%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E5%88%9D%E9%80%89%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="¶前言 在整个设计过程中，博主主要负责设计与仿真，报告内容大部分为博主的搭档完成，经得他的同意后，博主将报告整理成这篇博客。 ¶2020年北京市大学生电子设计竞赛初选设计任务书  主要内容、基本要求、主要参考资料等： 主要内容 1．阅读相关的科技文献。 2．学习使用multisim软件对模拟电路的仿真研究。 3．学会整理和总结设计文档报告。 4．学习如何查找器件手册及相关参数。 技术要求 1）大二">
+<meta property="article:published_time" content="2020-03-30T02:40:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="电子设计竞赛">
+<meta property="article:tag" content="ANALOG">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/03/30/2020%E5%B9%B4%E5%8C%97%E4%BA%AC%E5%B8%82%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E5%88%9D%E9%80%89%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>2020年北京市大学生电子设计竞赛初选（一） | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/03/30/2020%E5%B9%B4%E5%8C%97%E4%BA%AC%E5%B8%82%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E5%88%9D%E9%80%89%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020年北京市大学生电子设计竞赛初选（一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-30 10:40:00" itemprop="dateCreated datePublished" datetime="2020-03-30T10:40:00+08:00">2020-03-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a class="header-anchor" href="#前言">¶</a>前言</h2>
+<p>在整个设计过程中，博主主要负责设计与仿真，报告内容大部分为博主的搭档完成，经得他的同意后，博主将报告整理成这篇博客。</p>
+<h2 id="2020年北京市大学生电子设计竞赛初选设计任务书"><a class="header-anchor" href="#2020年北京市大学生电子设计竞赛初选设计任务书">¶</a>2020年北京市大学生电子设计竞赛初选设计任务书</h2>
+<blockquote>
+<p>主要内容、基本要求、主要参考资料等：<br>
+主要内容<br>
+1．阅读相关的科技文献。<br>
+2．学习使用multisim软件对模拟电路的仿真研究。<br>
+3．学会整理和总结设计文档报告。<br>
+4．学习如何查找器件手册及相关参数。<br>
+技术要求<br>
+1）大二组见题目：“2011年全国大学生电子设计竞赛综合测评题目”<br>
+2）大三组见题目：“2013年全国大学生电子设计竞赛综合测评题目”<br>
+3）仿真电路设计的运放尽量用单电源供电，如果用双电源供电会扣分。<br>
+主要参考资料<br>
+1．何小艇，电子系统设计，浙江大学出版社，2010年8月<br>
+… …</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="摘要"><a class="header-anchor" href="#摘要">¶</a>摘要</h2>
+<p>  集成运放器上是一种高增益直流放大、直流放大器既能放大变化极其缓慢的直流信号，下限频率可到零；又能放大交流信号，上限频率与普通放大器一样，受限于电路中的电容或电感等电抗性元器件。集成运放和外部反馈网络相配置后，能够在它的输出和输入之间建立起种种特定的函数关系，故而称它为“运算”放大器。<br>
+  一般运放电路都是双电源供电，也有的电路是单电源供电的。之所以选择单电源电路，主要是由设计的需求决定的。一方面在模拟和数字混合系统里，选择和数字系统共用电源更方便。另一方面在电池供电的系统中获得多组电源会让系统复杂，提高成本。<br>
+  本题目要求实现的基本目标：使用一片通用四运放芯片 LM324组成预设的电路，电路中包括三角波发生器、加法器、滤波器、比较器四个设计模块，每个模块均采用一个运放及其他基本元器件搭建，通过理论计算，最终实现电路要求。</p>
+<p><strong>关键词</strong>： 运算放大器LM324、加法器、滤波器、比较器</p>
+<h2 id="1-设计方案"><a class="header-anchor" href="#1-设计方案">¶</a>1. 设计方案</h2>
+<p>  使用一片通用四运放芯片 LM324 组成电路框图见图 1（a），实现下述功能 ：使用低频信号源产生 $u_{i1}=0.1sin2\pi{f_{0}}t($V$)$ ， $f_{0}=500$Hz 的正弦波信号，加至加法器的输入端，加法器另一输入端加入由自制振荡器产生的信号 $u_{o1}$ ， $u_{o1}$ 如图1（b）所示， $T_1$=0.5ms ，允许$T_1$有±5%的误差。</p>
+<div align=center><img width = '600' height ='100' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%871.png"/></div>
+<center>（a）</center><br>
+<div align=center><img width = '400' height ='300' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%872.png"/></div>
+<center>（b）</center><br>
+<p>  图中要求加法器的输出电压 $u_{i2} = 10u_{i1} + u_{o1}$ 。经选频滤波器滤除 $u_{o1}$ 频率分量，选出 $f_0$ 信号为 $u_{o2}$ ， $u_{o2}$ 为峰峰值等于 9V 的正弦信号，用示波器观察无明显失真。 $u_{o2}$ 信号再经比较器后 1kΩ 负载上得到峰峰值为 2V 的输出电压 $u_{o3}$ 。<br>
+  电源只能选用 +12V 和 +5V 两种单电源，由稳压电源供给。不得使用额外电源和其它型号运算放大器。<br>
+  要求预留 $u_{i1}$，$u_{i2}$，$u_{o1}$，$u_{o2}$和$u_{o3}$ 的测试端子。</p>
+<h2 id="2-波形产生电路设计"><a class="header-anchor" href="#2-波形产生电路设计">¶</a>2. 波形产生电路设计</h2>
+<h3 id="2-1-三角波发生器及其元件参数设计"><a class="header-anchor" href="#2-1-三角波发生器及其元件参数设计">¶</a>2.1 三角波发生器及其元件参数设计</h3>
+<p><strong>初始双电源设计：(图中参数未经修改，不代表实际设计电路)</strong><br><br>
+利用负反馈对电容C1进行充电，当$U_+=U_-$时，输出电压反相。则对电容C1左侧结点分析，输出波形近似为三角波。电路设计如图1。</p>
+<p>$U_C(t)=U(\infty)+[ U(0_+) - U(\infty)]e^{-t \over R3C1}$<br>
+设$U_{sat}(V_{sat})$为运算放大器上升到的理论最大值，则C1左侧结点电压能够上升到的理论最大值为${R1\over R1+R2}U_{sat}$，即为三角波峰值。</p>
+<p>三角波周期为：$T=2R3C1ln(1+2{R1 \over R2})$</p>
+<div align=center><img width = '400' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%879.png"/></div>
+<center>图1. 双电源三角波发生器电路</center><br>
+<p><strong>单电源改进方案：(图中参数未经修改，不代表实际设计电路)</strong><br><br>
+电路设计如图2.<br>
+由 $V_{CC}$ 通过 $R3、R5$ 分压，使 $U_+={R5 \over R3+R5}V_{CC}$<br>
+开始仿真时没有三角波与方波出现，整个电路呈现平衡状态，有 $U_+=U_-=U_{OUT}={V_{CC} \over 2}$<br>
+如果电路中出现小的波动，导致 $U_+&gt;U_-$ ，则引起强大的正反馈，此时 $U_{OUT}$ 从 ${V_{CC} \over 2}$ 上升至 $V_{sat}$ ,引起一阶RC电路充电。由一阶电路的三要素法列方程解得：<br><br>
+三角波周期 $T=2{\tau}ln({V_{sat}-V_{+Low} \over V_{sat}-V_{+High}})=2R1C1ln(1-{R3R5V_{sat} \over (R3R4+R4R5)V_{sat}-R4R5V_{CC}})$<br><br>
+三角波峰峰值 $V_{pp}=V_{+High}-V_{+Low}={R3R5V_{sat} \over R3R4+R4R5+R3R5}$<br><br>
+其中 $V_{+High}={{V_{CC} \over R3}+{V_{sat} \over R4} \over {1 \over R3}+{1 \over R4}+{1 \over R5}}$， $V_{+Low}={R4R5 \over R4R5+R3(R4+R5)}V_{CC}$<br><br>
+同相输入端处波形应为以 $V_{+High}$ 为上限，$V_{+Low}$ 为下限的方波。<br>
+由 $T=0.5$ms，$V_{pp}=4$V ，实际 $V_{sat}$ 约为10.94V，经计算和调试可得到满足条件的元件参数。</p>
+<div align=center><img width = '400' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8710.png"/></div>
+<center>图2. 单电源三角波发生器电路</center><br>
+<h3 id="2-2-电路仿真设计及效果"><a class="header-anchor" href="#2-2-电路仿真设计及效果">¶</a>2.2 电路仿真设计及效果</h3>
+<p>电路设计如图3. 产生波形如图4.</p>
+<div align=center><img width = '400' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8711.png"/></div>
+<center>图3</center><br>
+<div align=center><img width = '400' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8712.png"/></div>
+<center>图4</center><br>
+<p>分析：三角波峰峰值在4V附近浮动，误差不超过5% 。周期在0.5ms附近浮动，误差不超过5%。</p>
+<h2 id="3-单元设计电路（1）"><a class="header-anchor" href="#3-单元设计电路（1）">¶</a>3. 单元设计电路（1）</h2>
+<h3 id="3-1-加法器电路及其元件参数设计"><a class="header-anchor" href="#3-1-加法器电路及其元件参数设计">¶</a>3.1 加法器电路及其元件参数设计</h3>
+<p><strong>初始双电源方案：(图中参数未经修改，不代表实际设计电路)</strong><br></p>
+<p>电路设计如图5.<br>
+由加法器原理知： $u_{i2} = -({R5 \over R3}u_{i1} + {R5 \over R4}u_{o1})$</p>
+<div align=center><img width = '480' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8713.png"/></div>
+<center>图5. 双电源加法器</center><br>
+<p><strong>单电源改进方案：(图中参数未经修改，不代表实际设计电路)</strong><br><br>
+电路设计如图6.<br>
+由 $V_{CC}$ 进行分压，在同相输入端进行信号相加。满足负反馈条件，进行电路分析：<br>
+$V_{-}={R1 \over R1+R2}V_{OUT}$， $V_{+}=V_{-}$<br>
+由结点电压法可得：<br></p>
+$V_{+}={{V_{CC} \over R3}+{V_{in1} \over R4}+{V_{in2} \over R5} \over {1 \over R3}+{1 \over R4}+{1 \over R5}+{1 \over R6}}$， $V_{OUT}=(1+{R2 \over R1})V_{+}$<br>
+<p>由 $u_{i2} = 10u_{i1} + u_{o1}$ 经计算和调试可得到满足条件的元件参数。</p>
+<div align=center><img width = '480' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8714.png"/></div>
+<center>图6. 单电源加法器</center><br>
+<h3 id="3-2电路仿真设计及效果"><a class="header-anchor" href="#3-2电路仿真设计及效果">¶</a>3.2电路仿真设计及效果</h3>
+<p>电路设计如图7. 产生波形如图8.</p>
+<div align=center><img width = '480' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8715.png"/></div>
+<center>图7</center><br>
+<div align=center><img width = '480' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8716.png"/></div>
+<center>图8</center><br>
+<p>分析：由于单电源作用，导致该波形中加入了直流信号，使波形抬高，在之后的整体设计中需加入RC高通滤波电路进行隔直流来获得 $u_{i2}$ 。</p>
+<h2 id="4-滤波电路设计"><a class="header-anchor" href="#4-滤波电路设计">¶</a>4. 滤波电路设计</h2>
+<h3 id="4-1-多种滤波器电路设计对比分析"><a class="header-anchor" href="#4-1-多种滤波器电路设计对比分析">¶</a>4.1 多种滤波器电路设计对比分析</h3>
+<p>由题意过滤2kHz三角波，并将500Hz正弦波放大4.5倍，尝试采用不同滤波器进行滤波，观察滤波效果，选择其中最合适的采用。</p>
+<h4 id="4-1-1-低通滤波器设计及其效果"><a class="header-anchor" href="#4-1-1-低通滤波器设计及其效果">¶</a>4.1.1 低通滤波器设计及其效果</h4>
+<p><strong>采用二阶有源低通滤波器——Sallen-Key滤波器</strong><br><br>
+电路设计如图9.</p>
+$\dot{A_{u}}={{\dot{U_{o}}} \over {\dot{U_{i}}}}={A_{up} \over 1+(3-A_{up})j{\omega}RC+{(j{\omega}RC)}^2}={A_{up} \over 1-{({f \over f_0})}^2+j{1 \over Q}{\cdot}{f \over f_0}}$
+<p>式中 ：<br>
+通带电压放大倍数 $A_{up}=1+{R_F \over R1}$<br>
+通带截止频率 $f_0={1 \over 2{\pi}RC}Q={1 \over 3-A_{up}}$<br>
+效果：经调试，观察波特图和输出波形分析得，此滤波器无法将2kHz得三角波滤除彻底，放大倍数的差值不够大，无法达到所需效果。</p>
+<div align=center><img width = '240' height ='160' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8717.png"/></div>
+<center>图9. Sallen-Key滤波器</center><br>
+<h4 id="4-1-2-带阻滤波器设计及其效果"><a class="header-anchor" href="#4-1-2-带阻滤波器设计及其效果">¶</a>4.1.2 带阻滤波器设计及其效果</h4>
+<p><strong>采用双T网络有源带阻滤波器</strong><br><br>
+电路设计如图10.</p>
+$\dot{A_{u}}={1-{({f \over f_0})}^2 \over 1+(3-A_{up})j{\omega}RC+{(j{\omega}RC)}^2}={A_{up} \over 1-{({f \over f_0})}^2+j2(2-A_{up}){\cdot}{f \over f_0}}={A_{up} \over 1+j{1 \over Q}{\cdot}{f{f_0} \over {f_0}^2-f^2}}$
+<p>式中 ：<br>
+通带电压放大倍数 $A_{up}=1+{R_F \over R1}$<br>
+中心频率 $f_0={1 \over 2{\pi}RC}$ ， $Q={1 \over 2(2-A_{up})}$<br>
+效果：经调试，观察波特图和输出波形分析得，此滤波器无法将2kHz得三角波滤除彻底，放大倍数的差值不够大，并且难以将所需波形进行有效放大，依旧无法达到所需效果。</p>
+<div align=center><img width = '240' height ='160' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8718.png"/></div>
+<center>图10. 双T型网络带阻滤波器</center><br>
+<h4 id="4-1-3-无源带阻滤波器-有源二阶低通滤波器的设计及其效果"><a class="header-anchor" href="#4-1-3-无源带阻滤波器-有源二阶低通滤波器的设计及其效果">¶</a>4.1.3 无源带阻滤波器+有源二阶低通滤波器的设计及其效果</h4>
+<p>由上述两种滤波器的滤波效果进行分析，单个高通滤波器和带通滤波器效果也无法达到需求。因此考虑可以先用无源带阻滤波器进行对2kHz的三角波进行精准打击滤除，再用有源二阶低通滤波器进行对500Hz的正弦波的放大。<br>
+其中有源二阶低通滤波器采用Sallen-Key滤波器，第一级RC电路的电容不接地而改接到输出端，这种接法相当于在二阶有源滤波电路中引入了一个反馈，使输出电压在高频段迅速下降，但在接近于的范围内又不要下降太多，从而有利于改善滤波特性。<br>
+设计电路如11.(图中参数未经修改，不代表实际设计电路)（省略输入信号）<br>
+利用波特图来观测500HZ和2kHZ频率的分贝差值，同时结合示波器波形确定滤波结果。<br>
+根据带阻滤波器和低通滤波器的原理，进行参数的调节，确定合适的滤波电路参数。</p>
+<div align=center><img width = '480' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8719.png"/></div>
+<center>图11. 无源带阻滤波器+有源二阶低通滤波器</center><br>
+<h3 id="4-2-电路的仿真设计及效果"><a class="header-anchor" href="#4-2-电路的仿真设计及效果">¶</a>4.2 电路的仿真设计及效果</h3>
+<p>电路设计如图12.（省略输入信号）产生波形如图13.</p>
+<div align=center><img width = '480' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8720.png"/></div>
+<center>图12</center><br>
+<div align=center><img width = '480' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8721.png"/></div>
+<center>图13</center><br>
+<div align=center><img width = '240' height ='168' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8722.png"/></div>
+<center>图14(a)</center><br>
+<div align=center><img width = '240' height ='168' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8723.png"/></div>
+<center>图14(b)</center><br>
+<p>由波特图（图14）可知，500HZ信号和2kHz信号之间相差约90dB，即可认为滤波完全。<br>
+输出正弦波较为完整，峰峰值在9V左右浮动，误差不超过5%。</p>
+<h2 id="5-单元电路设计（2）"><a class="header-anchor" href="#5-单元电路设计（2）">¶</a>5. 单元电路设计（2）</h2>
+<h3 id="5-1-比较器电路及其元件参数设计"><a class="header-anchor" href="#5-1-比较器电路及其元件参数设计">¶</a>5.1 比较器电路及其元件参数设计</h3>
+<p>比较器的输出只有两种可能的状态：高电平或低电平，即输出电压 $u_{o3}$ 要求为峰峰值为2V的方波，由于要求在1kΩ的负载上输出，则电路设计如图15.(图中参数未经修改，不代表实际设计电路)<br>
+（省略输入、输出信号）<br>
+通过调节R1控制方波的峰峰值为2V，经过计算和调试可得到合适输出波形。</p>
+<div align=center><img width = '384' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8724.png"/></div>
+<center>图15. 比较器</center><br>
+<h3 id="5-2-电路仿真设计及效果"><a class="header-anchor" href="#5-2-电路仿真设计及效果">¶</a>5.2 电路仿真设计及效果</h3>
+<p>电路设计如图16（省略输入信号）产生波形如图17.</p>
+<div align=center><img width = '384' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8725.png"/></div>
+<center>图16</center><br>
+<div align=center><img width = '384' height ='336' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%8726.png"/></div>
+<center>图17</center><br>
+<p>分析：产生较为规整的方波图像，峰峰值在2V左右浮动，误差不超过5%。</p>
+<h2 id="6-整体电路仿真及分析"><a class="header-anchor" href="#6-整体电路仿真及分析">¶</a>6. 整体电路仿真及分析</h2>
+<h3 id="6-1-整体电路"><a class="header-anchor" href="#6-1-整体电路">¶</a>6.1 整体电路</h3>
+<p>将四个分立电路连接在一起，设计电路如图18. 整体电路，电路之间加入耦合电容或RC电路消除电路之间的影响或隔绝直流。四个滤波器可以观察所需的$u_{i1}$端口、$u_{o1}$端口、$u_{i2}$端口、$u_{o2}$端口、$u_{o3}$端口处的波形。</p>
+<div align=center><img width = '720' height ='560' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%873.png"/></div>
+<center>图18. 整体电路</center><br>
+<h3 id="6-2-端口-u-i1"><a class="header-anchor" href="#6-2-端口-u-i1">¶</a>6.2 端口$u_{i1}$</h3>
+<p>由于$u_{i1}$端口由低频信号源（函数发生器）产生，所以波形（如图19.）无失真，得到$U_m$=0.1V，$f_0$=500Hz。</p>
+<div align=center><img width = '512' height ='448' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%874.png"/></div>
+<center>图19</center><br>
+<h3 id="6-3-端口-u-o1"><a class="header-anchor" href="#6-3-端口-u-o1">¶</a>6.3 端口$u_{o1}$</h3>
+<p>波形近似为三角波，但受整体电路影响，导致该波形（如图20.）略有失真，$U_m$=2V，$f$=2kHz，误差不超过5%。</p>
+<div align=center><img width = '512' height ='448' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%875.png"/></div>
+<center>图20</center><br>
+<h3 id="6-3-端口-u-i2"><a class="header-anchor" href="#6-3-端口-u-i2">¶</a>6.3 端口$u_{i2}$</h3>
+<p>经过 $C3$ 和 $R17$ 的高通滤波电路隔绝直流后获得所需波形（如图21.）。由于三角波自身存在失真，该波形与独立电路工作时产生波形相比略有失真。</p>
+<div align=center><img width = '512' height ='448' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%876.png"/></div>
+<center>图21</center><br>
+<h3 id="6-4-端口-u-o2"><a class="header-anchor" href="#6-4-端口-u-o2">¶</a>6.4 端口$u_{o2}$</h3>
+<p>波形（如图22.）理论为正弦波，受整体电路影响，部分波形不稳定，峰峰值不固定，在9V上下5%内浮动，周期约为500Hz。</p>
+<div align=center><img width = '512' height ='448' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%877.png"/></div>
+<center>图22</center><br>
+<h3 id="6-5-端口-u-o3"><a class="header-anchor" href="#6-5-端口-u-o3">¶</a>6.5 端口$u_{o3}$</h3>
+<p>波形（如图23.）近似为高低电平交替的方波，峰峰值约为2V，误差不超过5%。波形略有失真，部分由于不稳定信号产生毛刺。</p>
+<div align=center><img width = '512' height ='448' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%8C%97%E4%BA%AC%E5%B8%82%E7%94%B5%E8%B5%9B%E5%88%9D%E9%80%89/%E5%9B%BE%E7%89%878.png"/></div>
+<center>图23</center><br>
+<h2 id="7-个人总结"><a class="header-anchor" href="#7-个人总结">¶</a>7. 个人总结</h2>
+<p>一、仿真结果与理论分析存在较大差距，需要根据仿真结果来调试电路中的相关参数，从而达到题目所要求的端口条件。在调试参数时，利用理论推导出的公式结合波特图与示波器图像，先做定性分析，后做定量调试，有利于迅速找到问题、解决问题。<br><br>
+二、在模块与模块的链接过程中，发现各功能模块的波形会收到其他模块的影响，造成一定程度上的失真，我们给出的处理办法是，在各模块之间加入耦合电容，或者是电阻、电容组成的高通网络作为接口电路。<br><br>
+三、运放采用单电源供电，其输出值的范围在电源提供的电压范围之内，此时若想让运放正常工作需要在同相输入端接入直流偏置，可以从给运放供电的单电源直接接电阻分压后接入，抬升输入波形，同时要注意接入直流偏置电阻的大小，避免超过运放工作范围而造成运放输出失真。<br><br>
+四、尝试用滞回比较器来改善输出的方波质量，但未能成功，个人认为题目对比较器的功能要求指向不明确。<br><br>
+五、对于三角波进入比较器前的处理较为玄学。<br></p>
+<hr>
+<h2 id="8-参考文献"><a class="header-anchor" href="#8-参考文献">¶</a>8. 参考文献</h2>
+<p>[1] 清华大学电子学教研组编 . 杨素行主编 . 模拟电子技术基础简明教程 . 3版 . 北京：高等教育出版社，2006.<br>
+[2] 清华大学电子学教研组编 . 童诗白，华成英主编 . 模拟电子技术基础 . 3版 . 北京：高等教育出版社，2001.<br>
+[3] Thomas L. Floyd，David M. Buchla. Analog Fundamentals: A Systems Approach. Pearson Education, 2013.</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/03/30/2020%E5%B9%B4%E5%8C%97%E4%BA%AC%E5%B8%82%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E5%88%9D%E9%80%89%EF%BC%88%E4%B8%80%EF%BC%89/" title="2020年北京市大学生电子设计竞赛初选（一）">https://cloudplayer99.github.io/2020/03/30/2020年北京市大学生电子设计竞赛初选（一）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/" rel="tag"># 电子设计竞赛</a>
+              <a href="/tags/ANALOG/" rel="tag"># ANALOG</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/27/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/31/%E5%85%B3%E4%BA%8E%E5%AF%B9CC%E7%B3%BB%E5%88%97%E7%9F%A5%E8%AF%86%E5%85%B1%E4%BA%AB%E8%AE%B8%E5%8F%AF%E8%AF%81%E3%80%90CC%20BY-SA%204.0%E3%80%91%20%E7%9A%84%E7%90%86%E8%A7%A3%E5%8F%8A%E6%95%B4%E7%90%86/" rel="next" title="转载：关于对CC系列知识共享许可证【CC BY-SA 4.0】 的理解及整理">
+      转载：关于对CC系列知识共享许可证【CC BY-SA 4.0】 的理解及整理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020年北京市大学生电子设计竞赛初选设计任务书"><span class="nav-number">2.</span> <span class="nav-text">2020年北京市大学生电子设计竞赛初选设计任务书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">3.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-设计方案"><span class="nav-number">4.</span> <span class="nav-text">1. 设计方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-波形产生电路设计"><span class="nav-number">5.</span> <span class="nav-text">2. 波形产生电路设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-三角波发生器及其元件参数设计"><span class="nav-number">5.1.</span> <span class="nav-text">2.1 三角波发生器及其元件参数设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-电路仿真设计及效果"><span class="nav-number">5.2.</span> <span class="nav-text">2.2 电路仿真设计及效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-单元设计电路（1）"><span class="nav-number">6.</span> <span class="nav-text">3. 单元设计电路（1）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-加法器电路及其元件参数设计"><span class="nav-number">6.1.</span> <span class="nav-text">3.1 加法器电路及其元件参数设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2电路仿真设计及效果"><span class="nav-number">6.2.</span> <span class="nav-text">3.2电路仿真设计及效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-滤波电路设计"><span class="nav-number">7.</span> <span class="nav-text">4. 滤波电路设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-多种滤波器电路设计对比分析"><span class="nav-number">7.1.</span> <span class="nav-text">4.1 多种滤波器电路设计对比分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-低通滤波器设计及其效果"><span class="nav-number">7.1.1.</span> <span class="nav-text">4.1.1 低通滤波器设计及其效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2-带阻滤波器设计及其效果"><span class="nav-number">7.1.2.</span> <span class="nav-text">4.1.2 带阻滤波器设计及其效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-3-无源带阻滤波器-有源二阶低通滤波器的设计及其效果"><span class="nav-number">7.1.3.</span> <span class="nav-text">4.1.3 无源带阻滤波器+有源二阶低通滤波器的设计及其效果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-电路的仿真设计及效果"><span class="nav-number">7.2.</span> <span class="nav-text">4.2 电路的仿真设计及效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-单元电路设计（2）"><span class="nav-number">8.</span> <span class="nav-text">5. 单元电路设计（2）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-比较器电路及其元件参数设计"><span class="nav-number">8.1.</span> <span class="nav-text">5.1 比较器电路及其元件参数设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-电路仿真设计及效果"><span class="nav-number">8.2.</span> <span class="nav-text">5.2 电路仿真设计及效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-整体电路仿真及分析"><span class="nav-number">9.</span> <span class="nav-text">6. 整体电路仿真及分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-整体电路"><span class="nav-number">9.1.</span> <span class="nav-text">6.1 整体电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-端口-u-i1"><span class="nav-number">9.2.</span> <span class="nav-text">6.2 端口$u_{i1}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-端口-u-o1"><span class="nav-number">9.3.</span> <span class="nav-text">6.3 端口$u_{o1}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-端口-u-i2"><span class="nav-number">9.4.</span> <span class="nav-text">6.3 端口$u_{i2}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-端口-u-o2"><span class="nav-number">9.5.</span> <span class="nav-text">6.4 端口$u_{o2}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-端口-u-o3"><span class="nav-number">9.6.</span> <span class="nav-text">6.5 端口$u_{o3}$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-个人总结"><span class="nav-number">10.</span> <span class="nav-text">7. 个人总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-参考文献"><span class="nav-number">11.</span> <span class="nav-text">8. 参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

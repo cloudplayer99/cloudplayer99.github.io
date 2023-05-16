@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="¶概述 常见的指令集以及汇编语言规范：  x86(IA-32)、x86-64指令集(常见于PC端)，对应有2家公司发布的不同汇编语言规范：  intel公司发布的汇编语言规范，称intel 汇编：Windows派系(Microsoft)，比较著名的汇编器有微软的masm和开源的nasm。 AT&amp;T公司发布的汇编语言规范，称AT&amp;T 汇编：Unix派系(或者说GNU)，比如g++编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载：AT&amp;T 和 Intel 规范的区别">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/10/14/%E8%BD%AC%E8%BD%BD%EF%BC%9AAT&T%20%E5%92%8C%20Intel%20%E8%A7%84%E8%8C%83%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="¶概述 常见的指令集以及汇编语言规范：  x86(IA-32)、x86-64指令集(常见于PC端)，对应有2家公司发布的不同汇编语言规范：  intel公司发布的汇编语言规范，称intel 汇编：Windows派系(Microsoft)，比较著名的汇编器有微软的masm和开源的nasm。 AT&amp;T公司发布的汇编语言规范，称AT&amp;T 汇编：Unix派系(或者说GNU)，比如g++编译">
+<meta property="article:published_time" content="2021-10-14T10:37:00.000Z">
+<meta property="article:modified_time" content="2021-10-15T09:37:00.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="Assembly Language">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/10/14/%E8%BD%AC%E8%BD%BD%EF%BC%9AAT&T%20%E5%92%8C%20Intel%20%E8%A7%84%E8%8C%83%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>转载：AT&T 和 Intel 规范的区别 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/10/14/%E8%BD%AC%E8%BD%BD%EF%BC%9AAT&T%20%E5%92%8C%20Intel%20%E8%A7%84%E8%8C%83%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          转载：AT&T 和 Intel 规范的区别
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-14 18:37:00" itemprop="dateCreated datePublished" datetime="2021-10-14T18:37:00+08:00">2021-10-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-15 17:37:00" itemprop="dateModified" datetime="2021-10-15T17:37:00+08:00">2021-10-15</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="概述"><a class="header-anchor" href="#概述">¶</a>概述</h2>
+<p><strong>常见的指令集以及汇编语言规范：</strong></p>
+<ul>
+<li>x86(IA-32)、x86-64指令集(常见于PC端)，对应有2家公司发布的不同汇编语言规范：
+<ul>
+<li>intel公司发布的汇编语言规范，称<code>intel 汇编</code>：Windows派系(Microsoft)，比较著名的汇编器有微软的masm和开源的nasm。</li>
+<li>AT&amp;T公司发布的汇编语言规范，称<code>AT&amp;T 汇编</code>：Unix派系(或者说GNU)，比如g++编译器等。</li>
+</ul>
+</li>
+<li>ARM指令集(常见于嵌入式、移动端设备，粗略统计覆盖95%左右的手段)：ARM公司发布的汇编语言规范，称<code>ARM 汇编(目前常见的是ARM 64汇编)</code>，见<a href="https://developer.arm.com/architectures" target="_blank" rel="noopener">官网文档</a><a id="more"></a></li>
+</ul>
+<h2 id="AT-T格式-和-Intel格式的区别"><a class="header-anchor" href="#AT-T格式-和-Intel格式的区别">¶</a>AT&amp;T格式 和 Intel格式的区别</h2>
+<p>表格如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">AT&amp;T格式</th>
+<th style="text-align:center">Intel格式</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>pushl %eax</code></td>
+<td style="text-align:center"><code>push eax</code></td>
+<td style="text-align:center">在AT&amp;T汇编格式中，寄存器名要加上’%'作为前缀；而在Intel汇编格式中，寄存器名不需要加前缀</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>pushl $1</code></td>
+<td style="text-align:center"><code>push 1</code></td>
+<td style="text-align:center">在AT&amp;T汇编格式中，用’$'前缀表示一个立即操作数；而在Intel汇编格式中，立即数的表示不用带任何前缀</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>addl $1, %eax</code></td>
+<td style="text-align:center"><code>add eax, 1</code></td>
+<td style="text-align:center">AT&amp;T和Intel格式中的源操作数和目标操作数的位置正好相反。在Intel汇编格式中，目标操作数在源操作数的左边；而在AT&amp;T汇编格式中，目标操作数在源操作数的右边。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>movb val, %al</code></td>
+<td style="text-align:center"><code>mov al, byte ptr val</code></td>
+<td style="text-align:center">在AT&amp;T汇编格式中，操作数的字长由操作符的最后一个字母决定，后缀’b’、‘w’、'l’分别表示操作数为字节（byte，8比特）、字（word，16比特）和长字（long，32比特）；而在Intel汇编格式中，操作数的字长是用&quot;byte ptr&quot;和&quot;word ptr&quot;等前缀来表示的。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ljump $section, $offset</code></td>
+<td style="text-align:center"><code>jmp far section:offset</code></td>
+<td style="text-align:center">在AT&amp;T汇编格式中，绝对转移和调用指令（jump/call）的操作数前要加上’*'作为前缀，而在Intel格式中则不需要。远程转移指令和远程子调用指令的操作码，在AT&amp;T汇编格式中为&quot;ljump&quot;和&quot;lcall&quot;，而在Intel汇编格式中则为&quot;jmp far&quot;和&quot;call far&quot;</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>lcall $section, $offset</code></td>
+<td style="text-align:center"><code>call far section:offset</code></td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>lret $stack_adjust</code></td>
+<td style="text-align:center"><code>ret far stack_adjust</code></td>
+<td style="text-align:center">与之相应的远程返回指令</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>section:disp(base, index, scale)</code></td>
+<td style="text-align:center"><code>section:[base + index*scale + disp]</code></td>
+<td style="text-align:center">寻址方式的区别，无论形式如何，都是实现如下的地址计算：（其中base和index必须是寄存器，disp和scale可以是常数）disp + base + index * scale</td>
+</tr>
+<tr>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>movl -4(%ebp), %eax</code></td>
+<td style="text-align:center"><code>mov eax, [ebp - 4]</code></td>
+<td style="text-align:center">内存操作数的例子</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>movl array(, %eax, 4), %eax</code></td>
+<td style="text-align:center"><code>mov eax, [eax*4 + array]</code></td>
+<td style="text-align:center">内存操作数的例子</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>movw array(%ebx, %eax, 4), %cx</code></td>
+<td style="text-align:center"><code>mov cx, [ebx + 4*eax + array]</code></td>
+<td style="text-align:center">内存操作数的例子</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>movb $4, %fs:(%eax)</code></td>
+<td style="text-align:center"><code>mov fs:eax, 4</code></td>
+<td style="text-align:center">内存操作数的例子</td>
+</tr>
+</tbody>
+</table>
+<h2 id="搭建Intel的环境"><a class="header-anchor" href="#搭建Intel的环境">¶</a>搭建Intel的环境</h2>
+<ul>
+<li>ubuntu16.04 或 ubuntu18.04</li>
+<li>vscode</li>
+<li>dosbox</li>
+<li>文件后缀：.asm</li>
+</ul>
+<p>安装dosbox</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install dosbox</span></span><br></pre></td></tr></table></figure>
+<p>下载<code>vscode</code>插件<code>MASM/TASM</code></p>
+<h2 id="Intel的hello-asm"><a class="header-anchor" href="#Intel的hello-asm">¶</a>Intel的hello.asm</h2>
+<figure class="highlight x86asm"><figcaption><span>hello.asm</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">;description</span></span><br><span class="line">DATA <span class="meta">SEGMENT</span> <span class="meta">USE16</span></span><br><span class="line">    MYWORD <span class="built_in">DB</span> <span class="string">"hello world!!!"</span></span><br><span class="line">DATA ENDS</span><br><span class="line"></span><br><span class="line"><span class="comment">;description</span></span><br><span class="line">CODE <span class="meta">SEGMENT</span> <span class="meta">USE16</span></span><br><span class="line">    <span class="meta">ASSUME</span> <span class="built_in">CS</span>:CODE, <span class="built_in">DS</span>:DATA     <span class="comment">;代表谁是代码段，谁是数据段</span></span><br><span class="line"><span class="symbol">main:</span></span><br><span class="line">    <span class="keyword">mov</span> <span class="built_in">AX</span>, DATA                <span class="comment">;数据首地址赋值给AX， ax是寄存器</span></span><br><span class="line">    <span class="keyword">mov</span> <span class="built_in">DS</span>, <span class="built_in">AX</span>                  <span class="comment">;使得DS等价于AX，同样指向数据段</span></span><br><span class="line">    <span class="keyword">LEA</span> <span class="built_in">DX</span>, MYWORD              <span class="comment">;使DX寄存器指向数据变量word的首地址</span></span><br><span class="line">    <span class="keyword">mov</span> <span class="number">AH</span>, <span class="number">09h</span>                 <span class="comment">;AH输出数据</span></span><br><span class="line">    <span class="keyword">INT</span> <span class="number">21h</span>                     <span class="comment">;执行AH的09h功能， 输出数据</span></span><br><span class="line">    <span class="keyword">mov</span> <span class="built_in">AX</span>, <span class="number">4c00h</span>               <span class="comment">;设置寄存器的功能</span></span><br><span class="line">    <span class="keyword">INT</span> <span class="number">21h</span>                     <span class="comment">;调用寄存器功能 程序结束</span></span><br><span class="line">CODE ENDS</span><br><span class="line"></span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
+<p>在文件中点击鼠标右键<code>运行程序</code></p>
+<h2 id="搭建AT-T的环境"><a class="header-anchor" href="#搭建AT-T的环境">¶</a>搭建AT&amp;T的环境</h2>
+<ul>
+<li>ubuntu16.04 或 ubuntu18.04</li>
+<li>vscode</li>
+<li>文件后缀： .s</li>
+<li>gcc</li>
+</ul>
+<p>下载<code>vscode</code>插件<code>GNU Assembler Language Support</code></p>
+<h2 id="AT-T的hello-s"><a class="header-anchor" href="#AT-T的hello-s">¶</a>AT&amp;T的hello.s</h2>
+<figure class="highlight plain"><figcaption><span>hello.s</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.data#数据段声明</span><br><span class="line"> </span><br><span class="line">msg : .string &quot;Hello, world\n&quot;  #要输出的字符串</span><br><span class="line">len &#x3D; . - msg                   #字串长度</span><br><span class="line"> </span><br><span class="line">.text                           #代码段声明</span><br><span class="line">.global main                    #指定入口函数</span><br><span class="line"> </span><br><span class="line">main:                           #在屏幕上显示一个字符串</span><br><span class="line">    movl $len, %edx             #参数三：字符串长度 </span><br><span class="line">    movl $msg, %ecx             #参数二：要显示的字符串</span><br><span class="line">    movl $1, %ebx               #参数一：文件描述符(stdout)</span><br><span class="line">    movl $4, %eax               #系统调用号(sys_write)</span><br><span class="line">    int  $0x80                  #调用内核功能</span><br><span class="line"></span><br><span class="line">    #退出程序</span><br><span class="line">    movl $0,%ebx                #参数一：退出代码</span><br><span class="line">    </span><br><span class="line">    movl $1,%eax                #系统调用号(sys_exit)</span><br><span class="line">    int  $0x80                  #调用内核功能</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gcc hello.s -o hello_att</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./hello_att</span></span><br></pre></td></tr></table></figure>
+<h2 id="通过objdump查看到的几种cpu架构"><a class="header-anchor" href="#通过objdump查看到的几种cpu架构">¶</a>通过objdump查看到的几种cpu架构</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> objdump --<span class="built_in">help</span></span></span><br><span class="line">objdump：支持的体系结构： i386 i386:x86-64 i386:x64-32 i8086 i386:intel i386:x86-64:intel i386:x64-32:intel i386:nacl i386:x86-64:nacl i386:x64-32:nacl iamcu iamcu:intel l1om l1om:intel k1om k1om:intel plugin</span><br><span class="line"></span><br><span class="line">下列 i386/x86-64 特定的反汇编器选项在使用 -M 开关时可用（使用逗号分隔多个选项）：</span><br><span class="line">  x86-64      Disassemble in 64bit mode</span><br><span class="line">  i386        Disassemble in 32bit mode</span><br><span class="line">  i8086       在 16 位模式下反汇编</span><br><span class="line">  att         用 AT&amp;T 语法显示指令</span><br><span class="line">  intel       用 Intel 语法显示指令</span><br><span class="line">  att-mnemonic</span><br><span class="line">              Display instruction in AT&amp;T mnemonic</span><br><span class="line">  intel-mnemonic</span><br><span class="line">              Display instruction in Intel mnemonic</span><br><span class="line">  addr64      假定 64 位地址大小</span><br><span class="line">  addr32      假定 32 位地址大小</span><br><span class="line">  addr16      假定 16 位地址大小</span><br><span class="line">  data32      假定 32 位数据大小</span><br><span class="line">  data16      假定 16 位数据大小</span><br><span class="line">  suffix      在 AT&amp;T 语法中始终显示指令后缀</span><br><span class="line">  amd64       Display instruction in AMD64 ISA</span><br><span class="line">  intel64     Display instruction in Intel64 ISA</span><br></pre></td></tr></table></figure>
+<p>汇编学习地址：<a href="http://c.biancheng.net/view/3463.html" target="_blank" rel="noopener">第一个汇编语言程序</a></p>
+<hr>
+<p>版权声明：本文为CSDN博主「线条君」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
+原文链接：<a href="https://blog.csdn.net/qq_39503880/article/details/113462657" target="_blank" rel="noopener">https://blog.csdn.net/qq_39503880/article/details/113462657</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/10/14/%E8%BD%AC%E8%BD%BD%EF%BC%9AAT&T%20%E5%92%8C%20Intel%20%E8%A7%84%E8%8C%83%E7%9A%84%E5%8C%BA%E5%88%AB/" title="转载：AT&amp;T 和 Intel 规范的区别">https://cloudplayer99.github.io/2021/10/14/转载：AT&T 和 Intel 规范的区别/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+              <a href="/tags/Assembly-Language/" rel="tag"># Assembly Language</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/24/%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B%EF%BC%8C%E7%AE%80%E5%8D%95%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99/" rel="prev" title="套接字编程，简单程序的编写">
+      <i class="fa fa-chevron-left"></i> 套接字编程，简单程序的编写
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/27/%E5%91%8A%E5%88%ABgitee%E8%BF%8E%E6%9D%A5aliyun/" rel="next" title="告别gitee迎来aliyun">
+      告别gitee迎来aliyun <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AT-T格式-和-Intel格式的区别"><span class="nav-number">2.</span> <span class="nav-text">AT&amp;T格式 和 Intel格式的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建Intel的环境"><span class="nav-number">3.</span> <span class="nav-text">搭建Intel的环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intel的hello-asm"><span class="nav-number">4.</span> <span class="nav-text">Intel的hello.asm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建AT-T的环境"><span class="nav-number">5.</span> <span class="nav-text">搭建AT&amp;T的环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AT-T的hello-s"><span class="nav-number">6.</span> <span class="nav-text">AT&amp;T的hello.s</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过objdump查看到的几种cpu架构"><span class="nav-number">7.</span> <span class="nav-text">通过objdump查看到的几种cpu架构</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/10/14/转载：AT&T 和 Intel 规范的区别/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

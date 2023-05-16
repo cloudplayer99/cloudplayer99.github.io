@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基本语法结构与约定 ¶概述 在本文中，将对 Verilog HDL 语言的基本语法结构与约定进行整理与总结，这些结构与约定构成了 Verilog 语言的基本框架 总体上大致分为词法约定、数据类型和系统任务与编译指令三个板块，其内容基本来自参考书籍与实际教学中所使用的PPT，准确程度较高 书上写得简洁明了的地方就直接照抄了，有些合适的地方也会进行补充 Verilog 是一门类 C 语言，所以有 C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="只需xx元，一周学会Verilog HDL，看到赚到 +qq 就能领取Verilog大礼包（二）">
+<meta property="og:url" content="https://cloudplayer99.github.io/2020/06/18/%E5%8F%AA%E9%9C%80xx%E5%85%83%EF%BC%8C%E4%B8%80%E5%91%A8%E5%AD%A6%E4%BC%9AVerilog%20HDL%EF%BC%8C%E7%9C%8B%E5%88%B0%E8%B5%9A%E5%88%B0%20+qq%20%E5%B0%B1%E8%83%BD%E9%A2%86%E5%8F%96Verilog%E5%A4%A7%E7%A4%BC%E5%8C%85%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="基本语法结构与约定 ¶概述 在本文中，将对 Verilog HDL 语言的基本语法结构与约定进行整理与总结，这些结构与约定构成了 Verilog 语言的基本框架 总体上大致分为词法约定、数据类型和系统任务与编译指令三个板块，其内容基本来自参考书籍与实际教学中所使用的PPT，准确程度较高 书上写得简洁明了的地方就直接照抄了，有些合适的地方也会进行补充 Verilog 是一门类 C 语言，所以有 C">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Verilog/25.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Verilog/26.PNG">
+<meta property="og:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Verilog/27.PNG">
+<meta property="article:published_time" content="2020-06-18T10:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-28T09:58:10.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="Verilog HDL">
+<meta property="article:tag" content="DIGITAL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Verilog/25.PNG">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2020/06/18/%E5%8F%AA%E9%9C%80xx%E5%85%83%EF%BC%8C%E4%B8%80%E5%91%A8%E5%AD%A6%E4%BC%9AVerilog%20HDL%EF%BC%8C%E7%9C%8B%E5%88%B0%E8%B5%9A%E5%88%B0%20+qq%20%E5%B0%B1%E8%83%BD%E9%A2%86%E5%8F%96Verilog%E5%A4%A7%E7%A4%BC%E5%8C%85%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>只需xx元，一周学会Verilog HDL，看到赚到 +qq 就能领取Verilog大礼包（二） | Cloud_Player's Notes</title><meta name="robots" content="noindex">
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2020/06/18/%E5%8F%AA%E9%9C%80xx%E5%85%83%EF%BC%8C%E4%B8%80%E5%91%A8%E5%AD%A6%E4%BC%9AVerilog%20HDL%EF%BC%8C%E7%9C%8B%E5%88%B0%E8%B5%9A%E5%88%B0%20+qq%20%E5%B0%B1%E8%83%BD%E9%A2%86%E5%8F%96Verilog%E5%A4%A7%E7%A4%BC%E5%8C%85%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          只需xx元，一周学会Verilog HDL，看到赚到 +qq 就能领取Verilog大礼包（二）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-18 18:00:00" itemprop="dateCreated datePublished" datetime="2020-06-18T18:00:00+08:00">2020-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-28 17:58:10" itemprop="dateModified" datetime="2023-02-28T17:58:10+08:00">2023-02-28</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>基本语法结构与约定</h1>
+<h2 id="概述"><a class="header-anchor" href="#概述">¶</a>概述</h2>
+<p>在本文中，将对 Verilog HDL 语言的基本语法结构与约定进行整理与总结，这些结构与约定构成了 Verilog 语言的基本框架<br>
+总体上大致分为词法约定、数据类型和系统任务与编译指令三个板块，其内容基本来自参考书籍与实际教学中所使用的PPT，准确程度较高<br>
+书上写得简洁明了的地方就直接照抄了，有些合适的地方也会进行补充<br>
+<strong>Verilog 是一门类 C 语言，所以有 C / C++ 编程经验的老哥们上手会极快</strong>（对吧？不会有老哥学了 C 听不懂 Verilog 吧？不会吧？）<a id="more"></a></p>
+<p>复习（预习）本文应达到的学习目标：</p>
+<p>理解操作符、注释、空白符、数字、字符串和标识符的词法约定；<br>
+能够定义逻辑值集合和数据类型，包括线网、寄存器、向量、数字、仿真时间、数组、参数、存储器和字符串；<br>
+能够使用基本的系统任务与编译指令，系统任务包括显示和监视信息、暂停和结束仿真与值变转储，编译指令包括宏定义、文件包含与时间尺度。</p>
+<h2 id="词法约定"><a class="header-anchor" href="#词法约定">¶</a>词法约定</h2>
+<p><strong>Verilog 中的基本词法约定与 C 语言类似</strong>。Verilog 描述包含一个 “单词” 流，这里的单词可以是注释、分隔符、数字、字符串、标识符和关键字。Verilog 是大小写相关的，其中的关键字全部为小写。</p>
+<h3 id="空白符"><a class="header-anchor" href="#空白符">¶</a>空白符</h3>
+<p>空白符由空格（\b）、制表符（\t）和换行符组成。除了字符串中的空白符，Verilog 中的空白符仅仅用于分隔标识符，在编译阶段被忽略。</p>
+<h3 id="注释"><a class="header-anchor" href="#注释">¶</a>注释</h3>
+<p><strong>Verilog 的注释与 C 语言大概一致</strong>，注意多行注释不允许嵌套。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 多行</span></span><br><span class="line"><span class="comment">   注释 */</span></span><br><span class="line"><span class="comment">/* 这是 /* 不合法的 */</span> 注释 */</span><br><span class="line"><span class="comment">/*这是 // 合法的注释*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="操作符"><a class="header-anchor" href="#操作符">¶</a>操作符</h3>
+<p>操作符有三种类型：单目操作符、双目操作符和三目操作符，其中，单目操作符的优先级高于操作数。</p>
+<p>分别举例如下:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = ~ b;        <span class="comment">// 单目操作符</span></span><br><span class="line">a = b &amp;&amp; c;     <span class="comment">// 双目操作符</span></span><br><span class="line">a = b ? c : d;  <span class="comment">// 三目操作符</span></span><br></pre></td></tr></table></figure>
+<p>之后再详细介绍操作符。。。。。。</p>
+<h3 id="数字声明"><a class="header-anchor" href="#数字声明">¶</a>数字声明</h3>
+<h4 id="表示形式"><a class="header-anchor" href="#表示形式">¶</a>表示形式</h4>
+<p>数字声明的基本表示形式为：&lt;size&gt;’&lt;base format&gt;&lt;number&gt;</p>
+<p>其中 &lt;size&gt; 用于指明数字的位宽度，用十进制数表示；<br>
+   &lt;base format&gt;指基数，用于指定数字的进制；<br>
+   &lt;number&gt;指数字本身，对于不同的基数有不同的范围；</p>
+<p>合法的基数格式：十进制（'d 或 'D）十六进制（'h 或 'H）二进制（'b 或 'B）八进制（'o 或 'O）；</p>
+<p>合法的数字格式：0，1，2，3，4，5，6，7，8，9，a，b，c，d，e，f（允许字母大写）；</p>
+<p>没有 &lt;size&gt; 即为不指明位数的数字，其默认的位宽度与仿真器与使用的计算机有关（最小为32位）；<br>
+不指定基数则默认为十进制数；</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4'b1111</span> <span class="comment">// 4 位的二进制数</span></span><br><span class="line"><span class="number">12'habc</span> <span class="comment">// 12 位的十六进制数</span></span><br><span class="line"><span class="number">16'd255</span> <span class="comment">// 16 位的十进制数</span></span><br><span class="line"><span class="number">23456</span>   <span class="comment">// 32 位的十进制数</span></span><br><span class="line"><span class="number">'hc3</span>    <span class="comment">// 32 位的十六进制数</span></span><br><span class="line"><span class="number">'o21</span>    <span class="comment">// 32 位的八进制数</span></span><br></pre></td></tr></table></figure>
+<h4 id="X-与-Z-值"><a class="header-anchor" href="#X-与-Z-值">¶</a>X 与 Z 值</h4>
+<p>Verilog 中：x 表示不确定值，z 表示高阻值</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12'h13x</span> <span class="comment">// 四个最低位不确定</span></span><br><span class="line"><span class="number">6'hx</span>    <span class="comment">// 所有位不确定</span></span><br><span class="line"><span class="number">32'bz</span>   <span class="comment">// 32 位的高阻值</span></span><br></pre></td></tr></table></figure>
+<p>注意：如果某数的最高位为 0，x 或 z，Verilog 语言约定将分别使用这三个值对这个数进行拓展。</p>
+<h4 id="负数"><a class="header-anchor" href="#负数">¶</a>负数</h4>
+<p>在表示位宽的数字前加负号表示负数</p>
+<h4 id="下划线符号与问号"><a class="header-anchor" href="#下划线符号与问号">¶</a>下划线符号与问号</h4>
+<p>下划线 “_” 可以出现在数字除第一个字符外的任何位置，用于提高可读性，不影响编译；<br>
+问号 “?” 是 z（高阻值）的另一种表示。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12'b1111_0000_1010</span></span><br><span class="line"><span class="number">4'b10</span>??             <span class="comment">// 4'b10zz</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串"><a class="header-anchor" href="#字符串">¶</a>字符串</h3>
+<p>字符串是由双引号括起来的一个字符队列，不能包含回车符<br>
+Verilog 将字符串当作一个单字节的 ACSII 字符队列</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Hello Verilog World"</span> <span class="comment">//一个经典字符串</span></span><br></pre></td></tr></table></figure>
+<h3 id="标识符和关键字"><a class="header-anchor" href="#标识符和关键字">¶</a>标识符和关键字</h3>
+<p>标识符是程序代码中对象的名字，我们使用标识符访问对象（即在描述设计时，模块、端口、实例等Verilog对象的名字）；</p>
+<p>Verilog 中的标识符由字母数字字符、下划线（_）和美元符（$）组成，区分大小写；</p>
+<p>Verilog 标识符的第一个字符必须是字母数字字符或下划线，不能以数字或美元符开始，以美元符开始的标识符是为系统函数保留的(即标识符必须以字母a-z, A-Z或 _ 开头，后面可以是字母、数字、 $ 或 _ )。</p>
+<p>关键字是语言中预留的用于定义语言结构的特殊标识符；<br>
+Verilog 中的关键字全部小写。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> value;      <span class="comment">// reg 是关键字；value 是标识符</span></span><br><span class="line"><span class="keyword">input</span> clk;      <span class="comment">// input 是关键字；clk 是标识符</span></span><br></pre></td></tr></table></figure>
+<p>Verilog 常用可综合关键字</p>
+<table border=0 cellpadding=0 cellspacing=0 width=500 style='border-collapse:
+ collapse;table-layout:fixed;width:375pt'>
+ <col width=100 span=5 style='mso-width-source:userset;mso-width-alt:3200;
+ width:75pt'>
+ <tr height=25 style='mso-height-source:userset;height:18.75pt'>
+  <td height=25 class=xl6332465 width=100 style='height:18.75pt;width:75pt'>module</td>
+  <td class=xl6332465 width=100 style='width:75pt'>endmodule</td>
+  <td class=xl6332465 width=100 style='width:75pt'>input</td>
+  <td class=xl6332465 width=100 style='width:75pt'>output</td>
+  <td class=xl6332465 width=100 style='width:75pt'>inout</td>
+ </tr>
+ <tr height=25 style='mso-height-source:userset;height:18.75pt'>
+  <td height=25 class=xl6332465 style='height:18.75pt'>wire</td>
+  <td class=xl6332465>reg</td>
+  <td class=xl6332465>parameter</td>
+  <td class=xl6332465>always</td>
+  <td class=xl6332465>assign</td>
+ </tr>
+ <tr height=25 style='mso-height-source:userset;height:18.75pt'>
+  <td height=25 class=xl6332465 style='height:18.75pt'>if</td>
+  <td class=xl6332465>else</td>
+  <td class=xl6332465>begin</td>
+  <td class=xl6332465>end</td>
+  <td class=xl6332465>case</td>
+ </tr>
+ <tr height=25 style='mso-height-source:userset;height:18.75pt'>
+  <td height=25 class=xl6332465 style='height:18.75pt'>endcase</td>
+  <td class=xl6332465>posedge</td>
+  <td class=xl6332465>negedge</td>
+  <td class=xl6332465>or</td>
+  <td class=xl6332465>default</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=100 style='width:75pt'></td>
+  <td width=100 style='width:75pt'></td>
+  <td width=100 style='width:75pt'></td>
+  <td width=100 style='width:75pt'></td>
+  <td width=100 style='width:75pt'></td>
+ </tr>
+ <![endif]>
+</table>
+<p>注：所谓可综合，就是我们编写的Verilog代码能够被综合器转化为相应的电路结构。因此我们常用可综合语句来描述数字硬件电路。</p>
+<h3 id="转义标识符"><a class="header-anchor" href="#转义标识符">¶</a>转义标识符</h3>
+<p>以反斜线 “\” 开始，以空白符结束</p>
+<h2 id="数据类型"><a class="header-anchor" href="#数据类型">¶</a>数据类型</h2>
+<p>Verilog 提供了我们几种可供使用的数据类型<br>
+主要数据类型有三类：<br>
+net （线网）：表示器件之间的物理连接；<br>
+register （寄存器） ：表示抽象的存储元件；<br>
+parameters（参数）：运行时的常数。</p>
+<h3 id="值的种类"><a class="header-anchor" href="#值的种类">¶</a>值的种类</h3>
+<p>Verilog 使用四值逻辑和八种信号强度来对实际的硬件电路建模。</p>
+<p>四值电平逻辑</p>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 15">
+<link rel=File-List href="四值电平逻辑.files/filelist.xml">
+<style id="四值电平逻辑_32623_Styles">
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+.xl1532623
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6532623
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:1.0pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6632623
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:middle;
+	border-top:1.0pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6732623
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6832623
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6932623
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl7032623
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+ruby
+	{ruby-align:left;}
+rt
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-char-type:none;}
+-->
+</style>
+</head>
+<body>
+<!--[if !excel]>　　<![endif]-->
+<!--下列信息由 Microsoft Excel 的发布为网页向导生成。-->
+<!--如果同一条目从 Excel 中重新发布，则所有位于 DIV 标记之间的信息均将被替换。-->
+<!----------------------------->
+<!--“从 EXCEL 发布网页”向导开始-->
+<!----------------------------->
+<div id="四值电平逻辑_32623" align=center x:publishsource="Excel">
+<table border=0 cellpadding=0 cellspacing=0 width=800 style='border-collapse:
+ collapse;table-layout:fixed;width:600pt'>
+ <col width=400 span=2 style='mso-width-source:userset;mso-width-alt:12800;
+ width:300pt'>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl6532623 width=400 style='height:30.0pt;width:300pt'>值 的
+  级 别</td>
+  <td class=xl6632623 width=400 style='width:300pt'>硬件电路中的条件</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl6732623 style='height:30.0pt;border-top:none'>0</td>
+  <td class=xl6832623 style='border-top:none'>逻辑0，条件为假</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl6732623 style='height:30.0pt;border-top:none'>1</td>
+  <td class=xl6832623 style='border-top:none'>逻辑1，条件为真</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl6732623 style='height:30.0pt;border-top:none'>x</td>
+  <td class=xl6832623 style='border-top:none'>逻辑值不确定</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl6932623 style='height:30.0pt;border-top:none'>z</td>
+  <td class=xl7032623 style='border-top:none'>高阻，浮动状态</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=400 style='width:300pt'></td>
+  <td width=400 style='width:300pt'></td>
+ </tr>
+ <![endif]>
+</table>
+</div>
+<!----------------------------->
+<!--“从 EXCEL 发布网页”向导结束-->
+<!----------------------------->
+</body>
+</html>
+<p>除逻辑值外，Verilog 还使用强度值来解决数字电路中不同强度的驱动源之间的赋值冲突，这里不作说明。</p>
+<h3 id="线网"><a class="header-anchor" href="#线网">¶</a>线网</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Verilog/25.PNG" alt="avatar"></p>
+<p>线网（net）表示硬件单元之间的连接。就像在真实的电路中一样，线网由其连接器件的输出端连续驱动，一般使用关键字 wire 进行声明，其默认值为 z ，线网的值由其驱动源确定，若无驱动源则为默认值。</p>
+<p>如果没有显式地说明为向量，则默认线网的位宽为 1 。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wire</span> a;         <span class="comment">// 声明上面的电路中 a 是 wire（连线）类型</span></span><br><span class="line"><span class="keyword">wire</span> b, c;      <span class="comment">// 声明上面的电路中 b 和 c 也是 wire（连线）类型</span></span><br><span class="line"><span class="keyword">wire</span> d = <span class="number">1'b0</span>;  <span class="comment">// 连线 d 在声明时，d 被赋值为逻辑值 0</span></span><br></pre></td></tr></table></figure>
+<h3 id="寄存器"><a class="header-anchor" href="#寄存器">¶</a>寄存器</h3>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Verilog/26.PNG" alt="avatar"></p>
+<p>寄存器用来表示存储元件，它保持原有的数值，直到被改写，一般使用关键字 reg 进行声明，其默认值为 x ；<br>
+这里的寄存器与实际电路中的由边沿触发的触发器构成的硬件寄存器不同，这里的寄存器 register 仅意味着声明一个保存数值的变量；<br>
+wire 需要驱动源，而 register 不需要；<br>
+在仿真过程中的任意时刻，寄存器的值都可以通过赋值来改变。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> reset;              <span class="comment">// 声明 register 类型的变量 reset</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    reset = <span class="number">1'b1</span>;       <span class="comment">// 初始化 reset 为 1</span></span><br><span class="line">    #<span class="number">100</span> reset = <span class="number">1'b0</span>;  <span class="comment">// 将 reset 置为 0</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>寄存器类型变量若需用于带符号的算术运算，则应声明为带符号（signed）类型的变量</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> <span class="keyword">signed</span> [<span class="number">63</span>:<span class="number">0</span>] m;</span><br></pre></td></tr></table></figure>
+<h3 id="向量"><a class="header-anchor" href="#向量">¶</a>向量</h3>
+<p>线网和寄存器类型的数据均可以声明为向量（即位宽大于 1 ）；<br>
+如果在声明中没有指定位宽，则默认为标量（ 1 位）；</p>
+<p>向量通过[high#:low#]或[low#:high#]进行说明，方括号中左边的数总是代表最高有效位。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wire</span> a;         <span class="comment">// 标量线网变量，默认</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>] bus; <span class="comment">// 8 位的总线</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] busA, busB, busC;   <span class="comment">// 3 条 32 位宽的总线</span></span><br><span class="line"><span class="keyword">reg</span> clock;                      <span class="comment">// 标量寄存器，默认</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">0</span>:<span class="number">40</span>] virtual_addr;        <span class="comment">// 向量寄存器，41 位宽的虚拟地址</span></span><br><span class="line">                                <span class="comment">// 其最高有效位为第 0 位</span></span><br></pre></td></tr></table></figure>
+<h4 id="向量域选择"><a class="header-anchor" href="#向量域选择">¶</a>向量域选择</h4>
+<p>可指定向量的某一位或是若干个相邻位；<br>
+高位写在范围说明的左侧。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">busA[<span class="number">7</span>]                 <span class="comment">// 向量 busA 的第 7 位</span></span><br><span class="line">bus[<span class="number">2</span>:<span class="number">0</span>]                <span class="comment">// 向量 bus 的最低三位</span></span><br><span class="line">virtual_addr[<span class="number">0</span>:<span class="number">1</span>]       <span class="comment">// 向量 virtual_addr 的最高两位</span></span><br></pre></td></tr></table></figure>
+<h4 id="可变的向量域选择"><a class="header-anchor" href="#可变的向量域选择">¶</a>可变的向量域选择</h4>
+<p>允许指定可变的向量域选择，如此可结合 for 循环来动态地选取向量的各个域；</p>
+<p>[&lt;starting_bit&gt;+ : width]：从起始位开始递增，位宽为 width<br>
+[&lt;starting_bit&gt;- : width]：从起始位开始递减，位宽为 width</p>
+<p>起始位可以是一个变量，但位宽须为常量。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">255</span>:<span class="number">0</span>] data1;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">0</span>:<span class="number">255</span>] data2;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] <span class="keyword">byte</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">byte</span> = data1[<span class="number">31</span>-:<span class="number">8</span>];    <span class="comment">// data1[31:24]</span></span><br><span class="line"><span class="keyword">byte</span> = data1[<span class="number">24</span>+:<span class="number">8</span>];    <span class="comment">// data1[31:24]</span></span><br><span class="line"><span class="keyword">byte</span> = data2[<span class="number">31</span>-:<span class="number">8</span>];    <span class="comment">// data2[24:31]</span></span><br><span class="line"><span class="keyword">byte</span> = data2[<span class="number">24</span>+:<span class="number">8</span>];    <span class="comment">// data2[24:31]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= <span class="number">31</span>; j=j+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">byte</span> = data1[(j*<span class="number">8</span>)+:<span class="number">8</span>];     <span class="comment">// [7:0],[15:8]...[255:248]</span></span><br><span class="line"></span><br><span class="line">data1[(byteNum*<span class="number">8</span>)+:<span class="number">8</span>] = <span class="number">8'b0</span>;   <span class="comment">// 若 byteNum = 1，共有八位被清零，[15:8]</span></span><br></pre></td></tr></table></figure>
+<h3 id="整数、实数和时间寄存器数据类型"><a class="header-anchor" href="#整数、实数和时间寄存器数据类型">¶</a>整数、实数和时间寄存器数据类型</h3>
+<p>除 reg 类型之外，Verilog 还支持 integer，real，time 寄存器数据类型</p>
+<p><img src="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/Verilog/27.PNG" alt="avatar"></p>
+<h4 id="整数"><a class="header-anchor" href="#整数">¶</a>整数</h4>
+<p>整数是一种通用的寄存器数据类型，用于对数量进行操作，使用关键字 integer 进行声明；<br>
+声明一个 integer 类型的变量（有符号数）来完成计数等功能比 reg 类型（无符号数）更为方便；<br>
+整数的默认位宽为宿主机的字的位数，最小为 32 位；</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">integer</span> counter;</span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    counter = -<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="实数"><a class="header-anchor" href="#实数">¶</a>实数</h4>
+<p>实常量和实数寄存器数据类型使用关键字 real 来声明，可以用十进制或科学记数法来表示；<br>
+实数声明不能带有范围，其默认值为 0 ；<br>
+如将一实数赋给一整数，则实数被取为最接近的整数。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">real</span> delta;</span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    delta = <span class="number">4</span>e10;</span><br><span class="line">    delta = <span class="number">2</span><span class="variable">.13</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">integer</span> i;</span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    i = delta;      <span class="comment">// i = 2</span></span><br></pre></td></tr></table></figure>
+<h4 id="时间寄存器"><a class="header-anchor" href="#时间寄存器">¶</a>时间寄存器</h4>
+<p>保存仿真时间，通过关键字 time 进行声明，其单位为秒，表示为 s；<br>
+其宽度与具体实现有关，最小 64 位；<br>
+调用系统函数 $time 可以得到当前的仿真时间；</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">time</span> save_sim_time;</span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    save_sim_time = <span class="built_in">$time</span>;      <span class="comment">// 记录当前的仿真时间记录下来</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组"><a class="header-anchor" href="#数组">¶</a>数组</h3>
+<p>在 Verilog 中允许声明reg，integer，time，real，realtime 及其向量类型的数组，数组可以是任意维度的；<br>
+线网数组也可用于连接实例的端口，数组中的每个元素都可以作为一个标量或向量，以同样的方式来使用，形如 &lt;数组名&gt;[&lt;下标&gt;]。对于多维数组来讲，用户需要说明其每一维的索引。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">integer</span> count [<span class="number">0</span>:<span class="number">7</span>];        <span class="comment">// 由 8 个计数变量组成的数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> bool [<span class="number">31</span>:<span class="number">0</span>];            <span class="comment">// 由 32 个 1 位的布尔（Boolean）寄存器变量组成的数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">time</span> chk_point[<span class="number">1</span>:<span class="number">100</span>];      <span class="comment">// 由 100 个时间检查变量组成的数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">4</span>:<span class="number">0</span>] port_id[<span class="number">0</span>:<span class="number">7</span>];     <span class="comment">// 由 8 个端口标识变量组成的数组，端口变量的位宽为 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> matrix[<span class="number">4</span>:<span class="number">0</span>][<span class="number">0</span>:<span class="number">255</span>]; <span class="comment">// 二维的整数型数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">63</span>:<span class="number">0</span>] array_4d [<span class="number">15</span>:<span class="number">0</span>][<span class="number">7</span>:<span class="number">0</span>][<span class="number">7</span>:<span class="number">0</span>][<span class="number">255</span>:<span class="number">0</span>];</span><br><span class="line">                            <span class="comment">// 四维 64 位寄存器型数组</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>] w_array2 [<span class="number">5</span>:<span class="number">0</span>]   <span class="comment">// 声明 8 位向量的数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">wire</span> w_array1[<span class="number">7</span>:<span class="number">0</span>][<span class="number">5</span>:<span class="number">0</span>];    <span class="comment">// 声明 1 位线型变量的二维数组</span></span><br></pre></td></tr></table></figure>
+<p>注意，不要将数组和线网或寄存器向量混淆起来。向量是一个单独的元件，它的位宽为 n；数组由多个元件组成，其中的每个元件的位宽为 n 或 1。</p>
+<p>对数组元素赋值的实例</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">count[<span class="number">5</span>] = <span class="number">0</span>;</span><br><span class="line">chk_point[<span class="number">100</span>] = <span class="number">0</span>;</span><br><span class="line">port_id[<span class="number">3</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">matrix[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">33559</span>;</span><br><span class="line">array_4d[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">15</span>:<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/***** 非法 *****/</span></span><br><span class="line">port_id = <span class="number">0</span>;        <span class="comment">// 非法，企图写整个数组</span></span><br><span class="line">matrix [<span class="number">1</span>] = <span class="number">0</span>;     <span class="comment">// 非法，企图写数组的整个第二行，即从 matrix[1][0] 直到 matrix[1][255]</span></span><br></pre></td></tr></table></figure>
+<h3 id="存储器"><a class="header-anchor" href="#存储器">¶</a>存储器</h3>
+<p>在 Verilog 中，使用寄存器的一维数组来表示存储器（对存储器建模）</p>
+<p>reg [MSB : LSB] &lt;memory_name&gt; [first_addr : last_addr];<br>
+  [MSB : LSB]定义存储器字的位数<br>
+  [first_addr : last_addr]定义存储器的深度</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> mem1bit[<span class="number">0</span>:<span class="number">1023</span>];            <span class="comment">// 1 K 的 1 位存储器 mem1bit</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] membyte[<span class="number">0</span>:<span class="number">1023</span>];      <span class="comment">// 1 K 的字节（8 位）存储器 membyte</span></span><br><span class="line">membyte[<span class="number">511</span>]                    <span class="comment">// 取出存储器 membyte 中地址 511 处所存的字节</span></span><br></pre></td></tr></table></figure>
+<h3 id="参数"><a class="header-anchor" href="#参数">¶</a>参数</h3>
+<p>Verilog 允许使用关键字 parameter 在模块内定义常数；<br>
+parameter  &lt;list_of_assignment&gt;<br>
+参数代表常数，不能像变量那样赋值，但是每个模块实例的参数值可以在编译阶段被重载，通过参数重载使得用户可以对模块实例进行定制；<br>
+可一次定义多个参数，用逗号隔开;<br>
+参数的定义是局部的，只在当前模块中有效。参数定义可使用以前定义的整数和实数参数;</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">parameter</span> port_id = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">parameter</span> cache_line_width = <span class="number">256</span>;</span><br><span class="line"><span class="keyword">parameter</span> <span class="keyword">signed</span> [<span class="number">15</span>:<span class="number">0</span>] WIDTH;</span><br></pre></td></tr></table></figure>
+<p>Verilog 中的局部参数使用关键字 localparam 来定义，其作用等同于参数，区别在于它的值不能改变；<br>
+例如状态机的状态编码不能被修改，为避免被意外地更改，应当将其定义为局部参数。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">localparam</span> state1 = <span class="number">4'b0001</span>;</span><br><span class="line">           state2 = <span class="number">4'b0010</span>;</span><br><span class="line">           state3 = <span class="number">4'b0100</span>;</span><br><span class="line">           state4 = <span class="number">4'b1000</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="字符串-v2"><a class="header-anchor" href="#字符串-v2">¶</a>字符串</h3>
+<p>字符串保存在 reg 类型的变量中，每个字符占用 8 位（一个字节）；<br>
+寄存器变量的宽度应足够大，保证能容纳全部字符；<br>
+如果寄存器变量的宽度大于字符串的大小（位），则 Verilog 使用 0 来填充左边的空余位；<br>
+如果寄存器变量的宽度小于字符串的大小（位），则 Verilog 截去字符串最左边的位；</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">8</span>*<span class="number">18</span>:<span class="number">1</span>] string_value; <span class="comment">//其宽度为 18 个字节</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    string_value = <span class="string">"Hello Verilog World"</span>;</span><br></pre></td></tr></table></figure>
+<p>加前缀转义字符的特殊字符</p>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 15">
+<link rel=File-List href="特殊字符.files/filelist.xml">
+<style id="特殊字符_5857_Styles">
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+.font55857
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;}
+.xl155857
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl655857
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl665857
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+ruby
+	{ruby-align:left;}
+rt
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-char-type:none;}
+-->
+</style>
+</head>
+<body>
+<!--[if !excel]>　　<![endif]-->
+<!--下列信息由 Microsoft Excel 的发布为网页向导生成。-->
+<!--如果同一条目从 Excel 中重新发布，则所有位于 DIV 标记之间的信息均将被替换。-->
+<!----------------------------->
+<!--“从 EXCEL 发布网页”向导开始-->
+<!----------------------------->
+<div id="特殊字符_5857" align=center x:publishsource="Excel">
+<table border=0 cellpadding=0 cellspacing=0 width=700 style='border-collapse:
+ collapse;table-layout:fixed;width:525pt'>
+ <col width=400 style='mso-width-source:userset;mso-width-alt:12800;width:300pt'>
+ <col width=300 style='mso-width-source:userset;mso-width-alt:9600;width:225pt'>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl655857 width=400 style='height:27.0pt;
+  width:300pt'>转义字符</td>
+  <td rowspan=2 class=xl655857 width=300 style='width:225pt'>显示的字符</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl655857 style='height:27.0pt;border-top:none'>\n</td>
+  <td rowspan=2 class=xl655857 style='border-top:none'>换行</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl655857 style='height:27.0pt;border-top:none'>\t</td>
+  <td rowspan=2 class=xl655857 style='border-top:none'>tab（制表空格）</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl655857 style='height:27.0pt;border-top:none'>%%</td>
+  <td rowspan=2 class=xl655857 style='border-top:none'>%</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+  <td rowspan=2 height=38 class=xl665857 style='height:28.5pt;border-top:none'><a
+  href="/"><span style='color:black;text-decoration:none'>\\</span></a></td>
+  <td rowspan=2 class=xl655857 style='border-top:none'>\</td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl655857 style='height:27.0pt;border-top:none'>\&quot;</td>
+  <td rowspan=2 class=xl655857 style='border-top:none'>&quot;</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='mso-height-source:userset;height:13.5pt'>
+  <td rowspan=2 height=36 class=xl655857 style='height:27.0pt;border-top:none'>\ooo</td>
+  <td rowspan=2 class=xl655857 style='border-top:none'>1 到 3 个八进制数字字符</td>
+ </tr>
+ <tr height=18 style='mso-height-source:userset;height:13.5pt'>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=400 style='width:300pt'></td>
+  <td width=300 style='width:225pt'></td>
+ </tr>
+ <![endif]>
+</table>
+</div>
+<!----------------------------->
+<!--“从 EXCEL 发布网页”向导结束-->
+<!----------------------------->
+</body>
+</html>
+<h2 id="系统任务与编译指令"><a class="header-anchor" href="#系统任务与编译指令">¶</a>系统任务与编译指令</h2>
+<p>Verilog 中的两个特殊概念：系统任务与编译指令</p>
+<h3 id="系统任务"><a class="header-anchor" href="#系统任务">¶</a>系统任务</h3>
+<p>Verilog 为某些常用操作提供了标准的系统任务（也称系统函数），这些操作包括屏幕显示、线网值动态监视、暂停和结束仿真等；<br>
+系统任务的形式：<code>$&lt;keyword&gt;</code></p>
+<h4 id="显示信息"><a class="header-anchor" href="#显示信息">¶</a>显示信息</h4>
+<p><code>$display</code></p>
+<p>用于显示变量、字符串或表达式的主要系统任务，<strong>其用法与 C 语言中的 printf 函数极其相似</strong>；<br>
+<code>$display</code> 会自动在字符串的结尾处插入一个换行符;</p>
+<p>如果参数列表为空，则 <code>$display</code> 的效果为显示光标移到下一行；</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示小括号中的字符串</span></span><br><span class="line"><span class="built_in">$display</span>(<span class="string">"Hello Verilog World"</span>);  <span class="comment">//又见 Hello World!</span></span><br><span class="line">-- Hello Verilog World</span><br><span class="line"></span><br><span class="line"><span class="comment">// 显示当前的仿真时间</span></span><br><span class="line"><span class="built_in">$display</span>(<span class="built_in">$time</span>);</span><br><span class="line">-- <span class="number">230</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在时间为 200 的时刻，显示 41 位虚拟地址 1fe0000001c</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">0</span>:<span class="number">40</span>] virtual_addr;</span><br><span class="line"><span class="built_in">$display</span>(<span class="string">"At time %d virtual address is %h"</span>, <span class="built_in">$time</span>, Virtual_addr);</span><br><span class="line">-- At <span class="keyword">time</span> <span class="number">200</span> <span class="keyword">virtual</span> address is <span class="number">1</span>fe0000001c</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用二进制数显示 port_id 5</span></span><br><span class="line"><span class="built_in">$display</span>(<span class="string">"ID of the port is %b"</span>, port_id);</span><br><span class="line">-- ID of the port is <span class="number">00101</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 显示 x 字符</span></span><br><span class="line"><span class="comment">// 用二进制数显示 4 位总线 bus 的信号值 10xx</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] bus;</span><br><span class="line"><span class="built_in">$display</span>(<span class="string">"Bus value is %b"</span>, bus);</span><br><span class="line">-- Bus value is <span class="number">10</span>xx</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在名为 top 的最高层模块中显示在该层被调用的实例 p1 的层次名</span></span><br><span class="line"><span class="built_in">$display</span>(<span class="string">"This string is displayed from %m level of hierarchy"</span>);</span><br><span class="line">-- This <span class="keyword">string</span> is displayed from top<span class="variable">.p1</span> level of hierarchy</span><br></pre></td></tr></table></figure>
+<p>字符串格式说明</p>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 15">
+<link rel=File-List href="字符串格式说明.files/filelist.xml">
+<style id="字符串格式说明_13053_Styles">
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+.font513053
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;}
+.xl1513053
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6313053
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6413053
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+ruby
+	{ruby-align:left;}
+rt
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-char-type:none;}
+-->
+</style>
+</head>
+<body>
+<!--[if !excel]>　　<![endif]-->
+<!--下列信息由 Microsoft Excel 的发布为网页向导生成。-->
+<!--如果同一条目从 Excel 中重新发布，则所有位于 DIV 标记之间的信息均将被替换。-->
+<!----------------------------->
+<!--“从 EXCEL 发布网页”向导开始-->
+<!----------------------------->
+<div id="字符串格式说明_13053" align=center x:publishsource="Excel">
+<table border=0 cellpadding=0 cellspacing=0 width=800 style='border-collapse:
+ collapse;table-layout:fixed;width:600pt'>
+ <col width=300 style='mso-width-source:userset;mso-width-alt:9600;width:225pt'>
+ <col width=100 style='mso-width-source:userset;mso-width-alt:3200;width:75pt'>
+ <col width=400 style='mso-width-source:userset;mso-width-alt:12800;width:300pt'>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 width=300 style='height:27.0pt;
+  width:225pt'>格<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>式</td>
+  <td colspan=2 rowspan=2 class=xl6313053 width=500 style='width:375pt'>显<span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>示</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%d 或 %D</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>用十进制显示变量</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%b 或 %B</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>用二进制显示变量</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%s 或 %S</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>显示字符串</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%h 或 %H</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>用十六进制显示变量</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%c 或 %C</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>显示 ASCII 字符</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%m 或 %M</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>显示层次名</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%v 或 %V</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>显示强度</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%o 或 %O</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>用八进制显示变量</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%t 或 %T</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>显示当前时间格式</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%e 或 %E</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>用科学记数法格式显示实数</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%f 或 %F</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>用十进制浮点数格式显示实数</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+  <td rowspan=2 height=36 class=xl6313053 style='height:27.0pt;border-top:none'><span
+  style='mso-spacerun:yes'>&nbsp;</span>%g 或 %G</td>
+  <td rowspan=2 class=xl6313053 style='border-top:none'>　</td>
+  <td rowspan=2 class=xl6413053 style='border-top:none'>用科学记数法或十进制格式显示实数，显示较短的格式</td>
+ </tr>
+ <tr height=18 style='height:13.5pt'>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=300 style='width:225pt'></td>
+  <td width=100 style='width:75pt'></td>
+  <td width=400 style='width:300pt'></td>
+ </tr>
+ <![endif]>
+</table>
+</div>
+<!----------------------------->
+<!--“从 EXCEL 发布网页”向导结束-->
+<!----------------------------->
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>
+<h4 id="监视信息"><a class="header-anchor" href="#监视信息">¶</a>监视信息</h4>
+<p><code>$monitor</code></p>
+<p>用于对信号值变化进行动态监视的手段，其格式与之前的 <code>$display</code> 基本一致；</p>
+<p>系统函数 <code>$monitor</code> 对其参数列表中的变量值或信号值进行不间断的监视，当其中任何一个发生变化的时候，显示所有参数的数值；<code>$monitor</code> 只需调用一次即可在整个仿真过程中生效，这一点与 <code>$display</code> 不同;</p>
+<p>由于 <code>$monitor</code> 在整个仿真过程中有效，因此在任意仿真时刻只有一个监视列表有效，即如果调用多个只有最后一次调用有效；</p>
+<p>还可以使用 <code>$monitoroff;</code> 与 <code>$monitoron;</code> 来控制监视的暂停与允许继续执行（仿真开始时的默认状态为允许监视）；</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监视时钟和复位信号的时间和值</span></span><br><span class="line"><span class="comment">// 时钟每 5 个时间单位翻转一次，复位信号 10 个时间单位后变低</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="built_in">$monitor</span>(<span class="built_in">$time</span>, <span class="string">" Value of signals clock = %b reset = %b"</span>, clock, reset);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 监视语句的部分输出：</span></span><br><span class="line">-- <span class="number">0</span> Value of signals clock = <span class="number">0</span> reset = <span class="number">1</span></span><br><span class="line">-- <span class="number">5</span> Value of signals clock = <span class="number">1</span> reset = <span class="number">1</span></span><br><span class="line">-- <span class="number">10</span> Value of signals clock = <span class="number">0</span> reset = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h4 id="暂停与结束仿真"><a class="header-anchor" href="#暂停与结束仿真">¶</a>暂停与结束仿真</h4>
+<p><code>$stop</code></p>
+<p>用与暂停仿真，方便对设计进行调试，用法：<code>$stop;</code></p>
+<p><code>$finish</code></p>
+<p>用于结束仿真，用法：<code>$finish;</code></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在仿真时刻为 100 单位时暂停仿真，检查运行结果</span></span><br><span class="line"><span class="comment">// 在仿真时刻为 1000 单位时结束仿真</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">clock = <span class="number">0</span>;</span><br><span class="line">reset = <span class="number">1</span>;</span><br><span class="line">#<span class="number">100</span> <span class="built_in">$stop</span>;</span><br><span class="line">#<span class="number">1000</span> <span class="built_in">$finish</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h4 id="值变转储（VCD文件系统任务）"><a class="header-anchor" href="#值变转储（VCD文件系统任务）">¶</a>值变转储（VCD文件系统任务）</h4>
+<p><strong>值变转储文件（VCD）</strong> 是一个 ASCII 文件，它包含仿真时间、范围与信号的定义以及仿真运行过程中信号值的变化等信息。设计中的所有信号或者选定的信号集合在仿真过程中都可以被写入 VCD 文件。</p>
+<p><strong>后处理工具</strong> 可以把 VCD 文件作为输入并把层次信息、信号值和信号波形显示出来。</p>
+<p>Verilog 提供了系统任务来选择要转储的模块实例或者模块实例信号（<code>$dumpvars</code>），选择 VCD 文件的名称（<code>$dumpfile</code>），选择转储过程的起点和终点（<code>$dumpon</code> 和 <code>$dumpoff</code>），选择生成检测点（<code>$dumpall</code>）等。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定 VCD 文件名。若不指定 VCD 文件，则由仿真器指定一个默认文件名</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    <span class="built_in">$dumpfile</span>(<span class="string">"myfile.dmp"</span>); <span class="comment">// 仿真信息转储到 myfile.dmp 文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 转储模块中的信号</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    <span class="built_in">$dumpvars</span>; <span class="comment">// 没有指定变量范围，把设计中的全部信号都转储</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    <span class="built_in">$dumpvars</span>(<span class="number">1</span>, top); <span class="comment">// 转储模块实例 top 中的信号</span></span><br><span class="line">                       <span class="comment">// 数 1 表示层次的等级，只转储 top 下的第一层信号，即转储 top 模块</span></span><br><span class="line">                       <span class="comment">// 中的变量，而不转储 top 中的调用模块的变量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    <span class="built_in">$dumpvars</span>(<span class="number">2</span>, top<span class="variable">.m1</span>); <span class="comment">// 转储 top.m1 模块以下两层的信号</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    <span class="built_in">$dumpvars</span>(<span class="number">0</span>, top<span class="variable">.m1</span>); <span class="comment">// 数 0 表示转储 top.m1 模块下面各个层的所有信号</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动和停止转储过程</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="built_in">$dumpon</span>;           <span class="comment">// 启动转储过程</span></span><br><span class="line">    #<span class="number">100000</span> <span class="built_in">$dumpoff</span>;  <span class="comment">// 1 000 000 个仿真时间单位后，停止转储过程</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成一个检查点，转储所有 VCD 变量的当前值</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    <span class="built_in">$dumpall</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="编译指令"><a class="header-anchor" href="#编译指令">¶</a>编译指令</h3>
+<p>Verilog 提供了一些编译指令供用户使用，其使用方式为：`&lt;keyword&gt;；</p>
+<p>这里介绍几种常用的编译指令:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">define</span>     // 宏定义</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">include</span>    // 文件包含</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span>  // 时间尺度</span></span><br></pre></td></tr></table></figure>
+<p>关于条件编译，emmm… 现在也用不上</p>
+<h4 id="宏定义"><a class="header-anchor" href="#宏定义">¶</a>宏定义</h4>
+<p>编译指令 `define 用于定义 Verilog 中的文本宏；</p>
+<p>`define  &lt;macro_name&gt;  &lt;macro_text&gt;</p>
+<p>在编译阶段，当编译器遇到 `&lt;宏名&gt; 时，使用预定义的文本宏进行替换，它类似于 C 语言中的 #define 结构;</p>
+<p>在使用预定义的常数或文本宏时，在宏名前加上前缀号 “ ` ” 。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 规定字长的文本宏</span></span><br><span class="line"><span class="comment">// 在代码中用 `WORD_SIZE 表示</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">define</span> WOED_SIZE 32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义别名，可以用 `S 来代替 $stop ；</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">define</span> S $stop;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义经常使用的字符串</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">define</span> WORD_REG reg [31:0]</span></span><br><span class="line"><span class="comment">// 就可以用 `WORD_REG reg32 来定义一个 32 位的寄存器变量</span></span><br></pre></td></tr></table></figure>
+<h4 id="文件包含"><a class="header-anchor" href="#文件包含">¶</a>文件包含</h4>
+<p>编译指令 `include 可在编译期间将一个 Verilog 源文件包含在另一个 Verilog 文件中，作用类似于 C 语言中的 #include 结构，其后应接双引号&quot; &quot;，双引号中可以是相对路径或绝对路径。</p>
+<p>该指令通常用于将内含全局或公用定义的头文件包含在设计文件中。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 包含 header.v 文件，在该文件中有主 Verilog 文件 design.v 需要的内容</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="meta-keyword">include</span> "header.v"</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">&lt;<span class="keyword">design</span><span class="variable">.v</span> 文件中的 Verilog 代码&gt;</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h4 id="时间尺度"><a class="header-anchor" href="#时间尺度">¶</a>时间尺度</h4>
+<p>Verilog HDL 允许用 `timescale 编译指令为模块指定参考时间单位；</p>
+<p>`timescale&lt;reference_time_unit&gt;/&lt;time_precision&gt;</p>
+<p>&lt;reference_time_unit&gt;（参考时间单位）指定时间和延迟的测量单位；<br>
+&lt;time_precision&gt;（时间精度）指定仿真过程中延迟值进位取整的精度；</p>
+<p>“时间精度”是仿真器的仿真时间步，不能大于“时间单位”；<br>
+但如果“时间单位”与“时间精度”差别很大可能会影响仿真的速度。如 `timescale 1s / 1ps，仿真器在 1 秒内要扫描其事件序列 1e12 次；</p>
+<p>而 `timescale 1s/1ms 则只需扫描 1e3 次；</p>
+<p>只有 1 ，10 ，100 才是合法的说明时间单位和时间精度的整数，单位可以是s, ms, us, ns, ps, fs；</p>
+<p>`timescale 必须在模块之前出现；</p>
+<p>如果没有timescale说明将使用仿真软件的缺省值；</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为模块 dummy1 定义时间尺度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 参考时间单位为 100 ns，精度为 1 ns</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 100 ns / 1 ns</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> dummy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> toggle;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对 toggle 变量进行初始化</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    toggle = <span class="number">1'b0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每 5 个时间单位把 toggle 寄存器翻转一次</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 本模块中 5 个时间单位 = 500 ns = 0.5 μs</span></span><br><span class="line"><span class="keyword">always</span> #<span class="number">5</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        toggle = ~toggle;</span><br><span class="line">        <span class="built_in">$display</span>(<span class="string">"%d , In %m toggle = %b "</span>, <span class="built_in">$time</span>, toggle);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 为模块 dummy2 定义时间尺度</span></span><br><span class="line"><span class="comment">// 参考时间单位为 1 μs，精度为 10 ns</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1 us / 10 ns</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> dummy2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> toggle;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对 toggle 变量进行初始化</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">    toggle = <span class="number">1'b0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每 5 个时间单位把 toggle 寄存器翻转一次</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 本模块中 5 个时间单位 = 5 μs = 5000 ns</span></span><br><span class="line"><span class="keyword">always</span> #<span class="number">5</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        toggle = ~toggle;</span><br><span class="line">        <span class="built_in">$display</span>(<span class="string">"%d , In %m toggle = %b "</span>, <span class="built_in">$time</span>, toggle);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>部分仿真输出结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">5 , In dummy toggle = 1</span><br><span class="line">10 , In dummy toggle = 0</span><br><span class="line">15 , In dummy toggle = 1</span><br><span class="line">20 , In dummy toggle = 0</span><br><span class="line">25 , In dummy toggle = 1</span><br><span class="line">30 , In dummy toggle = 0</span><br><span class="line">35 , In dummy toggle = 1</span><br><span class="line">40 , In dummy toggle = 0</span><br><span class="line">45 , In dummy toggle = 1</span><br><span class="line">5 , In dummy2 toggle = 1</span><br><span class="line">50 , In dummy toggle = 0</span><br><span class="line">55 , In dummy toggle = 1</span><br><span class="line">60 , In dummy toggle = 0</span><br><span class="line">65 , In dummy toggle = 1</span><br><span class="line">70 , In dummy toggle = 0</span><br><span class="line">75 , In dummy toggle = 1</span><br><span class="line">80 , In dummy toggle = 0</span><br><span class="line">85 , In dummy toggle = 1</span><br><span class="line">90 , In dummy toggle = 0</span><br><span class="line">95 , In dummy toggle = 1</span><br><span class="line">10 , In dummy2 toggle = 0</span><br><span class="line">100 , In dummy toggle = 0</span><br><span class="line">105 , In dummy toggle = 1</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考文献"><a class="header-anchor" href="#参考文献">¶</a>参考文献</h2>
+<p>Verilog HDL数字设计与综合：第二版：本科教学版/（美）帕尔尼卡（Palnitkar，s.）著；夏宇闻等译 . 北京：电子工业出版社，2015.8</p>
+<p>[Verilog的基础语法]<a href="https://blog.csdn.net/xinghuanmeiying/article/details/101022071" target="_blank" rel="noopener">https://blog.csdn.net/xinghuanmeiying/article/details/101022071</a></p>
+<p>[Verilog基础语法总结]<a href="https://www.cnblogs.com/linkzijun/p/7603735.html" target="_blank" rel="noopener">https://www.cnblogs.com/linkzijun/p/7603735.html</a></p>
+<hr>
+<!-- flag of hidden posts -->
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2020/06/18/%E5%8F%AA%E9%9C%80xx%E5%85%83%EF%BC%8C%E4%B8%80%E5%91%A8%E5%AD%A6%E4%BC%9AVerilog%20HDL%EF%BC%8C%E7%9C%8B%E5%88%B0%E8%B5%9A%E5%88%B0%20+qq%20%E5%B0%B1%E8%83%BD%E9%A2%86%E5%8F%96Verilog%E5%A4%A7%E7%A4%BC%E5%8C%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="只需xx元，一周学会Verilog HDL，看到赚到 +qq 就能领取Verilog大礼包（二）">https://cloudplayer99.github.io/2020/06/18/只需xx元，一周学会Verilog HDL，看到赚到 +qq 就能领取Verilog大礼包（二）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/Verilog-HDL/" rel="tag"># Verilog HDL</a>
+              <a href="/tags/DIGITAL/" rel="tag"># DIGITAL</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">基本语法结构与约定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词法约定"><span class="nav-number">1.2.</span> <span class="nav-text">词法约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空白符"><span class="nav-number">1.2.1.</span> <span class="nav-text">空白符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">1.2.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-number">1.2.3.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字声明"><span class="nav-number">1.2.4.</span> <span class="nav-text">数字声明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表示形式"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">表示形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#X-与-Z-值"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">X 与 Z 值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#负数"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">负数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下划线符号与问号"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">下划线符号与问号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">1.2.5.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符和关键字"><span class="nav-number">1.2.6.</span> <span class="nav-text">标识符和关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转义标识符"><span class="nav-number">1.2.7.</span> <span class="nav-text">转义标识符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#值的种类"><span class="nav-number">1.3.1.</span> <span class="nav-text">值的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线网"><span class="nav-number">1.3.2.</span> <span class="nav-text">线网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寄存器"><span class="nav-number">1.3.3.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向量"><span class="nav-number">1.3.4.</span> <span class="nav-text">向量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#向量域选择"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">向量域选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可变的向量域选择"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">可变的向量域选择</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数、实数和时间寄存器数据类型"><span class="nav-number">1.3.5.</span> <span class="nav-text">整数、实数和时间寄存器数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整数"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实数"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">实数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间寄存器"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">时间寄存器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.3.6.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储器"><span class="nav-number">1.3.7.</span> <span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">1.3.8.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串-v2"><span class="nav-number">1.3.9.</span> <span class="nav-text">字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统任务与编译指令"><span class="nav-number">1.4.</span> <span class="nav-text">系统任务与编译指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统任务"><span class="nav-number">1.4.1.</span> <span class="nav-text">系统任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示信息"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">显示信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监视信息"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">监视信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#暂停与结束仿真"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">暂停与结束仿真</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#值变转储（VCD文件系统任务）"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">值变转储（VCD文件系统任务）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译指令"><span class="nav-number">1.4.2.</span> <span class="nav-text">编译指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#宏定义"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">宏定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件包含"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">文件包含</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间尺度"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">时间尺度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.5.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

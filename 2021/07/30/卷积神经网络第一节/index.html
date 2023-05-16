@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Convolutional Neural Networks. Andrew Ng.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Convolutional Neural Networks. Part 1.">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/07/30/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E8%8A%82/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="Convolutional Neural Networks. Andrew Ng.">
+<meta property="article:published_time" content="2021-07-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:10:06.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/07/30/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E8%8A%82/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Convolutional Neural Networks. Part 1. | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/07/30/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E8%8A%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Convolutional Neural Networks. Part 1.
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-30T00:00:00+08:00">2021-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-27 16:10:06" itemprop="dateModified" datetime="2022-03-27T16:10:06+08:00">2022-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://cloudplayer.top/2021/07/30/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CAndrewNg/" target="_blank" rel="noopener">Convolutional Neural Networks. Andrew Ng.</a></p>
+<a id="more"></a>
+<hr>
+<h1>Convolutional Neural Networks. Part 1.</h1>
+<p>Part 1.<br>
+Convolutional Neural Networks. Yann LeCun interview.</p>
+<h2 id="Computer-vision"><a class="header-anchor" href="#Computer-vision">¶</a>Computer vision</h2>
+<h3 id="Deep-Learning-for-computer-vision"><a class="header-anchor" href="#Deep-Learning-for-computer-vision">¶</a>Deep Learning for computer vision</h3>
+<ul>
+<li>self-driving car</li>
+<li>face recognition</li>
+<li>show the most attractive or the most relevant pictures</li>
+<li>enable new types of art to be created</li>
+</ul>
+<h3 id="Computer-Vision-Problems"><a class="header-anchor" href="#Computer-Vision-Problems">¶</a>Computer Vision Problems</h3>
+<ul>
+<li>Image Classification</li>
+<li>Object detection</li>
+<li>Neural Style Transfer</li>
+</ul>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/002.png"/></div><br>
+<h3 id="Deep-Learning-on-large-images"><a class="header-anchor" href="#Deep-Learning-on-large-images">¶</a>Deep Learning on large images</h3>
+<p>standard or fully connected network : billions of parameters (<strong>very large</strong>)</p>
+<ul>
+<li>it is difficult to get enough data to prevent a neural network from <strong>overfitting</strong></li>
+<li>the computational requirements and the momory requirements to train a neural network with billions of parameters is just a bit infeasible</li>
+</ul>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/003.png"/></div><br>
+<p>For computer vision applications, you don’t want to be stuck using only tiny little images, you want to use large images. To do that, you need to better implement <strong>the convolution operation</strong>, which is one of the fundamental building blocks of convolutional neural networks.</p>
+<h2 id="Edge-detection-example"><a class="header-anchor" href="#Edge-detection-example">¶</a>Edge detection example</h2>
+<p>see how the convolution operation works</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/004.png"/></div><br>
+<p>Given a picture like that for a computer to figure out what are the objects in this picture, and the first thing you might do is maybe detect vertical edges and the horizontal edges in this image.</p>
+<h3 id="Vertical-edge-detection"><a class="header-anchor" href="#Vertical-edge-detection">¶</a>Vertical edge detection</h3>
+<p>How do you detect edges in image like this?</p>
+<p>Here is a 6 by 6 grayscale image.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/conv_0.PNG"/></div>
+<p>And this turns out to be a vertical edge detector.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/005.png"/></div><br>
+<p>Why is this doing vertical edge detection?</p>
+<p><strong>The lighter region right in the middle</strong> corresponds to this having detected this vertical edge down the middle of your 6 by 6 image.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/006.png"/></div><br>
+<p>In this example, <strong>this bright region</strong> in the middle is just the output images way of saying that it looks like there is a strong vertical edge right down the middle of the image.</p>
+<h2 id="More-edge-detection"><a class="header-anchor" href="#More-edge-detection">¶</a>More edge detection</h2>
+<p>the difference between <strong>positive and negative edges</strong><br>
+that is the difference between light to dark versus dark to light edge transitions</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/007.png"/></div><br>
+<p>If you don’t care which of these two cases it is, you could take absolute values of this output matrix.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/008.png"/></div><br>
+<ul>
+<li>sobel filter:<br>
+puts a little bit more weight to the central row<br>
+more robust</li>
+<li>scharr filter</li>
+</ul>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/009.png"/></div><br>
+<p>just learn them and treat the nine numbers of this matrix as parameters, then learn using <strong>back propagation</strong></p>
+<p>so just letting all of these numbers be parameters and learning them automatically from data, we find that neural networks can actually learn low level features such as edges, even more robustly than computer vision researchers are generally able to code up these things by hand.</p>
+<p>how to use padding as well as different strides for conv</p>
+<h2 id="Padding"><a class="header-anchor" href="#Padding">¶</a>Padding</h2>
+<p>In order to build deep neural networks one modification to the basic convolutional operation that you nend to really use is padding.</p>
+<p>n by n image / f by f filter<br>
+the dimension of the output will be (n-f+1) by (n-f+1)</p>
+<p>two downsides to this:</p>
+<ul>
+<li>getting small</li>
+<li>lost information near the edge of the image</li>
+</ul>
+<p>solution: <strong>pad the image</strong> using 0 before the convolution operation</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/010.png"/></div><br>
+<p>then the output becomes (n+2p-f+1) by (n+2p-f+1)<br>
+counting less the information from the edge of the corner or the edge of the image is reduced</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/011.png"/></div><br>
+<p>in CV, f is usually <strong>odd</strong>:</p>
+<ul>
+<li>gives a natural padding region</li>
+<li>nice to have a distinguisher (central position)</li>
+</ul>
+<p>recommend just use odd number filters</p>
+<h2 id="Strided-convolutions"><a class="header-anchor" href="#Strided-convolutions">¶</a>Strided convolutions</h2>
+<p>Strided convolutions is another piece of the basic buliding block of convolutions as used in Convolutional Neural Networks.</p>
+<p>We are going to do the Conv with a stride of two.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/012_1.png"/></div><br>
+<p>step over by two steps</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/013_1.png"/></div><br>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/014_1.png"/></div><br>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/015.png"/></div><br>
+<h2 id="cross-correlation-and-convolution"><a class="header-anchor" href="#cross-correlation-and-convolution">¶</a>cross-correlation and convolution</h2>
+<p>we’ve skipped the flipping operation.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/016.png"/></div><br>
+<p>Just to summarize, by convention in machine learning, we usually do not bother with this skipping operation, and technically, this operation is maybe better called <strong>cross-correlation</strong> but most of the deep learning literature just calls it the convolution operator.</p>
+<h2 id="Convolutions-over-volumes"><a class="header-anchor" href="#Convolutions-over-volumes">¶</a>Convolutions over volumes</h2>
+<p>You’ve seen how Conv over 2D images works. Now, let’s see how you can implement Conv over three dimensional volumes.</p>
+<p>Let’s start with an example.<br>
+Let’s say you want to detect features not just in a gray scale image, but in a RGB image.<br>
+Three here responds to the three color channels and you could think of this as a stack of three six by six images.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/017_1.png"/></div>
+<p>Let’s go through in detail how this works.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/018.png"/></div><br>
+<p>if you want to detect edges in the red channel of the image<br>
+you could set the first filter as a vertical edge detector, and have the green / blue channel be all zeros</p>
+<p>alternatively, if you don’t care what color the vertical edge is in<br>
+then you might have a filter that’s like the second one</p>
+<p>what if we don’t just wanted to detect vertical edges?<br>
+in other words, what if you want to <strong>use multiple filters at the same time</strong>?</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/019.png"/></div><br>
+<h2 id="One-layer-of-a-convolutional-network"><a class="header-anchor" href="#One-layer-of-a-convolutional-network">¶</a>One layer of a convolutional network</h2>
+<p>Get now ready to see how to build one layer of a convolutional network.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/conv_1.PNG"/></div>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/020.png"/></div><br>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/021.png"/></div><br>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/022.png"/></div><br>
+<p>The key point is just how one layer of how convolution neural network works.</p>
+<h2 id="A-simple-convolution-network-example"><a class="header-anchor" href="#A-simple-convolution-network-example">¶</a>A simple convolution network example</h2>
+<p>Now let’s go through a concrete example of a deep convolutional neural network.</p>
+<p>Let’s say you have an image, and you want to do image classification, or image recognition. And you want to take an image as input X, and decide this is a cat or not, so it’s a classification problem. Let’s build an example of a ConvNet you could use for this task.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/023.png"/></div><br>
+<p>A lot of the work in designing convolutional neural net is selecting hyperparameters like these, deciding what’s the total size? What’s the stride? What’s the padding and how many filters are used?</p>
+<h3 id="Types-of-layer-in-a-convolutional-network"><a class="header-anchor" href="#Types-of-layer-in-a-convolutional-network">¶</a>Types of layer in a convolutional network</h3>
+<ul>
+<li>Convolution ( <strong>CONV</strong> )</li>
+<li>Pooling ( <strong>POOL</strong> )</li>
+<li>Fully connected ( <strong>FC</strong> )</li>
+</ul>
+<p>Fortunately pooling layers and fully connected layers are a bit simpler than convolutional layers to define.</p>
+<h2 id="Pooling-layers"><a class="header-anchor" href="#Pooling-layers">¶</a>Pooling layers</h2>
+<p>Other than convolutional layers, ConvNets often also use pooling layers to reduce the size of the representation, to speed the computation, as well as make some of the features that detects a bit more robust.</p>
+<p>Let’s go through an example of pooling and talk about why you might want to do this.</p>
+<h3 id="Max-pooling"><a class="header-anchor" href="#Max-pooling">¶</a>Max pooling</h3>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/024.png"/></div><br>
+<p>Max Pooling : take the max over the region</p>
+<p>the reason people use max pooling:</p>
+<ul>
+<li>the intuition behind max pooling<br>
+if you think of this 4 by 4 region as some set of features, the activations in some layer of the neural network, then a large number means that it’s maybe detected a <strong>particular feature</strong>. if these features detected anywhere in this filter, then keep a high number. but if this feature is not detected, then the max of all those numbers is still itself quite small.</li>
+<li>it’s been found in a lot of experiments to work well<br>
+maybe this is the main reason</li>
+</ul>
+<p>Max pooling has a set of hyperparameters but it has no parameters to learn. Just a fixed computation.</p>
+<p>an example with some different hyperparameters</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/025.png"/></div><br>
+<p>The max pooling computation is done <strong>independently</strong> on each of these Nc channels.<br>
+(different from the convolution operation)</p>
+<h3 id="Average-pooling"><a class="header-anchor" href="#Average-pooling">¶</a>Average pooling</h3>
+<p>mention briefly : average pooling</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/026.png"/></div><br>
+<p>As a matter of fact, max pooling used much more in the neural network than average pooling.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/027.png"/></div><br>
+<p>common chosen hyperparameters:</p>
+<ul>
+<li>f = 2, s = 2<br>
+this has the effect of shrinking the height and width of the representation by a factor of two</li>
+<li>f = 3, s = 2</li>
+</ul>
+<p>when you do max pooling, usually, you do not use any padding. (One exception)</p>
+<h2 id="Convolutional-neural-network-example"><a class="header-anchor" href="#Convolutional-neural-network-example">¶</a>Convolutional neural network example</h2>
+<p>You now know pretty much all the building blocks of building a full convolutional neural network.<br>
+Let’s look an example.</p>
+<p>Let’s say you’re inputting an image which is 32 by 32 by 3, so it’s an RGB image and maybe you’re trying to do handwritten digit recognition. Let’s throw the neural network to do this.</p>
+<p>What I’m going to use in this slide is inspired, it’s actually quite similar to one of the classic neural networks called <strong>LeNet-5</strong>, which is created by Yann LeCun many years ago.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/028.png"/></div><br>
+<p>When people report the number of layers in a neural network usually people just record the number of layers that have weight, that have parameters. The pooling layer only have a few hyperparameters, so I’m going to treat that as Layer 1.</p>
+<p>The fully connected layer is just like the single neural network layer.</p>
+<p>how to choose these types of hyperparameters?<br>
+One common guideline is to actually not try to invent your own settings of hyperparameters, but to look in the literature to see what hyperparameters you work for others. And to just choose an architecture that has worked well for someone else, and there’s a chance that will work for your application as well.</p>
+<p>some more details</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/029.png"/></div><br>
+<p>Notice:</p>
+<ul>
+<li>The max pooling layers don’t have any parameters.</li>
+<li>The conv layers tend to have relatively few parameters.</li>
+<li>The activation size tends to maybe go down gradually as you go deeper in the neural network. if it drops too quickly, that’s usually not great for performance as well.</li>
+<li>CONV1 have 8 filters, so #parameters = (5 * 5 + 1) * 8 = 208<br>
+CONV2 have 16 filters, so #parameters = (5 * 5 + 1) * 16 = 416<br>
+FC3 #parameters = 400 * 120 + 1 = 48001<br>
+FC4 #parameters = 120 * 84 + 1 = 10081</li>
+</ul>
+<p>a lot of onvolutional neural networks have properies or have patterns similar to these.</p>
+<h2 id="Why-convolutions"><a class="header-anchor" href="#Why-convolutions">¶</a>Why convolutions?</h2>
+<ul>
+<li>why convolutions are so useful when you include them in your neural networks</li>
+<li>how to put convolutions and neural networks together or say how to train a convolutional neural network when you have a label training set</li>
+</ul>
+<p>There are two main advantages of convolutional layers over just using fully connected layers and the advantages are parameter sharing and sparsity of connections.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/030.png"/></div><br>
+<p>convolutional layers : small parameters : parameter sharing and sparsity of connections</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/031.png"/></div><br>
+<p>how to train:<br>
+use gradient descent or other algorithm to optimize parameters to reduce the cost function</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/032.png"/></div><br>
+<h2 id="Yann-LeCun-interview"><a class="header-anchor" href="#Yann-LeCun-interview">¶</a>Yann LeCun interview</h2>
+<p>Part of the interview</p>
+<p>Andrew Ng : What advice do you have for someone wanting to get involved in the AI, break into AI?</p>
+<p>Yann LeCun : Hhh, I mean, it’s such a different world now, than when it was when I got started. But I think what’s great now is it’s very easy for people to get involved at some level, the tools that are available are so easy to use now, in terms of whatever. You can have a run through on the cheap computer in your bedroom, and basically train your conventional net or your current net to do whatever, and there’s a lot of tools. You can learn a lot from online material about this without… it’s not very onerous. So you see high school students now playing with this right? Which is kind of great, I think and they certainly are growing interest from the student population to learn about machine learning and AI and it’s very exciting for young people and I find that wonderful I think. So my advice is, if you want to get into this, make yourself useful. So make a contribution to an open source project, for example. Or make an implementation of some standard algorithm that you can’t find the code of online, but you’d like to make it available to other people. So take a paper that you think is important, and then reimplementation the algorithm, and, then put it open source package, or contribute to one of those open source packages. And if the stuff you write is interesting and useful, you’ll get noticed. Maybe you’ll get a nice job at a company you really wanted a job at, or maybe you’ll get accepted in your favorite PhD program or things like this. So I think that’s a good way to get started.</p>
+<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_CNN/033.png"/></div><br>
+<hr>
+<h2 id="传送门"><a class="header-anchor" href="#传送门">¶</a>传送门</h2>
+<p><a href="https://www.bilibili.com/video/BV1e54y1b7uk?p=1" target="_blank" rel="noopener">(强推)2021吴恩达深度学习-卷积神经网络</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/07/30/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E8%8A%82/" title="Convolutional Neural Networks. Part 1.">https://cloudplayer99.github.io/2021/07/30/卷积神经网络第一节/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+              <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/01/RS232%E9%80%9A%E8%BF%87modbus%E5%8D%8F%E8%AE%AE%E9%80%9A%E4%BF%A1/" rel="prev" title="RS232通过modbus协议通信">
+      <i class="fa fa-chevron-left"></i> RS232通过modbus协议通信
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/30/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%BA%8C%E8%8A%82/" rel="next" title="Convolutional Neural Networks. Part 2.">
+      Convolutional Neural Networks. Part 2. <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Convolutional Neural Networks. Part 1.</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Computer-vision"><span class="nav-number">1.1.</span> <span class="nav-text">Computer vision</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Learning-for-computer-vision"><span class="nav-number">1.1.1.</span> <span class="nav-text">Deep Learning for computer vision</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Computer-Vision-Problems"><span class="nav-number">1.1.2.</span> <span class="nav-text">Computer Vision Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Learning-on-large-images"><span class="nav-number">1.1.3.</span> <span class="nav-text">Deep Learning on large images</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edge-detection-example"><span class="nav-number">1.2.</span> <span class="nav-text">Edge detection example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vertical-edge-detection"><span class="nav-number">1.2.1.</span> <span class="nav-text">Vertical edge detection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-edge-detection"><span class="nav-number">1.3.</span> <span class="nav-text">More edge detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Padding"><span class="nav-number">1.4.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strided-convolutions"><span class="nav-number">1.5.</span> <span class="nav-text">Strided convolutions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cross-correlation-and-convolution"><span class="nav-number">1.6.</span> <span class="nav-text">cross-correlation and convolution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutions-over-volumes"><span class="nav-number">1.7.</span> <span class="nav-text">Convolutions over volumes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-layer-of-a-convolutional-network"><span class="nav-number">1.8.</span> <span class="nav-text">One layer of a convolutional network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-simple-convolution-network-example"><span class="nav-number">1.9.</span> <span class="nav-text">A simple convolution network example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Types-of-layer-in-a-convolutional-network"><span class="nav-number">1.9.1.</span> <span class="nav-text">Types of layer in a convolutional network</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pooling-layers"><span class="nav-number">1.10.</span> <span class="nav-text">Pooling layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Max-pooling"><span class="nav-number">1.10.1.</span> <span class="nav-text">Max pooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Average-pooling"><span class="nav-number">1.10.2.</span> <span class="nav-text">Average pooling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-neural-network-example"><span class="nav-number">1.11.</span> <span class="nav-text">Convolutional neural network example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-convolutions"><span class="nav-number">1.12.</span> <span class="nav-text">Why convolutions?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yann-LeCun-interview"><span class="nav-number">1.13.</span> <span class="nav-text">Yann LeCun interview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传送门"><span class="nav-number">1.14.</span> <span class="nav-text">传送门</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/07/30/卷积神经网络第一节/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

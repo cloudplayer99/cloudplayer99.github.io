@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本学期机器学习课程知识点总结，持续更新中… 由于是双语课所以总结尽量也保持双语…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习知识点总结">
+<meta property="og:url" content="https://cloudplayer99.github.io/2021/02/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="本学期机器学习课程知识点总结，持续更新中… 由于是双语课所以总结尽量也保持双语…">
+<meta property="article:published_time" content="2021-02-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-05-08T14:21:38.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2021/02/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>机器学习知识点总结 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2021/02/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习知识点总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-26T00:00:00+08:00">2021-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-08 22:21:38" itemprop="dateModified" datetime="2021-05-08T22:21:38+08:00">2021-05-08</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本学期机器学习课程知识点总结，持续更新中…<br>
+由于是双语课所以总结尽量也保持双语…</p>
+<a id="more"></a>
+<h2 id="引言"><a class="header-anchor" href="#引言">¶</a>引言</h2>
+<p>机器学习（Machine Learning）致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。</p>
+<h3 id="机器学习的定义"><a class="header-anchor" href="#机器学习的定义">¶</a>机器学习的定义</h3>
+<p>“The field of study that gives computers the ability to learn without being explicitly programmed.” in 1959 by Arthur Samuel.</p>
+<p>旧的定义：不显式编程地赋予计算机能力的研究领域。</p>
+<p>“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance as tasks in T, as measured by P, improves with experience E.” in 1997 by Tom Mitchell.</p>
+<p>新的定义：一个程序的对某些任务 T 的表现 P 会随着相关的经验 E 的增加而变好。</p>
+<h3 id="几种机器学习类型与基本术语"><a class="header-anchor" href="#几种机器学习类型与基本术语">¶</a>几种机器学习类型与基本术语</h3>
+<p><strong>监督学习</strong>：可以由训练资料中学到或建立一个模式（函数 / learning model），并依此模式推测新的实例。训练资料是由输入物件（通常是向量）和预期输出所组成。函数的输出可以是一个连续的值（称为回归分析 regression analysis），或是预测一个分类标签（称作分类 classification）。</p>
+<p><strong>无监督学习</strong>：没有给定事先标记过的训练示例，自动对输入的资料进行分类或分群，主要运用包含：聚类分析（cluster analysis）、关系规则（association rule）、维度缩减（dimensionality reduce）。</p>
+<p><strong>强化学习</strong>：强调如何基于环境而行动，以取得最大化的预期利益。</p>
+<p>在复习前应理解的基本术语：</p>
+<p>数据集（data set）样本（sample）特征（feature）标记（label）<br>
+维数（dimensionality）训练集（training set）测试集（test set）参数（parameter）<br>
+假设（hypothesis）预测（prediction）簇（cluster）分布（distribution）<br>
+独立同分布（i.i.d.）泛化（generalization）过拟合（overfitting）<br>
+欠拟合（underfitting）错误率（error rate）精度（accuracy）…</p>
+<h2 id="监督学习-Supervised-Learning"><a class="header-anchor" href="#监督学习-Supervised-Learning">¶</a>监督学习 (Supervised Learning)</h2>
+<h3 id="分类与回归（Classification-and-Regression）"><a class="header-anchor" href="#分类与回归（Classification-and-Regression）">¶</a>分类与回归（Classification and Regression）</h3>
+<p>Fundamentally, classification is about predicting a label and regression is about predicting a quantity.</p>
+<p>分类预测的是离散值，而回归预测的是连续值。</p>
+<h3 id="K-最邻近分类器（K-Nearest-Neighbors-Classifier）"><a class="header-anchor" href="#K-最邻近分类器（K-Nearest-Neighbors-Classifier）">¶</a>K 最邻近分类器（K-Nearest Neighbors Classifier）</h3>
+<h4 id="核心思想"><a class="header-anchor" href="#核心思想">¶</a>核心思想</h4>
+<p>The KNN algorithm assumes that similar things exist in close proximity. In other words, similar things are near to each other. It can be used to solve both classification and regression problems. However, it is more widely used in classification problems in the industry.</p>
+<p>KNN 算法的核心思想是，假设相似的事物在很近的距离内存在，也就是说，相似的事物距离对方很近。KNN 算法既可以解决分类问题也可以解决回归问题，但是我们还是倾向于用它解决回归问题，这大概就是它也被称作 $K$ 最邻近分类器的原因吧。</p>
+<h4 id="算法步骤"><a class="header-anchor" href="#算法步骤">¶</a>算法步骤</h4>
+<p>Step 1: Calculate Similarity based on distance function<br>
+Step 2 : Find K-Nearest Neighbors</p>
+<p>(1) 导入一组测试数据；<br>
+(2) 计算这组数据与训练集中的所有元素的距离（一般为欧氏距离）；<br>
+(3) 对所有计算出的距离进行排序，选择距离测试数据最小的 $K$ 个训练集样本；<br>
+(4) 对 $K$ 个样本所属的类别进行统计，将测试样本点分到在 $K$ 个训练集样本点中占比最高的那个类别去。</p>
+<h4 id="关键点"><a class="header-anchor" href="#关键点">¶</a>关键点</h4>
+<ul>
+<li>Key component of the KNN algorithm
+<ul>
+<li>Distance measures</li>
+<li>Value of $K$</li>
+</ul>
+</li>
+</ul>
+<p>实现 KNN 算法的关键之一是搞清楚怎样定义两个对象的距离，常用的距离函数有欧氏距离（Euclidean distance）、曼哈顿距离（Manhattan Distance）等。</p>
+<ul>
+<li><strong>Euclidean distance</strong></li>
+</ul>
+$$
+\begin{array}{lcl}
+d(p, q) = d(q, p)
+& = & \sqrt{(q_1 - p_1)^2 + (q_2 - p_2)^2 + \cdots + (q_n - p_n)^2}\\
+& = & \sqrt{\sum\limits^{n}_{i=1} (q_i - p_i)^2}.
+\end{array}
+$$
+<ul>
+<li><strong>Manhattan Distance</strong></li>
+</ul>
+$$ d_{12} = \sum^{n}_{k=1} \big|x_{1k} - x_{2k} \big|$$
+<blockquote>
+<p>实现 KNN 算法的关键之二是选择一个合适的 $k$ 值。为了这个目标，我们可以留出一部分训练数据来进行检验，不断改变 $k$ 的值，使得检验的结果最接近实际结果，选择泛化能力最强时的 $k$ 值作为算法使用的 $k$ 值，具体可见下面介绍的评估方法。</p>
+</blockquote>
+<ul>
+<li>Selecting the value of $k$
+<ul>
+<li>set aside a portion of the training data(validation set)</li>
+<li>vary $k$, observe training-&gt;validation error</li>
+<li>pick $k$ that gives best generalization performance</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>实践经验告诉我们，$k$ 应该要足够大，这样才能保证错误率最小，$k$ 如果太小会导致决策边界出现噪声，但是，$k$ 也应该要足够小，这样才能保证只有与测试数据真正邻近的训练集样本才会被选择到 $k$ 个邻居中来，$k$ 如果太大会导致决策边界过度平滑。</p>
+</blockquote>
+<ul>
+<li>In practice
+<ul>
+<li>$K$ should be large so that error rate is minimized
+<ul>
+<li>$K$ too small will lead to noisy decision boundaries.</li>
+</ul>
+</li>
+<li>$K$ should be small enough so that only nearby samples are included
+<ul>
+<li>$K$ too large will lead to over-smoothed boundaries</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="评估方法"><a class="header-anchor" href="#评估方法">¶</a>评估方法</h4>
+<p>可以通过实验测试的评估方法来对学习器的泛化误差进行评估并进而做出选择，这里介绍 <strong>交叉检验法</strong>（cross validation）。</p>
+<p>交叉检验法（又叫：$k$ 折交叉验证 $k$-fold cross validation）先将数据集 $D$ 划分为 $k$ 个大小相似的互斥子集，即 $D = D_1 \cup D_2 \cup \dots \cup D_k, D_i \cap D_j = \varnothing(i \neq j)$ ，每个子集 $D_i$ 都尽可能保持数据分布的一致性。然后每次用 $k-1$ 个子集的并集作为训练集，余下的那个子集作为测试集，最终返回 $k$ 次测试的结果的均值作为评估的依据。$k$ 的取值又在很大程度上影响着评估结果。</p>
+<p>另外，如果让 $k = m$，$m$ 为数据集 $D$ 中的样本数，就得到留一法（Leave-One-Out, 简称 LOO）。</p>
+<h3 id="线性模型（Linear-Models）"><a class="header-anchor" href="#线性模型（Linear-Models）">¶</a>线性模型（Linear Models）</h3>
+<p>Linear Model make a prediction by using a linear function of the input features.</p>
+<p>线性模型用输入特征的线性函数来做预测。</p>
+<h4 id="线性回归（Linear-Regression）"><a class="header-anchor" href="#线性回归（Linear-Regression）">¶</a>线性回归（Linear Regression）</h4>
+<p>For one feature the prediction is a line, for two features — plane, for more dimensions — hyperplane.</p>
+<p>在线性回归中，给定若干个点 $X \in \mathbb{R}^n$，要求尽可能地拟合出一个 $n-1$ 维的超平面，即当 $X \in \mathbb{R}^2$ 时，就是在平面直角坐标系上给出很多个点，要求拟合一条直线经过这些点，这里与之后的 $n$ 都为 features 的数量。</p>
+<p>The Linear function(hypothesis)</p>
+$$h(x)= \theta_0 x_0 + \theta_1 x_1 + \cdots + \theta_{n-1} x_{n-1} = \sum^{n-1}_{j=0}\theta_j x_j ~~~~\text{where} ~~ x_0 = 1.$$
+<p>我们的算法的任务就是要找到所有的参数 $\theta$，用矩阵表示为 $\theta = \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_j \\ \end{bmatrix} $，来构建这样一个线性模型 $h_\theta(x)$ 或者简写为 $h(x)$，使得我们能够对 input X 来较为准确地预测出 output Y。即</p>
+<p>$$\text{choose } \theta \text{ such that } h(x) \text{ is close to } y \text{ for the training examples.}\tag{1}$$</p>
+<br>
+<p>A line, or say a hyperplane that fits the data “best” will be one for which the n prediction errors — one for each observed data point — are as small as possible in some overall sense. One way to achieve this goal is to invoke the “least squares criterion,” which says to “minimize the sum of the squared prediction errors.”</p>
+<p>怎样说 $h(x)$-预测值 是足够接近 $y$-真实值 呢？这里关键在于如何衡量 $h(x)$ 与 $y$ 的差别，我们了解到，均方误差是回归任务中最常用的性能度量，均方误差有着非常好的几何意义，它其实就对应了之前在 KNN 算法中用到的 Euclidean distance（欧氏距离）。于是我们得到了基于均方误差最小化来进行模型求解的 <strong>最小二乘法</strong>（least square method），在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到直线上的欧氏距离之和最小。</p>
+<p>于是将任务(1)具体为任务(2)</p>
+$$\text{choose values of}~~\theta~~\text{that minimizes }\sum^{m}_{i=1}(h_\theta(x^{(i)}) - y^{(i)})^2. \tag{2}$$
+<p>这时候我们就地定义一个代价函数，只是在前边拼上一个 $\dfrac{1}{2}$，</p>
+$$J(\theta) = \dfrac{1}{2}\sum^{m}_{i=1}(h_\theta(x^{(i)}) - y^{(i)})^2.$$
+<p>然后有两种方法使我们能够找到一个合适的 $\theta$ 使得代价函数最小，一种是 <strong>梯度下降法</strong>（Gradient Descent），一种是求最小二乘法估计的 <strong>正规方程</strong>（Normal Equation）。</p>
+<p>梯度下降法，顾名思义，用下式进行参数 $\theta$ 的迭代，直至收敛</p>
+$$\theta_j := \theta_j - \alpha \dfrac{\partial}{\partial \theta_j}J(\theta).$$
+<p>其中，$\alpha$ 为学习率，一般在实践中根据情况设定。</p>
+<p>这个式子可以放心地使用，在线性回归中它不会求出来个局部最优解。上式涉及到对代价函数求偏导，可以利用和的导数即为导数之和的性质，先对个体求偏导再求和，将偏导数带入上式得</p>
+$$\theta_j := \theta_j - \alpha\sum^{m}_{i=1}(h_{\theta}(x^{(i)}) - y^{(i)}) x_j^{(i)}.$$
+<p>最终我们得到 <strong>批量梯度下降</strong>（Batch Gradient Descent）的方法：</p>
+$~~~~~~~~\text{Repeat until convergence }\{$
+$~~~~~~~~ ~~~~~~~~\theta_j := \theta_j + \alpha\sum^{m}_{i=1}(y^{(i)}-h_{\theta}(x^{(i)})) x_j^{(i)}~~~~~~~~(\text{for every }j)\\$
+$~~~~~~~~ \}$
+<br>
+<br>
+<p>接着介绍求最小二乘法估计的正规方程，将代价函数整理为矩阵的形式，并对代价函数求导，令导数为 $0$，可以得到</p>
+$$
+\dfrac{\partial J(\theta)}{\partial \theta} = \dfrac{\partial }{\partial \theta}\dfrac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y}) = 0
+$$
+<p>方程化简</p>
+$$X^T X \theta = X^T \vec{y}$$
+<p>于是我们得到了最小化 $J(\theta)$ 的 $\theta$ 最优解的闭式解</p>
+$$\theta = (X^T X)^{-1} X^T \vec{y}$$
+<h4 id="逻辑回归（Logistic-Regression）"><a class="header-anchor" href="#逻辑回归（Logistic-Regression）">¶</a>逻辑回归（Logistic Regression）</h4>
+<p>Logistic Regression is used when the dependent variable(target) is categorical.</p>
+<p>Data is fit into linear regression model, which then be acted upon by a logistic function predicting the target categorical dependent variable.</p>
+<p>当因变量(目标)是分类变量时，可以使用逻辑回归来进行分类。</p>
+<p>考虑一个二分类问题，其输出标记 $y \in \{0, 1\}$，线性回归模型产生的预测值是一个实值，我们需要一个单调可微函数将实值转换为 0/1 值，最理想的单位阶跃函数是不连续的，我们一般用 <strong>对数几率函数</strong>（logistic function）来替代它，即</p>
+$$\text{sigmoid}(z) = \dfrac{1}{1 + e^{-z}}.$$
+<p>于是我们将 hypotheses $h_\theta(x)$ 变为以下形式</p>
+$$h_\theta(x) = g(\theta^T x) = \dfrac{1}{1 + e^{-\theta^T x}},$$
+<p>并假设</p>
+$$P(y=1~|~x; \theta) = h_\theta(x),$$
+$$P(y=0~|~x; \theta) = 1 - h_\theta(x).$$
+<p>上面两式可合并写为</p>
+$$P(y~|~x; \theta) = (h_\theta(x))^y (1 - h_\theta(x))^{1-y}.$$
+<p>假设训练样本是独立地生成的，我们可以用 <strong>最大似然估计</strong>（maximum likelihood estimation, MLE）的方法来估计 $\theta$，其似然函数为</p>
+$$
+\begin{array}{lcl}
+\mathscr{L}(\theta)
+& = & p(\vec{y}~|~X; \theta)\\
+& = & \prod\limits^{m}_{i=1} p(y^{(i)}~|~x^{(i)}; \theta)\\
+& = & \prod\limits^{m}_{i=1} \big(h_\theta(x^{(i)})\big)^{y^{(i)}} \big(1 - h_\theta(x^{(i)})\big)^{1-y^{(i)}}.
+\end{array}
+$$
+<p>对似然函数两边取对数有</p>
+$$
+\begin{array}{lcl}
+ℓ(\theta)
+& = & \log \mathscr{L}(\theta)\\
+& = & \sum\limits^{m}_{i=1} y^{(i)} \log h(x^{(i)}) + (1 - y^{(i)}) \log (1 - h(x^{(i)}))
+\end{array}
+$$
+<p>最大化 $ℓ(\theta)$ 等价于最小化 $-ℓ(\theta)$，可以使用经典的数值优化算法如梯度下降法（gradient descent）或者牛顿法（Newton method），来求得其最优解，这里以梯度下降法为例，其迭代公式为</p>
+$$\theta := \theta - \alpha \nabla_\thetaℓ(\theta).$$
+<p>化简得</p>
+$$\theta := \theta - \alpha \big(y^{(i)} - h_\theta(x^{(i)}) \big)x_j^{(i)}$$
+<h3 id="朴素贝叶斯分类器（Naive-Bayes-Classifiers"><a class="header-anchor" href="#朴素贝叶斯分类器（Naive-Bayes-Classifiers">¶</a>朴素贝叶斯分类器（Naïve Bayes Classifiers)</h3>
+<h4 id="贝叶斯准则（Bayes-Rule）"><a class="header-anchor" href="#贝叶斯准则（Bayes-Rule）">¶</a>贝叶斯准则（Bayes Rule）</h4>
+<p>贝叶斯准则是关于随机事件 $A$ 和 $B$ 的条件概率和边缘概率的。</p>
+<p>设 $A_1, A_2, \cdots, A_n$ 是一组互不相容的事件，形成样本空间的一个分割（每一个试验结果必定使得其中一个事件发生）。又假定对每一个 $i$，$P(A_i) &gt; 0$，即 $A_1, A_2, \cdots, A_n$ 为完备事件组，满足 $\cup^{n}_{i=1} A_i = \Omega$，$A_iA_j = \varnothing$，$P(A_i) &gt; 0$。则对于任何事件 $B$，只要它满足 $P(B) &gt; 0$，下列公式成立</p>
+$$
+\begin{array}{lcl}
+P(A_i | B)
+& = & \dfrac{P(B | A_i) P(A_i)}{P(B)} \\
+& = & \dfrac{P(B | A_i) P(A_i)}{P(B | A_1)P(A_1) + \cdots + P(B | A_n)P(A_n)}\\
+& = & \dfrac{P(B | A_i) P(A_i)}{\sum^{}_{j} P(B | A_j)P(A_j)}
+\end{array}
+$$
+<p>$P(A_i)$ : independent probability of $A_i$ : prior probability（先验概率）<br>
+$P(B)$ : independent probability of $B$<br>
+$P(B|A_i)$ : conditional probability of $B$ given $A_i$ : likelihood<br>
+$P(A_i|B)$ : cond. probability of $A_i$ given $B$ : posterior probability（后验概率）</p>
+<p>使用贝叶斯概率术语，上面的方程可以写成如下形式</p>
+$$\text{posterior} = \dfrac{\text{prior} \times \text{likelihood}}{\text{evidence}}$$
+<h4 id="朴素贝叶斯（naive-Bayes）"><a class="header-anchor" href="#朴素贝叶斯（naive-Bayes）">¶</a>朴素贝叶斯（naive Bayes）</h4>
+<p>朴素贝叶斯分类（NBC）是以贝叶斯定理为基础并且假设特征条件之间相互独立的方法，先通过已给定的训练集，以特征词之间独立作为前提假设，学习从输入到输出的联合概率分布，再基于学习到的模型，输入 $X$ 求出使得后验概率最大的输出 $Y$ 。</p>
+<p>Abstractly, naive Bayes is a conditional probability model: given a problem instance to be classified, represented by a vector $\mathbf x = (x_1, \dots, x_n)$ representing some $n$ features (independent variables), it assigns to this instance probabilities</p>
+$$p(C_k~|~x_1, \dots, x_n)$$
+<p>for each of $K$ possible outcomes or classes $C_k$.</p>
+<p>In practice, there is interest only in the numerator of that fraction, because the denominator does not depend on $C$ and the values of the features $x_i$ are given, so that the denominator is effectively constant. The numerator is equivalent to the joint probability model（分母实际上是常数。分子等价于联合概率模型）</p>
+$$p(C_k, x_1, \dots, x_n)$$
+<p>which can be rewritten as follows, using the chain rule for repeated applications of the definition of conditional probability（应用条件概率的链式法则）:</p>
+$$
+\begin{array}{lcl}
+& & p(C_k, x_1, \dots, x_n) \\
+& = & p(x_1, \dots, x_n, C_k) \\
+& = & p(x_1~|~x_2, \dots, x_n, C_k)p(x_2, \dots, x_n, C_k) \\
+& = & p(x_1~|~x_2, \dots, x_n, C_k)p(x_2~|~x_3, \dots, x_n, C_k)p(x_3, \dots, x_n, C_k) \\
+& = & \dots \\
+& = & p(x_1~|~x_2, \dots, x_n, C_k) \dots p(x_{n-1}~|~x_n, C_k)p(x_n~|~C_k)p(C_k)
+\end{array}
+$$
+<blockquote>
+<p>这里对上面的过程做一些解释：<br>
+对 $p(C_k~|~x_1, \dots, x_n)$ 应用贝叶斯公式，由于特征值 $x_i$ 是给出的，且分母与 $C_k$ 无关，所以分母 $p(x_1, \dots, x_n)$ 实际上是常数，而分子 $p(x_1, \dots, x_n | C_k) p(C_k)$ 等价于联合概率模型。那么实际上就有：</p>
+$$p(C_k~|~x_1, \dots, x_n) = \dfrac{p(x_1, \dots, x_n | C_k) p(C_k)}{p(x_1, \dots, x_n)} \propto p(C_k, x_1, \dots, x_n)$$
+</blockquote>
+<br>
+<p>Now the “naive” conditional independence assumptions come into play: assume that each feature $x_i$ is conditionally independent of every other feature $x_j$ for $j \neq i$, given the category $C_k$. This means that</p>
+$$p(x_i~|~x_{i+1}, \dots, x_n, C_k) = p(x_i~|~C_k)$$
+<blockquote>
+<p>基于有限训练样本直接估计联合概率，在计算上将会遭遇组合爆炸问题，在数据上将会遭遇样本稀疏问题；属性数越多，问题越严重。为了避开这个障碍，naive Bayes 采用了 “<strong>属性条件独立性假设</strong>”（attribute conditional independence assumption）：对已知类别，假设所有属性相互独立。换言之，假设每个属性独立地对分类结果发生影响。</p>
+</blockquote>
+<br>
+<p>Thus, the joint model can be expressed as</p>
+$$
+\begin{array}{lcl}
+p(C_k~|~x_1, \dots, x_n)
+& \propto & p(C_k, x_1, \dots, x_n)\\
+& = & p(C_k)p(x_1~|~C_k)p(x_2~|~C_k)p(x_3~|~C_k)\cdots\\
+& = & p(C_k)\prod\limits^{n}_{i=1}p(x_i~|~C_k),
+\end{array}
+$$
+<p>where $\propto$ denotes proportionality.</p>
+<p>The discussion so far has derived the independent feature model, that is, the naive Bayes probability model（朴素贝叶斯概率模型）. The naive Bayes classifier combines this model with a decision rule. One common rule is to pick the hypothesis that is most probable（常见的规则是选择最有可能的假设）; this is known as the maximum a posteriori（<strong>最大后验概率</strong>） or MAP decision rule. The corresponding classifier, a Bayes classifier, is the function that assigns a class label $\widehat y = C_k$ for some $k$ as follows:</p>
+$$
+\widehat y = \mathop{\arg\max}_{k \in \{ 1, \dots, K \}} p(C_k)\prod^{n}_{i=1}p(x_i~|~C_k)
+$$
+<blockquote>
+<p>$\mathop{\arg\max}$ 函数</p>
+$$
+\mathop{\arg\max}_{}f(x) := \{ x~|~x \in S \land \forall y \in S : f(y) \le f(x) \}
+$$
+<p>对一个函数 $f(x)$ 或一个映射 $f:X \rightarrow Y$，当 $x$ 取值范围为 $S$ 的时候（也叫 $x \in S$ ），$\mathop{\arg\max}$ 的结果是使得 $f(x)$ 取得最大值的 $x$ 点集。</p>
+</blockquote>
+<br>
+<p>$p(C_k)$ 是好求的，当属性或者说特征为离散值时，$p(x_i~|~C_k)$ 亦不难求得，而当其为连续值时，则需考虑其概率密度函数，假定 $p(x_i~|~C_k) \sim \mathcal{N}(\mu_{C_k, i}, \sigma^2_{C_k, i})$，其中 $\mu_{C_k, i}, \sigma^2_{C_k, i}$ 分别是第 $k$ 类样本在第 $i$ 个属性上取值的均值和方差，则有</p>
+$$p(x_i~|~C_k) = \dfrac{1}{\sqrt{2\pi}\sigma_{C_k, i}}\exp\Big( -\dfrac{(x_i - \mu_{C_k, i})^2}{2\sigma^2_{C_k, i}} \Big)$$
+<h4 id="拉普拉斯平滑（Laplace-smoothing）"><a class="header-anchor" href="#拉普拉斯平滑（Laplace-smoothing）">¶</a>拉普拉斯平滑（Laplace smoothing）</h4>
+<p>如果某个属性上的概率为 $0$，该样本的其他属性携带的信息将会被抹去，产生零概率问题，为了避免这种情况，在估计概率值时可进行 <strong>拉普拉斯平滑</strong>，修正后的公式为：</p>
+$$\widehat P(C_k)=\dfrac{|D_{C_k}|+1}{|D|+N},~~~~\widehat P(x_i~|~C_k) = \dfrac{|D_{C_k, x_i}|+1}{|D_{C_k}|+N_i}$$
+<p>其中，$N$ 表示训练集 $D$ 中可能的类别数，$N_i$ 表示第 $i$ 个属性可能的取值数。</p>
+<h3 id="决策树（Decision-Trees）"><a class="header-anchor" href="#决策树（Decision-Trees）">¶</a>决策树（Decision Trees）</h3>
+<p>Decision tree is a hierarchical tree structure that used to classify classes based on a series of questions (or rules) about the attributes of the class. In short, given a data of attributes together with its classes, a decision tree produces a sequence of rules (or series of questions) that can be used to recognize the class.</p>
+<p>决策树是一种分层的树结构，它用于根据一系列关于类属性的问题或是规则来进行分类的问题。简而言之，给定一个包含一些属性及其所属类别的数据，决策树会产生一系列规则(或一系列问题)，这些规则可用于识别该类。</p>
+<blockquote>
+<p>一颗决策树包含一个根节点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集，从根结点到每个叶子结点的路径对应了一个判定测试序列。</p>
+</blockquote>
+<p>决策树的基本特点：贪婪（greedy）、自顶向下（top-down）、递归（recursive）。</p>
+<h4 id="基本流程"><a class="header-anchor" href="#基本流程">¶</a>基本流程</h4>
+<p>决策树学习的关键在于如何选择最优的划分属性，所谓的最优划分属性，对于二元分类而言，就是尽量使划分的样本属于同一类别，即“纯度”最高的属性。那么如何来度量特征（features）的纯度，这时候就要用到 <strong>信息熵</strong>（information entropy），</p>
+$$H(x) = -\sum^{n}_{i=0}P(x_i)\log_bP(x_i)$$
+<p>其中，$n$ 为类别的总数，一般取 $b=2$，此时 $H(x)$ 的单位为 $\text{bits}$ 。</p>
+<p>信息熵可以衡量一个数据集的信息“纯度”。信息越纯，熵就越低；信息越混杂，熵就越高。</p>
+<p>再定义 <strong>信息增益</strong>（information gain）来表示纯度的提升，</p>
+$$\text{Information gain}(i) = \text{Entropy of parent table}~D~-\text{Sum}(\dfrac{n_k}{n} \cdot\\ \text{Entropy of each value}~k~\text{of subset table }S_i).$$
+<p>即父亲节点的信息熵减去子节点上样本熵的加权平均数。在 ID3 算法中，通过测量各种切分方案的信息增益，选择具有最大信息增益的切分方式，即可确定决策树上这一个父亲节点的切分。</p>
+<h4 id="基尼系数（Gini-index）"><a class="header-anchor" href="#基尼系数（Gini-index）">¶</a>基尼系数（Gini index）</h4>
+<h4 id="剪枝处理（pruning）"><a class="header-anchor" href="#剪枝处理（pruning）">¶</a>剪枝处理（pruning）</h4>
+<h3 id="支持向量机（Support-Vector-Machines）"><a class="header-anchor" href="#支持向量机（Support-Vector-Machines）">¶</a>支持向量机（Support Vector Machines）</h3>
+<h3 id="神经网络（Neural-Networks）"><a class="header-anchor" href="#神经网络（Neural-Networks）">¶</a>神经网络（Neural Networks）</h3>
+<p>人工神经网络<br>
+前馈神经网络<br>
+BP 神经网络<br>
+卷积神经网络CNN<br>
+循环神经网络RNN</p>
+<hr>
+<p>以上的总结中有的来自下面的书籍或文章：</p>
+<p>[1] 机器学习 / 周志华著. 北京：清华大学出版社，2016<br>
+[2] 概率导论 /（美）伯特瑟卡斯（Dimitri P．Bertsekas）、齐齐克利斯（John N．Tsitsiklis）著，郑忠国、童行伟译<br>
+[3] CS229 Lecture notes / Andrew Ng<br>
+[4] <a href="https://www.ruanx.net/ml-review/" target="_blank" rel="noopener">机器学习复习笔记</a> / Ruan Xingzhi<br>
+[5] <a href="https://blog.csdn.net/u012328159/article/details/70184415" target="_blank" rel="noopener">决策树（decision tree）(一)——构造决策树方法</a> / 天泽28<br>
+[6] <a href="https://blog.csdn.net/u012328159/article/details/79285214" target="_blank" rel="noopener">决策树（decision tree）(二)——剪枝</a> / 天泽28<br>
+[7] <a href="https://blog.csdn.net/u012328159/article/details/79396893" target="_blank" rel="noopener">决策树（decision tree）(三)——连续值处理</a> / 天泽28<br>
+[8] <a href="https://blog.csdn.net/u012328159/article/details/79413610" target="_blank" rel="noopener">决策树（decision tree）(四)——缺失值处理</a> / 天泽28</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2021/02/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" title="机器学习知识点总结">https://cloudplayer99.github.io/2021/02/26/机器学习知识点总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%B2%E4%B9%89/" rel="prev" title="机器学习讲义">
+      <i class="fa fa-chevron-left"></i> 机器学习讲义
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/10/gdb%E8%B0%83%E8%AF%95%E5%99%A8/" rel="next" title="关于gdb使用的练习与gdb简介">
+      关于gdb使用的练习与gdb简介 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习的定义"><span class="nav-number">1.1.</span> <span class="nav-text">机器学习的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种机器学习类型与基本术语"><span class="nav-number">1.2.</span> <span class="nav-text">几种机器学习类型与基本术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监督学习-Supervised-Learning"><span class="nav-number">2.</span> <span class="nav-text">监督学习 (Supervised Learning)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类与回归（Classification-and-Regression）"><span class="nav-number">2.1.</span> <span class="nav-text">分类与回归（Classification and Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#K-最邻近分类器（K-Nearest-Neighbors-Classifier）"><span class="nav-number">2.2.</span> <span class="nav-text">K 最邻近分类器（K-Nearest Neighbors Classifier）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">2.2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法步骤"><span class="nav-number">2.2.2.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键点"><span class="nav-number">2.2.3.</span> <span class="nav-text">关键点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评估方法"><span class="nav-number">2.2.4.</span> <span class="nav-text">评估方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性模型（Linear-Models）"><span class="nav-number">2.3.</span> <span class="nav-text">线性模型（Linear Models）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线性回归（Linear-Regression）"><span class="nav-number">2.3.1.</span> <span class="nav-text">线性回归（Linear Regression）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑回归（Logistic-Regression）"><span class="nav-number">2.3.2.</span> <span class="nav-text">逻辑回归（Logistic Regression）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素贝叶斯分类器（Naive-Bayes-Classifiers"><span class="nav-number">2.4.</span> <span class="nav-text">朴素贝叶斯分类器（Naïve Bayes Classifiers)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#贝叶斯准则（Bayes-Rule）"><span class="nav-number">2.4.1.</span> <span class="nav-text">贝叶斯准则（Bayes Rule）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#朴素贝叶斯（naive-Bayes）"><span class="nav-number">2.4.2.</span> <span class="nav-text">朴素贝叶斯（naive Bayes）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拉普拉斯平滑（Laplace-smoothing）"><span class="nav-number">2.4.3.</span> <span class="nav-text">拉普拉斯平滑（Laplace smoothing）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树（Decision-Trees）"><span class="nav-number">2.5.</span> <span class="nav-text">决策树（Decision Trees）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本流程"><span class="nav-number">2.5.1.</span> <span class="nav-text">基本流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基尼系数（Gini-index）"><span class="nav-number">2.5.2.</span> <span class="nav-text">基尼系数（Gini index）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#剪枝处理（pruning）"><span class="nav-number">2.5.3.</span> <span class="nav-text">剪枝处理（pruning）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机（Support-Vector-Machines）"><span class="nav-number">2.6.</span> <span class="nav-text">支持向量机（Support Vector Machines）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络（Neural-Networks）"><span class="nav-number">2.7.</span> <span class="nav-text">神经网络（Neural Networks）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2021/02/26/机器学习知识点总结/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

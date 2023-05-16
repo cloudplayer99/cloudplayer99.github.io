@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-字符串入门 但是没得密码。。。 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串入门">
+<meta property="og:url" content="https://cloudplayer99.github.io/2022/06/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="b站视频链接：北京理工大学ACM冬季培训课程 课程刷题地址 2020BIT冬训-字符串入门 但是没得密码。。。 本篇博文为看视频学习时的记录与自己的一些总结">
+<meta property="article:published_time" content="2022-06-22T14:00:04.000Z">
+<meta property="article:modified_time" content="2022-07-18T14:28:18.000Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="算法入门基础">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2022/06/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>字符串入门 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2022/06/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          字符串入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-22 22:00:04" itemprop="dateCreated datePublished" datetime="2022-06-22T22:00:04+08:00">2022-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-18 22:28:18" itemprop="dateModified" datetime="2022-07-18T22:28:18+08:00">2022-07-18</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>b站视频链接：<a href="https://www.bilibili.com/video/BV1pE411E7RV?p=4" target="_blank" rel="noopener">北京理工大学ACM冬季培训课程</a><br>
+<a href="https://vjudge.net/contest/356631" target="_blank" rel="noopener">课程刷题地址 2020BIT冬训-字符串入门</a> 但是没得密码。。。<br>
+本篇博文为看视频学习时的记录与自己的一些总结</p>
+</blockquote>
+<a id="more"></a>
+<h1>字符串入门</h1>
+<h2 id="基础约定与定义"><a class="header-anchor" href="#基础约定与定义">¶</a>基础约定与定义</h2>
+<ul>
+<li>
+<p>记号 $\sum$ 表示字符集。字符串中的字符一定在字符集内。</p>
+</li>
+<li>
+<p>$|s|$ 表示字符串 $s$ 的长度。$s[i](0 \le i &lt; |s|)$ 表示字符串 $s$ 中的第 $(i+1)$ 个字符。<br>
+$s[l \dots r](0 \le l,r &lt; |s|)$ 表示由串 $s$ 中下标为 $l$ 的字符到下标为 $r$ 的字符所组成的子串。特别地，若 $l &gt; r$，则 $s[l \dots r]$ 为一空串。</p>
+</li>
+<li>
+<p>对于两个字符串 $s$ 和 $t$，定义 $s$ 与 $t$ 相等（匹配）当且仅当 $|s| = |t|$ 且 $s[i] = t[i]$，$0 \le i &lt; |s|$。</p>
+</li>
+<li>
+<p>记 $pre_s[i]$ 表示 $s[0 \dots i]$，称为 $s$ 的前缀 $i$；$suf_s[i]$ 表示 $s[i \dots |s|-1]$，称为 $s$ 的后缀 $i$。</p>
+</li>
+<li>
+<p>对于两个串 $s$ 和 $t$，定义 $LCP(s,t)$ 为 $s$ 与 $t$ 的最长公共前缀的长度。</p>
+</li>
+</ul>
+<h2 id="构造与赋值"><a class="header-anchor" href="#构造与赋值">¶</a>构造与赋值</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">()</span></span>;                <span class="comment">// s1 = ""</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(<span class="string">"Hello"</span>)</span></span>;         <span class="comment">// s2 = "Hello"</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s3</span><span class="params">(<span class="number">4</span>, <span class="string">'K'</span>)</span></span>;          <span class="comment">// s3 = "KKKK"</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s4</span><span class="params">(<span class="string">"12345"</span>, <span class="number">1</span>, <span class="number">3</span>)</span></span>;   <span class="comment">// s4 = "234", 即 "12345" 的从下标 1 开始，长度为 3 的子串</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1;                  </span><br><span class="line">s1 = <span class="string">"Hello"</span>;               <span class="comment">// s1 = "Hello"</span></span><br><span class="line">s2 = <span class="string">'K'</span>;                   <span class="comment">// s2 = "K"</span></span><br></pre></td></tr></table></figure>
+<h2 id="String-成员函数"><a class="header-anchor" href="#String-成员函数">¶</a>String 成员函数</h2>
+<p>字符串长度 length 函数</p>
+<p>String 对象支持 + 和 +=，append（在后面添加内容）<br>
+s1.append(s2)<br>
+支持比较运算符的比较<br>
+支持 compare 函数比较<br>
+s1.compare(s2)<br>
+支持 substr 函数求子串<br>
+s2 = s1.substr(2,4)<br>
+s1.empty() 判断是否为空</p>
+<p>find: 从前往后查找子串或字符出现的位置。<br>
+rfind: 从后往前查找子串或字符出现的位置。<br>
+find_first_of: 从前往后查找何处出现另一个字符串中包含的字符。例如：<br>
+s1.find_first_of(“abc”); // 查找 s1 中第一次出现 “abc” 中任一字符的位置<br>
+find_last_of: 从后往前查找何处出现另一个字符串中包含的字符。<br>
+find_first_not_of: 从前往后查找何处出现另一个字符串中没有包含的字符。<br>
+find_last_not_of: 从后往前查找何处出现另一个字符串中没有包含的字符。</p>
+<p>String 支持 insert<br>
+支持 replace<br>
+支持 erase<br>
+支持 substr 提取出子串<br>
+支持 push_back(char c)</p>
+<h2 id="字符串哈希"><a class="header-anchor" href="#字符串哈希">¶</a>字符串哈希</h2>
+<p>字符串哈希<br>
+STRING HASH<br>
+处理子串匹配的有力工具</p>
+<h3 id="什么是哈希？"><a class="header-anchor" href="#什么是哈希？">¶</a>什么是哈希？</h3>
+<ul>
+<li>哈希又称为散列，在计算机科学中表示一个将某个对象映射到某个整数值的过程。执行此映射的函数称为哈希函数。</li>
+<li>由于计算机在检索数据时仅能检索数字量，哈希的引入为检索、匹配任意对象带来了方便。</li>
+<li><strong>字符串哈希</strong> 即为将一个字符串映射到某个整数的过程。字符串哈希函数在数学形式上即为某个函数 $f: S \rightarrow \mathbb{Z}$，其中 $S$ 为字符集上的全体字符串集合。</li>
+</ul>
+<h3 id="哈希函数的特点"><a class="header-anchor" href="#哈希函数的特点">¶</a>哈希函数的特点</h3>
+<ul>
+<li>哈希函数的函数值随输入的不同，其在值域内的分布是大致均匀的。</li>
+<li>对输入量的微小改动也会引起哈希函数值的巨大变化。</li>
+<li>对于同一个输入对象，其哈希值是唯一的。</li>
+<li>不同的对象被哈希函数映射到同一个整数值（“冲突”、“碰撞”）的可能性是存在的，但其发生的概率是较小的。只有针对特定哈希算法的、经过精心挑选的字符串才会造成大概率的碰撞。</li>
+<li>由第 4 个特点，<strong>若两字符串的哈希值相同，我们一般认为这两个字符串相同。</strong></li>
+</ul>
+<h3 id="常用字符串哈希函数"><a class="header-anchor" href="#常用字符串哈希函数">¶</a>常用字符串哈希函数</h3>
+<p>在字符串匹配问题中，常用如下函数作为字符串哈希函数：</p>
+<p>$$Hash(s) = \sum_{i=0}^{|s|-1} s[i] \cdot p^i，$$</p>
+<p>其中 $p$ 是一个常数（通常取质数）。</p>
+<div align=center><img width = '600' height ='175' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/hashtest1.PNG"/></div>
+<p>定义 $Hash_s(i)$ 表示串 $s$ 的后缀 $i$ 的哈希值。则易知：</p>
+<p>$$<br>
+Hash_s(i) =<br>
+\begin{cases}<br>
+0, &amp; i=|s| \<br>
+Hash_s(i+1) \cdot p + s[i], &amp; 0 \le i &lt; |s|<br>
+\end{cases}<br>
+$$</p>
+<p>定义 $Hash_s(i, L)$ 表示串 $s[i \dots i + L-1]$ 的哈希值。则易知：</p>
+<p>$$Hash_s(i,L) = Hash_s(i) - Hash_s(i+L) \cdot p^L$$</p>
+<div align=center><img width = '600' height ='175' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/hashtest2.PNG"/></div>
+<p>在实际应用中，常将哈希值定义为 unsigned long long 型，并在运算过程中令其自由溢出（相当于对 $2^{64} - 1$ 取模）。</p>
+<ul>
+<li>
+<p>$<br>
+Hash_s(i) =<br>
+\begin{cases}<br>
+0, &amp; i=|s| \<br>
+Hash_s(i+1) \cdot p + s[i], &amp; 0 \le i &lt; |s|<br>
+\end{cases}<br>
+$</p>
+</li>
+<li>
+<p>$Hash_s(i,L) = Hash_s(i) - Hash_s(i+L) \cdot p^L$</p>
+</li>
+</ul>
+<p>由上面两式可以推出：</p>
+<p>串 $s$ 的相邻子串（$s[i \dots j]$ 与 $s[i+1 \dots j+1]$ 为 $s$ 的一对相邻子串）的哈希函数值可以在 $O(1)$ 的时间内转移计算。</p>
+<p>$$Hash_s(i,L) = Hash_s(i+1,L) \cdot p - s[i+L] \cdot p^L + s[i]$$</p>
+<h3 id="如何使用字符串哈希执行字符串匹配？"><a class="header-anchor" href="#如何使用字符串哈希执行字符串匹配？">¶</a>如何使用字符串哈希执行字符串匹配？</h3>
+<p>【例】给定一个模式串 $t$。给定 $q$ 组询问，每组询问给定一个待匹配串 $s$。对于每组询问，分别回答给定的待匹配串 $s$ 是否包含串 $t$ 作为子串。<br>
+【方法1】暴力。<br>
+时间复杂度：$O(Q|t||s|)$。<br>
+【方法2】字符串哈希。<br>
+首先，预处理串 $t$ 的哈希值。时间复杂度：$O(t)$。<br>
+对于每个询问，针对串 $s$ 中的每个长度为 $|t|$ 的子串，计算其子串哈希值并与模式串 $t$ 的哈希值进行比较。由于相邻子串间的子串哈希值可以在 $O(1)$ 的时间复杂度内进行转移，故该步骤的时间复杂度为 $O(Q|s|)$。<br>
+总体时间复杂度：$O(Q|s|+|t|)$。</p>
+<p>【例】给出 N 个数，要求把其中重复的去掉，只保留第一次出现的数。<br>
+例如，给出的数为 1 2 18 3 3 19 2 3 6 5 4，其中 2 和 3 有重复，去除后的结果为 1 2 18 3 19 6 5 4。<br>
+对于 100% 的数据，1 &lt;= N &lt;= 50000，给出的数在 32 位无符号整数范围内。</p>
+<p>【方法1】sort<br>
+【方法2】平衡树（可以自己手写 or set or map）<br>
+【方法3】Hash（把数字当成字符）</p>
+<p>【例】小 Q 定义，若两个字符串是相似的，当且仅当这两个字符串等长且恰好只有一位不同。例如 “Penguin1” 和 “Penguin2” 是相似的，但 “Penguin1” 和 “2Penguin” 不是相似的。而小 Q 想知道，在给定的 N 个字符串中，有多少对是相似的。<br>
+为了简化你的工作，小 Q 给你的 N 个字符串长度均等于 L，且只包含大小写字母、数字、而且不存在两个相同的账户名称。<br>
+N &lt;= 30000, L &lt;= 200.</p>
+<p>枚举删去某一位。然后算出 hash 表，求重复数字的方法可参考上一例题<br>
+枚举删去某一位后，计算一个字符串 Hash 值朴素做法是 $O(L)$，这样复杂度是 $O(L(NL + N \log N))$<br>
+再枚举删除一位之后，利用子串的拼接做到计算一个字符串的 hash 值要做到 $O(1)$，这样的复杂度是 $O(L(N+N \log N))$</p>
+<h2 id="字典树"><a class="header-anchor" href="#字典树">¶</a>字典树</h2>
+<p>字典树 TRIE 前缀树</p>
+<p>字典树要解决的问题</p>
+<p>给定一个字符串集合 $S$，给定 $Q$ 个询问，每个询问给定一个串 $t$。对于每个询问，要求回答给定的串 $t$ 是否为集合 $S$ 中某个字符串的前缀。</p>
+<p>【方法1】暴力。<br>
+时间复杂度：$O(Q|t||S|)$。</p>
+<p>【方法2】字典树。<br>
+时间复杂度：$O(Q|t| + \sum_{s \in S}|s|)$</p>
+<p>在使用朴素暴力方法解决原问题时，我们可以发现，每次对集合 $S$ 中的一个串进行匹配时，要匹配的字符序列都是一样的：都是串 $t$ 的字符序列。我们应该想办法实现仅对串 $t$ 的字符序列匹配一次便得出答案。</p>
+<p>字典树的基本思想和人类做上述匹配问题的思想很近似。考虑一个含有三个串 “aaa”、“aba” 和 “baa” 的字符串集合 $S$。当串 $t$ 为 “aaa” 时：</p>
+<ul>
+<li>
+<p>首先尝试匹配串 $t$ 的第一个字符 $a$，注意到 $S$ 中的第三个串的第一个字符为 $b$，因此第三个串一定不匹配，匹配串只可能在第一个串和第二个串间。</p>
+</li>
+<li>
+<p>然后尝试匹配串 $t$ 的第二个字符 $a$，注意到 $S$ 中的第二个串的第二个字符为 $b$，因此第二个串一定不匹配，第三个串在上一轮匹配中已经被我们舍弃，不予考虑。</p>
+</li>
+</ul>
+<p>以此类推。</p>
+<p>字典树巧妙的利用树结构来对上述 “选择还能够匹配的字符串” 这一过程进行优化。</p>
+<p>假设 $S = { \text{ “hello”, “how”, “what”, “holy”, “hole” } }$。则对 $S$ 构造字典树如下：</p>
+<div align=center><img width = '450' height ='450' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ACM/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/TRIE.png"/></div>
+<p>特点：</p>
+<ul>
+<li>
+<p>根结点到树上每个节点路径上的字母构成这个节点代表的字符串（根代表空字符串）；</p>
+</li>
+<li>
+<p>叶子对应的字符串即为集合 $S$ 内的某个字符串；</p>
+</li>
+<li>
+<p>不难看出，字典树的空间效率非常高。这是因为字典树充分利用了集合 $S$ 中的字符串的公共前缀部分。字典树的空间复杂度为 $O(\sum_{s \in S} |s|)$</p>
+</li>
+</ul>
+<p>字典树代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> tree[maxn][<span class="number">30</span>];         <span class="comment">// 小写字母 26 个</span></span><br><span class="line"><span class="keyword">int</span> tot;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert_</span><span class="params">(<span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">    <span class="keyword">int</span> root = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> id = str[i] - <span class="string">'a'</span>;</span><br><span class="line">        <span class="keyword">if</span> (!tree[root][id]) tree[root][id] = ++tot;</span><br><span class="line">        root = tree[root][id];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_</span><span class="params">(<span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">    <span class="keyword">int</span> root = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> id = str[i] - <span class="string">'a'</span>;</span><br><span class="line">        <span class="keyword">if</span> (!tree[root][id]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        root = tree[root][id];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于字典树上的一些符号约定</p>
+<p>为了后文阐述方便，约定一些字典树上的符号含义：</p>
+<ul>
+<li>
+<p>对于字典树上一节点 p，记 $str§$ 表示从字典树根结点到节点 $p$ 路径上的字符组成的字符串。</p>
+</li>
+<li>
+<p>对于一字符串 $s$，若 $s$ 包含在字典树中，记 $trienode(s)$ 表示串 $s$ 在字典树上对应的节点。</p>
+</li>
+<li>
+<p>对于一字符串 $s$，若 $trienode(s)$ 在字典树上某节点 $p$ 的子树中，称串 $s$ 穿过节点 $p$。</p>
+</li>
+</ul>
+<p>易知，若串 $s$ 穿过节点 $p$，则 $str§$ 为 $s$ 的前缀。</p>
+<p>【例】Ignatius 最近遇到一个难题，老师交给他很多单词（只有小写字母组成，不会有重复的单词出现），现在老师要他统计出以某个字符串为前缀的单词数量（单词本身也是自己的前缀）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code here</span><br></pre></td></tr></table></figure>
+<p>PROBLEM：FIND MAX XOR SUM</p>
+<p>给定 $n$ 个数 $a_1, a_2, \dots, a_n$。求 $\mathop{\max}\limits_{1 \le i, j \le n} { a_i \ \text{XOR} \ a_j }$。其中 $\text{XOR}$ 代表按位异或操作。</p>
+<p>【方法1】暴力。<br>
+时间复杂度：$O(n^2)$。</p>
+<p>【方法2】二进制字典树。<br>
+时间复杂度：$O(\log \mathop{\max}\limits_{1 \le i \le n} a_i)$</p>
+<ul>
+<li>不妨将给定的数拆分成二进制位进行考虑。</li>
+<li>贪心性质是显然的：答案的二进制表示下高位上 $1$ 越多，答案应该越大。</li>
+<li>$\text{XOR}$ 得到 $1$，当且仅当输入为一个 $0$ 和一个 $1$。</li>
+<li>对给定的所有数按照其二进制表示构造一颗字典树（此时字典树为一颗二叉树）。维护两个指针，进行 <strong>双指针 DFS</strong> 。每一步都贪心地尽量选择一个指针走向 $0$，一个指针走向 $1$。</li>
+<li>双指针 DFS 过程中维护答案即可。</li>
+</ul>
+<p>双指针 DFS 是树形字符串数据结构（字典树、自动机等）上的常用技巧。</p>
+<p>PROBLEM：FIND MAX XOR SUM PLUS</p>
+<p>给定 $n$ 个数 $a_1, a_2, \dots, a_n$。求 $\mathop{\max}\limits_{1 \le i, j \le n} { a_i \ \text{XOR} \ a_{i+1} \ \text{XOR} \ \dots \ \text{XOR} \ a_j }$。其中 $\text{XOR}$ 代表按位异或操作。</p>
+<ul>
+<li>注意到 $\mathop{\text{XOR}}\limits_{i \le k \le j} a_k = \bigg(\mathop{\text{XOR}}\limits_{1 \le k &lt; i} a_k \bigg) \text{XOR} \bigg( \mathop{\text{XOR}}\limits_{1 \le k \le j} a_k \bigg) $，即异或前缀和的性质：</li>
+</ul>
+<p>$$sum[l, r] = A[l] \text{ xor } A[l + 1] \dots \text{ xor } A[r] = S[r] \text{ xor } S[l - 1]$$</p>
+<ul>
+<li>预处理数组 ${ a_i }$ 的异或前缀和。随后问题转化为 FIND MAX XOR SUM</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2022/06/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A5%E9%97%A8/" title="字符串入门">https://cloudplayer99.github.io/2022/06/22/字符串入门/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" rel="tag"># 算法入门基础</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="prev" title="简单数据结构">
+      <i class="fa fa-chevron-left"></i> 简单数据结构
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E8%B4%AA%E5%BF%83%E5%92%8C%E6%8E%92%E5%BA%8F/" rel="next" title="贪心和排序">
+      贪心和排序 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">字符串入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础约定与定义"><span class="nav-number">1.1.</span> <span class="nav-text">基础约定与定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造与赋值"><span class="nav-number">1.2.</span> <span class="nav-text">构造与赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-成员函数"><span class="nav-number">1.3.</span> <span class="nav-text">String 成员函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串哈希"><span class="nav-number">1.4.</span> <span class="nav-text">字符串哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是哈希？"><span class="nav-number">1.4.1.</span> <span class="nav-text">什么是哈希？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希函数的特点"><span class="nav-number">1.4.2.</span> <span class="nav-text">哈希函数的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用字符串哈希函数"><span class="nav-number">1.4.3.</span> <span class="nav-text">常用字符串哈希函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用字符串哈希执行字符串匹配？"><span class="nav-number">1.4.4.</span> <span class="nav-text">如何使用字符串哈希执行字符串匹配？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典树"><span class="nav-number">1.5.</span> <span class="nav-text">字典树</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">465k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:03</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2022/06/22/字符串入门/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>
