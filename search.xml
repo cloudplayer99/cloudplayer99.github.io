@@ -2479,17 +2479,18 @@ $$\mathrm P(\text{play=No | weather=Overcast, Temperature=Mild}) \\ \Longrightar
 <p>结论一致</p>
 <p><strong>问题 3.2</strong></p>
 <p>给定一个西瓜数据集，请你用它训练一个朴素贝叶斯分类器，对测试例 “测一” 进行分类</p>
-<div align=center><img width = '600' height ='400' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%A5%BF%E7%93%9C%E6%95%B0%E6%8D%AE%E9%9B%863.0.PNG"/></div>
-<div align=center><img width = '600' height ='100' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%A5%BF%E7%93%9C1.png"/></div>
+<div align=center><img width = '600' height ='400' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%A5%BF%E7%93%9C%E6%95%B0%E6%8D%AE%E9%9B%863.0.PNG"/></div>
+<div align=center><img width = '600' height ='400' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229_%20Machine%20Learning/%E8%A5%BF%E7%93%9C%E6%95%B0%E6%8D%AE%E9%9B%863.0.PNG"/></div>
+<div align=center><img width = '600' height ='100' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%A5%BF%E7%93%9C1.png"/></div>
 <br>
 <p>首先估计类先验概率 $\mathrm P(C_k)$，显然有</p>
-<div align=center><img width = '240' height ='80' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%B1%BB%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87.png"/></div>
+<div align=center><img width = '240' height ='80' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%B1%BB%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87.png"/></div>
 <p>然后，为每个属性估计条件概率 $\mathrm P(x_i~|~C_k)$</p>
-<div align=center><img width = '480' height ='540' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87.png"/></div>
+<div align=center><img width = '480' height ='540' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87.png"/></div>
 <p>连续值处理，假设密度和含糖率满足正态分布，计算时应注意均值和方差</p>
-<div align=center><img width = '600' height ='450' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%BF%9E%E7%BB%AD%E5%80%BC%E5%A4%84%E7%90%86.png"/></div>
+<div align=center><img width = '600' height ='450' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E8%BF%9E%E7%BB%AD%E5%80%BC%E5%A4%84%E7%90%86.png"/></div>
 <p>于是有</p>
-<div align=center><img width = '600' height ='200' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87.png"/></div>
+<div align=center><img width = '600' height ='200' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87.png"/></div>
 <p>由于 $0.038 &gt; 6.80\times 10^{-5}$，因此，朴素贝叶斯分类器将测试样本 “测一” 判别为 “好瓜”</p>
 <p>在实践中，常通过取对数的方式将连乘转化为连加，以避免数值下溢</p>
 <h2 id="构造决策树及其剪枝策略"><a class="header-anchor" href="#构造决策树及其剪枝策略">¶</a>构造决策树及其剪枝策略</h2>
@@ -2500,10 +2501,10 @@ $$\text{Entropy}(x) = -\sum^{n}_{i=0}P(x_i)\log_2P(x_i) \tag{4 - 1}$$
 $$\text{Information gain}(i) = \text{Entropy of parent table}~D~-\text{Sum}(\dfrac{n_k}{n} \cdot\\ \text{Entropy of each value}~k~\text{of subset table }S_i) \tag{4 - 2}$$
 <p>即父亲节点的信息熵减去子节点上样本熵的加权平均数。在 $\text{ID3}$ 算法中，通过测量各种切分方案的信息增益，选择具有最大信息增益的切分方式，即可确定决策树上这一个父亲节点的切分。</p>
 <p><strong>问题 4</strong></p>
-<div align=center><img width = '625' height ='305' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_DT/%E5%86%B3%E7%AD%96%E6%A0%91_%E8%A1%A8.PNG"/></div>
+<div align=center><img width = '625' height ='305' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_DT/%E5%86%B3%E7%AD%96%E6%A0%91_%E8%A1%A8.PNG"/></div>
 <br>
 <p>Based on above training data, we can induce a decision tree as the following:</p>
-<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_DT/%E5%86%B3%E7%AD%96%E6%A0%91_%E5%9B%BE.PNG"/></div>
+<div align=center><img width = '' height ='' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/ML_DT/%E5%86%B3%E7%AD%96%E6%A0%91_%E5%9B%BE.PNG"/></div>
 <br>
 <p>CSDN 作者【天泽28】在关于周志华老师的《机器学习》（西瓜书）的笔记总结中对决策树模型介绍得很好，简单易懂，尽管文中有一些小错误，但是在评论区中都有提及，不影响整体阅读</p>
 <p><a href="https://blog.csdn.net/u012328159/article/details/70184415" target="_blank" rel="noopener">决策树（decision tree）(一)——构造决策树方法</a><br>
@@ -2752,11 +2753,11 @@ $$\boldsymbol{w}^\mathrm{T} \boldsymbol{x} + b = 0 ~, ~~~~~~~~\text{where}~~~~\b
 </ul>
 </li>
 </ul>
-<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/5118838-e7f5f61e3aff398a.webp"/></div>
+<div align=center><img width = '' height ='' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/5118838-e7f5f61e3aff398a.webp"/></div>
 <p>每经过一次前向传播和反向传播之后，参数就更新一次，然后用新的参数再次循环上面的过程。这就是神经网络训练的整个过程。</p>
-<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png"/></div>
-<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C2.png"/></div>
-<div align=center><img width = '' height ='' src ="http://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C3.png"/></div>
+<div align=center><img width = '' height ='' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png"/></div>
+<div align=center><img width = '' height ='' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C2.png"/></div>
+<div align=center><img width = '' height ='' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/CS229:%20Machine%20Learning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C3.png"/></div>
 ]]></content>
       <tags>
         <tag>学习笔记</tag>
@@ -11696,6 +11697,16 @@ CTI 中断（UnIIR[3:1]=110）是一个第二优先级中断，当 UARTn Rx FIFO
       <tags>
         <tag>DIGITAL</tag>
         <tag>ARM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>机械方向学习路线</title>
+    <url>/2023/05/29/%E6%9C%BA%E6%A2%B0%E6%96%B9%E5%90%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%9C%BA%E6%A2%B0%E5%B7%A5%E7%A8%8B/%E6%9C%BA%E6%A2%B0%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E6%9C%BA%E6%A2%B0%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.png" alt="avatar"><a id="more"></a></p>
+]]></content>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>机械方向</tag>
       </tags>
   </entry>
 </search>
