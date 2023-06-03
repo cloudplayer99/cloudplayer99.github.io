@@ -11697,16 +11697,6 @@ CTI 中断（UnIIR[3:1]=110）是一个第二优先级中断，当 UARTn Rx FIFO
       </tags>
   </entry>
   <entry>
-    <title>机械方向学习路线</title>
-    <url>/2023/05/29/%E6%9C%BA%E6%A2%B0%E6%96%B9%E5%90%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E6%9C%BA%E6%A2%B0%E5%B7%A5%E7%A8%8B/%E6%9C%BA%E6%A2%B0%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E6%9C%BA%E6%A2%B0%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.png" alt="avatar"><a id="more"></a></p>
-]]></content>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>机械方向</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode Day5</title>
     <url>/2023/05/30/leetcodeDay5/</url>
     <content><![CDATA[<p>LeetCode Day5<a id="more"></a></p>
@@ -11749,35 +11739,6 @@ CTI 中断（UnIIR[3:1]=110）是一个第二优先级中断，当 UARTn Rx FIFO
         <tag>C/C++</tag>
         <tag>学习笔记</tag>
         <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++STLvector深入</title>
-    <url>/2023/06/01/C++STLvector%E6%B7%B1%E5%85%A5/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>C/C++</tag>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>侯捷C++系列</title>
-    <url>/2023/06/01/%E4%BE%AF%E6%8D%B7C++%E7%B3%BB%E5%88%97/</url>
-    <content><![CDATA[<p>00 - 侯捷系列-全部课件</p>
-<p>01 - 侯捷 - C++面向对象高级开发（上下两部曲）</p>
-<p>02 - 侯捷 - STL标准库和泛型编程</p>
-<p>03 - 侯捷 - C++设计模式</p>
-<p>04 - 侯捷 - C++ 新标准 C++11&amp;14</p>
-<p>05 - 侯捷 - C++内存管理机制 侯捷</p>
-<p>06 - 侯捷 C++ Startup 揭密：C++ 程序的生前和死后</p>
-<p>07、算法原理与实践（选修）</p>
-<p>08、系统设计与实践（选修）</p>
-<p>09 - 辅导课</p>
-<a id="more"></a>
-]]></content>
-      <tags>
-        <tag>C/C++</tag>
-        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
