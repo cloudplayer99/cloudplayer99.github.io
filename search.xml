@@ -11739,6 +11739,11 @@ CTI 中断（UnIIR[3:1]=110）是一个第二优先级中断，当 UARTn Rx FIFO
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 加一个 visited 二维数组来判断是否访问过 */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">spiralOrder</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; leq;</span><br><span class="line">        <span class="keyword">int</span> sizex = matrix.<span class="built_in">size</span>(), sizey = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; <span class="title">visited</span><span class="params">(sizex, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(sizey, <span class="literal">false</span>))</span></span>;</span><br><span class="line">        <span class="keyword">int</span> dx[] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span> &#125;;</span><br><span class="line">        <span class="keyword">int</span> dy[] = &#123; <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span> &#125;;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>, down = <span class="number">1</span>, left = <span class="number">2</span>, up = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> direction = right;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> nx, ny;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>, xy = sizex * sizey;</span><br><span class="line">        <span class="keyword">while</span> (cnt &lt; xy) &#123;</span><br><span class="line">            leq.push_back(matrix[x][y]);</span><br><span class="line">            visited[x][y] = <span class="literal">true</span>;</span><br><span class="line">            nx = x + dx[direction], ny = y + dy[direction];</span><br><span class="line">            <span class="keyword">if</span> (nx &lt; <span class="number">0</span> || ny &lt; <span class="number">0</span> || nx &gt; sizex - <span class="number">1</span> || ny &gt; sizey - <span class="number">1</span> || visited[nx][ny]) &#123;</span><br><span class="line">                direction++;</span><br><span class="line">                <span class="keyword">if</span> (direction &gt; up) direction = right;</span><br><span class="line">                nx = x + dx[direction], ny = y + dy[direction];</span><br><span class="line">            &#125;</span><br><span class="line">            x = nx, y = ny;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> leq;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/leetcode/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E6%95%B0%E7%BB%84/day6_TheSwordReferstotheOffer29.PNG" alt="avatar"></p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 与上题同 */</span></span><br><span class="line"><span class="comment">/* 但得在开始加上下面这句：考虑空矩阵 */</span></span><br><span class="line"><span class="keyword">if</span> (matrix.empty()) <span class="keyword">return</span> leq;</span><br></pre></td></tr></table></figure>
+<h2 id="数组总结篇"><a class="header-anchor" href="#数组总结篇">¶</a>数组总结篇</h2>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/leetcode/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E6%95%B0%E7%BB%84/day6_summarize(1).PNG" alt="avatar"></p>
+<div align=center>个人总结</div><br>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/leetcode/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E6%95%B0%E7%BB%84/day6_summarize(2).PNG" alt="avatar"></p>
+<div align=center>来自代码随想录</div><br>
 ]]></content>
       <tags>
         <tag>C/C++</tag>
@@ -11773,6 +11778,17 @@ CTI 中断（UnIIR[3:1]=110）是一个第二优先级中断，当 UARTn Rx FIFO
       <tags>
         <tag>C/C++</tag>
         <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode Day7</title>
+    <url>/2023/06/03/leetcodeDay7/</url>
+    <content><![CDATA[<p>LeetCode Day7<a id="more"></a></p>
+]]></content>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>学习笔记</tag>
+        <tag>LeetCode</tag>
       </tags>
   </entry>
 </search>
