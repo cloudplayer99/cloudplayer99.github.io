@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="¶预备 尚硅谷前端html+css零基础教程，2023最新前端开发html5+css3视频 学习路线 HTML4 -&gt; CSS2 -&gt; HTML5 -&gt; CSS3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML+CSS入门笔记">
+<meta property="og:url" content="https://cloudplayer99.github.io/2023/07/06/HTML+CSS%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="¶预备 尚硅谷前端html+css零基础教程，2023最新前端开发html5+css3视频 学习路线 HTML4 -&gt; CSS2 -&gt; HTML5 -&gt; CSS3">
+<meta property="article:published_time" content="2023-07-06T07:30:00.000Z">
+<meta property="article:modified_time" content="2023-07-13T08:24:06.913Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2023/07/06/HTML+CSS%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>HTML+CSS入门笔记 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2023/07/06/HTML+CSS%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML+CSS入门笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-07-06 15:30:00" itemprop="dateCreated datePublished" datetime="2023-07-06T15:30:00+08:00">2023-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-13 16:24:06" itemprop="dateModified" datetime="2023-07-13T16:24:06+08:00">2023-07-13</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="预备"><a class="header-anchor" href="#预备">¶</a>预备</h2>
+<p><a href="https://www.bilibili.com/video/BV1p84y1P7Z5" target="_blank" rel="noopener">尚硅谷前端html+css零基础教程，2023最新前端开发html5+css3视频</a></p>
+<p>学习路线<br>
+HTML4 -&gt; CSS2 -&gt; HTML5 -&gt; CSS3</p>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.PNG"/></div>
+<a id="more"></a>
+应用软件
+C/S 架构 与 B/S 架构：
+C : Client 
+B : Browser
+S : Server
+C/S 架构：需要安装 偶尔更新 不跨平台 
+B/S 架构：无需安装 无需更新 可跨平台
+大型专业应用、安全要求较高的应用，还需采用 C/S 架构
+<p>前端工程师主要开发 B/S 架构的应用 —— 通俗来说就是写网页<br>
+大前端时代，不止是网页：<br>
+微信小程序<br>
+React Native -&gt; 客户端开发<br>
+uni-app + Vue -&gt; 客户端开发<br>
+nodejs -&gt; 搭建服务器<br>
+ECHARTS -&gt; 数据可视化</p>
+<p>浏览器内核？<br>
+内核是浏览器的核心，用于处理浏览器所得到的各种资源<br>
+Chrome 内核：早期webkit，现在Blink</p>
+<p>网站 -&gt; 多个网页<br>
+网页的组成：结构（HTML） + 表现（CSS） + 行为（JavaScript）</p>
+<h2 id="HTML-初体验"><a class="header-anchor" href="#HTML-初体验">¶</a>HTML 初体验</h2>
+<p>HTML: HyperText Markup Language<br>
+即超文本标记语言</p>
+<p>先来一个 Hello World 跑马灯效果</p>
+<figure class="highlight html"><figcaption><span>HTML初体验.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面的是 <strong>源代码</strong>，通过浏览器 <strong>渲染</strong> 成为 <strong>页面</strong></p>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/HelloWorld.PNG"/></div>
+<p>在 chrome 里面可以 -&gt;右键-&gt;查看网页源代码<br>
+【注】严格来说，文件名与文件夹名最好都不出现中文</p>
+<h2 id="HTML-标签"><a class="header-anchor" href="#HTML-标签">¶</a>HTML 标签</h2>
+<p>标签，又称元素<br>
+在上面的源代码中，<code>&lt;marquee&gt;</code> 与 <code>&lt;/marquee&gt;</code> 均为标签<br>
+<code>&lt;marquee&gt;</code> 为起始标签<br>
+<code>&lt;/marquee&gt;</code> 为结束标签<br>
+<code>marquee</code> 为标签名<br>
+<code>Hello World!</code> 为标签体<br>
+即</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span>&gt;</span>标签体<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- &lt;标签名&gt;为起始标签 &lt;/标签名&gt;为结束标签 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 规范为小写 --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>标签有双也有单</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span>/&gt;</span> <span class="comment">&lt;!-- 自结束 --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>标签可以并列，也可以嵌套，注意缩进</p>
+<figure class="highlight html"><figcaption><span>02_HTML标签.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/HTML%E6%A0%87%E7%AD%BE.PNG"/></div>
+<h2 id="HTML-标签属性"><a class="header-anchor" href="#HTML-标签属性">¶</a>HTML 标签属性</h2>
+<p>对上面的跑马灯效果提出需求：只想让它跑一次<br>
+利用属性进行控制，标签属性用于给标签提供附加信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- loop="x" 其中 x &gt; 0 --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>更多的属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span> <span class="attr">bgcolor</span>=<span class="string">"orange"</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>不同的标签有不同的属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>属性分通用属性与独有属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span> <span class="attr">bgcolor</span>=<span class="string">"orange"</span> <span class="attr">id</span>=<span class="string">"hello"</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"typein"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>归纳</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> 属性名=<span class="string">"属性值"</span> 属性名=<span class="string">"属性值"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 起始标签或单标签 --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>没有属性名，只有属性值</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">disabled</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以写多个属性，但不能重复，重复以第一个为准，后写的失效</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>属性名属性值不能乱写<br>
+不区分大小写，但是推荐小写<br>
+单双引号或无引号都可，但是推荐双引号</p>
+<figure class="highlight html"><figcaption><span>03_HTML标签属性.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span> <span class="attr">bgcolor</span>=<span class="string">"green"</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">disabled</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="HTML-基本结构"><a class="header-anchor" href="#HTML-基本结构">¶</a>HTML 基本结构</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>浏览器会对源代码进行 HTML 格式检查<br>
+若格式合法将直接渲染<br>
+若格式不合法浏览器会进行处理（尽可能帮助调整）后，再渲染</p>
+<p>处理后的代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以这样看到：<br>
+用 chorme 打开 html 文件 -&gt; 右键 -&gt; 检查<br>
+检查和查看网页源代码的区别：<br>
+查看网页源代码：即程序员编写的源代码<br>
+检查：经过浏览器处理后的源代码</p>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E7%94%A8%E6%A3%80%E6%9F%A5.PNG
+"/></div>
+<p>图片所展示的其实是浏览器的开发者工具</p>
+<p>网页的基本结构如下：<br>
+呈现在网页中的内容写在 <code>body</code> 标签中<br>
+<code>head</code> 标签中的内容不会出现在网页中<br>
+<code>head</code> 标签中的 <code>title</code> 标签可以指定网页的标题（页签名）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>...<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果将 <code>marquee</code> 标签作为 <code>head</code> 标签的标签体<br>
+即如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>浏览器会自己进行调整，把 <code>marquee</code> 标签移到下面的 <code>body</code> 中去</p>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9head%E7%9A%84%E8%B0%83%E6%95%B4.PNG
+"/></div>
+<figure class="highlight html"><figcaption><span>04_HTML基本结构.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>MyWebPage<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E6%94%B9%E9%A1%B5%E7%AD%BE.PNG
+"/></div>
+<h2 id="安装-VSCode"><a class="header-anchor" href="#安装-VSCode">¶</a>安装 VSCode</h2>
+<ul>
+<li>安装中文语言包</li>
+<li>使用 VSCode 打开文件夹的两种方式</li>
+<li>调整字体大小</li>
+<li>设置主题</li>
+<li>安装图标主题（可选：vscode-icons）</li>
+</ul>
+<h2 id="安装-Live-Server-插件"><a class="header-anchor" href="#安装-Live-Server-插件">¶</a>安装 Live Server 插件</h2>
+<ul>
+<li>
+<p>Live Server 插件可以更方便的打开网页<br>
+安装后，在代码编辑区域点击右键，选择 Open with Live Server</p>
+</li>
+<li>
+<p>与在文件夹中双击直接打开比较，其路径不同<br>
+后者是文件路径，而前者是服务器路径（127.0.0.1:5500）<br>
+用服务器路径打开网页的方式更贴近项目上线</p>
+</li>
+<li>
+<p>代码出现改动后，可以自动刷新</p>
+</li>
+<li>
+<p>可以配置一下 VSCode 的自动刷新（还是习惯手动 Ctrl + S）</p>
+</li>
+<li>
+<p>【注】Live Server 需要 VScode 打开的是文件夹才能正常工作</p>
+</li>
+<li>
+<p>【注】打开的网页源代码必须是标准的 HTML 结构，否则无法自动刷新</p>
+</li>
+</ul>
+<h2 id="HTML-注释"><a class="header-anchor" href="#HTML-注释">¶</a>HTML 注释</h2>
+<p>注释：对代码进行解释和说明<br>
+注释的内容会被浏览器所忽略，不会呈现到页面中，但源代码中依然可见</p>
+<p>注释的写法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这里写注释 --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注释不可以嵌套</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    这里写注释 </span></span><br><span class="line"><span class="comment">    &lt;!-- 这里又写注释 --&gt;</span></span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>05_HTML注释.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML注释<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">            Hello World!</span><br><span class="line">            <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">                下面的输入框是可以滚动的，</span></span><br><span class="line"><span class="comment">                且只能滚动一次</span></span><br><span class="line"><span class="comment">                &lt;!-- 可以通过控制 loop 属性，操作循环次数 --&gt;</span></span><br><span class="line">            --&gt;</span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 下面的输入框是不可以滚动的 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;input type="text"&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E6%B3%A8%E9%87%8A%E4%B8%8D%E8%83%BD%E5%B5%8C%E5%A5%97.PNG
+"/></div>
+<h2 id="HTML-文档声明"><a class="header-anchor" href="#HTML-文档声明">¶</a>HTML 文档声明</h2>
+<p><a href="https://www.w3.org/QA/2002/04/valid-dtd-list.html" target="_blank" rel="noopener">Recommended list of Doctype</a><br>
+The simplest and most reliable doctype declaration to use is the one defined in HTML5:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>06_HTML文档声明.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">title</span>&gt;</span>An HTML standard template<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>  /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>… Your HTML content here …<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="HTML-字符编码"><a class="header-anchor" href="#HTML-字符编码">¶</a>HTML 字符编码</h2>
+<p>字符集：<br>
+ASCII | ISO 8859-1 | GB2312 | GBK | UTF-8</p>
+<p>原则1：存储时，务必采用合适的字符编码<br>
+否则：无法存储，数据会丢失，不可恢复<br>
+原则2：存储时采用哪种方式编码，读取时就采用哪种方式解码<br>
+否则：数据错乱（乱码），可恢复</p>
+<p>统一采用 <code>UTF-8</code> 编码<br>
+通过 <code>meta</code> 标签配合 <code>charset</code> 属性指定字符编码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>07_HTML字符编码.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"gbk"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML字符编码<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span></span><br><span class="line">            hello world 你好世界 こんにちは世界 안녕 세상</span><br><span class="line">        <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>直接打开会出现乱码，使用 Live Server 打开，会修正为正确的文字</p>
+<h2 id="HTML-设置语言"><a class="header-anchor" href="#HTML-设置语言">¶</a>HTML 设置语言</h2>
+<p>让浏览器显示对应的翻译提示<br>
+有利于搜索引擎优化</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>08_HTML设置语言.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML设置语言<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>你好世界<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>こんにちは世界<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>안녕 세상<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="HTML-标准结构"><a class="header-anchor" href="#HTML-标准结构">¶</a>HTML 标准结构</h2>
+<figure class="highlight html"><figcaption><span>09_HTML标准结构.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>我是一个标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>… Your HTML content here …<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以借助 VSCode，输入 !，随后回车即可快速生成标准结构</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 下面这行现在看不懂可以先删了 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>配置 VSCode 的内置插件 emmet，可以对生成结构的属性进行定制</p>
+<div align=center><img width = '400' height = '100' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/emmet%E6%B7%BB%E5%8A%A0lang%3Dzh-CN.PNG
+"/></div>
+<p>在存放代码的文件夹中，存放一个 favicon.ico 图片，可配置网站图标</p>
+<div align=center><img width = '300' height = '300' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E7%94%A8favicon%E9%85%8D%E7%BD%AE%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.PNG
+"/></div>
+<h2 id="开发者文档"><a class="header-anchor" href="#开发者文档">¶</a>开发者文档</h2>
+<p><a href="https://www.w3.org/html/" target="_blank" rel="noopener">W3C HTML</a></p>
+<p><a href="https://html.spec.whatwg.org/multipage/" target="_blank" rel="noopener">the current HTML standard</a></p>
+<p><a href="https://www.w3school.com.cn/" target="_blank" rel="noopener">W3school</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML" target="_blank" rel="noopener">MDN Web Docs</a></p>
+<h2 id="HTML-排版标签"><a class="header-anchor" href="#HTML-排版标签">¶</a>HTML 排版标签</h2>
+<p><code>h1</code> ~ <code>h6</code>：标题<br>
+<code>p</code>：段落<br>
+<code>div</code>：用于整体布局<br>
+三种皆为双标签</p>
+<figure class="highlight html"><figcaption><span>10_HTML排版标签.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML排版标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- h1~h6 不允许嵌套 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">        &lt;h1&gt;我是一级标题&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">        &lt;h2&gt;我是二级标题&lt;/h2&gt;</span></span><br><span class="line"><span class="comment">        &lt;h3&gt;我是三级标题&lt;/h3&gt;</span></span><br><span class="line"><span class="comment">        &lt;h4&gt;我是四级标题&lt;/h4&gt;</span></span><br><span class="line"><span class="comment">        &lt;h5&gt;我是五级标题&lt;/h5&gt;</span></span><br><span class="line"><span class="comment">        &lt;h6&gt;我是六级标题&lt;/h6&gt;</span></span><br><span class="line"><span class="comment">        &lt;div&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;我是一个段落&lt;/p&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;我是一个段落&lt;/p&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;我是一个段落&lt;/p&gt;</span></span><br><span class="line"><span class="comment">        &lt;/div&gt; </span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- p 标签中不能有 h1~h6、p、div 标签 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>生成式AI或将彻底改变在线广告行业<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>2023年07月10日 08:48 新浪科技<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>新浪科技讯 北京时间7月9日早间消息，据报道，就在ChatGPT去年因为超强的问答能力而火遍全球后不久，数字营销老兵谢恩·拉斯纳克（Shane Rasnak）就开始尝试这项技术。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>拉斯纳克的整个职业生涯几乎都在为客户制作网络广告，正是这样的经历，让他看到了生成式人工智能会给这个行业带来多大的变化。他表示，无论是制作Facebook广告标题还是创作广告文案简介，以前都至少要花费他30分钟至1个小时，但现在只需要15分钟即可完成。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>而且，这还只是开始。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E6%8E%92%E7%89%88%E6%A0%87%E7%AD%BE.PNG
+"/></div>
+<h2 id="HTML-语义化标签"><a class="header-anchor" href="#HTML-语义化标签">¶</a>HTML 语义化标签</h2>
+<p>语义：即含义<br>
+语义化：标签默认的效果不重要，语义最重要！<br>
+语义化标签：用特定的标签，去表达特定的含义</p>
+<p>语义化标签</p>
+<ul>
+<li>代码可读性强，结构清晰</li>
+<li>有利于 SEO（搜索引擎优化）</li>
+<li>方便设备解析（屏幕阅读器、盲人阅读器）</li>
+</ul>
+<p>例如：<code>h1</code> 的默认效果可以通过 CSS 进行修改<br>
+所以要用 <code>h1</code> 标签时，不是因为它默认的文字加粗、放大效果，而是因为标签体是网页的主要内容<br>
+（即符合 <code>h1</code> 的语义）</p>
+<figure class="highlight html"><figcaption><span>11_HTML语义化标签.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML语义化标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        h1&#123;</span><br><span class="line">            font-size: 20px;</span><br><span class="line"><span class="css">            <span class="selector-tag">color</span><span class="selector-pseudo">:dodgerblue</span>;</span></span><br><span class="line">            background-color: aliceblue;</span><br><span class="line">            transform: rotate(-2deg);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>生成式AI或将彻底改变在线广告行业<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>2023年07月10日 08:48 新浪科技<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>新浪科技讯 北京时间7月9日早间消息，据报道，就在ChatGPT去年因为超强的问答能力而火遍全球后不久，数字营销老兵谢恩·拉斯纳克（Shane Rasnak）就开始尝试这项技术。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>拉斯纳克的整个职业生涯几乎都在为客户制作网络广告，正是这样的经历，让他看到了生成式人工智能会给这个行业带来多大的变化。他表示，无论是制作Facebook广告标题还是创作广告文案简介，以前都至少要花费他30分钟至1个小时，但现在只需要15分钟即可完成。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>而且，这还只是开始。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE.PNG
+"/></div>
+<h2 id="块级元素与行内元素"><a class="header-anchor" href="#块级元素与行内元素">¶</a>块级元素与行内元素</h2>
+<p>块级元素：独占一行（排版标签都是）<br>
+行内元素：不独占一行<br>
+块级元素中能写：行内元素、块级元素（几乎什么都能写）<br>
+行内元素中能写：行内元素，但不能写：块级元素</p>
+<figure class="highlight html"><figcaption><span>12_块级元素与行内元素.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>块级元素与行内元素<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 块级元素，特点：独占一行 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;marquee&gt;Hello World&lt;/marquee&gt;</span></span><br><span class="line"><span class="comment">    &lt;marquee&gt;Hello World&lt;/marquee&gt;</span></span><br><span class="line"><span class="comment">    &lt;h1&gt;Hello World&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">    &lt;h1&gt;Hello World&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">    &lt;p&gt;Hello World&lt;/p&gt;</span></span><br><span class="line"><span class="comment">    &lt;p&gt;Hello World&lt;/p&gt;</span></span><br><span class="line"><span class="comment">    &lt;div&gt;Hello World&lt;/div&gt;</span></span><br><span class="line"><span class="comment">    &lt;div&gt;Hello World&lt;/div&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 行内元素，特点：不独占一行 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;input type="text" /&gt;</span></span><br><span class="line"><span class="comment">    &lt;input type="text" /&gt;</span></span><br><span class="line"><span class="comment">    &lt;span&gt;Hello World&lt;/span&gt;</span></span><br><span class="line"><span class="comment">    &lt;span&gt;Hello World&lt;/span&gt; --&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 规则1：块级元素中能写：行内元素、块级元素（几乎什么都能写） --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;div&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;row1&lt;/span&gt;</span></span><br><span class="line"><span class="comment">        &lt;input type="text" /&gt;</span></span><br><span class="line"><span class="comment">        &lt;div&gt;row2&lt;/div&gt;</span></span><br><span class="line"><span class="comment">    &lt;/div&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 规则2：行内元素中能写：行内元素，但不能写：块级元素 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;span&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;content1&lt;/span&gt;</span></span><br><span class="line"><span class="comment">        &lt;input type="text" /&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;content2&lt;/span&gt;</span></span><br><span class="line"><span class="comment">        &lt;div&gt;content3&lt;/div&gt;</span></span><br><span class="line"><span class="comment">    &lt;/span&gt;</span></span><br><span class="line"><span class="comment">    &lt;span&gt;content4&lt;/span&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 否则会导致样式错乱 --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 特殊规则：h1~h6 不能互相嵌套 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;h1&gt;</span></span><br><span class="line"><span class="comment">        标题1</span></span><br><span class="line"><span class="comment">        &lt;h2&gt;标题2&lt;/h2&gt;</span></span><br><span class="line"><span class="comment">    &lt;/h1&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 特殊规则：p 标签中不能写块元素 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;p&gt;</span></span><br><span class="line"><span class="comment">        &lt;h1&gt;标题1&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">    &lt;/p&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 发现 &lt;p&gt;&lt;marquee&gt;...&lt;/marquee&gt;&lt;/p&gt; 可以用，这是因为 marquee 标签已经不用了 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        &lt;marquee&gt; 元素已经 过时，请不要再使用（用 CSS 实现得更好）</span></span><br><span class="line"><span class="comment">        尽管一些浏览器仍然支持它，但它不是必须的</span></span><br><span class="line"><span class="comment">        此外，使用这个元素基本上是你可以对你的用户做最糟糕的事情之一</span></span><br><span class="line"><span class="comment">        所以请不要这样做。</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="常用的文本标签"><a class="header-anchor" href="#常用的文本标签">¶</a>常用的文本标签</h2>
+<p>用于包裹词汇、短语等，通常写在排版标签里面<br>
+排版标签更宏观，文本标签更微观<br>
+文本标签通常都是行内元素</p>
+<p><code>em</code> 要着重阅读的内容 双标签<br>
+<code>strong</code> 十分重要的内容（语气比 <code>em</code> 要强） 双标签<br>
+<code>span</code> 没有语义，用于包裹短语的通用容器 双标签</p>
+<figure class="highlight html"><figcaption><span>13_常用的文本标签.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML_常用的文本标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        span&#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">color</span><span class="selector-pseudo">:blue</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        预防电信诈骗，请安装：<span class="tag">&lt;<span class="name">em</span>&gt;</span>国家反诈中心app。<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        当我们出门的时候，一定要<span class="tag">&lt;<span class="name">strong</span>&gt;</span>关好门窗<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>！</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        前端三个框架为：<span class="tag">&lt;<span class="name">span</span>&gt;</span>Angular、React、Vue<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E5%B8%B8%E7%94%A8%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE.PNG
+"/></div>
+<h2 id="不常用的文本标签"><a class="header-anchor" href="#不常用的文本标签">¶</a>不常用的文本标签</h2>
+<p>cite | dfn | del | ins | sub | sup | code | samp |<br>
+kbd | abbr | bdo | var | small | b | i | u | q |<br>
+blockquote | address</p>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE%E5%88%97%E8%A1%A8.PNG
+"/></div>
+<figure class="highlight html"><figcaption><span>14_不常用的文本标签.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML_不常用的文本标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        这首<span class="tag">&lt;<span class="name">cite</span>&gt;</span>《光辉岁月》<span class="tag">&lt;/<span class="name">cite</span>&gt;</span>，非常的好听！</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dfn</span>&gt;</span>耗子尾汁<span class="tag">&lt;/<span class="name">dfn</span>&gt;</span>，是一个网络流行语，意思同<span class="tag">&lt;<span class="name">dfn</span>&gt;</span>好自为之<span class="tag">&lt;/<span class="name">dfn</span>&gt;</span>。</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        商品原价：<span class="tag">&lt;<span class="name">del</span>&gt;</span>199<span class="tag">&lt;/<span class="name">del</span>&gt;</span>，限时秒杀：<span class="tag">&lt;<span class="name">ins</span>&gt;</span>99<span class="tag">&lt;/<span class="name">ins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        水的化学方程式：H<span class="tag">&lt;<span class="name">sub</span>&gt;</span>2<span class="tag">&lt;/<span class="name">sub</span>&gt;</span>O，8的三次方：8<span class="tag">&lt;<span class="name">sup</span>&gt;</span>3<span class="tag">&lt;/<span class="name">sup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        学了JS，发现这段代码很有意思：<span class="tag">&lt;<span class="name">code</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        手机提示：<span class="tag">&lt;<span class="name">samp</span>&gt;</span>支付宝到账25元！<span class="tag">&lt;/<span class="name">samp</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        保存的快捷键：<span class="tag">&lt;<span class="name">kbd</span>&gt;</span>ctrl + s<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"英雄联盟"</span>&gt;</span>LOL<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span>这个游戏非常好玩</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        你是年少的欢喜，这句话反过来就是：<span class="tag">&lt;<span class="name">bdo</span> <span class="attr">dir</span>=<span class="string">"rtl"</span>&gt;</span>你是年少的欢喜<span class="tag">&lt;/<span class="name">bdo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        JS中，定义变量： <span class="tag">&lt;<span class="name">code</span>&gt;</span>let <span class="tag">&lt;<span class="name">var</span>&gt;</span>a<span class="tag">&lt;/<span class="name">var</span>&gt;</span> = 1<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>本网站所有资料、图表仅供参考。<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        我也买过<span class="tag">&lt;<span class="name">b</span>&gt;</span>罗技GPW<span class="tag">&lt;/<span class="name">b</span>&gt;</span>，蛮好用！</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        我说：<span class="tag">&lt;<span class="name">i</span>&gt;</span>“燕子，没有你我怎么活啊！”<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        你好不是<span class="tag">&lt;<span class="name">u</span>&gt;</span>heelo<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        屈子云：<span class="tag">&lt;<span class="name">q</span>&gt;</span>路漫漫其修远兮，吾将上下而求索<span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        歌词：<span class="tag">&lt;<span class="name">blockquote</span>&gt;</span>后来，我总算学会了如何去爱；可惜你早已远去，消失在人海；后来，终于在眼泪中明白；有些人，一旦错过就不再<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        学校地址：<span class="tag">&lt;<span class="name">address</span>&gt;</span>北京市海淀区学院路<span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- blockquote 与 address 是块元素，其他皆为行内元素 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 语义感不强的标签，很少使用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE.png
+"/></div>
+<h2 id="HTML-图片标签"><a class="header-anchor" href="#HTML-图片标签">¶</a>HTML 图片标签</h2>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2023/07/06/HTML+CSS%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" title="HTML+CSS入门笔记">https://cloudplayer99.github.io/2023/07/06/HTML+CSS入门笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/06/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/" rel="prev" title="记录我的前端学习">
+      <i class="fa fa-chevron-left"></i> 记录我的前端学习
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预备"><span class="nav-number">1.</span> <span class="nav-text">预备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-初体验"><span class="nav-number">2.</span> <span class="nav-text">HTML 初体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-标签"><span class="nav-number">3.</span> <span class="nav-text">HTML 标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-标签属性"><span class="nav-number">4.</span> <span class="nav-text">HTML 标签属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-基本结构"><span class="nav-number">5.</span> <span class="nav-text">HTML 基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-VSCode"><span class="nav-number">6.</span> <span class="nav-text">安装 VSCode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Live-Server-插件"><span class="nav-number">7.</span> <span class="nav-text">安装 Live Server 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-注释"><span class="nav-number">8.</span> <span class="nav-text">HTML 注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-文档声明"><span class="nav-number">9.</span> <span class="nav-text">HTML 文档声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-字符编码"><span class="nav-number">10.</span> <span class="nav-text">HTML 字符编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-设置语言"><span class="nav-number">11.</span> <span class="nav-text">HTML 设置语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-标准结构"><span class="nav-number">12.</span> <span class="nav-text">HTML 标准结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发者文档"><span class="nav-number">13.</span> <span class="nav-text">开发者文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-排版标签"><span class="nav-number">14.</span> <span class="nav-text">HTML 排版标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-语义化标签"><span class="nav-number">15.</span> <span class="nav-text">HTML 语义化标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块级元素与行内元素"><span class="nav-number">16.</span> <span class="nav-text">块级元素与行内元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的文本标签"><span class="nav-number">17.</span> <span class="nav-text">常用的文本标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不常用的文本标签"><span class="nav-number">18.</span> <span class="nav-text">不常用的文本标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-图片标签"><span class="nav-number">19.</span> <span class="nav-text">HTML 图片标签</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">485k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:21</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2023/07/06/HTML+CSS入门笔记/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>
