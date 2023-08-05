@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="《理论力学（I）》（第六版） 哈尔滨工业大学理论力学教研室 编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理论力学（静力学部分）">
+<meta property="og:url" content="https://cloudplayer99.github.io/2023/08/04/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%EF%BC%88%E9%9D%99%E5%8A%9B%E5%AD%A6%E9%83%A8%E5%88%86%EF%BC%89/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="《理论力学（I）》（第六版） 哈尔滨工业大学理论力学教研室 编">
+<meta property="article:published_time" content="2023-08-04T02:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-05T10:30:24.423Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="机械专业课">
+<meta property="article:tag" content="mechanics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2023/08/04/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%EF%BC%88%E9%9D%99%E5%8A%9B%E5%AD%A6%E9%83%A8%E5%88%86%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>理论力学（静力学部分） | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2023/08/04/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%EF%BC%88%E9%9D%99%E5%8A%9B%E5%AD%A6%E9%83%A8%E5%88%86%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          理论力学（静力学部分）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-08-04 10:00:00" itemprop="dateCreated datePublished" datetime="2023-08-04T10:00:00+08:00">2023-08-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-08-05 18:30:24" itemprop="dateModified" datetime="2023-08-05T18:30:24+08:00">2023-08-05</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>《理论力学（I）》（第六版） 哈尔滨工业大学理论力学教研室 编</p>
+<a id="more"></a>
+<h2 id="绪论"><a class="header-anchor" href="#绪论">¶</a>绪论</h2>
+<p>一、任务</p>
+<p>研究物体机械运动一般规律的科学</p>
+<p>一般规律 -&gt; 特殊规律：<br>
+陀螺：定向性 | 地震时房屋桥梁的震动：机械振动<br>
+一般规律：最一般最普遍、一般工程中最常遇到</p>
+<p>为了研究问题的方便，将理论力学分为三部分：<br>
+静力学：研究物体受力分析，力系等效替换，建立各种力系的平衡条件的科学<br>
+运动学：研究物体机械运动几何性质的科学<br>
+动力学：研究物体机械运动几何性质与作用力之间关系的科学</p>
+<p>二、研究方法</p>
+<p>从实践到理论、从理论到实践，循环往复、不断上升<br>
+抽象：质点、刚体<br>
+分类法</p>
+<p>三、目的</p>
+<ol>
+<li>直接解决工程实际问题</li>
+<li>为后继课程打基础</li>
+</ol>
+<p>四、特点</p>
+<p>理论易懂、掌握困难</p>
+<h2 id="静力学"><a class="header-anchor" href="#静力学">¶</a>静力学</h2>
+<h3 id="静力学引言"><a class="header-anchor" href="#静力学引言">¶</a>静力学引言</h3>
+<p>一、任务</p>
+<p>二、基本概念</p>
+<ul>
+<li>力：物体之间的相互机械作用，使得物体的机械运动状态发生变化<br>
+（什么作用都可以，不一定加 “机械” 两个字）</li>
+<li>力的三要素：大小、方向、作用点<br>
+书写：$\boldsymbol F$ 或 $\vec F$</li>
+</ul>
+<div align=center><img width = '200' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/mechanics/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-05%20160139.png"/></div>
+<center><small>力的表示和书写</small></center>
+<ul>
+<li>力系：共点力系、汇交力系、平行力系、任意力系；平面力系、空间力系；力偶系；共线力系；</li>
+<li>刚体和变形体：相对的</li>
+<li>力的可传性：对刚体成立，对变形体不成立</li>
+</ul>
+<div align=center><img width = '300' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/mechanics/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-05%20162159.png"/></div>
+<center><small>力的可传性</small></center>
+<ul>
+<li>平衡：物体相对地面静止，或者作匀速直线运动</li>
+</ul>
+<h3 id="静力学公理和物体的受力分析"><a class="header-anchor" href="#静力学公理和物体的受力分析">¶</a>静力学公理和物体的受力分析</h3>
+<p>$\S\ 1-1$ 静力学公理</p>
+<p>一、二力平衡公理<br>
+作用在刚体上的两个力，使刚体保持平衡的必要和充分条件是：这两个力的大小相等，方向相反，且作用在同一直线上</p>
+<p>二、加减平衡力系公理<br>
+在已知力系上加上或减去任意的平衡力系，并不改变原力系对刚体的作用</p>
+<div align=center><img width = '200' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/mechanics/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-05%20165059.png"/></div>
+<center><small>增加一个平衡力系</small></center>
+<p>推论一：力的可传性<br>
+作用于刚体上某点的力，可以沿着它的作用线移到刚体内任意一点，并不改变该力对刚体的作用</p>
+<div align=center><img width = '400' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/mechanics/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-05%20181332.png"/></div>
+<center><small>用加减平衡力系公理与二力平衡公理推导力的可传性</small></center>
+<p>三、平行四边行公理（法则）</p>
+<p>$$\boldsymbol F_R  = \boldsymbol F_1 + \boldsymbol F_2$$</p>
+<div align=center><img width = '300' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/mechanics/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-05%20181250.png"/></div>
+<center><small>平行四边行公理</small></center>
+推论二：三力平衡汇交定理
+一个刚体在三个力的作用下平衡，有两个力的作用线已经交于一点，第三个力能不能作用在任意位置？
+推导：力的可传性 $\rightarrow$ 平行四边形法则 $\rightarrow$ 二力平衡公理
+<div align=center><img width = '200' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/mechanics/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-05%20181339.png"/></div>
+<center><small>三力平衡汇交定理推导</small></center>
+<p>第三个力的作用线必须通过汇交点，且三个力在同一平面内<br>
+四、作用反作用公理（定律）<br>
+作用力与反作用力：大小相等、方向相反，沿着同一直线，分别作用在两个相互作用的物体上<br>
+$$\boldsymbol F = - \boldsymbol F’$$<br>
+五、刚化公理<br>
+变形体在某一力系作用下处于平衡，如将此变形体刚化为刚体，其平衡状态保持不变</p>
+<h3 id="平面交汇力系与平面力偶系"><a class="header-anchor" href="#平面交汇力系与平面力偶系">¶</a>平面交汇力系与平面力偶系</h3>
+<h3 id="平面任意力系"><a class="header-anchor" href="#平面任意力系">¶</a>平面任意力系</h3>
+<h3 id="空间力系"><a class="header-anchor" href="#空间力系">¶</a>空间力系</h3>
+<h3 id="摩擦"><a class="header-anchor" href="#摩擦">¶</a>摩擦</h3>
+<div align=center><img width = '' height = '' src = ""/></div>
+<center><small></small></center>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2023/08/04/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%EF%BC%88%E9%9D%99%E5%8A%9B%E5%AD%A6%E9%83%A8%E5%88%86%EF%BC%89/" title="理论力学（静力学部分）">https://cloudplayer99.github.io/2023/08/04/理论力学（静力学部分）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E6%9C%BA%E6%A2%B0%E4%B8%93%E4%B8%9A%E8%AF%BE/" rel="tag"># 机械专业课</a>
+              <a href="/tags/mechanics/" rel="tag"># mechanics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/06/HTML+CSS%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" rel="prev" title="HTML+CSS入门笔记">
+      <i class="fa fa-chevron-left"></i> HTML+CSS入门笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绪论"><span class="nav-number">1.</span> <span class="nav-text">绪论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静力学"><span class="nav-number">2.</span> <span class="nav-text">静力学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静力学引言"><span class="nav-number">2.1.</span> <span class="nav-text">静力学引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静力学公理和物体的受力分析"><span class="nav-number">2.2.</span> <span class="nav-text">静力学公理和物体的受力分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平面交汇力系与平面力偶系"><span class="nav-number">2.3.</span> <span class="nav-text">平面交汇力系与平面力偶系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平面任意力系"><span class="nav-number">2.4.</span> <span class="nav-text">平面任意力系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间力系"><span class="nav-number">2.5.</span> <span class="nav-text">空间力系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摩擦"><span class="nav-number">2.6.</span> <span class="nav-text">摩擦</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">486k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:22</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2023/08/04/理论力学（静力学部分）/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>
