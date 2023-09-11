@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="¶什么是 SQLite？ SQLite 是一个进程内的库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎 它是一个零配置的数据库，这意味着与其他数据库不一样，不需要在系统中配置 就像其他数据库，SQLite 引擎不是一个独立的进程，可以按应用程序需求进行静态或动态连接 SQLite 直接访问其存储文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLite 快速入门">
+<meta property="og:url" content="https://cloudplayer99.github.io/2023/08/29/sqlite3%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="¶什么是 SQLite？ SQLite 是一个进程内的库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎 它是一个零配置的数据库，这意味着与其他数据库不一样，不需要在系统中配置 就像其他数据库，SQLite 引擎不是一个独立的进程，可以按应用程序需求进行静态或动态连接 SQLite 直接访问其存储文件">
+<meta property="article:published_time" content="2023-08-29T03:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-05T01:41:00.450Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="sqlite">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2023/08/29/sqlite3%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>SQLite 快速入门 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2023/08/29/sqlite3%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SQLite 快速入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-08-29 11:00:00" itemprop="dateCreated datePublished" datetime="2023-08-29T11:00:00+08:00">2023-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-05 09:41:00" itemprop="dateModified" datetime="2023-09-05T09:41:00+08:00">2023-09-05</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="什么是-SQLite？"><a class="header-anchor" href="#什么是-SQLite？">¶</a>什么是 SQLite？</h2>
+<p>SQLite 是一个进程内的库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎<br>
+它是一个零配置的数据库，这意味着与其他数据库不一样，不需要在系统中配置<br>
+就像其他数据库，SQLite 引擎不是一个独立的进程，可以按应用程序需求进行静态或动态连接<br>
+SQLite 直接访问其存储文件<a id="more"></a></p>
+<h2 id="在-Windows-上安装-SQLite"><a class="header-anchor" href="#在-Windows-上安装-SQLite">¶</a>在 Windows 上安装 SQLite</h2>
+<p>访问 <a href="https://www.sqlite.org/download.html" target="_blank" rel="noopener">SQLite 下载页面</a><br>
+在 windows 区下载 sqlite-tools-win32-*.zip 和 sqlite-dll-win32-*.zip 压缩文件<br>
+创建文件夹，解压压缩文件<br>
+有 sqlite3.def sqlite3.dll sqldiff.exe sqlite3.exe sqlite3_analyzer.exe<br>
+放在同一级目录下，添加目录到 PATH 环境变量<br>
+在 cmd 中使用 <code>sqlite3</code> 命令，检查是否安装成功</p>
+<h2 id="SQLite-简易笔记"><a class="header-anchor" href="#SQLite-简易笔记">¶</a>SQLite 简易笔记</h2>
+<h3 id="SQLite-点命令"><a class="header-anchor" href="#SQLite-点命令">¶</a>SQLite 点命令</h3>
+<p>SQLite 的点命令，它们不以分号 ; 结束</p>
+<p><code>.exit</code>	退出 SQLite 提示符<br>
+<code>.quit</code>	退出 SQLite 提示符<br>
+<code>.show</code>	显示各种设置的当前值<br>
+<code>.help</code>	显示消息<br>
+<code>.mode MODE</code>	设置输出模式，例 <code>.mode column</code><br>
+…</p>
+<h3 id="SQLite-语法"><a class="header-anchor" href="#SQLite-语法">¶</a>SQLite 语法</h3>
+<p>SQL 注释以两个连续的 “-” 字符（ASCII 0x2d）开始<br>
+并扩展至下一个换行符（ASCII 0x0a）或直到输入结束，以先到者为准<br>
+也可以使用 C 风格的注释，以 “/*” 开始，并扩展至下一个 “*/” 字符对或直到输入结束，以先到者为准<br>
+SQLite的注释可以跨越多行</p>
+<p>SQLite 不区分大小写，但有命令大小写敏感，如 <code>GLOB</code> 与 <code>glob</code></p>
+<p>所有的 SQLite 语句可以以任何关键字开始，如 <code>SELECT</code>、<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、<code>ALTER</code>、<code>DROP</code> 等，所有的语句以分号 ; 结束。</p>
+<h3 id="SQLite-数据类型"><a class="header-anchor" href="#SQLite-数据类型">¶</a>SQLite 数据类型</h3>
+<p>每个存储在 SQLite 数据库中的值都具有以下存储类之一</p>
+<table>
+<thead>
+<tr>
+<th>存储类</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL</td>
+<td>值是一个 NULL 值</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>值是一个带符号的整数，根据值的大小存储在 1、2、3、4、6 或 8 字节中</td>
+</tr>
+<tr>
+<td>REAL</td>
+<td>值是一个浮点值，存储为 8 字节的 IEEE 浮点数字</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>值是一个文本字符串，使用数据库编码（UTF-8、UTF-16BE 或 UTF-16LE）存储</td>
+</tr>
+<tr>
+<td>BLOB</td>
+<td>值是一个 blob 数据，完全根据它的输入存储</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SQLite-常用语句"><a class="header-anchor" href="#SQLite-常用语句">¶</a>SQLite 常用语句</h3>
+<p>SQLite 的 <code>CREATE TABLE</code> 语句用于在任何给定的数据库创建一个新表。创建基本表，涉及到命名表、定义列及每一列的数据类型</p>
+<p>SQLite 的 <code>INSERT INTO</code> 语句用于向数据库的某个表中添加新的数据行</p>
+<p>SQLite 的 <code>SELECT</code> 语句用于从 SQLite 数据库表中获取数据，以结果表的形式返回数据。这些结果表也被称为结果集</p>
+<h2 id="SQLite-库接口-Tcl"><a class="header-anchor" href="#SQLite-库接口-Tcl">¶</a>SQLite 库接口 - Tcl</h2>
+<p>SQLite 库被设计为非常容易从 Tcl 或 Tcl/Tk 脚本中使用，SQLite 最初就是作为 Tcl 的扩展，并且 SQLite 的主要测试套件是用 TCL 编写的，SQLite 可以与任何编程语言一起使用，但它与 TCL 的连接非常紧密</p>
+<p>下载 sqlite 后，将解压后的文件 sqlite3.dll 和 sqlite3.def 放到 Tcl 的 lib 目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 引入 sqlite3 库</span><br><span class="line">package require sqlite3</span><br></pre></td></tr></table></figure>
+<p>Tcl 中，在与 SQLite 数据库交互时，通常有以下操作：</p>
+<ul>
+<li>创建、管理和操作 SQLite 数据库连接</li>
+<li>执行查询、插入、更新和删除等操作</li>
+<li>通过参数化查询来防止 SQL 注入攻击和更安全地处理数据</li>
+<li>处理查询结果，将查询结果存储在变量中，然后对其进行迭代和处理</li>
+<li>事务管理，使用 BEGIN、COMMIT 和 ROLLBACK 等命令来管理事务，确保数据的一致性和完整性</li>
+<li>错误处理，处理数据库操作可能出现的错误，以确保代码的健壮性和可靠性</li>
+</ul>
+<h3 id="sqlite3"><a class="header-anchor" href="#sqlite3">¶</a>sqlite3</h3>
+<p>与 SQLite 库的接口由一个名为 sqlite3 的单个 tcl 命令组成。由于只有这一个命令，所以接口没有放置在单独的命名空间中。</p>
+<p>sqlite3 命令主要用以下方式来打开或创建数据库</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3  dbcmd  ?database-name?  ?options?</span><br></pre></td></tr></table></figure>
+<p>关于 sqlite3 命令的选项的介绍先略过，需要时返回来再写</p>
+<p>一旦打开了 SQLite 数据库，就可以使用 dbcmd 中的方法来进行控制。目前定义了 40 种方法</p>
+<table border="0" cellpadding="10" width="100%">
+<tbody><tr><td valign="top"><ul>
+<li><a href="authorizer">authorizer</a></li>
+<li><a href="#backup">backup</a></li>
+<li><a href="#bind_fallback">bind_fallback</a></li>
+<li><a href="#busy">busy</a></li>
+<li><a href="#cache">cache</a></li>
+<li><a href="#changes">changes</a></li>
+<li><a href="#close">close</a></li>
+<li><a href="#collate">collate</a></li>
+<li><a href="#collation_needed">collation_needed</a></li>
+<li><a href="#commit_hook">commit_hook</a></li>
+<li><a href="#complete">complete</a></li>
+<li><a href="#config">config</a></li>
+<li><a href="#copy">copy</a></li>
+<li><a href="#deserialize">deserialize</a></li>
+</ul></td>
+<td valign="top"><ul>
+<li><a href="#enable_load_extension">enable_load_extension</a></li>
+<li><a href="#errorcode">errorcode</a></li>
+<li><a href="#eval">eval</a></li>
+<li><a href="#exists">exists</a></li>
+<li><a href="#function">function</a></li>
+<li><a href="#incrblob">incrblob</a></li>
+<li><a href="#interrupt">interrupt</a></li>
+<li><a href="#last_insert_rowid">last_insert_rowid</a></li>
+<li><a href="#nullvalue">nullvalue</a></li>
+<li><a href="#onecolumn">onecolumn</a></li>
+<li><a href="#preupdate">preupdate</a></li>
+<li><a href="#profile">profile</a></li>
+<li><a href="#progress">progress</a></li>
+<li><a href="#restore">restore</a></li>
+</ul></td>
+<td valign="top"><ul>
+<li><a href="#rollback_hook">rollback_hook</a></li>
+<li><a href="#serialize">serialize</a></li>
+<li><a href="#status">status</a></li>
+<li><a href="#timeout">timeout</a></li>
+<li><a href="#total_changes">total_changes</a></li>
+<li><a href="#trace">trace</a></li>
+<li><a href="#trace_v2">trace_v2</a></li>
+<li><a href="#transaction">transaction</a></li>
+<li><a href="#unlock_notify">unlock_notify</a></li>
+<li><a href="#update_hook">update_hook</a></li>
+<li><a href="#version">version</a></li>
+<li><a href="#wal_hook">wal_hook</a></li>
+</ul></td></tr>
+</tbody></table>
+<h3 id="eval"><a class="header-anchor" href="#eval">¶</a>eval</h3>
+<p>最有用的 dbcmd 方法是 <code>eval</code>，eval 方法用于在数据库上执行 SQL 语句。eval 方法的语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd  <span class="keyword">eval</span>  ?-withoutnulls?  sql   ?<span class="keyword">array</span>-name?  ?script?</span><br></pre></td></tr></table></figure>
+<p>eval 方法的作用是执行第二个参数中给出的 SQL 语句或语句。例如，要在数据库中创建一个新表，可以执行以下操作：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 Tcl 脚本中创建一个名为 "db1" 的 SQLite 数据库连接，连接到位于当前工作目录下的 "testdb" 数据库文件</span></span><br><span class="line">sqlite3 db1 ./testdb</span><br><span class="line"><span class="comment"># 创建一个名为 t1 的新表，其中包含列 a 和 b</span></span><br><span class="line">db1 <span class="keyword">eval</span> &#123;CREATE TABLE t1(a int, b text)&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码创建了一个名为 t1 的新表，其中包含列 a 和 b。还有什么比这更简单的呢？</p>
+<p>查询结果以列值的列表形式返回。如果一个查询请求 2 列，并且有 3 行匹配查询，那么返回的列表将包含 6 个元素。例如：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用了 db1 数据库连接对象执行了一个 SQL INSERT 语句，将一行行数据插入到名为 "t1" 的表格中</span></span><br><span class="line">db1 <span class="keyword">eval</span> &#123;INSERT INTO t1 VALUES(<span class="number">1</span>,'hello')&#125;</span><br><span class="line">db1 <span class="keyword">eval</span> &#123;INSERT INTO t1 VALUES(<span class="number">2</span>,'goodbye')&#125;</span><br><span class="line">db1 <span class="keyword">eval</span> &#123;INSERT INTO t1 VALUES(<span class="number">3</span>,'howdy!')&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行了一个 SELECT 查询，从 "t1" 表格中选取所有的行，并按照列 "a" 进行升序排序</span></span><br><span class="line"><span class="keyword">set</span> x [db1 <span class="keyword">eval</span> &#123;SELECT * FROM t1 ORDER BY a&#125;]</span><br><span class="line"><span class="comment"># x 是一个包含多个子列表的列表，每个子列表包含两个元素，分别对应于查询结果的两个列的值</span></span><br><span class="line"><span class="comment"># &#123;&#123;1 hello&#125; &#123;2 goodbye&#125; &#123;3 howdy!&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码会将变量 $x 设置为：1 hello 2 goodbye 3 howdy!</p>
+<p>您还可以通过在 SQL 代码之后指定数组变量的名称和脚本，逐行处理查询结果。对于查询结果的每一行，所有列的值将被插入到数组变量中，并执行脚本。例如：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行一个数据库查询，将查询结果存储在名为 values 的数组中，然后打印数组的内容，并在每次打印时插入一个空行</span></span><br><span class="line"><span class="comment"># 后续的大括号 &#123;&#125; 代码块将接收来自前一个查询的结果作为参数</span></span><br><span class="line">db1 <span class="keyword">eval</span> &#123;SELECT * FROM t1 ORDER BY a&#125; values &#123;</span><br><span class="line"><span class="comment">    # parray 是一个 Tcl 命令，用于打印一个数组的所有元素    </span></span><br><span class="line">    <span class="keyword">parray</span> values</span><br><span class="line"><span class="comment">    # 在输出中插入一个空行</span></span><br><span class="line">    <span class="keyword">puts</span> <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码将输出：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">values(*) = a b</span><br><span class="line">values(a) = <span class="number">1</span></span><br><span class="line">values(b) = hello</span><br><span class="line"></span><br><span class="line">values(*) = a b</span><br><span class="line">values(a) = <span class="number">2</span></span><br><span class="line">values(b) = goodbye</span><br><span class="line"></span><br><span class="line">values(*) = a b</span><br><span class="line">values(a) = <span class="number">3</span></span><br><span class="line">values(b) = howdy!</span><br></pre></td></tr></table></figure>
+<p>对于结果的每一行中的每一列，列的名称用作数组中的索引，并且列的值存储在相应的数组条目中。（注意：如果查询结果集中的两个或更多列具有相同的名称，则具有该名称的最后一列将覆盖先前的值，并且具有相同名称的较早列将无法访问。）特殊的数组索引 * 用于按它们的出现顺序存储列名的列表。</p>
+<p>通常，使用 nullvalue 设置将 NULL SQL 结果存储在数组中。但是，如果使用 -withoutnulls 选项，则 NULL SQL 值将导致相应的数组元素被取消设置。</p>
+<p>如果省略数组变量名称或为空字符串，则每列的值将存储在与列本身相同名称的变量中。例如：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dbcmd  eval  ?-withoutnulls?  sql   ?array-name?  ?script?</span></span><br><span class="line"><span class="comment"># 即 array-name 省略或为空</span></span><br><span class="line">db1 <span class="keyword">eval</span> &#123;SELECT * FROM t1 ORDER BY a&#125; &#123;</span><br><span class="line">    <span class="keyword">puts</span> <span class="string">"a=$a b=$b"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从中我们得到以下输出：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">1</span> b=hello</span><br><span class="line">a=<span class="number">2</span> b=goodbye</span><br><span class="line">a=<span class="number">3</span> b=howdy!</span><br></pre></td></tr></table></figure>
+<p>Tcl 变量名称可以出现在第二个参数的 SQL 语句中的任何位置，只要在其中放置字符串或数字字面值是合法的位置。变量的值将替换为变量名称。如果变量不存在，则使用 NULL 值。例如：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这样就可以在 SQL 语句中含有 Tcl 的变量</span></span><br><span class="line">db1 <span class="keyword">eval</span> &#123;INSERT INTO t1 VALUES(<span class="number">5</span>,$bigstring)&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，不必对 $bigstring 的值加引号，这会自动处理。如果 $bigstring 是一个大的字符串或二进制对象，则这种技术不仅更容易编写，而且更有效率，因为它避免了对 $bigstring 的内容进行复制。</p>
+<p>如果 $bigstring 变量同时具有字符串和 “bytearray” 表示，则 TCL 会将值作为字符串插入。如果它只有一个 “bytearray” 表示，则将该值作为 BLOB 插入。即使值也具有文本表示，也可以使用 “@” 字符来将值强制插入为 BLOB。像这样：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db1 <span class="keyword">eval</span> &#123;INSERT INTO t1 VALUES(<span class="number">5</span>,@bigstring)&#125;</span><br></pre></td></tr></table></figure>
+<p>如果变量没有 bytearray 表示，则 “@” 在所有情况下都与 “$” 一样。请注意，在所有情况下，&quot;:&quot; 像 “$” 一样工作，因此以下是表达相同语句的另一种方式：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db1 <span class="keyword">eval</span> &#123;INSERT INTO t1 VALUES(<span class="number">5</span>,:bigstring)&#125;</span><br></pre></td></tr></table></figure>
+<p>在 SQL 文本被双引号 “…” 而不是大括号 {…} 包围时，变量名之前使用 “:” 而不是 “$” 有时可能是有用的。当 SQL 包含在双引号 “…” 内时，TCL 会对 $ 变量进行替换，如果不小心使用，可能会导致 SQL 注入。但是，无论是使用双引号 “…” 还是大括号 {…} 将 SQL 包围起来，TCL 都不会替换 :-变量，因此使用 :-变量增加了一层防范 SQL 注入的措施。</p>
+<h3 id="close"><a class="header-anchor" href="#close">¶</a>close</h3>
+<p>正如其名称所示，close 方法用于关闭 SQLite 数据库，这会导致（副作用）删除 dbcmd Tcl 命令。以下是打开然后立即关闭数据库的示例：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlite3 db1 ./testdb</span><br><span class="line">db1 <span class="keyword">close</span></span><br></pre></td></tr></table></figure>
+<p>如果直接删除 dbcmd，这与调用 close 方法具有相同的效果。因此，以下代码等同于前面的代码：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sqlite3 db1 ./testdb</span><br><span class="line"><span class="comment"># 在 Tcl 中，rename 命令用于重命名一个过程（procedure）或一个命名空间（namespace）</span></span><br><span class="line"><span class="comment"># 下面是删除的用法</span></span><br><span class="line"><span class="keyword">rename</span> db1 &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="transaction"><a class="header-anchor" href="#transaction">¶</a>transaction</h3>
+<p>transaction 方法用于在 SQLite 数据库事务中执行 TCL 脚本</p>
+<h3 id="cache"><a class="header-anchor" href="#cache">¶</a>cache</h3>
+<p>如上所述的 eval 方法会为最近评估的 SQL 命令保留一个预编译语句的缓存，而 cache 方法用于控制这个缓存</p>
+<h3 id="complete"><a class="header-anchor" href="#complete">¶</a>complete</h3>
+<p>complete 方法接受一个字符串作为其唯一参数。如果字符串是完整的 SQL 语句，则返回 TRUE，如果还有更多内容需要输入，则返回 FALSE，该方法对于创建具有SQL查询功能的交互式应用程序非常有用</p>
+<h3 id="config"><a class="header-anchor" href="#config">¶</a>config</h3>
+<p>config 方法用于查询或更改数据库连接的某些配置设置，使用 sqlite3_db_config()（C 语言）接口。如果不带参数运行此方法，将获取可用配置设置及其当前值的 TCL 列表：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd config</span><br></pre></td></tr></table></figure>
+<p>上述命令会返回类似以下内容的结果：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defensive <span class="number">0</span> dqs_ddl <span class="number">1</span> dqs_dml <span class="number">1</span> enable_fkey <span class="number">0</span> enable_qpsg <span class="number">0</span> enable_trigger <span class="number">1</span> enable_view <span class="number">1</span> fts3_tokenizer <span class="number">1</span> legacy_alter_table <span class="number">0</span> legacy_file_format <span class="number">0</span> load_extension <span class="number">0</span> no_ckpt_on_close <span class="number">0</span> reset_database <span class="number">0</span> trigger_eqp <span class="number">0</span> trusted_schema <span class="number">1</span> writable_schema <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>要查询特定配置设置的当前值，请将配置设置的名称添加到命令中。还可以选择添加布尔值以更改设置。</p>
+<p>以下是四个建议的配置更改，用于最大限度地提高应用程序的安全性。将 trust_schema 设置关闭可以防止在触发器、视图、CHECK 约束、生成的列和表达式索引中使用虚拟表和不安全的 SQL 函数。关闭 dqs_dml 和 dqs_ddl 设置可以防止使用双引号字符串。打开 defensive 可以防止对阴影表进行直接写入。</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db config trusted_schema <span class="number">0</span></span><br><span class="line">db config defensive <span class="number">1</span></span><br><span class="line">db config dqs_dml <span class="number">0</span></span><br><span class="line">db config dqs_ddl <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h3 id="copy"><a class="header-anchor" href="#copy">¶</a>copy</h3>
+<p>copy 方法用于从文件复制数据到表中。它返回成功处理的文件中的行数。“copy” 方法的语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd copy conflict-algorithm table-name <span class="keyword">file</span>-name ?column-separator? ?null-indicator?</span><br></pre></td></tr></table></figure>
+<p>conflict-algorithm 必须是 INSERT 语句的 SQLite 冲突算法之一：rollback（回滚）、abort（中止）、fail（失败）、ignore（忽略）或 replace（替换）。请参阅 SQLite 语言部分的 ON CONFLICT 获取更多信息。冲突算法必须以小写字母指定</p>
+<p>table-name 作为表必须已经存在。file-name 必须存在，并且文件中的每一行必须包含与表中定义的列数相同的列。如果文件中的某一行包含的列数多于或少于表中定义的列数，则 copy 方法会回滚任何插入并返回错误。</p>
+<p>column-separator 是可选的列分隔符字符串。默认为ASCII制表符字符 \t。</p>
+<p>null-indicator 是可选的字符串，表示列值为null。默认为空字符串。请注意，column-separator 和 null-indicator 是可选的位置参数；如果指定了 null-indicator，则必须指定一个 column-separator 参数，并在 null-indicator 参数之前指定它</p>
+<p>copy 方法实现了类似于 SQLite shell 命令中的 .import 的功能。这是一个方便的方法，可以将文件中的数据快速加载到数据库表中，而无需手动编写 INSERT 语句</p>
+<h3 id="timeout"><a class="header-anchor" href="#timeout">¶</a>timeout</h3>
+<p>timeout 方法用于控制 SQLite 库在放弃数据库事务之前等待锁释放的时间，其默认超时时间为 0 毫秒（即默认情况下根本不等待）</p>
+<h3 id="busy"><a class="header-anchor" href="#busy">¶</a>busy</h3>
+<p>busy 方法，类似于 timeout 方法，仅在数据库被锁定时才起作用，但是 busy 方法给程序员提供了更多控制的选项</p>
+<h3 id="enable-load-extension"><a class="header-anchor" href="#enable-load-extension">¶</a>enable_load_extension</h3>
+<p>SQLite 的扩展加载机制（通过使用 load_extension() SQL 函数访问）默认是关闭的。这是一项安全预防措施，如果应用程序想要使用load_extension()函数，必须首先使用这个方法来启用该功能</p>
+<h3 id="exists"><a class="header-anchor" href="#exists">¶</a>exists</h3>
+<p>exists 方法类似于 onecolumn 和 eval，因为它执行 SQL 语句。不同之处在于，exists 方法始终返回一个布尔值，如果 SQL 语句返回一个或多个行，则返回 TRUE，如果 SQL 返回一个空集，则返回FALSE</p>
+<p>exists 方法通常用于测试表中是否存在行，例如：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &#123;[db exists &#123;SELECT <span class="number">1</span> FROM table1 WHERE user=$user&#125;]&#125; &#123;</span><br><span class="line"><span class="comment">   # 处理如果 $user 存在</span></span><br><span class="line">&#125; else &#123;</span><br><span class="line"><span class="comment">   # 处理如果 $user 不存在</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="last-insert-rowid"><a class="header-anchor" href="#last-insert-rowid">¶</a>last_insert_rowid</h3>
+<p>last_insert_rowid 方法返回一个整数，该整数是最近插入的数据库行的ROWID（行标识符）</p>
+<h3 id="function"><a class="header-anchor" href="#function">¶</a>function</h3>
+<p>function 方法用于在 SQLite 引擎中注册新的 SQL 函数。参数包括新 SQL 函数的名称和实现该函数的 TCL 命令。函数的参数会在调用 TCL 命令之前追加到命令中</p>
+<p>语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd function sql-name ?options? script</span><br></pre></td></tr></table></figure>
+<h3 id="nullvalue"><a class="header-anchor" href="#nullvalue">¶</a>nullvalue</h3>
+<p>nullvalue 方法用于更改 eval 方法返回的 NULL 的表示方式</p>
+<h3 id="onecolumn"><a class="header-anchor" href="#onecolumn">¶</a>onecolumn</h3>
+<p>onecolumn 方法类似于 eval，因为它会评估作为参数传递的 SQL 查询语句。不同之处在于，onecolumn 返回一个单一元素，该元素是查询结果的第一行的第一列</p>
+<h3 id="changes"><a class="header-anchor" href="#changes">¶</a>changes</h3>
+<p>changes 方法返回一个整数，该整数表示由最近的 eval 方法插入、删除和/或修改的数据库中的行数，这个值表示最近的 SQL 操作对数据库的影响</p>
+<h3 id="authorizer"><a class="header-anchor" href="#authorizer">¶</a>authorizer</h3>
+<p>authorizer 方法提供了对 sqlite3_set_authorizer C/C++ 接口的访问</p>
+<h3 id="bind-fallback"><a class="header-anchor" href="#bind-fallback">¶</a>bind_fallback</h3>
+<p>bind_fallback 方法允许应用程序控制在没有与参数名称匹配的 TCL 变量时如何处理参数绑定</p>
+<h3 id="progress"><a class="header-anchor" href="#progress">¶</a>progress</h3>
+<p>该方法注册一个回调函数，在查询处理过程中定期调用，progress 回调可用于显示长时间查询的状态或在长时间查询期间处理 GUI 事件</p>
+<h3 id="collate"><a class="header-anchor" href="#collate">¶</a>collate</h3>
+<p>这个方法用于注册新的文本排序序列，它有两个参数：排序序列的名称和实现排序序列的比较函数的 TCL 过程的名称</p>
+<h3 id="collation-needed"><a class="header-anchor" href="#collation-needed">¶</a>collation_needed</h3>
+<p>这个方法用于注册一个回调例程，当 SQLite 引擎需要特定的排序序列但尚未注册该排序序列时会被调用。回调函数可以注册所需的排序序列。回调函数被调用时会传递一个参数，即所需排序序列的名称</p>
+<h3 id="commit-hook"><a class="header-anchor" href="#commit-hook">¶</a>commit_hook</h3>
+<p>这个方法用于注册一个回调例程，在 SQLite 尝试提交对数据库的更改之前调用。如果回调抛出异常或返回非零结果，那么事务将回滚而不是提交</p>
+<h3 id="status"><a class="header-anchor" href="#status">¶</a>status</h3>
+<p>status 方法从最近评估的 SQL 语句中返回状态信息，该方法基本上是 sqlite3_stmt_status() C 语言接口的包装器。通过使用这个方法，您可以获取关于 SQL 查询性能的信息，以便识别可能需要优化的查询</p>
+<h3 id="update-hook"><a class="header-anchor" href="#update-hook">¶</a>update_hook</h3>
+<p>这个方法用于注册一个回调例程，在每次通过 UPDATE、INSERT 或 DELETE 语句修改行之后调用，这个功能可用于在每次数据库发生更改时执行自定义逻辑，以便进行额外的处理或记录更改的情况</p>
+<h3 id="preupdate"><a class="header-anchor" href="#preupdate">¶</a>preupdate</h3>
+<p>这个方法，要么注册一个回调例程，该回调在每次通过 UPDATE、INSERT 或 DELETE 语句修改行之前调用，要么执行与即将发生的更新相关的某些操作</p>
+<h3 id="wal-hook"><a class="header-anchor" href="#wal-hook">¶</a>wal_hook</h3>
+<p>这个方法用于注册一个回调例程，当数据库处于WAL（写入日志）模式时，在事务提交后调用</p>
+<h3 id="incrblob"><a class="header-anchor" href="#incrblob">¶</a>incrblob</h3>
+<p>这个方法打开了一个 TCL 通道，可以用来读取或写入数据库中已经存在的 BLOB</p>
+<h3 id="errorcode"><a class="header-anchor" href="#errorcode">¶</a>errorcode</h3>
+<p>这个方法返回了最近的SQLite操作导致的数值错误代码</p>
+<h3 id="trace"><a class="header-anchor" href="#trace">¶</a>trace</h3>
+<p>trace 方法注册一个回调函数，该函数在每个 SQL 语句被编译时都会被调用。SQL 语句的文本被附加为一个字符串，然后在调用回调函数之前传递给它。这可以用于（例如）记录应用程序执行的所有 SQL 操作的日志。</p>
+<h3 id="trace-v2"><a class="header-anchor" href="#trace-v2">¶</a>trace_v2</h3>
+<p>trace_v2 方法注册一个回调函数，该函数在每个 SQL 语句被编译时都会被调用。其语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd  trace_v2  ?callback?  ?mask?</span><br></pre></td></tr></table></figure>
+<p>这个命令会在特定条件发生时调用 callback 脚本。这些条件由 mask 参数决定，mask 应该是一个 TCL 列表，包含以下零个或多个关键字：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">statement</span><br><span class="line">profile</span><br><span class="line">row</span><br><span class="line"><span class="keyword">close</span></span><br></pre></td></tr></table></figure>
+<h3 id="backup"><a class="header-anchor" href="#backup">¶</a>backup</h3>
+<p>backup 方法用于创建活动数据库的备份副本。命令语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd backup ?<span class="keyword">source</span>-database? backup-<span class="keyword">filename</span></span><br></pre></td></tr></table></figure>
+<h3 id="restore"><a class="header-anchor" href="#restore">¶</a>restore</h3>
+<p>restore 方法将内容从一个单独的数据库文件复制到当前的数据库连接中，覆盖任何已存在的内容。命令语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd restore ?target-database? <span class="keyword">source</span>-<span class="keyword">filename</span></span><br></pre></td></tr></table></figure>
+<h3 id="serialize"><a class="header-anchor" href="#serialize">¶</a>serialize</h3>
+<p>serialize 方法创建一个 BLOB，它是底层数据库的完全副本。命令语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd  serialize  ?database?</span><br></pre></td></tr></table></figure>
+<h3 id="deserialize"><a class="header-anchor" href="#deserialize">¶</a>deserialize</h3>
+<p>deserialize 方法接受一个包含 SQLite 数据库文件的 TCL 字节数组，并将其添加到数据库连接中。命令语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd  deserialize  ?database?  value</span><br></pre></td></tr></table></figure>
+<h3 id="interrupt"><a class="header-anchor" href="#interrupt">¶</a>interrupt</h3>
+<p>interrupt 方法调用 sqlite3_interrupt() 接口，导致任何挂起的查询停止</p>
+<h3 id="version"><a class="header-anchor" href="#version">¶</a>version</h3>
+<p>返回当前库的版本号，例如 “3.23.0”</p>
+<h3 id="profile"><a class="header-anchor" href="#profile">¶</a>profile</h3>
+<p>这个方法用于对应用程序运行的SQL语句的执行进行性能分析。语法如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcmd  profile  ?script?</span><br></pre></td></tr></table></figure>
+<h3 id="unlock-notifys"><a class="header-anchor" href="#unlock-notifys">¶</a>unlock_notifys</h3>
+<p>unlock_notify 方法用于访问 SQLite 核心库的 sqlite3_unlock_notify() 接口，用于测试目的。不建议应用程序使用此方法</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2023/08/29/sqlite3%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="SQLite 快速入门">https://cloudplayer99.github.io/2023/08/29/sqlite3快速入门/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/sqlite/" rel="tag"># sqlite</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/28/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E4%BB%8E%E5%85%A5%E5%9D%91%E5%BC%80%E5%A7%8B%E7%9A%84%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95/" rel="prev" title="碧蓝航线从入坑开始的完整记录">
+      <i class="fa fa-chevron-left"></i> 碧蓝航线从入坑开始的完整记录
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/09/05/23.09%E5%B7%A5%E4%BD%9C%E5%AE%89%E6%8E%92/" rel="next" title="23.09 工作安排">
+      23.09 工作安排 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-SQLite？"><span class="nav-number">1.</span> <span class="nav-text">什么是 SQLite？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-Windows-上安装-SQLite"><span class="nav-number">2.</span> <span class="nav-text">在 Windows 上安装 SQLite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLite-简易笔记"><span class="nav-number">3.</span> <span class="nav-text">SQLite 简易笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLite-点命令"><span class="nav-number">3.1.</span> <span class="nav-text">SQLite 点命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLite-语法"><span class="nav-number">3.2.</span> <span class="nav-text">SQLite 语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLite-数据类型"><span class="nav-number">3.3.</span> <span class="nav-text">SQLite 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLite-常用语句"><span class="nav-number">3.4.</span> <span class="nav-text">SQLite 常用语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLite-库接口-Tcl"><span class="nav-number">4.</span> <span class="nav-text">SQLite 库接口 - Tcl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sqlite3"><span class="nav-number">4.1.</span> <span class="nav-text">sqlite3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval"><span class="nav-number">4.2.</span> <span class="nav-text">eval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#close"><span class="nav-number">4.3.</span> <span class="nav-text">close</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transaction"><span class="nav-number">4.4.</span> <span class="nav-text">transaction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cache"><span class="nav-number">4.5.</span> <span class="nav-text">cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#complete"><span class="nav-number">4.6.</span> <span class="nav-text">complete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#config"><span class="nav-number">4.7.</span> <span class="nav-text">config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#copy"><span class="nav-number">4.8.</span> <span class="nav-text">copy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#timeout"><span class="nav-number">4.9.</span> <span class="nav-text">timeout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#busy"><span class="nav-number">4.10.</span> <span class="nav-text">busy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enable-load-extension"><span class="nav-number">4.11.</span> <span class="nav-text">enable_load_extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exists"><span class="nav-number">4.12.</span> <span class="nav-text">exists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last-insert-rowid"><span class="nav-number">4.13.</span> <span class="nav-text">last_insert_rowid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#function"><span class="nav-number">4.14.</span> <span class="nav-text">function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nullvalue"><span class="nav-number">4.15.</span> <span class="nav-text">nullvalue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onecolumn"><span class="nav-number">4.16.</span> <span class="nav-text">onecolumn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#changes"><span class="nav-number">4.17.</span> <span class="nav-text">changes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#authorizer"><span class="nav-number">4.18.</span> <span class="nav-text">authorizer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-fallback"><span class="nav-number">4.19.</span> <span class="nav-text">bind_fallback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#progress"><span class="nav-number">4.20.</span> <span class="nav-text">progress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#collate"><span class="nav-number">4.21.</span> <span class="nav-text">collate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#collation-needed"><span class="nav-number">4.22.</span> <span class="nav-text">collation_needed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#commit-hook"><span class="nav-number">4.23.</span> <span class="nav-text">commit_hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#status"><span class="nav-number">4.24.</span> <span class="nav-text">status</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update-hook"><span class="nav-number">4.25.</span> <span class="nav-text">update_hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#preupdate"><span class="nav-number">4.26.</span> <span class="nav-text">preupdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wal-hook"><span class="nav-number">4.27.</span> <span class="nav-text">wal_hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#incrblob"><span class="nav-number">4.28.</span> <span class="nav-text">incrblob</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#errorcode"><span class="nav-number">4.29.</span> <span class="nav-text">errorcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trace"><span class="nav-number">4.30.</span> <span class="nav-text">trace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trace-v2"><span class="nav-number">4.31.</span> <span class="nav-text">trace_v2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#backup"><span class="nav-number">4.32.</span> <span class="nav-text">backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#restore"><span class="nav-number">4.33.</span> <span class="nav-text">restore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#serialize"><span class="nav-number">4.34.</span> <span class="nav-text">serialize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deserialize"><span class="nav-number">4.35.</span> <span class="nav-text">deserialize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interrupt"><span class="nav-number">4.36.</span> <span class="nav-text">interrupt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#version"><span class="nav-number">4.37.</span> <span class="nav-text">version</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#profile"><span class="nav-number">4.38.</span> <span class="nav-text">profile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unlock-notifys"><span class="nav-number">4.39.</span> <span class="nav-text">unlock_notifys</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">503k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:38</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2023/08/29/sqlite3快速入门/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>
