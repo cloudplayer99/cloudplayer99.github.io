@@ -3304,6 +3304,44 @@ $F_i = F_{i-1} + F_{i-2}$，$F_1, F_0 = 1$</li>
       </tags>
   </entry>
   <entry>
+    <title>侯捷C++系列</title>
+    <url>/2023/06/01/%E4%BE%AF%E6%8D%B7C++%E7%B3%BB%E5%88%97/</url>
+    <content><![CDATA[<p>专门记录跟着侯捷老师学习 C++ 的过程<a id="more"></a></p>
+<ul>
+<li>
+<p>侯捷老师的视频课</p>
+<ul>
+<li>00 - 侯捷系列-全部课件</li>
+<li>01 - 侯捷 - C++面向对象高级开发（上下两部曲）</li>
+<li>02 - 侯捷 - STL标准库和泛型编程</li>
+<li>03 - 侯捷 - C++设计模式</li>
+<li>04 - 侯捷 - C++ 新标准 C++11&amp;14</li>
+<li>05 - 侯捷 - C++内存管理机制 侯捷</li>
+<li>06 - 侯捷 C++ Startup 揭密：C++ 程序的生前和死后</li>
+<li>07、算法原理与实践（选修）</li>
+<li>08、系统设计与实践（选修）</li>
+<li>09 - 辅导课</li>
+</ul>
+</li>
+<li>
+<p>侯捷老师的著作与译作</p>
+<ul>
+<li>Essential C++</li>
+<li>Effective C++</li>
+<li>More Effective C++</li>
+<li>深度探索 C++ 对象模型</li>
+<li>STL源码剖析</li>
+<li>C++标准库</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用数据对齐以提高内存系统的性能</title>
     <url>/2022/04/10/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90%E4%BB%A5%E6%8F%90%E9%AB%98%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%80%A7%E8%83%BD/</url>
     <content><![CDATA[<h2 id="原理介绍"><a class="header-anchor" href="#原理介绍">¶</a>原理介绍</h2>
@@ -3422,6 +3460,714 @@ $F_i = F_{i-1} + F_{i-2}$，$F_1, F_0 = 1$</li>
         <tag>C/C++</tag>
         <tag>学习笔记</tag>
         <tag>Computer Systems：A Programmer&#39;s Perspective</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>侯捷C++面向对象高级编程</title>
+    <url>/2023/06/16/%E4%BE%AF%E6%8D%B7C++%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<h1>C++面向对象高级编程</h1>
+<p>笔记按照视频进行分节</p>
+<h2 id="C-编程简介"><a class="header-anchor" href="#C-编程简介">¶</a>C++ 编程简介</h2>
+<ul>
+<li>
+<p>基础</p>
+<ul>
+<li>学过某个 procedural language（C语言）
+<ul>
+<li>变量（variables）</li>
+<li>类型（types）：int, float, char, struct</li>
+<li>作用域（scope）</li>
+<li>循环（loops）：while, for</li>
+<li>流程控制：if-else, switch-case</li>
+</ul>
+</li>
+<li>编译，链接，而后执行</li>
+<li>如何编译和链接</li>
+</ul>
+</li>
+<li>
+<p>目标</p>
+<ul>
+<li>正规大气的编程习惯</li>
+<li>以良好的方式编写 C++ class （Object Based）
+<ul>
+<li>class without pointer members<br>
+—— Complex</li>
+<li>class with pointer members<br>
+—— String</li>
+</ul>
+</li>
+<li>学习 Classes 之间的关系 （Object Oriented）
+<ul>
+<li>Inheritance 继承</li>
+<li>Composition 复合</li>
+<li>Delegation 委托</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>历史</p>
+<ul>
+<li>B 语言 1969</li>
+<li>C 语言 1972</li>
+<li>C++ 语言 1983<br>
+（new C -&gt; C with Class -&gt; C++）</li>
+</ul>
+</li>
+<li>
+<p>演化</p>
+<ul>
+<li>C++ 98 (1.0)</li>
+<li>C++ 03 (TR1, Technical Report 1)</li>
+<li>C++ 11 (2.0)</li>
+<li>C++ 14</li>
+</ul>
+</li>
+<li>
+<p>参考书目</p>
+<ul>
+<li>C++ Primer Fifth Edition</li>
+<li>The C++ Programming Language Fourth Edition</li>
+<li>Effective C++ Third Edition</li>
+<li>The C++ Standard Library Second Edition</li>
+<li>C++ 源码剖析<a id="more"></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="头文件与类的声明"><a class="header-anchor" href="#头文件与类的声明">¶</a>头文件与类的声明</h2>
+<ul>
+<li>C vs. C++
+<ul>
+<li>Data 与 Functions -&gt; Data Members 与 Member Functions</li>
+<li>把数据与处理数据的函数包在一起</li>
+<li>一份函数，多份数据</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* complex 类 */</span></span><br><span class="line"><span class="function"><span class="built_in">complex</span> <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line"><span class="built_in">complex</span> c2;</span><br><span class="line"><span class="built_in">complex</span>* pc = <span class="keyword">new</span> <span class="built_in">complex</span>(<span class="number">0</span>,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* string 类 */</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">"Hello "</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(<span class="string">"World "</span>)</span></span>;</span><br><span class="line"><span class="built_in">string</span>* ps = <span class="keyword">new</span> <span class="built_in">string</span>;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>C++ programs 代码基本形式
+<ul>
+<li>.h(header files) Classes Declaration 声明</li>
+<li>.cpp main()</li>
+<li>.h(header files) Standard Library 标准库</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/C%2B%2B%E4%BE%AF%E6%8D%B7%E8%80%81%E5%B8%88/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E5%BC%80%E5%8F%91/0x01.png" alt="avatar"></p>
+<br>
+<ul>
+<li>Output, C++ vs. C
+<ul>
+<li>#include&lt;iostream&gt;
+<ul>
+<li>std::cout</li>
+</ul>
+</li>
+<li>#include&lt;stdio.h&gt;
+<ul>
+<li>printf</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">7</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"i="</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">7</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"i=%d \n"</span>, i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>Header（头文件）中的防卫式声明（guard）
+<ul>
+<li>避免重复 include</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// complex.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* ... */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>Header（头文件）的布局
+<ul>
+<li>防卫式声明</li>
+<li>forward declarations 前置声明</li>
+<li>class declarations 类-声明</li>
+<li>class definition 类-定义</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 前置声明 */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ostream</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">complex</span>&amp;</span><br><span class="line">    __doapl (<span class="built_in">complex</span>* ths, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; r);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 类-声明 */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 类-定义 */</span></span><br><span class="line"><span class="built_in">complex</span>::function ...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>class 的声明
+<ul>
+<li>class head</li>
+<li>class body</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">        : re (r), im (i)</span><br><span class="line">    &#123; &#125;</span><br><span class="line">    <span class="built_in">complex</span>&amp; <span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">    <span class="comment">// 有些函数在此直接定义，另外一些在 body 之外定义</span></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> im; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> re, im;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">complex</span>&amp; __doapl(<span class="built_in">complex</span>*, <span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span> <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">complex</span> c2;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>class template（模板）简介
+<ul>
+<li>需求：刚刚上面的 complex 类，实部与虚部的类型不想写死</li>
+<li>将来用的时候可以指定</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">        : re (r), im (i)</span><br><span class="line">    &#123; &#125;</span><br><span class="line">    <span class="built_in">complex</span>&amp; <span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> im; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T re, im;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">complex</span>&amp; __doapl(<span class="built_in">complex</span>*, <span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span>&lt;<span class="keyword">double</span>&gt; <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">complex</span>&lt;<span class="keyword">int</span>&gt; c2;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>inline（内联）函数
+<ul>
+<li>inline 有宏的特性，但没有宏的缺点</li>
+<li>函数太复杂，即便声明成 inline，编译器也不把它 inline</li>
+<li>inline 只是对编译器的建议</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">        : re (r), im (i)</span><br><span class="line">    &#123; &#125;</span><br><span class="line">    <span class="built_in">complex</span>&amp; <span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">    <span class="comment">// 函数若在 class body 内定义完成，便自动成为 inline 候选人</span></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> im; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> re, im;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">complex</span>&amp; __doapl(<span class="built_in">complex</span>*, <span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">double</span></span><br><span class="line">imag(<span class="keyword">const</span> <span class="built_in">complex</span>&amp; x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> x.imag();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>access level 访问级别
+<ul>
+<li>public</li>
+<li>private</li>
+<li>protected</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 不被允许</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span> <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1.re;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1.im;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据通过函数传递，而不是直接拿</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span> <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1.real();</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1.imag();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="构造函数"><a class="header-anchor" href="#构造函数">¶</a>构造函数</h2>
+<ul>
+<li>constructor（ctor，构造函数）
+<ul>
+<li>使用构造函数</li>
+<li>构造函数名称与类的名称一定相同</li>
+<li>构造函数可以拥有参数，参数可以有默认值（default argument 默认实参非构造函数独有）</li>
+<li>没有返回类型</li>
+<li>拥有 initialize list（初值列，构造函数独有），注意其与 assignments 赋值的区别</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 注意初始化与赋值的时点</span></span><br><span class="line"><span class="comment">// 有些变量必须在初始化时有值，那么就必须用初值列表给它赋初值</span></span><br><span class="line"><span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">    : re (r), im (i)</span><br><span class="line">&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">&#123; re = r; im = i; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span>&lt;<span class="keyword">double</span>&gt; <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">complex</span>&lt;<span class="keyword">int</span>&gt; c2;</span><br><span class="line">    <span class="comment">// 用动态的方式创建一个复数类的实例，得到的是一个指针</span></span><br><span class="line">    <span class="built_in">complex</span>* p = <span class="keyword">new</span> <span class="built_in">complex</span>(<span class="number">4</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>构造函数的重载 overloading
+<ul>
+<li>重载：相同函数名称却有一个以上</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">    : re (r), im (i)</span><br><span class="line">&#123; &#125;</span><br><span class="line"><span class="comment">// 下面的不能与上面的同时存在</span></span><br><span class="line"><span class="comment">// 因为上面的 ctor 参数存在默认值，这样，两个函数就会产生冲突</span></span><br><span class="line"><span class="comment">// 编译器将不知道选择哪一个</span></span><br><span class="line"><span class="built_in">complex</span> () : re(<span class="number">0</span>), im(<span class="number">0</span>) &#123; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">real</span><span class="params">(<span class="keyword">double</span> r)</span> </span>&#123; re = r &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实际上这两个函数的名称也不相同</span></span><br><span class="line"><span class="comment">// real 函数编译后的实际名称可能是:</span></span><br><span class="line"><span class="comment">// ?real@Complex@@QBENXZ</span></span><br><span class="line"><span class="comment">// ?real@Complex@@QAENABN@Z</span></span><br><span class="line"><span class="comment">// 取决于编译器</span></span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>ctor 被放在 private 区里
+<ul>
+<li>不允许被外界创建对象</li>
+<li>经典：单例模式 Singleton</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Class A &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> A&amp; <span class="title">getInstance</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="built_in">setup</span>() &#123; ... &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    A();</span><br><span class="line">    A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">A&amp; <span class="title">A::getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> A a;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>const member function（常量成员函数）
+<ul>
+<li>在 ( ) 与 { } 中间用 const 修饰</li>
+<li>函数不改变数据内容</li>
+<li>设计接口时就想好，这个函数不允许改变数据内容，写函数定义时若进行了数据内容的修改，编译器就会报错</li>
+<li>该写时一定要写</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line">...</span><br><span class="line">&#123;   </span><br><span class="line">    <span class="comment">// 定义对象为常量，那么如果 real() 函数中间没有被 const 修饰</span></span><br><span class="line">    <span class="comment">// 下面这个函数调用在编译器就不被允许 </span></span><br><span class="line">    <span class="function"><span class="keyword">const</span> <span class="built_in">complex</span> <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1.real();</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1.imag();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参数传递与返回值"><a class="header-anchor" href="#参数传递与返回值">¶</a>参数传递与返回值</h2>
+<ul>
+<li>参数传递
+<ul>
+<li>pass by value vs. pass by reference(to const)</li>
+<li>参数传递最好传引用</li>
+<li>速度上相当于传指针</li>
+<li>引用传进来可以被改变，会影响外面，于是用 const 修饰</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 值传递</span></span><br><span class="line"><span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">    : re (r), im (i)</span><br><span class="line">&#123; &#125;</span><br><span class="line"><span class="comment">// 引用传递</span></span><br><span class="line"><span class="built_in">complex</span>&amp; <span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">ostream&amp;</span><br><span class="line"><span class="keyword">operator</span> &lt;&lt; (ostream&amp; os, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> os &lt;&lt; <span class="string">'('</span> &lt;&lt; real(x) &lt;&lt; <span class="string">','</span> &lt;&lt; imag(x) &lt;&lt; <span class="string">')'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>
+<p>返回值传递</p>
+<ul>
+<li>return by value vs. return by reference(to const)</li>
+<li>返回尽量传引用，尽量而不是一定</li>
+</ul>
+</li>
+<li>
+<p>friend（友元）</p>
+<ul>
+<li>自由取得 friend 的 private 成员</li>
+<li>相同 class 的各个 objects 互为 friends（友元）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> re, im;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">complex</span>&amp; __doapl(<span class="built_in">complex</span>*, <span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span>&amp;</span><br><span class="line">__doapl (<span class="built_in">complex</span>* ths, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 打破了封装</span></span><br><span class="line">    ths-&gt;re += r.re;</span><br><span class="line">    ths-&gt;im += r.im;</span><br><span class="line">    <span class="keyword">return</span> *ths;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">        : re (r), im (i)</span><br><span class="line">    &#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> <span class="built_in">complex</span>&amp; param)</span></span></span><br><span class="line"><span class="function">    </span>&#123; <span class="keyword">return</span> param.re + param.im; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> re, im;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span> <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">complex</span> c2;</span><br><span class="line"></span><br><span class="line">    c2.func(c1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>class body 外的各种定义（definitions）
+<ul>
+<li>什么情况下可以 pass by reference</li>
+<li>什么情况下可以 return by reference
+<ul>
+<li>引用的本体是局部变量，它的作用域只在函数里，函数结束就无了</li>
+<li>这时候在返回时传它的引用，外面的调用者就会看到坏东西</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// do assignment plus</span></span><br><span class="line"><span class="comment">// 第一个参数将会被改动，第二个参数不会被改动</span></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span>&amp;</span><br><span class="line">__doapl (<span class="built_in">complex</span>* ths, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    ths-&gt;re += r.re;</span><br><span class="line">    ths-&gt;im += r.im;</span><br><span class="line">    <span class="keyword">return</span> *ths;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span>&amp;</span><br><span class="line"><span class="built_in">complex</span>::<span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 为什么不把事情在这里做了，而是又定义一个函数</span></span><br><span class="line">    <span class="comment">// 猜测是为了代码复用</span></span><br><span class="line">    <span class="keyword">return</span> __doapl (<span class="keyword">this</span>, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="操作符重载与临时对象"><a class="header-anchor" href="#操作符重载与临时对象">¶</a>操作符重载与临时对象</h2>
+<ul>
+<li>operator overloading（操作符重载-1，成员函数） this
+<ul>
+<li>this 指针</li>
+<li>写代码时不要显式的写出来</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span>&amp;</span><br><span class="line"><span class="built_in">complex</span>::<span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; r)</span><br><span class="line"><span class="comment">// 其实实际上是下面这样有两个参数</span></span><br><span class="line"><span class="comment">// 但 this 无需写出（也不能写）</span></span><br><span class="line"><span class="comment">// complex::operator += (this, const complex&amp; r)</span></span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>return by reference 语法分析
+<ul>
+<li>传递者无需知道接收者是以 reference 形式接收</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回类型：complex&amp; 实际返回：*ths</span></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span>&amp;</span><br><span class="line">__doapl (<span class="built_in">complex</span>* ths, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> *ths;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>operator overloading（操作符重载-2，非成员函数） 无 this
+<ul>
+<li>为了对付 client 的三种可能用法，这儿对应开发三个函数</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span> <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">complex</span> c2;</span><br><span class="line"></span><br><span class="line">    c2 = c1 + c2;</span><br><span class="line">    c2 = c1 + <span class="number">5</span>;</span><br><span class="line">    c2 = <span class="number">7</span> + c1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span></span><br><span class="line"><span class="keyword">operator</span> + (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; x, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 创建临时对象，并返回</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (real(x) + real(y), </span><br><span class="line">                    imag(x) + imag(y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span></span><br><span class="line"><span class="keyword">operator</span> + (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; x, <span class="keyword">double</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (real(x) + y, imag(x));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span></span><br><span class="line"><span class="keyword">operator</span> + (<span class="keyword">double</span> x, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (x + real(y), imag(y));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>temp object（临时对象） typename();
+<ul>
+<li>上面这三个函数绝不可 return by reference</li>
+<li>因为它们返回的必定是个 local object</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span></span><br><span class="line"><span class="keyword">operator</span> + (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// nagate 反相（取反）</span></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span></span><br><span class="line"><span class="keyword">operator</span> - (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (-real(x), -imag(x));</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 不可 return by reference</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span> <span class="title">c1</span><span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">complex</span> c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; -c1;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; +c2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>operator overloading（操作符重载），非成员函数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span></span><br><span class="line"><span class="keyword">operator</span> == (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; x, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> real(x) == real(y)</span><br><span class="line">        &amp;&amp; imag(x) == imag(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span></span><br><span class="line"><span class="keyword">operator</span> == (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; x, <span class="keyword">double</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> real(x) == y &amp;&amp; imag(x) == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span></span><br><span class="line"><span class="keyword">operator</span> == (<span class="keyword">double</span> x, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> x == real(y) &amp;&amp; imag(y) == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 共轭复数</span></span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">complex</span></span><br><span class="line">conj (<span class="keyword">const</span> <span class="built_in">complex</span>&amp; x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span>(real(x), -imag(x));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 操作符重载，必须是非成员函数（全局函数）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line">ostream&amp;</span><br><span class="line"><span class="keyword">operator</span> &lt;&lt; (ostream&amp; os, <span class="keyword">const</span> <span class="built_in">complex</span>&amp; x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> os &lt;&lt; <span class="string">'('</span> &lt;&lt; real(x) &lt;&lt; <span class="string">','</span></span><br><span class="line">              &lt;&lt; imag(x) &lt;&lt; <span class="string">')'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>class without pointer members<br>
+—— Complex</li>
+<li>class with pointer members<br>
+—— String</li>
+<li>上面的例子完了，看下面这个</li>
+</ul>
+<h2 id="三大函数：拷贝构造，拷贝复制，析构"><a class="header-anchor" href="#三大函数：拷贝构造，拷贝复制，析构">¶</a>三大函数：拷贝构造，拷贝复制，析构</h2>
+<ul>
+<li>考虑实现以下功能
+<ul>
+<li>字符串构造</li>
+<li>字符串拷贝</li>
+<li>字符串赋值</li>
+<li>用 &lt;&lt; 向 cout 输出字符串对象</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    String s1(),</span><br><span class="line">    <span class="function"><span class="keyword">String</span> <span class="title">s2</span><span class="params">(<span class="string">"hello"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">String</span> <span class="title">s3</span><span class="params">(s1)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s3 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    s3 = s2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s3 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>Big Three，三个特殊函数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="keyword">String</span>(<span class="keyword">const</span> <span class="keyword">char</span>* cstr = <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 拷贝构造函数</span></span><br><span class="line">    <span class="keyword">String</span>(<span class="keyword">const</span> <span class="keyword">String</span>&amp; str);</span><br><span class="line">    <span class="comment">// 拷贝赋值函数</span></span><br><span class="line">    <span class="keyword">String</span>&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="keyword">String</span>&amp; str);</span><br><span class="line">    <span class="comment">// 析构函数</span></span><br><span class="line">    ~<span class="keyword">String</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">char</span>* <span class="title">get_c_str</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> m_data; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span>* m_data;</span><br><span class="line">    <span class="comment">// 让字符串里有这么一个指针</span></span><br><span class="line">    <span class="comment">// 字符串里的数据有大有小，有时候是空字符串</span></span><br><span class="line">    <span class="comment">// 不要在字符串里头放一个 char 数组，这个数组要设定多大呢？</span></span><br><span class="line">    <span class="comment">// 所以我们要用一种动态分配的方式   </span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>构造函数（ctor）与析构函数（dtor）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> </span><br><span class="line"><span class="keyword">String</span>::<span class="keyword">String</span>(<span class="keyword">const</span> <span class="keyword">char</span>* cstr = <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (cstr) &#123;</span><br><span class="line">        m_data = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(cstr) + <span class="number">1</span>];    <span class="comment">// array new</span></span><br><span class="line">        <span class="built_in">strcpy</span>(m_data, cstr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123; <span class="comment">// 未指定初值</span></span><br><span class="line">        m_data = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1</span>];</span><br><span class="line">        *m_data = <span class="string">'\0'</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span></span><br><span class="line"><span class="keyword">String</span>::~<span class="keyword">String</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span>[] m_data;                            <span class="comment">// array delete</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    String s1(),</span><br><span class="line">    <span class="function"><span class="keyword">String</span> <span class="title">s2</span><span class="params">(<span class="string">"hello"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">String</span>* p = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"hello"</span>);</span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>class with pointer members 必须有 copy ctor 和 copy op=
+<ul>
+<li>a 赋值给 b，用 default copy ctor 或 default op= 并不会如我们所愿的有两个相同内容的对象</li>
+<li>而是看起来两个有相同内容，实际上是两个指针指向同一个地址（alias），是一种浅拷贝</li>
+<li>若修改 a，则 b 也会跟着受影响</li>
+<li>并且原来指向的 “world” 不再有任何一个指针能够访问到，成为了一个孤儿，memory leak 内存泄漏</li>
+<li>这就是为什么一定要写自己的一个版本</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/C%2B%2B%E4%BE%AF%E6%8D%B7%E8%80%81%E5%B8%88/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E5%BC%80%E5%8F%91/0x02.png" alt="avatar"></p>
+<br>
+<ul>
+<li>copy ctor（拷贝构造函数）
+<ul>
+<li>那么深拷贝是什么样的呢？</li>
+<li>先分配空间，然后把内容拷贝过去，这就是深拷贝</li>
+<li>编译器的 default copy ctor 只拷贝指针，是浅拷贝</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span></span><br><span class="line"><span class="keyword">String</span>::<span class="keyword">String</span>(<span class="keyword">const</span> <span class="keyword">String</span>&amp; str)</span><br><span class="line">&#123;   </span><br><span class="line">    <span class="comment">// 直接取另一个 object 的 private data（兄弟之间互为 friend）</span></span><br><span class="line">    m_data = <span class="keyword">new</span> <span class="keyword">char</span>[ <span class="built_in">strlen</span>(str.m_data) + <span class="number">1</span> ];</span><br><span class="line">    <span class="built_in">strcpy</span>(m_data, str.m_data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">String</span> <span class="title">s1</span><span class="params">(<span class="string">"hello "</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">String</span> <span class="title">s2</span><span class="params">(s1)</span></span>;</span><br><span class="line">    <span class="comment">// String s2 = s1;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>copy assignment operator（拷贝赋值函数）
+<ul>
+<li>拷贝赋值的步骤：清空、开足空间、复制内容</li>
+<li>一定要在 operator= 中检测是否 self assignment
+<ul>
+<li>如果一开始左与右的 pointer 就是指的同一个 memory block</li>
+<li>前述 operator= 的第一件事情就是 delete，那么两个其实都没有了</li>
+<li>当企图存取（访问）右边 pointer 指向的对象时，将产生不确定行为（undefined behavior）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span></span><br><span class="line"><span class="keyword">String</span>&amp; <span class="keyword">String</span>::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="keyword">String</span>&amp; str)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;str)   <span class="comment">// 检测自我赋值，看两个指针指的是不是同一块东西（地址）</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;   <span class="comment">// （self assignment）</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 三步走</span></span><br><span class="line">    <span class="comment">// 1. 把左边清空</span></span><br><span class="line">    <span class="comment">// 2. 在左边的对象中开足够的空间</span></span><br><span class="line">    <span class="comment">// 3. 把右边的内容复制到左边去</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span>[] m_data;</span><br><span class="line">    m_data = <span class="keyword">new</span> <span class="keyword">char</span>[ <span class="built_in">strlen</span>(str.m_data) + <span class="number">1</span> ];</span><br><span class="line">    strcopy(m_data, str.m_data);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>符号重载 &lt;&lt;</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="keyword">const</span> <span class="keyword">String</span>&amp; str)</span><br><span class="line">&#123;</span><br><span class="line">    os &lt;&lt; str.get_c_str();</span><br><span class="line">    <span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">String</span> <span class="title">s1</span><span class="params">(<span class="string">"hello "</span>)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="堆、栈与内存管理"><a class="header-anchor" href="#堆、栈与内存管理">¶</a>堆、栈与内存管理</h2>
+<ul>
+<li>所谓 stack（栈），所谓 heap（堆）
+<ul>
+<li>Stack，是存在于某作用域（scope）的一块内存空间（memory space）。例如当你调用函数，函数本身即会形成一个 stack 用来放置它所接收的参数，以及返回地址<br>
+在函数本体（function body）内声明的任何变量，其所使用的内存块都取自上述 stack</li>
+<li>heap，或谓 system heap，是指由操作系统提供的一块 global 內存空间，程序可动态分配 (dynamic allocated) 从某中获得若干区块 (blocks)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span> ... &#125;;</span><br><span class="line">...</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// c1 所占用的空间来自 stack</span></span><br><span class="line">    <span class="function">Complex <span class="title">c1</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line">    <span class="comment">// Complex(3) 是个临时对象，其所占用的空间乃是以 new 自 heap 动态分配而得</span></span><br><span class="line">    <span class="comment">// 并由 p 指向       </span></span><br><span class="line">    Complex* p = <span class="keyword">new</span> Complex(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>
+<p>stack objects 的生命期</p>
+<ul>
+<li>c1 便是所谓 stack object，其生命在作用域（scope）结束之际结束<br>
+这种作用域内的 object，又称为 auto object，因为它会被“自动”清理</li>
+</ul>
+</li>
+<li>
+<p>static local objects 的生命期</p>
+<ul>
+<li>c2 便是所谓 static object，其生命在作用域（scope）结束之后仍然存在，直到整个程序结束</li>
+</ul>
+</li>
+<li>
+<p>global objects 的生命期</p>
+<ul>
+<li>c3 便是所谓 global object，其生命在整个程序结束之后才结束。其作用域是整个程序</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span> ... &#125;;</span><br><span class="line">...</span><br><span class="line"><span class="function">Complex <span class="title">c3</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">Complex <span class="title">c1</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>; </span><br><span class="line">    <span class="function"><span class="keyword">static</span> Complex <span class="title">c2</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>heap objects 的生命期
+<ul>
+<li>p 所指的便是 heap object，其生命在它被 deleted 之际结束</li>
+<li>若没有 delete p，将会出现内存泄漏（memory leak）
+<ul>
+<li>因为当作用域结束，p 所指的 heap object 仍然存在，但指针 p 的生命值却结束了<br>
+作用域之外再也看不到 p（也就没机会 delete p）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span> ... &#125;;</span><br><span class="line">...</span><br><span class="line">&#123;</span><br><span class="line">    Complex* p = <span class="keyword">new</span> Complex;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>new：先分配 memory，再调用 ctor</li>
+<li>delete：先调用 dtor，再释放 memory</li>
+<li>注意正好相反</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Complex* pc = <span class="keyword">new</span> Complex(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">delete</span> pc;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一句被编译器转化为：</span></span><br><span class="line">Complex *pc;</span><br><span class="line"><span class="keyword">void</span>* mem = <span class="keyword">operator</span> <span class="keyword">new</span>( <span class="keyword">sizeof</span>(Complex) );    <span class="comment">// 分配内存</span></span><br><span class="line">pc = <span class="keyword">static_cast</span>&lt;Complex*&gt;(mem);                <span class="comment">// 转型</span></span><br><span class="line">pc-&gt;Complex::Complex(<span class="number">1</span>,<span class="number">2</span>);                      <span class="comment">// 构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 最后一句被编译器转化为：</span></span><br><span class="line">Complex::~Complex(pc);                          <span class="comment">// 析构函数</span></span><br><span class="line"><span class="function"><span class="keyword">operator</span> <span class="title">delete</span><span class="params">(pc)</span></span>;                            <span class="comment">// 释放内存</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/C%2B%2B%E4%BE%AF%E6%8D%B7%E8%80%81%E5%B8%88/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E5%BC%80%E5%8F%91/0x03.png" alt="avatar"></p>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/C%2B%2B%E4%BE%AF%E6%8D%B7%E8%80%81%E5%B8%88/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E5%BC%80%E5%8F%91/0x04.png" alt="avatar"></p>
+<br>
+<ul>
+<li>注意，这里的析构函数并没有做什么事情，因为我们这个复数对象里面就两个 double 的变量，析构完了就要把它删掉了，也就不需要 dtor 做什么事情</li>
+<li>但是在 String 里，情况就发生了变化
+<ul>
+<li>调用 dtor 要把 m_data 指向的它动态分配的内存里的东西删掉</li>
+<li>至于 String 对象本身，它里面只是一个指针而已，在 delete 这个对象的时候，只是删掉了这个指针</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>上面介绍的分配内存和释放内存，实际上使用的是 C 语言的 malloc 和 free
+<ul>
+<li>那么具体分配的情况是怎样？</li>
+<li>动态分配所得的内存块（memory block），in VC</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/C%2B%2B%E4%BE%AF%E6%8D%B7%E8%80%81%E5%B8%88/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E5%BC%80%E5%8F%91/0x05.png" alt="avatar"></p>
+<br>
+<ul>
+<li>这是调试模式下（Debug）与构建模式下（Release）的区别（1 格为 4 个 Byte）<br>
+注意：这里的 double 为 4 字节，pointer 为 4 字节，而在现在普遍的机器（x86_64）上两者皆为 8 字节
+<ul>
+<li>调试模式
+<ul>
+<li>在 Debug 模式下 new 一个 Complex</li>
+<li>光一个 Complex，里面只有两个 double，共 8 字节</li>
+<li>在调试模式下，会多给你灰色的区域，我们看到，上面 32 字节，下面 4 字节</li>
+<li>最上面和最下面红色区域的叫做 cookie，大小为 4 * 2 字节</li>
+<li>这就总共有了 52 字节，而在 VC 中，分配的内存块一定是 16 的倍数</li>
+<li>所以还会有 12 个字节的填充（绿色区域）</li>
+<li>虽然我们只要存两个 double 共 8 个字节，但是在调试模式下，一共分配了 64 个字节给我们，需要知道的是，这是一种必要的浪费</li>
+</ul>
+</li>
+<li>构建模式
+<ul>
+<li>在 Release 模式下 new 一个 Complex</li>
+<li>将灰色的区域先去掉（不需要 debugger header），重新来算</li>
+<li>总共 8 + 4 * 2 = 16 个字节，不需要进行填充</li>
+</ul>
+</li>
+<li>cookie 的作用
+<ul>
+<li>记录分配的整块空间的大小<br>
+在调试模式下，分配 64 字节，即 0x40，在构建模式下，分配 16 字节，即 0x10<br>
+但与图中实际情况不符，图中为 0x41 与 0x10</li>
+<li>借最后一位 bit 来表示这块空间是分配出去了（1）还是已经收回来（0）
+<ul>
+<li>为什么能借位，因为分配的空间一定是 16 的倍数，这意味着后 4 位都没有意义（正常都是 0）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>如果分配的是数组，那又是何种情况呢？
+<ul>
+<li>动态分配的所得的 array</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/C%2B%2B%E4%BE%AF%E6%8D%B7%E8%80%81%E5%B8%88/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E5%BC%80%E5%8F%91/0x06.png" alt="avatar"></p>
+<ul>
+<li>可以看到，在数组这边有一点不同
+<ul>
+<li>在 Debugger Header 与 data 中间，有一个空间用来记录数组的大小</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>array new 一定要搭配 array delete
+<ul>
+<li>用 delete 代替 delete[]，为对象分配的空间会正常回收</li>
+<li>但 delete 只调用 1 次析构函数，而原本的 delete[] 会调用多次析构函数</li>
+<li>每一次调用析构函数都应该会将数组其中一个元素它动态申请的内存空间回收</li>
+<li>用 delete 便只回收一次（回收了数组首个元素动态申请的内存空间）</li>
+<li>这样就造成了内存泄漏</li>
+<li>那么如果是 Complex 数组是不是就用 delete 也不会出错？</li>
+<li>是的，但不推荐</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">String</span>* p = <span class="keyword">new</span> <span class="keyword">String</span>[<span class="number">3</span>];</span><br><span class="line">...</span><br><span class="line"><span class="keyword">delete</span>[] p;     <span class="comment">// 唤起 3 次 dtor</span></span><br><span class="line"><span class="comment">// delete p;    // 唤起 1 次 dtor</span></span><br></pre></td></tr></table></figure>
+<h2 id="String-类的实现过程"><a class="header-anchor" href="#String-类的实现过程">¶</a>String 类的实现过程</h2>
+<ul>
+<li>String 类的实现过程
+<ul>
+<li>设计一个 class，先思考需要什么样的数据
+<ul>
+<li>字符串会放很多的字符，一种想法是，用数组存储，但无法确定大小</li>
+<li>放一个指针，动态分配内存</li>
+<li>在 32 位的机器中，pointer 为 4 Bytes，在 64 位机器中为 8 Bytes</li>
+</ul>
+</li>
+<li>接下来思考，要准备哪些函数，开放给外界调用
+<ul>
+<li>首先就是（同名的）构造函数</li>
+<li>其次就是 Big Three：拷贝构造、拷贝复制、析构</li>
+<li>设计一个辅助函数 get_c_str()，用于将字符串送入 std::cout</li>
+<li>注意函数中的 const</li>
+<li>在实现时尽量作 inline 的建议</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">String</span>(<span class="keyword">const</span> <span class="keyword">char</span>* cstr = <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">String</span>(<span class="keyword">const</span> <span class="keyword">String</span>&amp; str);</span><br><span class="line">    <span class="keyword">String</span>&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="keyword">String</span>&amp; str);</span><br><span class="line">    ~<span class="keyword">String</span>();</span><br><span class="line">    <span class="function"><span class="keyword">char</span>* <span class="title">get_c_str</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> m_data; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span>* m_data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>接下来看 ctor 与 dtor 如何进行设计
+<ul>
+<li>ctor
+<ul>
+<li>需要足够的空间来放初值</li>
+<li>若未指定初值，应进行处理</li>
+<li>注意用 strlen 与 strcpy 需引入 cstring 库</li>
+</ul>
+</li>
+<li>dtor
+<ul>
+<li>用 array delete</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span></span><br><span class="line"><span class="keyword">String</span>::<span class="keyword">String</span>(<span class="keyword">const</span> <span class="keyword">char</span>* cstr = <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (cstr) &#123;</span><br><span class="line">        m_data = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(cstr) + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">strcpy</span>(m_data, cstr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        m_data = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1</span>];</span><br><span class="line">        *m_data = <span class="string">'\0'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span></span><br><span class="line"><span class="keyword">String</span>::~<span class="keyword">String</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span>[] m_data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>再看拷贝构造函数 copy ctor
+<ul>
+<li>从来源端（参数）拷贝到目的端（该对象）</li>
+</ul>
+</li>
+<li>拷贝赋值函数 copy assignment operator
+<ul>
+<li>判断是否自我赋值（来源端与目的端相等）</li>
+<li>三步走：清空、开足空间、复制内容</li>
+<li>返回 this 指针</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span></span><br><span class="line"><span class="keyword">String</span>::<span class="keyword">String</span>(<span class="keyword">const</span> <span class="keyword">String</span>&amp; str)</span><br><span class="line">&#123;</span><br><span class="line">    m_data = <span class="keyword">new</span> <span class="keyword">char</span>[ <span class="built_in">strlen</span>(str.m_data) + <span class="number">1</span> ];</span><br><span class="line">    <span class="built_in">strcpy</span>(m_data, str.m_data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span></span><br><span class="line"><span class="keyword">String</span>&amp; <span class="keyword">String</span>::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="keyword">String</span>&amp; str)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;str)</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span>[] m_data;</span><br><span class="line">    m_data = <span class="keyword">new</span> <span class="keyword">char</span>[ <span class="built_in">strlen</span>(str.m_data) + <span class="number">1</span> ];</span><br><span class="line">    <span class="built_in">strcpy</span>(m_data, str.m_data);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="进一步补充：static"><a class="header-anchor" href="#进一步补充：static">¶</a>进一步补充：static</h2>
+<ul>
+<li>static
+<ul>
+<li>static data members<br>
+不管有几个对象，都只有一份数据<br>
+一定在类外面进行定义</li>
+<li>static member functions<br>
+没有 this pointer，只能处理 static data members</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/C%2B%2B%E4%BE%AF%E6%8D%B7%E8%80%81%E5%B8%88/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E5%BC%80%E5%8F%91/0x07.png" alt="avatar"></p>
+<br>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> m_rate;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_rate</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span>&amp; x)</span> </span>&#123; m_rate = x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">double</span> Account::m_rate = <span class="number">8.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Account::set_rate(<span class="number">5.0</span>);</span><br><span class="line"></span><br><span class="line">    Account a;</span><br><span class="line">    a.set_rate(<span class="number">7.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>调用 static 函数的方式有二
+<ul>
+<li>(1) 通过 object 调用</li>
+<li>(2) 通过 class name 调用</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>在单例模式中，很好的使用了 static 的特性
+<ul>
+<li>用 static 在 private data members 中创建一个对象<br>
+并且将类的构造函数放在 private 区，于是保证了始终只有一个对象</li>
+<li>再设计一个静态函数 getInstance，作为外界获得这个对象的唯一接口</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> A&amp; <span class="title">getInstance</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> a; &#125;</span><br><span class="line">    <span class="built_in">setup</span>() &#123; ... &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    A();</span><br><span class="line">    A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">    <span class="keyword">static</span> A a;</span><br><span class="line">    ... </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A::getInstance().<span class="built_in">setup</span>();</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>进一步的，我们有 Meyers Singleton
+<ul>
+<li>把 static 对象的创建放到 getInstance 函数中去<br>
+只有使用时才会创建，不使用时不占用空间</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> A&amp; <span class="title">getInstance</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="built_in">setup</span>() &#123; ... &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    A();</span><br><span class="line">    A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">    ... </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">A&amp; <span class="title">A::getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> A a;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A::getInstance().<span class="built_in">setup</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="进一步补充：cout"><a class="header-anchor" href="#进一步补充：cout">¶</a>进一步补充：cout</h2>
+<ul>
+<li>cout 能够接收多种数据，并打印到终端
+<ul>
+<li>继承自 ostream</li>
+<li>作了很多的操作符重载</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">IO_ostream_withassign</span></span></span><br><span class="line"><span class="class">:</span> <span class="keyword">public</span> ostream &#123;</span><br><span class="line">...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">extern</span> _IO_ostream_withassign <span class="built_in">cout</span>;</span><br></pre></td></tr></table></figure>
+<br>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ostream</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> ios</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">char</span> c);</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">unsigned</span> <span class="keyword">char</span> c) &#123; <span class="keyword">return</span> (*<span class="keyword">this</span>) &lt;&lt; (<span class="keyword">char</span>)c; &#125;</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">signed</span> <span class="keyword">char</span> c) &#123; <span class="keyword">return</span> (*<span class="keyword">this</span>) &lt;&lt; (<span class="keyword">char</span>)c; &#125;</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">const</span> <span class="keyword">char</span> *s);</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *s)</span><br><span class="line">        &#123; <span class="keyword">return</span> (*<span class="keyword">this</span>) &lt;&lt; (<span class="keyword">const</span> <span class="keyword">char</span>*)s; &#125;</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">const</span> <span class="keyword">signed</span> <span class="keyword">char</span> *s)</span><br><span class="line">        &#123; <span class="keyword">return</span> (*<span class="keyword">this</span>) &lt;&lt; (<span class="keyword">const</span> <span class="keyword">char</span>*)s; &#125;</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">const</span> <span class="keyword">void</span> *p);</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">int</span> n);</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">unsigned</span> <span class="keyword">int</span> n);</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">long</span> n);</span><br><span class="line">        ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">unsigned</span> <span class="keyword">long</span> n);</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="进一步补充：template"><a class="header-anchor" href="#进一步补充：template">¶</a>进一步补充：template</h2>
+<ul>
+<li>class template
+<ul>
+<li>类型不能提前确定，那就不把它写死</li>
+<li>T 仅仅是一个符号</li>
+<li>编译器会将 T 替换为使用者指定的类型，得到一份新的代码</li>
+<li>模板会造成代码的膨胀，但是必要的</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">complex</span> (<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>)</span><br><span class="line">        : re (r), im (i)</span><br><span class="line">    &#123; &#125;</span><br><span class="line">    <span class="built_in">complex</span>&amp; <span class="keyword">operator</span> += (<span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">real</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">imag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> im; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T re, im;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">complex</span>&amp; __doapl(<span class="built_in">complex</span>*, <span class="keyword">const</span> <span class="built_in">complex</span>&amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<br>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span>&lt;<span class="keyword">double</span>&gt; <span class="title">c1</span><span class="params">(<span class="number">2.5</span>, <span class="number">1.5</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="built_in">complex</span>&lt;<span class="keyword">int</span>&gt; <span class="title">c2</span><span class="params">(<span class="number">2</span>, <span class="number">6</span>)</span></span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>function template
+<ul>
+<li>编译器会对 function template 进行引数推导（实参推导）</li>
+<li>算法写成 function template 的形式</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">stone r1(2, 3, 4), r2(3, 3, 6), r3;</span><br><span class="line">r3 = <span class="built_in">min</span>(r1, r2);</span><br><span class="line"><span class="comment">// 需要设计一个求两者较小值的函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span></span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">min</span>(<span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">return</span> b &lt; a ? b : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 不是说只有 stone 类的值调用的 min 函数这么写，</span></span><br><span class="line"><span class="comment">// 而是所有类型的 min 函数都是这个原理</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引数推导的结果，T 为 stone，</span></span><br><span class="line"><span class="comment">// 于是调用 stone::operator&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">stone</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    stone(<span class="keyword">int</span> w, <span class="keyword">int</span> h, <span class="keyword">int</span> we)</span><br><span class="line">      : _w(w), _h(h), _weight(we)</span><br><span class="line">        &#123; &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt; (<span class="keyword">const</span> stone&amp; rhs) <span class="keyword">const</span></span><br><span class="line">        &#123; <span class="keyword">return</span> _weight &lt; rhs._weight; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> _w, _h, _weight;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="进一步补充：namespace"><a class="header-anchor" href="#进一步补充：namespace">¶</a>进一步补充：namespace</h2>
+<ul>
+<li>namespace
+<ul>
+<li>标准库的命名空间 std</li>
+<li>using directive</li>
+<li>using declaration</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="built_in">std</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;    <span class="comment">// using std::cout;         // not say anything</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; ...;         <span class="comment">// std::cin &gt;&gt; ...;         // std::cin &gt;&gt; ...;</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ...;                                    <span class="comment">// std::cout &lt;&lt; ...;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面向对象编程"><a class="header-anchor" href="#面向对象编程">¶</a>面向对象编程</h2>
+<ul>
+<li>Object Oriented Programming, Object Oriented Design (OOP, OOD)
+<ul>
+<li>Inheritance (继承)</li>
+<li>Composition (复合)</li>
+<li>Delegation (委托)</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -12485,76 +13231,6 @@ SQLite的注释可以跨越多行</p>
       </tags>
   </entry>
   <entry>
-    <title>碧蓝航线从入坑开始的完整记录</title>
-    <url>/2023/08/28/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E4%BB%8E%E5%85%A5%E5%9D%91%E5%BC%80%E5%A7%8B%E7%9A%84%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>入坑碧蓝航线<a id="more"></a></p>
-<h2 id="了解一下现在的进度"><a class="header-anchor" href="#了解一下现在的进度">¶</a>了解一下现在的进度</h2>
-<p>现在的建造彩船</p>
-<p>衣阿华级战列舰2号舰 新泽西 （花园） USS New Jersey<br>
-2021年05月27日<br>
-前卫级战列舰 前卫 HMS Vanguard<br>
-2022年05月26日<br>
-大和级战列舰二番舰 武藏 （鳄） IJN Musashi<br>
-2022年09月15日<br>
-大和级战列舰改装航空母舰 信浓 （鵗） IJN Shinano<br>
-2020年09月17日<br>
-岛风级驱逐舰一番舰 岛风 （芒） IJN Shimakaze<br>
-2021年09月16日<br>
-战列舰H 1939年方案 乌尔里希·冯·胡滕 （乌尔里克·冯·胡贝尔） KMS Ulrich von Hutten<br>
-2021年12月29日<br>
-Pr.69型喀琅施塔得级大型巡洋舰1号舰 喀琅施塔得 SN Kronshtadt<br>
-2022年02月24日<br>
-埃塞克斯级航空母舰2号舰 约克城II USS Yorktown II<br>
-2022年12月22日<br>
-怨仇级航空母舰1号舰 怨仇 HMS Implacable<br>
-2023年02月23日<br>
-战列舰F 俾斯麦级战列舰1号舰 俾斯麦Zwei （奥德莉亚Zwei） KMS Bismarck Zwei<br>
-2023年05月25日</p>
-<p>按照时间顺序：</p>
-<p>信浓实装 20.09<br>
-花园实装 21.05<br>
-岛风实装 21.09<br>
-胡滕实装 21.12<br>
-喀琅施塔得实装 22.02<br>
-前卫实装 22.05<br>
-武藏实装 22.09<br>
-约克城II实装 22.12<br>
-怨仇实装 23.02<br>
-俾斯麦Zwei实装 23.05</p>
-<p>复刻：<br>
-信浓复刻 22.07<br>
-花园复刻 23.06</p>
-<h2 id="日服氪金方法"><a class="header-anchor" href="#日服氪金方法">¶</a>日服氪金方法</h2>
-<p>招行 JCB 的信用卡，可以绑 applestore<br>
-代充：淘宝店 MAの旅行</p>
-<h2 id="六期科研"><a class="header-anchor" href="#六期科研">¶</a>六期科研</h2>
-<p>刷奇尔沙治经验<br>
-刷 13-4<br>
-道中队<br>
-美航后排：独立改、兰利改、大黄蜂II</p>
-<p>刷四万十经验<br>
-刷 12-4 刷日航前排<br>
-道中队<br>
-后排：独角兽改（旗舰）、小企业、小大凤<br>
-前排：能代、五十铃改、夕张改<br>
-（前排等级不够，拿不到 mvp，把夕张改换成了岛风）<br>
-Boss队<br>
-突击者改、科洛蒂娅（旗舰）、女灶神<br>
-爱宕、高雄、绫波改</p>
-<h2 id="刷物资"><a class="header-anchor" href="#刷物资">¶</a>刷物资</h2>
-<p>刷 13-4</p>
-<p>道中队<br>
-后排：科洛蒂娅、企业（旗舰）（练级）、萨拉托加（练级）<br>
-前排：安克雷奇、圣地亚哥改、喀琅施塔得<br>
-Boss队<br>
-后排：花园、胡滕、怨仇<br>
-前排：柴郡、阿蒂利奥（练级）、兴登堡（练级）</p>
-]]></content>
-      <tags>
-        <tag>Azur lane</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>23.09 工作安排</title>
     <url>/2023/09/05/23.09%E5%B7%A5%E4%BD%9C%E5%AE%89%E6%8E%92/</url>
     <content><![CDATA[<h2 id="实习"><a class="header-anchor" href="#实习">¶</a>实习</h2>
@@ -12719,17 +13395,6 @@ g：表示通用格式，会根据数值的大小自动选择%f（浮点数）�
       <tags>
         <tag>学习笔记</tag>
         <tag>ChatGPT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++中简单正则表达式的使用</title>
-    <url>/2023/09/11/C++%E4%B8%AD%E7%AE%80%E5%8D%95%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><a href="https://learn.microsoft.com/zh-cn/cpp/standard-library/regex?view=msvc-170" target="_blank" rel="noopener">https://learn.microsoft.com/zh-cn/cpp/standard-library/regex?view=msvc-170</a></p>
-<p><a href="https://cplusplus.com/reference/regex/" target="_blank" rel="noopener">https://cplusplus.com/reference/regex/</a></p>
-]]></content>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>C++</tag>
       </tags>
   </entry>
 </search>
