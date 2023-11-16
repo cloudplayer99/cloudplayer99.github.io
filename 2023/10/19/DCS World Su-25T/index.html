@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.1/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer99.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="B 站 UP 孤独野驴： DCS 入门 模拟飞行 苏25T基础教学第一期下载完成要干什么 认识仪表 起飞 基础理论 话术 DCS 苏25T第二期基础教学 导航 降落 基础理论 侧滑仪 HSI ADI 入门 模拟飞行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DCS World Su-25T 从起飞到坠机">
+<meta property="og:url" content="https://cloudplayer99.github.io/2023/10/19/DCS%20World%20Su-25T/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="B 站 UP 孤独野驴： DCS 入门 模拟飞行 苏25T基础教学第一期下载完成要干什么 认识仪表 起飞 基础理论 话术 DCS 苏25T第二期基础教学 导航 降落 基础理论 侧滑仪 HSI ADI 入门 模拟飞行">
+<meta property="og:image" content="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x00.png">
+<meta property="og:image" content="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x01.png">
+<meta property="og:image" content="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x02.png">
+<meta property="og:image" content="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x0f.png">
+<meta property="og:image" content="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x03.png">
+<meta property="og:image" content="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x04.png">
+<meta property="og:image" content="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x05.png">
+<meta property="article:published_time" content="2023-10-19T07:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-04T10:40:57.614Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="飞行器驾驶员的自我修养">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x00.png">
+
+<link rel="canonical" href="https://cloudplayer99.github.io/2023/10/19/DCS%20World%20Su-25T/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>DCS World Su-25T 从起飞到坠机 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer99.github.io/2023/10/19/DCS%20World%20Su-25T/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DCS World Su-25T 从起飞到坠机
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-19 15:00:00" itemprop="dateCreated datePublished" datetime="2023-10-19T15:00:00+08:00">2023-10-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-04 18:40:57" itemprop="dateModified" datetime="2023-11-04T18:40:57+08:00">2023-11-04</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://space.bilibili.com/25357640" target="_blank" rel="noopener">B 站 UP 孤独野驴：</a><br>
+<a href="https://www.bilibili.com/video/BV1j3411W7zV" target="_blank" rel="noopener">DCS 入门 模拟飞行 苏25T基础教学第一期下载完成要干什么 认识仪表 起飞 基础理论 话术</a><br>
+<a href="https://www.bilibili.com/video/BV1qY4y1p7cD/" target="_blank" rel="noopener">DCS 苏25T第二期基础教学 导航 降落 基础理论 侧滑仪 HSI ADI 入门 模拟飞行</a></p>
+<a id="more"></a>
+<h2 id="从入门到起飞"><a class="header-anchor" href="#从入门到起飞">¶</a>从入门到起飞</h2>
+<ul>
+<li>
+<p>下载 DCS World</p>
+</li>
+<li>
+<p>参考系统配置</p>
+</li>
+</ul>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x00.png" alt="avatar"></p>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x01.png" alt="avatar"></p>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x02.png" alt="avatar"></p>
+<ul>
+<li>
+<p>找到 Su-25T 的手册<br>
+参考地址：<br>
+D:\SteamLibrary\steamapps\common\DCSWorld\Mods\aircraft\Su-25T\Doc\DCS World Su-25T Flight Manual CN.pdf</p>
+</li>
+<li>
+<p>Su-25T 基本信息<br>
+Su-25Т 蛙足是苏联研发的一款可以携带反坦克武器的全天候攻击机</p>
+</li>
+<li>
+<p>认识节流阀与操纵杆</p>
+</li>
+</ul>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x0f.png" alt="avatar"></p>
+<ul>
+<li>操纵杆的控制
+<ul>
+<li>向后拉为带杆，往前推叫做推杆<br>
+带杆，升降舵向上翘起，使飞机的仰角增加<br>
+推杆，升降舵向下偏转，增加俯角</li>
+<li>往左叫压杆，称正压杆，往右也是压杆，称反压杆，正杆与反杆是指的逆时针的顺序<br>
+正压杆飞机向左滚转，反压杆飞机向右滚转</li>
+</ul>
+</li>
+<li>认识钟表店</li>
+</ul>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x03.png" alt="avatar"></p>
+<ol>
+<li>起落架控制杆</li>
+<li>自动驾驶 （ACS）控制面板</li>
+<li>迎角（AOA）指示器与加速度表（“G 表”）</li>
+<li>指示空速表（IAS）</li>
+<li>姿态指引指示器（ADI）</li>
+<li>垂直速度表（VVI）</li>
+<li>发动机转速表（每分钟转动次数或者 RPM）</li>
+<li>油量表</li>
+<li>“EKRAN” 内置检测系统显示屏</li>
+<li>SPO-15“堡优札”雷达告警接收器（RWR）面板</li>
+<li>IТ-23М 阴极管（CRT）电视（TV）显示屏</li>
+<li>飞行时钟</li>
+<li>“Sukhogruz”红外（IR）干扰指示灯</li>
+<li>武器系统控制面板（WCS）</li>
+<li>襟翼、前缘缝翼、减速板以及起落架配置指示器</li>
+<li>无线电高度表</li>
+<li>气压高度表</li>
+<li>水平状态指示器（HSI）</li>
+<li>俯仰、滚转和偏航回中（起飞）配平指示灯</li>
+<li>武器状态 面板</li>
+<li>发动机温度表</li>
+<li>液压表</li>
+<li>告警灯</li>
+</ol>
+<center>这是驾驶舱视角</center><br>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x04.png" alt="avatar"></p>
+<p><br><center>Su-25T 驾驶舱仪表</center><br></p>
+<p><img src="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x05.png" alt="avatar"></p>
+<ul>
+<li>
+<p>具体看几个飞行仪表</p>
+</li>
+<li>
+<p>IAS – TAS 空速表<br>
+IAS - TAS 空速表在内圈显示航空器的真空速（TAS），在外圈显示航空器的指示空速（IAS）。速度范围从 0 到 1100 公里/小时</p>
+</li>
+</ul>
+<div align=center><img width = '400' height = '320' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x06.png"/></div>
+<ul>
+<li>配置指示器<br>
+机械设备配置指示器显示起落架，襟翼，以及减速板的位置。如果起落架不能成功放下或者收起，指示器中间的红灯亮起</li>
+</ul>
+<div align=center><img width = '350' height = '350' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x07.png"/></div>
+<ul>
+<li>AOA（迎角）指示器和加速度表<br>
+迎角（AoA）指示器和加速度表显示当前的迎角和 G 值。仪表左边显示迎角度数，右边显示 G 值（迎角也叫攻角，攻角是指飞机的升力方向矢量与飞机纵轴之间的夹角，攻角过大飞机将失速）</li>
+</ul>
+<div align=center><img width = '360' height = '280' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x08.png"/></div>
+<ul>
+<li>姿态指引指示器（ADI）<br>
+姿态指引指示器（或指引地平仪）（ADI）显示航空器当前的俯仰和滚转角度。在仪表的底部是侧滑指示。用蹬舵来消除侧滑，飞行时要把侧滑球保持在中间。在仪表中间一横一竖的两条黄线是到达下一个航路点的需用滚转角和俯仰角。 两条线都在中间时，表示航空器处在正确航线上。着陆时，W 形状的下滑道指示器提供仪表着陆系统（ILS）的方向</li>
+</ul>
+<div align=center><img width = '350' height = '400' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x09.png"/></div>
+<ul>
+<li>水平状态指示器（HSI）<br>
+水平状态指示器（HSI）提供航空器在预定航线的垂直视野信息。罗盘可以旋转，当前航向显示在顶部。航线指针指示需用航向，航向指针指向下一个航路点。到下一个航路点的距离和需用航向显示在仪表顶部的两个数字窗口中。仪表中间是 ILS 航向信标及下滑道指示</li>
+</ul>
+<div align=center><img width = '350' height = '400' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x0a.png"/></div>
+<ul>
+<li>垂直速度表（VVI）<br>
+垂直速度表测量航空器的垂直速度，爬升率和下降率。侧滑指示器是 ADI 上侧滑指示的备份。转弯指示器显示转弯的方向，但显示的转弯速率只是近似值（垂直速度表能判断飞机是否平飞）</li>
+</ul>
+<div align=center><img width = '300' height = '200' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x0b.png"/></div>
+<ul>
+<li>无线电高度表<br>
+无线电高度表指示离地面的高度，范围是 0 到 1500 米<br>
+区别无线电（雷达）高度表与气压高度表，气压高度表指利用飞行器所处气压环境测量出的高度，是相对海平面气压的，所以测出来的高度也是相对海平面的高度</li>
+</ul>
+<div align=center><img width = '300' height = '300' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x0c.png"/></div>
+<ul>
+<li>转速表<br>
+转速表用来测量两台发动机转子的转速。测量转子最大转速的百分比（即测量的是一个百分数）</li>
+</ul>
+<div align=center><img width = '270' height = '350' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x0d.png"/></div>
+<ul>
+<li>
+<p>接下来，重点再看看 HUD（平视显示系统）<br>
+Su-25T 有数个运行模式。平视显示器（HUD）上的一些基本符号是多数模式通用的</p>
+</li>
+<li>
+<p>Su-25T 基本 HUD 符号</p>
+</li>
+</ul>
+<div align=center><img width = '562' height = '300' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x0e.png"/></div>
+<ul>
+<li>HUD 中央的航空器基准用旋转来指示航空器的坡度和滚转</li>
+<li>航向条显示在 HUD 的顶部，标记以十度为刻度（例如：数字“35”指示航向为 350 度）</li>
+<li>航向条的左侧是指示空速（IAS），到下一航路点的指配空速（取决于运行子模式）显示在指示空速的正上方</li>
+<li>一个加速度表显示在指示空速的正下方，形式为一个条形标尺和三角形标记，标记在中心右侧表示加速；在中心左侧表示减速</li>
+<li>在航向带的右侧是以米为单位的当前飞行高度，离地高度（AGL）低于 1500 米时，显示 1 米精度的无线电高度，离地高度高于 1500 米时，显示 10 米精度的气压海拔高度（ASL）。下一航路点的指配高度（取决于运行子模式）显示在当前飞行高度的正上方</li>
+<li>当航空器在指配的飞行路径上，指引圆与 HUD 中央的航空器基准对齐，当航空器偏离指配飞行路径，指引圆指示回到路径的方向</li>
+<li>俯仰带位于航空器基准的右侧，通过这个带，可以参考 HUD 上的航空器基准来读出航空器的俯仰</li>
+<li>俯仰带的右侧是垂直速度表（VVI），航空器在 ±30 米/秒以内的爬升或下降率通过箭头和数值显示，当垂直速度超过 30 米/秒时，箭头停在 VVI 的限位，数值闪烁</li>
+<li>当前运行飞行模式显示在 HUD 的左下角</li>
+<li>到下一航路点的距离以公里显示在 HUD 的底部</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>飞机启动、滑行和起飞<br>
+在本课中，我们会练习冷启动Su-25T，然后滑行到跑道并起飞</p>
+</li>
+<li>
+<p>启动（冷启动）<br>
+开启电源：右 Shift + L，使得 HUD 与其他仪表和驾驶舱灯加电激活了，在滑出前确保航电上电 3 分钟，保证水平状况仪的陀螺仪正确校准<br>
+开启航行灯：右 Ctrl + L<br>
+关闭座舱盖：左 Ctrl + C<br>
+确保油门杆收到底，启动两个发动机<br>
+启动左发：右 Alt + Home，左发动机指示灯亮，转速表左发的指针动<br>
+启动右发：右 Ctrl + Home，右发动机指示灯亮，转速表右发的指针动<br>
+发动机指示灯熄灭，代表对应发动机已完成启动并就绪<br>
+将襟翼放置至起飞位：左 Shift + F</p>
+</li>
+<li>
+<p>滑行<br>
+缓慢向前推油门杆，或键盘按 Page Up 键来增加油门<br>
+一般使转速达到 60 %，根据携带燃料的多少（重量影响）调整<br>
+（减小油门则是往回收油门杆，或着按 Page Down，W 键为机轮刹车）<br>
+转向为按 Z 左转按 X 右转，或者蹬左或右边的脚舵<br>
+滑行至跑道，过程中注意控制速度，收一收油（参考转速 50 %）<br>
+速度过快时转弯飞机容易侧翻<br>
+上跑道后使 HUD 准心对准跑道轴线后，刹车<br>
+（F1 为驾驶舱视角，F2 可切换至外部视角，建议保持驾驶舱视角）</p>
+</li>
+<li>
+<p>起飞<br>
+踩住刹车，推油<br>
+当发动机转速达到 100 %，即指针指到 10 的位置时，松刹车<br>
+使用脚舵使得飞机保持在跑道中线上<br>
+当速度超过 200 km/h 后（速度在 HUD 上有显示），轻轻带杆（轻柔向后拉杆）<br>
+当飞机抬头后停止带杆，松开一点，保持这个角度不动<br>
+按下 G 收起起落架，并收一点油<br>
+继续向前飞行，并按左 Ctrl + F 收起襟翼</p>
+</li>
+<li>
+<p>配平<br>
+介绍一下<a href="https://baike.baidu.com/item/%E9%A3%9E%E6%9C%BA%E9%85%8D%E5%B9%B3/14096004" target="_blank" rel="noopener">什么是配平</a>：<br>
+飞机配平就是利用装置对操作面（副翼、升降舵、方向舵）进行微调，来达到稳定飞机的姿态及航向的目的，这样可以降低飞行员调整或保持飞行姿态所需要的力量<br>
+具体来说就是<br>
+保持姿态稳定：飞机的配平可以帮助保持飞行姿态，使其在空中保持平稳的飞行。这包括保持水平飞行（平飞）、爬升和下降等<br>
+减小飞行员的工作负担：通过正确地进行配平，可以减轻飞行员在控制飞机时的工作负担。如果飞机没有正确配平，飞行员将需要持续施加力量来保持所需的飞行姿态，这将会非常疲劳</p>
+</li>
+<li>
+<p>假设飞机正处于平飞状态，而驾驶员是带着杆的，如果松开杆机头就会往下掉，那么现在就是处于一个未配平的状态，配平就是当驾驶员松开杆，飞机能够保持姿态的稳定，这样就不用驾驶员一直带着杆飞，像这个例子就应该向上配平</p>
+</li>
+<li>
+<p>Su-25T 的配平键位<br>
+向上配平（配平：机首向上）：右 Ctrl + .<br>
+向下配平（配平：机首向下）：右 Ctrl + ;<br>
+向左配平（配平：向左滚转）：右 Ctrl + ,<br>
+向右配平（配平：向右滚转）：右 Ctrl + /</p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>飞行与导航</p>
+</li>
+<li>
+<p>飞行<br>
+控制飞行速度在指定空速左右，高度维持在指定高度左右<br>
+注意配平，注意消除侧滑</p>
+</li>
+<li>
+<p>侧滑<br>
+<a href="https://zhuanlan.zhihu.com/p/148249758" target="_blank" rel="noopener">什么是侧滑</a><br>
+侧滑指的是机头朝向和飞行航迹的不一致的现象<br>
+造成侧滑的方式有两种，分别是机头朝向改变与飞行航迹改变，侧滑也分两种，分别是左侧滑与右侧滑，不管是哪种原因造成的侧滑，相对气流偏在机头的哪边就叫哪边侧滑<br>
+一、当乱流造成机头左偏航时，由于没有坡度，飞机不会转弯，仍然保持着原来的飞行航迹，这时的相对气流变为从机头的右边吹来，即右侧滑，同理，如果乱流让机头朝右，就造成了左侧滑<br>
+即左偏航造成右侧滑，右偏航造成左侧滑<br>
+二、当乱流造成机身左滚转时，由于带有左坡度，飞机会开始左转弯，也就是说飞行轨迹将左偏，而机头方向保持不变。这时的相对气流变为从机头的左边吹来，这样的侧滑就叫左侧滑，同理，如果乱流让机身右滚转，就造成右侧滑<br>
+即左坡度造成左侧滑，右坡度造成右侧滑<br>
+侧滑通过看 ADI 底部的侧滑仪可以显示，一般用蹬舵来消除侧滑<br>
+例如，飞机由于带右坡度发生右侧滑时，向右蹬舵来消除这个右侧滑，而如果右舵的量过大，则可能会变成左侧滑</p>
+</li>
+</ul>
+<div align=center><img width = '450' height = '210' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x10.png"/></div>
+<ul>
+<li>
+<p>导航模式<br>
+Su-25T 的 HUD 提供在航导航数据，有三个导航子模式：МРШ（即 ENR，在航）、ВЗВ（即 RTN，返回基地）、ПОС（即 LNDG，着陆）。这些子模式在指配飞行路径的适当航点自动选择，也可以通过按下[1]手动循环</p>
+</li>
+<li>
+<p>МРШ（ENR 在航）子模式会有一个指引圆显示在 HUD 上。它指示到下一指配航路点的方向<br>
+在航到下一指配航路点的指配高度和空速显示在 HUD 当前高度和空速的上方<br>
+下一航路点号码显示在右下角，在俯仰标尺下方。到下一航路点的距离显示在 HUD 的底部。到达指配航路点时，指引圆自动显示下一个的方向，右下的航路点号码会增加</p>
+</li>
+<li>
+<p>在 ВЗВ（RTN 返航）子模式里，导引环引导驾驶员截获跑道进近下滑信标<br>
+着陆机场可以通过按 [左 Ctrl-~] 循环，机场 ID 号码显示在右下方，垂直速度表下<br>
+方，所有机场 ID 的完整列表在 Su-25T 手册的附录章节中。航空器接近跑道时机场管制塔台提供语音指示</p>
+</li>
+</ul>
+<div align=center><img width = '450' height = '250' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x11.png"/></div>
+<ul>
+<li>
+<p>在 ПОС（LNDG 着陆）子模式里，HUD 上出现一个下滑信标偏差圆。当指引和下滑信标圆都在航空器基准的中央时，航空器在正确的进近下滑信标上<br>
+导引环引导驾驶员截获期望的下滑信标。当指引和下滑信标圆都在航空器基准的中央时，航空器在正确的进近下滑信标上<br>
+“К” 和 “Г” 分别表示航向信标和和下滑信标的存在</p>
+</li>
+<li>
+<p>HSI 与 ADI 详解 <a href="https://www.bilibili.com/video/BV1wt4y1V7tk" target="_blank" rel="noopener">参考</a></p>
+</li>
+<li>
+<p>HSI 里面有三个箭头，一个总位于正上方的箭头代表了飞机当前的航向，一个白色双线箭头，即期望航线指针，它与正确的航线是平行关系（在地平线上的投影平行），一个黄色箭头，即航向指针，它指示下一个航路点的航向</p>
+</li>
+</ul>
+<div align=center><img width = '280' height = '400' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x12.png"/></div>
+<ul>
+<li>将投影图画出来如下图所示</li>
+</ul>
+<div align=center><img width = '525' height = '340' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x13.png"/></div>
+<ul>
+<li>
+<p>ADI 中，竖着的黄线（需用坡度）是飞往航线所需打的杆量，若黄线向左歪则向左压杆（正压杆），反之，向右歪则向右压杆（反压杆），若该线垂直且处于表中央，就表明现在正在飞往航线或正在航线上，而横着的黄线（需用俯仰角）即为需要推和拉的杆量，使得该线水平处于表中央</p>
+</li>
+<li>
+<p>假设飞机未处于航线上，ADI 显示出飞向航线所需要打的杆量，照这个杆量打，HSI 上的白色双线箭头（即期望航线指针）会逐渐水平，这是因为飞机在垂直飞向航线，注意，在快要接近航线的时候（期望航线指针还未完全水平，期望航线指针与航向指针还未完全重合）就开始朝航路点的方向转弯，不要等到双线箭头完全水平再转弯（来不及，会穿过航线）</p>
+</li>
+</ul>
+<div align=center><img width = '420' height = '400' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x14.png"/></div>
+<ul>
+<li>着陆</li>
+</ul>
+<p>下滑道截获点 Glide-Path Intercept Point</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer99.github.io/2023/10/19/DCS%20World%20Su-25T/" title="DCS World Su-25T 从起飞到坠机">https://cloudplayer99.github.io/2023/10/19/DCS World Su-25T/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E9%A3%9E%E8%A1%8C%E5%99%A8%E9%A9%BE%E9%A9%B6%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/" rel="tag"># 飞行器驾驶员的自我修养</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/08/23.10%E5%B7%A5%E4%BD%9C%E5%AE%89%E6%8E%92/" rel="prev" title="23.10 工作安排">
+      <i class="fa fa-chevron-left"></i> 23.10 工作安排
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/11/03/%E6%9C%BA%E6%A2%B0%E9%A1%B9%E7%9B%AE%E7%AC%AC%E4%B8%80%E5%BC%B9/" rel="next" title="机械项目第一弹">
+      机械项目第一弹 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从入门到起飞"><span class="nav-number">1.</span> <span class="nav-text">从入门到起飞</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">538k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.1/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2023/10/19/DCS World Su-25T/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>
