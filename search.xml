@@ -1114,7 +1114,7 @@ Su-25T 有数个运行模式。平视显示器（HUD）上的一些基本符号�
 <ul>
 <li>
 <p>飞机启动、滑行和起飞<br>
-在本课中，我们会练习冷启动Su-25T，然后滑行到跑道并起飞</p>
+在本节中介绍 Su-25T 冷启动的步骤，以及滑行到跑道并起飞的过程</p>
 </li>
 <li>
 <p>启动（冷启动）<br>
@@ -1178,8 +1178,7 @@ Su-25T 有数个运行模式。平视显示器（HUD）上的一些基本符号�
 注意配平，注意消除侧滑</p>
 </li>
 <li>
-<p>侧滑<br>
-<a href="https://zhuanlan.zhihu.com/p/148249758" target="_blank" rel="noopener">什么是侧滑</a><br>
+<p>侧滑<a href="https://zhuanlan.zhihu.com/p/148249758" target="_blank" rel="noopener">【什么是侧滑】</a><br>
 侧滑指的是机头朝向和飞行航迹的不一致的现象<br>
 造成侧滑的方式有两种，分别是机头朝向改变与飞行航迹改变，侧滑也分两种，分别是左侧滑与右侧滑，不管是哪种原因造成的侧滑，相对气流偏在机头的哪边就叫哪边侧滑<br>
 一、当乱流造成机头左偏航时，由于没有坡度，飞机不会转弯，仍然保持着原来的飞行航迹，这时的相对气流变为从机头的右边吹来，即右侧滑，同理，如果乱流让机头朝右，就造成了左侧滑<br>
@@ -1214,7 +1213,7 @@ Su-25T 的 HUD 提供在航导航数据，有三个导航子模式：МРШ（�
 “К” 和 “Г” 分别表示航向信标和和下滑信标的存在</p>
 </li>
 <li>
-<p>HSI 与 ADI 详解 <a href="https://www.bilibili.com/video/BV1wt4y1V7tk" target="_blank" rel="noopener">参考</a></p>
+<p>HSI 与 ADI 详解 <a href="https://www.bilibili.com/video/BV1wt4y1V7tk" target="_blank" rel="noopener">【参考】</a></p>
 </li>
 <li>
 <p>HSI 里面有三个箭头，一个总位于正上方的箭头代表了飞机当前的航向，一个白色双线箭头，即期望航线指针，它与正确的航线是平行关系（在地平线上的投影平行），一个黄色箭头，即航向指针，它指示下一个航路点的航向</p>
@@ -1281,8 +1280,45 @@ su-25t 的起落架很脆弱，触地的时候一定要控制好下降率，不�
 打开座舱灯光，打开机身外部灯光，航行灯与起落架灯光<br>
 跟随需用速度与指配高度，跟随指引圆，到达 LNDG 模式后，准备着陆，还是跟随需用速度与指配高度，跟随指引圆，注意飞机的四项数据，攻角、速度、高度与下降率，打好配平，使得飞机保持在一个 8-10 度的攻角上（松开杆的情况），这样飞机的下降率会是一个合适的下降率，打好配平后，使用节流阀即油门来控制飞机的高度，注意，是油门而不是杆，操纵杆只用来调整左右坡度，若飞机低于下滑道高度，此时应推油，反之，若飞机高于下滑道高度，此时应收油，在空速低于 400 公里/小时的时候放下起落架，打开襟翼，走上面的简单着陆的流程</p>
 </li>
+<li>
+<p>一点成功的经验<br>
+换一下思路可能成功得更快，即注意如何避免失败<br>
+时刻注意飞机的雷达高度，夜间看不见可能产生感觉上的误导，注意雷达高度可以避免摔在地上<br>
+既要关注 HUD 上的指引圆，也要根据飞机当前的姿态与机场的跑道灯自行判断<br>
+接地速度一定要降下来，300 多公里/小时的速度砸在地上很容易就弹起来，而且会摔断起落架<br>
+不要一味地减速，速度降得太低会使飞机往下跌得过快，拉也拉不上来</p>
+</li>
+<li>
+<p>侧风着陆注意点<a href="https://zhuanlan.zhihu.com/p/367745892" target="_blank" rel="noopener">【如何做出完美的侧风着陆】</a><br>
+侧风着陆是指飞机在机场跑道有侧风的情况下着陆，因为侧风会把飞机吹离跑道的中线，因此必须调整飞行的方向加以补偿，一般来说这补偿可以透过两种方法来进行：分别为蟹形进场（Crad Method）及侧滑进场（Side Slip Method or Wing-Low Method）</p>
+</li>
+<li>
+<p>蟹形进场<br>
+使用蟹形进场时，飞机沿著跑道的中心线下降，并且将机头稍微转向风的方向。飞机在侧风之下与地面相对的飞行方向，与跑道中线保持平行。但同时飞机的纵轴却会与跑道形成一个夹角，称之为蟹形角度(Crab Angle)。从地面看的飞机，好像是蟹一样在打横飞行，故此这种降落方式称为 “蟹形进场”。传统的蟹形进场，飞行员会在飞机著陆前最后一刻用方向舵扭转机头，将飞机的纵轴与跑道对齐</p>
+</li>
+</ul>
+<div align=center><img width = '470' height = '270' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/crabmethod.png"/></div>
+<ul>
+<li>
+<p>蟹形及侧滑进场<br>
+由于蟹形进场存在着相当的风险，很多飞行员只会在降落的初段使用蟹形进场。当飞机下降至较低高度后，则改用侧滑进场的方法，直至完成着陆。这种结合的进场方法称为 “蟹形及侧滑进场”（即飞行手册上的做法）。</p>
+</li>
+<li>
+<p>侧滑进场<br>
+使用侧滑进场，飞机同时使用副翼及方向舵补偿因为侧风而出现的位置偏差，方向舵是用来把飞机的飞行方向调整至同跑道方向对齐，而副翼则用作将飞机维持在跑道中间线之上。在这种侧滑的飞行状态下，飞机带有一定坡度，向侧风来流方向倾斜，用机翼升力的横向分量来抵消侧风影响（多数的飞行员都喜欢在降落的前段先使用蟹型进场，直至到快接地前才转成为侧滑）</p>
+</li>
+</ul>
+<div align=center><img width = '470' height = '270' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/sideslipmethod.png"/></div>
+<ul>
+<li>举一个侧风着陆的例子<a href="https://www.bilibili.com/video/BV1ME411V7Ee" target="_blank" rel="noopener">【侧风进近】</a><br>
+如果在最后进近的时候有左侧风，飞机机头将迎风摆动（即向左摆动），应蹬右舵使得机头对准跑道中心线，同时向左压杆，使飞机带左坡度而产生左侧滑，以抵消侧风影响，避免偏离航线，通常当飞机在最后降落时，侧风风速随高度减小，应慢慢减少控制的力道，确保飞机在正确的航道（下滑道）上飞行，其纵轴与跑道对齐，而在改平过程中，侧风修正需要增加控制力道，因为在着陆过程中，随着空速降低，控制会变得不是那么有效。总之就是要确保飞机对齐跑道的中线<br>
+在侧风落地时，不能让机翼保持平衡，也就是说先让（主起落架的）一个轮子触地，当飞机的空速与动量减小时，下风处的那个轮子也会随之落下，当主起落架接地后，松开方向舵，快速地将机首起落架置中，小心地平放机鼻，使得机首起落架接地，一但航空器在跑道的中心线上稳定下来，启动机轮刹车<br>
+在有侧风的情况下使用减速伞后应迅速断开，当侧风高于于 4-5 米/秒的时候，不能使用减速伞</li>
 </ul>
 <h2 id="武器系统使用简记"><a class="header-anchor" href="#武器系统使用简记">¶</a>武器系统使用简记</h2>
+<p>Su-25T 是俄罗斯空军优异的战术攻击机。它可以在全天候条件以及各种气象条件下精确打击小型和移动目标<br>
+Su-25T 配备有 I-251 “Shkval”电视瞄准系统，以及“Prichal”激光测距瞄准指示器。对于夜间行动，Su-25T 也可装备“Mercury”微光电视（LLTV）瞄准系统。<br>
+出于自保，Su-25T 可以携带 R-73 和 R-60 近距空空导弹。</p>
 <p>重新回到钟表店，我们需要认识更多的钟表</p>
 <ul>
 <li>首先是武器状态面板与武器系统控制面板<br>
@@ -1329,15 +1365,70 @@ su-25t 的起落架很脆弱，触地的时候一定要控制好下降率，不�
 </ul>
 <div align=center><img width = '400' height = '293.14' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x1c.png"/></div>
 <br>
-<p>CCIP 与 CCRP 的简单介绍</p>
-<p>当涉及到军用武器投放方式时，CCIP（Continuously Computed Impact Point，持续计算命中点）和 CCRP（Continuously Computed Release Point，持续计算释放点）是两种常见的术语：</p>
+<ul>
+<li>
+<p>CCIP 与 CCRP 的简单介绍<br>
+当涉及到军用武器投放方式时，CCIP（Continuously Computed Impact Point，持续计算命中点）和 CCRP（Continuously Computed Release Point，持续计算释放点）是两种常见的术语：</p>
+</li>
+<li>
 <p>CCIP：<br>
 CCIP 是一种用于空对地武器投放的方法，其中飞行器的计算机在实时计算武器命中点。在 CCIP 模式下，飞行员指定目标，飞行器的传感器、导航和武器系统协同工作，不断根据当前飞行参数计算命中点。飞行员因此可以在接近目标的任何时刻释放武器<br>
 CCIP 提供了根据目标位置或威胁环境的变化调整释放点的灵活性</p>
+</li>
+<li>
 <p>CCRP：<br>
 CCRP 是另一种空对地武器投放方法，强调连续计算释放点而非命中点。在 CCRP 模式下，飞行员指定目标，飞行器的系统基于飞行器当前位置、速度、高度和目标位置等因素计算理想释放点。然后飞行员在预先计算的释放点释放武器<br>
 CCRP提供了更自动化和精确的武器释放。通常用于在远距离释放武器，使飞行器在武器命中目标之前就能迅速远离</p>
-<p>总的来说，CCIP 和 CCRP 都是军用飞行器用于精确投放空对地武器的方法。CCIP 允许飞行员持续计算命中点，提供在接近目标时选择释放点的灵活性；而 CCRP 则通过基于各种参数事先计算释放点，实现更自动化和精确的武器投放。选择 CCIP 还是 CCRP 取决于任务需求以及飞行器和武器系统的能力。</p>
+</li>
+<li>
+<p>总的来说，CCIP 和 CCRP 都是军用飞行器用于精确投放空对地武器的方法。CCIP 允许飞行员持续计算命中点，提供在接近目标时选择释放点的灵活性；而 CCRP 则通过基于各种参数事先计算释放点，实现更自动化和精确的武器投放。选择 CCIP 还是 CCRP 取决于任务需求以及飞行器和武器系统的能力</p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>CCIP 模式普通投弹</p>
+</li>
+<li>
+<p>CCRP 模式普通投弹</p>
+</li>
+<li>
+<p>KMGU 子母弹布撒器</p>
+</li>
+<li>
+<p>航空火箭弹</p>
+</li>
+<li>
+<p>内置机炮</p>
+</li>
+<li>
+<p>机炮吊舱</p>
+</li>
+<li>
+<p>Shkval 传感器和 Kh-29T 和 KAB-500Kr</p>
+</li>
+<li>
+<p>Kh-29L、Kh-25ML 和 S-25L 激光制导导弹</p>
+</li>
+<li>
+<p>Vikhr 激光制导导弹和 Mercury 吊舱</p>
+</li>
+<li>
+<p>反辐射导弹、RWR 和电子对抗</p>
+</li>
+</ul>
+<br>
+<ul>
+<li>空空导弹<br>
+Su-25T 可以携带 R-73 和 R-60 近距空空导弹<br>
+R-60M 是近程红外制导空空导弹，最佳射程为 8 公里，该导弹有一个 3 公斤的小型膨胀杆战斗部，导引头的全方位追踪能力有限，鉴于这个小型战斗部，单单一枚 R-60M 命中并不能保证摧毁敌机，因此，在面对敌机的红外干扰弹时，可能需要发射两枚导弹来保证命中增加目标的毁伤<br>
+R-73 “射手”导弹的导引头有非常好的全方位红外搜索能力，机动性能良好，战斗部较大，最佳条件下最大射程达 30 公里，但射程限制通常是基于导引头获得锁定的能力<br>
+Su-25T 可以携带并使用导引头扫描模式发射 R-73 和 R-60 近距空空导弹。当处于此模式下时，导弹导引头开始对沿机身纵轴前方 2 度的范围进行扫描。目标必须进入导引头的视场范围（用 HUD 中间上航空器标志的中心表示）才能让导引头自动锁定目标</li>
+<li>空空导弹锁定目标与发射的步骤<br>
+按 6 进入空对空模式，HUD 的左下角显示了 LNGT（Фи0），即纵向导弹瞄准模式，需要将飞机对准目标，以便导弹的红外搜索头能锁定目标，右下角若显示为 60 则表示 R-60M 空空导弹已激活，若显示为 73，则表示 R-73 导弹，按 D 键切换<br>
+将 HUD 中间的十字准心对准目标，当听到一个高音锁定音并且 “LA” 提示出现在 HUD 上时，表示导弹的导引头已经锁定目标（一旦导弹导引头获得目标，不管是否在射程内，都会发出发射许可），可按住 Space 键或扣动控制杆上的扳机发射导弹</li>
+</ul>
+<div align=center><img width = '553' height = '357' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x1f.png"/></div>
 ]]></content>
       <tags>
         <tag>学习笔记</tag>
@@ -4492,7 +4583,83 @@ $F_i = F_{i-1} + F_{i-2}$，$F_1, F_0 = 1$</li>
     <title>六级二周目</title>
     <url>/2023/12/04/%E5%85%AD%E7%BA%A7%E4%BA%8C%E5%91%A8%E7%9B%AE/</url>
     <content><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/373774215" target="_blank" rel="noopener">英语六级考试时间分配和做题策略​</a><br>
-<a href="https://space.bilibili.com/72393079" target="_blank" rel="noopener">PYY考研英语</a><a id="more"></a></p>
+<a href="https://space.bilibili.com/72393079" target="_blank" rel="noopener">PYY考研英语</a><a id="more"></a><br>
+<a href="https://www.bilibili.com/video/BV1cr4y1c7nZ" target="_blank" rel="noopener">【合集】【六级听力】三小时带你搞定六级听力！全网最简单粗暴能提分的六级教程！</a></p>
+<ul>
+<li>六级考了很久了，当时是 444 分飘过，这次跟室友再冲一次</li>
+<li>先把当时的成绩放在这：<br>
+总分444 听力141 阅读159 写作144</li>
+<li>记录一下每天备考（摸鱼）的生活</li>
+<li>任务：<br>
+干完买的十二套卷子，分可以不高，钱不能浪费（毕竟之前已经浪费几本四六级的词汇书了）<br>
+按表背十天单词，记不住就算了，主打一个快<br>
+看完一套考试策略，建立一下做题思路</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">早</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">G</td>
+<td style="text-align:center">AH</td>
+<td style="text-align:center">BI</td>
+<td style="text-align:center">CJ</td>
+</tr>
+<tr>
+<td style="text-align:center">晚</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">AB</td>
+<td style="text-align:center">BC</td>
+<td style="text-align:center">ACD</td>
+<td style="text-align:center">BDE</td>
+<td style="text-align:center">CEF</td>
+<td style="text-align:center">DFG</td>
+<td style="text-align:center">EGH</td>
+<td style="text-align:center">FHI</td>
+<td style="text-align:center">GIJ</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>12.04<br>
+早上过 180 个词（A），下午模考了一下（2021_12_1），有点做不完，听力稀烂的，翻译更是乱写<br>
+晚上摸到九点不想学了，回寝室摆烂</li>
+<li>12.05<br>
+早上起晚了，上午过 155 个词（B），下午接着模考（2021_12_2），这回状态更差，很难专心，还总是被打断<br>
+晚上听一下听力的课，学一学方法</li>
+<li>六级听力教程<br>
+1 . 视听一致原则<br>
+划选项中的关键信息<br>
+某一个选项关键信息与音频内容完全相符<br>
+某一个选项关键信息在音频中出现次数最多<br>
+2 . 关键词的选取<br>
+如何划选项关键词？<br>
+纵向审题：排除相同概念<br>
+横向划词：划实不划虚，划组合概念，划否定表述<br>
+3 . 同转的概念<br>
+同根词，同义词，短语/概念替换（难，保持敏感），宽泛（选项）与具体（音频）<br>
+4 . 正确及错误选项的特点</li>
+</ul>
 ]]></content>
       <tags>
         <tag>研一</tag>
