@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cloud_Player&#39;s Notes">
 <meta property="og:description" content="B 站 UP 孤独野驴： DCS 入门 模拟飞行 苏25T基础教学第一期下载完成要干什么 认识仪表 起飞 基础理论 话术 DCS 苏25T第二期基础教学 导航 降落 基础理论 侧滑仪 HSI ADI 入门 模拟飞行 DCS 苏25T第三期基础教学 盲降 ILS仪表着陆 新飞行员入门 模拟飞行 DCS World SU-25T使用简介">
 <meta property="article:published_time" content="2023-10-19T07:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-09T14:10:01.697Z">
+<meta property="article:modified_time" content="2023-12-19T08:50:38.773Z">
 <meta property="article:author" content="Cloud_Player">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="飞行器驾驶员的自我修养">
@@ -220,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-09 22:10:01" itemprop="dateModified" datetime="2023-12-09T22:10:01+08:00">2023-12-09</time>
+                <time title="修改时间：2023-12-19 16:50:38" itemprop="dateModified" datetime="2023-12-19T16:50:38+08:00">2023-12-19</time>
               </span>
 
           <br>
@@ -229,14 +229,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.4k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -422,12 +422,18 @@ Su-25T 有数个运行模式。平视显示器（HUD）上的一些基本符号�
 <li>
 <p>起飞<br>
 踩住刹车，推油<br>
-当发动机转速达到 100 %，即指针指到 10 的位置时，松刹车<br>
-使用脚舵使得飞机保持在跑道中线上<br>
+当发动机转速达到 100 %，即指针指到 10 的位置时，立即松刹车<br>
+（机轮制动器可以在发动机转速不超过 80% 的情况下固定住航空器）<br>
+使用脚舵（轻踏方向舵踏板）使得飞机保持在跑道中线上<br>
 当速度超过 200 km/h 后（速度在 HUD 上有显示），轻轻带杆（轻柔向后拉杆）<br>
+【注：抬轮速度】160-180 公里/小时 - 正常起飞重量 / 200-220 公里/小时 - 最大起飞重量<br>
 当飞机抬头后停止带杆，松开一点，保持这个角度不动<br>
 按下 G 收起起落架，并收一点油<br>
 继续向前飞行，并按左 Ctrl + F 收起襟翼</p>
+</li>
+<li>
+<p>有侧风起飞<br>
+Su-25T 可以在干跑道上最大 11-14 米/秒的侧风中保持稳定，在侧风中起飞时，航空器会沿着侧风方向带一点坡度（例如，左侧风使得左机翼的升力比右机翼大，左机翼上扬形成右坡度），为了保持机翼水平，需要反向压杆（朝来风方向压杆）来进行修正（即有左侧风时，向左压杆抵消右坡度），且需要蹬舵以维持飞机沿跑道中线滑跑</p>
 </li>
 <li>
 <p>配平<br>
@@ -441,7 +447,7 @@ Su-25T 有数个运行模式。平视显示器（HUD）上的一些基本符号�
 <p>假设飞机正处于平飞状态，而驾驶员是带着杆的，如果松开杆机头就会往下掉，那么现在就是处于一个未配平的状态，配平就是当驾驶员松开杆，飞机能够保持姿态的稳定，这样就不用驾驶员一直带着杆飞，像这个例子就应该向上配平</p>
 </li>
 <li>
-<p>Su-25T 的配平键位<br>
+<p>Su-25T 的配平键位（有操纵杆后可以设置在杆上）<br>
 向上配平（配平：机首向上）：右 Ctrl + .<br>
 向下配平（配平：机首向下）：右 Ctrl + ;<br>
 向左配平（配平：向左滚转）：右 Ctrl + ,<br>
@@ -513,7 +519,20 @@ Su-25T 的 HUD 提供在航导航数据，有三个导航子模式：МРШ（�
 <p>假设飞机未处于航线上，ADI 显示出飞向航线所需要打的杆量，照这个杆量打，HSI 上的白色双线箭头（即期望航线指针）会逐渐水平，这是因为飞机在垂直飞向航线，注意，在快要接近航线的时候（期望航线指针还未完全水平，期望航线指针与航向指针还未完全重合）就开始朝航路点的方向转弯，不要等到双线箭头完全水平再转弯（来不及，会穿过航线）</p>
 </li>
 </ul>
-<div align=center><img width = '420' height = '400' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x14.png"/></div>
+<div align=center><img width = '420' height = '400' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x14.
+png"/></div>
+<ul>
+<li>失速与尾旋<a href="https://kns.cnki.net/kcms2/article/abstract?v=0kbmF0AymBAn_Davd3QcFm-w55mHl_hlgF85DA_XsJshCTLC0Hz2eHWib-yaf2WzCf3dCd1pElIGBniB8edjzQbQw7vnOHttRZDeTQQEyerwDvV345dhvQ9datDk99FcVV_5gnJCwnA=&amp;uniplatform=NZKPT&amp;flag=copy" target="_blank" rel="noopener">【飞机失速尾旋及其预防控制措施研究】</a></li>
+<li>失速<br>
+失速是当机翼攻角（迎角）增大到一定的程度（临界迎角）后，机翼上表面气流分离，导致使升力急剧下降，飞行阻力急剧增大，引起抖动与变态的一种不正常飞行状态<br>
+如果航空器是在水平飞行中损失空速的话，航空器只会发生失速而不是尾旋。航空器开始“降落伞”式下降并伴随偏航和滚转震荡。如果航空器在失速时还在拉杆的话会加剧滚转震荡导致航空器倒扣，航空器剧烈的朝一侧滚转。如果要从该状态下改出失速的话，向前推杆【失速改出：向前推杆】</li>
+<li>尾旋<br>
+当一侧机翼先于另一侧机翼失速时，飞机会朝先失速的一侧机翼方向沿飞机的纵轴旋转，称为螺旋或尾旋<br>
+当航空器处于正常飞行构型或者机动构型状态的话，航空器只能被有意导向尾旋状态。在上述两种状态下，如果杆子置中的话，航空器的尾旋会有所减轻。为了尽快从尾旋中改出，标准的做法是杆子前推，并且朝尾旋反向踩舵【尾旋改出：向前推杆，反向蹬舵，副翼中立】<br>
+当航空器处于起飞/着陆构型时，航空器可能由于迎角拉过临界点而无意识地导致尾旋，尤其是对那些重心在航空器尾部的航空器来说。对于 Su-25T 来说，如果航空器的机炮弹药耗尽的话，航空器的重心会偏向尾部，而且重心只会偏向尾部，一旦航空器在这种构型下尾旋的话，实际上是不可能改出的</li>
+</ul>
+<div align=center><img width = '500' height = '359' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x27.
+png"/></div>
 <br>
 <ul>
 <li>着陆</li>
@@ -545,11 +564,13 @@ Su-25T 的 HUD 提供在航导航数据，有三个导航子模式：МРШ（�
 <li>
 <p>一般在空速低于 400 公里/小时的时候放下起落架（键盘 G 键），打开襟翼（键盘 左 Shift + F）（如果需要，打开减速板，键盘 B 键），在开始下滑道下降时把速度降到约 290-310 公里/小时（近进速度），到达近台后速度降至 260-280 公里/小时，在跑道上方时，把推力降到怠速，随着航空器缓慢下降，保持住向后拉杆增加仰角，轻轻触地，速度在 220-240 公里/小时左右（接地速度），通过小心的推杆、释放减速伞（键盘 P 键）（并打开减速板）和使用刹车来放下机首。通过对方向舵踏板的控制，保持机首指向跑道的中心线，如果制动时航空器改变方向，松开刹车，纠正航空器的航线后，重新启动刹车</p>
 </li>
-<li>
-<p>一点成功的经验<br>
+</ul>
+<div align=center><img width = '600' height = '344' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x28.png"/></div>
+<div align=center><img width = '360' height = '324' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x29.png"/></div>
+<ul>
+<li>一点成功的经验<br>
 su-25t 的速度降的很慢，需要提前降速，可以减油或者打开减速板，需要注意的是，飞机在垂直面向下（向下俯冲）的时候会加速，所以时刻注意减速；<br>
-su-25t 的起落架很脆弱，触地的时候一定要控制好下降率，不要砸在跑道上，另外，它的机轮刹车很难用，在跑道上速度容易降不下，这个首先要控制触地时的速度，参考手册上的 220-240 公里/小时，然后就是打开减速板，打开减速伞，在跑道上滑行的时候，尽量对准跑道中线，但不要猛踩舵，高速滑行的时候猛踩舵，飞机容易侧翻，轻踩脚舵，使得飞机对准跑道中线</p>
-</li>
+su-25t 的起落架很脆弱，触地的时候一定要控制好下降率，不要砸在跑道上，另外，它的机轮刹车很难用，在跑道上速度容易降不下，这个首先要控制触地时的速度，参考手册上的 220-240 公里/小时，然后就是打开减速板，打开减速伞，在跑道上滑行的时候，尽量对准跑道中线，但不要猛踩舵，高速滑行的时候猛踩舵，飞机容易侧翻，轻踩脚舵，使得飞机对准跑道中线</li>
 </ul>
 <br>
 <ul>
@@ -561,6 +582,9 @@ su-25t 的起落架很脆弱，触地的时候一定要控制好下降率，不�
 打开座舱灯光，打开机身外部灯光，航行灯与起落架灯光<br>
 跟随需用速度与指配高度，跟随指引圆，到达 LNDG 模式后，准备着陆，还是跟随需用速度与指配高度，跟随指引圆，注意飞机的四项数据，攻角、速度、高度与下降率，打好配平，使得飞机保持在一个 8-10 度的攻角上（松开杆的情况），这样飞机的下降率会是一个合适的下降率，打好配平后，使用节流阀即油门来控制飞机的高度，注意，是油门而不是杆，操纵杆只用来调整左右坡度，若飞机低于下滑道高度，此时应推油，反之，若飞机高于下滑道高度，此时应收油，在空速低于 400 公里/小时的时候放下起落架，打开襟翼，走上面的简单着陆的流程</p>
 </li>
+</ul>
+<div align=center><img width = '600' height = '325' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x2a.png"/></div>
+<ul>
 <li>
 <p>一点成功的经验<br>
 换一下思路可能成功得更快，即注意如何避免失败<br>
@@ -667,12 +691,25 @@ CCRP提供了更自动化和精确的武器释放。通常用于在远距离释�
 </ul>
 <br>
 <ul>
-<li>
-<p>CCIP 模式普通投弹</p>
-</li>
-<li>
-<p>CCRP 模式普通投弹</p>
-</li>
+<li>自由落体炸弹<br>
+Su-25T 的 无制导炸弹包括 FAB-500、FAB-250、FAB-100、BetAB-500 和 ODAB-500、RBK 集束炸弹和 KMGU 散布器、ZAB-500 燃烧弹等（名字中的数字代表弹头的公斤数）<br>
+要使用自由落体武器攻击地面目标，驾驶员激活“ОПТ-ЗЕМЛЯ”（对地） 模式（按 7 键）并按 D 键选择需要的自由落体炸弹、集束炸弹或容器，按 Ctrl + Space 使用齐射数量开关设置投放数量（ПО 1 - ПО 2 – ПО 4 – ВСЕ），按 V 键使用投放模式切换开关设置炸弹投放间隔时间（ЗАЛП - 0.1 - 0.2 - 0.3 - 0.4 - СЕРИЯКМГУ-МБД）</li>
+</ul>
+<div align=center><img width = '450' height = '247' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x20.png"/></div>
+<ul>
+<li>CCIP 模式普通投弹<br>
+HUD 底部的连续计算命中点（CCIP）中心光点指示下个炸弹的命中点，驾驶员机动航空器（向目标俯冲）让连续计算命中点（CCIP）中心光点与目标重合，当一条直线出现在瞄准准星顶部，并且 HUD 底部出现 LA（ПP） 标志即 “发射许可” 信号时，按 Space 键或扣下操纵杆的扳机进行投放，注意俯冲时用油门与减速板控制飞机的空速不要过快，投弹后及时缓慢地拉起<br>
+高阻弹药和一些集束子弹药会沿着高度弯曲的弹道飞行，使其在任何角度俯冲时，命中点低于 HUD 可视范围的下边缘。那样 CCIP 中心光点不能用目视放到目标上。这种情况下，使用连续计算投放点（CCRP）模式，也就是 “不可目视区域” 轰炸模式来代替 CCIP 模式</li>
+</ul>
+<div align=center><img width = '600' height = '289' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x24.png"/></div>
+<div align=center><img width = '450' height = '252' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x21.png"/></div>
+<ul>
+<li>CCRP 模式普通投弹<br>
+CCRP 中心光点在 HUD 的最底端，驾驶员机动航空器把中心光点放在目标上，扣下扳机并保持扣住，中心光点将变成在目标上的固定菱形标记，一个指引圆出现在 HUD 的上半部分，HUD 上航空器基准符号竖线上面的尖端应保持与指引圆的中心对齐，HUD 左侧为时间标尺，指示到炸弹自动投放的剩余秒数，箭头在投弹 10 秒内开始移动，当其移动到时间标尺的最底端，炸弹自动投出，此时可以松开扳机</li>
+</ul>
+<div align=center><img width = '500' height = '294' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x25.png"/></div>
+<div align=center><img width = '400' height = '' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x26.png"/></div>
+<ul>
 <li>
 <p>KMGU 子母弹布撒器</p>
 </li>
@@ -921,12 +958,12 @@ Su-25T 可以携带并使用导引头扫描模式发射 R-73 和 R-60 近距空�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">544k</span>
+    <span title="站点总字数">545k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:14</span>
+    <span title="站点阅读时长">8:16</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
