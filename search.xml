@@ -32,29 +32,6 @@
       </tags>
   </entry>
   <entry>
-    <title>23.09 工作安排</title>
-    <url>/2023/09/05/23.09%E5%B7%A5%E4%BD%9C%E5%AE%89%E6%8E%92/</url>
-    <content><![CDATA[<h2 id="实习"><a class="header-anchor" href="#实习">¶</a>实习</h2>
-<p>完成自动化所老师给的代码任务<br>
-写 Tcl 入门的博文<br>
-整理 Tcl 问题形成一篇博文<br>
-写 sqlite3 入门的博文<br>
-听侯捷老师的 C++ 课（预计九月完成 C++ 面向对象高级开发上、下）<br>
-把之前堆在 vscode 里的博文清一清</p>
-<h2 id="专业"><a class="header-anchor" href="#专业">¶</a>专业</h2>
-<p>接着看理论力学的静力学部分<br>
-尽量在九月完成，进入材料力学<br>
-买一下自然辨证法的书，看一下怎么考</p>
-<h2 id="雅思"><a class="header-anchor" href="#雅思">¶</a>雅思</h2>
-<p>了解雅思考试的规矩，怎么考，怎么学<br>
-买雅思的书，上 b 站看看整个学习周期是怎样</p>
-]]></content>
-      <tags>
-        <tag>工作安排</tag>
-        <tag>研一</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2020年北京市大学生电子设计竞赛初选（一）</title>
     <url>/2020/03/30/2020%E5%B9%B4%E5%8C%97%E4%BA%AC%E5%B8%82%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E5%88%9D%E9%80%89%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<h2 id="前言"><a class="header-anchor" href="#前言">¶</a>前言</h2>
@@ -239,82 +216,6 @@ $\dot{A_{u}}={1-{({f \over f_0})}^2 \over 1+(3-A_{up})j{\omega}RC+{(j{\omega}RC)
       <tags>
         <tag>电子设计竞赛</tag>
         <tag>ANALOG</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>23.10 工作安排</title>
-    <url>/2023/10/08/23.10%E5%B7%A5%E4%BD%9C%E5%AE%89%E6%8E%92/</url>
-    <content><![CDATA[<p>这个月的工作重点是</p>
-<ul>
-<li>实习工作与 C++ 的学习</li>
-<li>读博申请的了解与语言的学习</li>
-</ul>
-<h2 id="实习"><a class="header-anchor" href="#实习">¶</a>实习</h2>
-<p>完成自动化所老师给的代码任务，每周写一下周报，这里也顺便写一下<br>
-写 Tcl 入门的博文，把 tcl 常用的指令日常记录一下<br>
-继续整理 Tcl 的问题<br>
-写 sqlite3 入门的博文，把之前的一个范式整理一下<br>
-继续听侯捷老师的 C++ 课，把 C++ 面向对象高级开发上、下 听完，开始 STL 标准库和泛型编程</p>
-<h2 id="专业"><a class="header-anchor" href="#专业">¶</a>专业</h2>
-<p>接着看理论力学的静力学部分（这个可能没得时间搞）进入材料力学<br>
-了解相关方向的知识技能学习路线<br>
-尽快能够确定自己的一个主要的方向<br>
-关注一下相关竞赛，比如华为的昇腾等</p>
-<h2 id="读博的准备"><a class="header-anchor" href="#读博的准备">¶</a>读博的准备</h2>
-<p>当务之急先搞清楚德国读博申请的条件<br>
-多找找学校官网，找多个样例参考<br>
-确定是学习英语还是德语，英语是考雅思还是托福<a id="more"></a></p>
-<h2 id="本月的周报"><a class="header-anchor" href="#本月的周报">¶</a>本月的周报</h2>
-<h3 id="20231006-周报"><a class="header-anchor" href="#20231006-周报">¶</a>20231006 周报</h3>
-<h4 id="已完成"><a class="header-anchor" href="#已完成">¶</a>已完成</h4>
-<ul>
-<li>写完了 vardiff 与 vardiff 的 24 个子类基本框架，完成大部分函数的实现</li>
-<li>解决了父类与子类构造函数的问题</li>
-<li>把涉及 moneyfmt、qsat、qrel 的文件修改了</li>
-<li>将子类声明与实现分离</li>
-<li>学习 sqlite3 的 C++ 接口，写完了大部分涉及数据库操作的函数</li>
-</ul>
-<h4 id="未完成"><a class="header-anchor" href="#未完成">¶</a>未完成</h4>
-<ul>
-<li>vardiff 类中成员变量 comp 不确定，包括子类中的 FindInputs 函数中的 comp</li>
-<li>vardiff 类中的 huddle、AddInput、ScoreInputs 函数不确定</li>
-<li>vardiff_gdp 中 IsSignificant 函数的实现有问题</li>
-<li>vardiff_nbinfluence 中 Format、Fancy 函数的实现与功能描述未完成</li>
-<li>vardiff_sat、vardiff_vrel 两文件里 FindInputs 函数中的 contribs 未知</li>
-<li>vardiff_support 中的函数 FindInputs 里的 sql 语句未知如何翻译</li>
-<li>range 类未测试完成</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>工作安排</tag>
-        <tag>研一</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>23.12 工作安排</title>
-    <url>/2023/12/04/23.12%E5%B7%A5%E4%BD%9C%E5%AE%89%E6%8E%92/</url>
-    <content><![CDATA[<p>这个月的工作重点是</p>
-<ul>
-<li>重考六级，目标是把六级分刷到 550 以上</li>
-<li>背雅思词汇，按两个 list 为一个单元、快速过完一遍的速度背</li>
-<li>工程能力的提升</li>
-<li>本月与明年一月主要重心都是英语的学习，争取在过年前进入一个备考雅思的状态</li>
-</ul>
-<h2 id="六级英语"><a class="header-anchor" href="#六级英语">¶</a>六级英语</h2>
-<p>以过完 13 张卷子为主，足时训练<br>
-按六级考试时间 15:00 - 17:25 做真题卷<br>
-听力精听，选好的题材进行听写<br>
-作文专项训练，每张卷子的作文都写，都背记，快速上手常用句<br>
-买好耳机和电池，准备考试用的笔、填涂铅笔，橡皮、证件、准考证</p>
-<h2 id="雅思词汇"><a class="header-anchor" href="#雅思词汇">¶</a>雅思词汇</h2>
-<p>先快速过完一遍<br>
-两个 list 为一个单元，按表格背，录入平板单词本</p>
-<h2 id="工程能力"><a class="header-anchor" href="#工程能力">¶</a>工程能力</h2>
-<p>学 C++ / 学 Altium Designer</p>
-]]></content>
-      <tags>
-        <tag>工作安排</tag>
-        <tag>研一</tag>
       </tags>
   </entry>
   <entry>
@@ -970,7 +871,8 @@ map 内部使用了 pair ，所以你也可以通过 insert 一个 pair 来插�
     <content><![CDATA[<p><a href="https://space.bilibili.com/25357640" target="_blank" rel="noopener">B 站 UP 孤独野驴：</a><br>
 <a href="https://www.bilibili.com/video/BV1j3411W7zV" target="_blank" rel="noopener">DCS 入门 模拟飞行 苏25T基础教学第一期下载完成要干什么 认识仪表 起飞 基础理论 话术</a><br>
 <a href="https://www.bilibili.com/video/BV1qY4y1p7cD/" target="_blank" rel="noopener">DCS 苏25T第二期基础教学 导航 降落 基础理论 侧滑仪 HSI ADI 入门 模拟飞行</a><br>
-<a href="https://www.bilibili.com/video/BV175411S7xu" target="_blank" rel="noopener">DCS 苏25T第三期基础教学 盲降 ILS仪表着陆 新飞行员入门 模拟飞行</a></p>
+<a href="https://www.bilibili.com/video/BV175411S7xu" target="_blank" rel="noopener">DCS 苏25T第三期基础教学 盲降 ILS仪表着陆 新飞行员入门 模拟飞行</a><br>
+<a href="https://www.bilibili.com/video/BV1QS4y1m7jN" target="_blank" rel="noopener">DCS 苏25T 第四期基础教学 添地 CCIP CCRP 子母弹布撒器 火箭弹 机炮 机炮挂架</a></p>
 <p><a href="https://dabaiyi.com/bbs/thread-96.htm?thread-120.htm" target="_blank" rel="noopener">DCS World SU-25T使用简介</a></p>
 <a id="more"></a>
 <h2 id="从入门到起飞"><a class="header-anchor" href="#从入门到起飞">¶</a>从入门到起飞</h2>
@@ -1376,7 +1278,7 @@ Su-25T 配备有 I-251 “Shkval”电视瞄准系统，以及“Prichal”激�
 <div align=center><img width = '335' height = '244.51' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x1b.png"/></div>
 <ul>
 <li>主要看这两个旋钮选择开关</li>
-<li>投放模式切换开关<br>
+<li>投放模式切换开关（间隔设置开关）<br>
 投放模式切换开关有六个位置用于投放自由落体炸弹，分别是 ЗАЛП - 0.1 - 0.2 - 0.3 - 0.4 - СЕРИЯКМГУ-МБД，用于机炮吊舱则有三个位置分别是：0 - ФИКС - ПРОГР，这些符号与其作用的对应关系如下表所示</li>
 </ul>
 <div align=center><img width = '500' height = '374.73' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x1d.png"/></div>
@@ -1427,11 +1329,15 @@ HUD 底部的连续计算命中点（CCIP）中心光点指示下个炸弹的命
 CCRP 中心光点在 HUD 的最底端，驾驶员机动航空器把中心光点放在目标上，扣下扳机并保持扣住，中心光点将变成在目标上的固定菱形标记，一个指引圆出现在 HUD 的上半部分，HUD 上航空器基准符号竖线上面的尖端应保持与指引圆的中心对齐，HUD 左侧为时间标尺，指示到炸弹自动投放的剩余秒数，箭头在投弹 10 秒内开始移动，当其移动到时间标尺的最底端，炸弹自动投出，此时可以松开扳机</li>
 </ul>
 <div align=center><img width = '500' height = '294' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x25.png"/></div>
-<div align=center><img width = '400' height = '' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x26.png"/></div>
+<div align=center><img width = '400' height = '263' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x26.png"/></div>
 <ul>
-<li>
-<p>KMGU 子母弹布撒器</p>
-</li>
+<li>KMGU 子母弹布撒器<br>
+除了无制导炸弹，Su-25T 还可以使用 KMGU 子母弹布撒器<br>
+集束弹药（英文：Cluster Munitions，俗称：子母弹），是将几十枚甚至几百枚小炸弹组合成的大型弹药，是一种以毁伤面目标为主的常规弹药。集束弹药具有瞬时火力密集、覆盖面积、毁伤效能大等特点，主要用于攻击坦克、装甲战车、部队集结地等集群目标，或封锁机场跑道等大面积目标<br>
+在武器控制面板上用间隔设置开关（按 V 键）选择 СЕРИЯКМГУ-МБД，这是一种针对 KMGU 子母弹布撒器和多联挂架（MER）的特殊模式，选择好后，KMGU 子母弹以 2 秒间隔投放，MER 复合挂架的弹药以 0.3 秒的间隔投放，在接近目标时，切换空对地模式（按 7 键），选择 CCIP 或 CCRP 模式进行投弹，投弹后可以（按 LCtrl + W）将空的布撒器抛离，并根据重量变化对飞机进行配平</li>
+</ul>
+<div align=center><img width = '500' height = '298' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x2b.png"/></div>
+<ul>
 <li>
 <p>航空火箭弹</p>
 </li>
@@ -1459,8 +1365,11 @@ CCRP 中心光点在 HUD 的最底端，驾驶员机动航空器把中心光点�
 <li>空空导弹<br>
 Su-25T 可以携带 R-73 和 R-60 近距空空导弹<br>
 R-60M 是近程红外制导空空导弹，最佳射程为 8 公里，该导弹有一个 3 公斤的小型膨胀杆战斗部，导引头的全方位追踪能力有限，鉴于这个小型战斗部，单单一枚 R-60M 命中并不能保证摧毁敌机，因此，在面对敌机的红外干扰弹时，可能需要发射两枚导弹来保证命中增加目标的毁伤<br>
-R-73 “射手”导弹的导引头有非常好的全方位红外搜索能力，机动性能良好，战斗部较大，最佳条件下最大射程达 30 公里，但射程限制通常是基于导引头获得锁定的能力<br>
+R-73 “射手”导弹的导引头有非常好的全方位红外搜索能力，机动性能良好，战斗部较大，最佳条件下最大射程达 30 公里，但射程限制通常是基于导引头获得锁定的能力【数据皆为 DCS 教程中给出】<br>
 Su-25T 可以携带并使用导引头扫描模式发射 R-73 和 R-60 近距空空导弹。当处于此模式下时，导弹导引头开始对沿机身纵轴前方 2 度的范围进行扫描。目标必须进入导引头的视场范围（用 HUD 中间上航空器标志的中心表示）才能让导引头自动锁定目标</li>
+</ul>
+<div align=center><img width = '600' height = '' src ="https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/DCSWorld/Su-25T/0x2c.png"/></div>
+<ul>
 <li>空空导弹锁定目标与发射的步骤<br>
 按 6 进入空对空模式，HUD 的左下角显示了 LNGT（Фи0），即纵向导弹瞄准模式，需要将飞机对准目标，以便导弹的红外搜索头能锁定目标，右下角若显示为 60 则表示 R-60M 空空导弹已激活，若显示为 73，则表示 R-73 导弹，按 D 键切换<br>
 将 HUD 中间的十字准心对准目标，当听到一个高音锁定音并且 “LA” 提示出现在 HUD 上时，表示导弹的导引头已经锁定目标（一旦导弹导引头获得目标，不管是否在射程内，都会发出发射许可），可按住 Space 键或扣动控制杆上的扳机发射导弹</li>
@@ -1897,233 +1806,6 @@ make a commit</p>
       <tags>
         <tag>学习笔记</tag>
         <tag>JUCE Framework</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTML+CSS入门笔记</title>
-    <url>/2023/07/06/HTML+CSS%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="预备"><a class="header-anchor" href="#预备">¶</a>预备</h2>
-<p><a href="https://www.bilibili.com/video/BV1p84y1P7Z5" target="_blank" rel="noopener">尚硅谷前端html+css零基础教程，2023最新前端开发html5+css3视频</a></p>
-<p>学习路线<br>
-HTML4 -&gt; CSS2 -&gt; HTML5 -&gt; CSS3</p>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.PNG"/></div>
-<a id="more"></a>
-应用软件
-C/S 架构 与 B/S 架构：
-C : Client 
-B : Browser
-S : Server
-C/S 架构：需要安装 偶尔更新 不跨平台 
-B/S 架构：无需安装 无需更新 可跨平台
-大型专业应用、安全要求较高的应用，还需采用 C/S 架构
-<p>前端工程师主要开发 B/S 架构的应用 —— 通俗来说就是写网页<br>
-大前端时代，不止是网页：<br>
-微信小程序<br>
-React Native -&gt; 客户端开发<br>
-uni-app + Vue -&gt; 客户端开发<br>
-nodejs -&gt; 搭建服务器<br>
-ECHARTS -&gt; 数据可视化</p>
-<p>浏览器内核？<br>
-内核是浏览器的核心，用于处理浏览器所得到的各种资源<br>
-Chrome 内核：早期webkit，现在Blink</p>
-<p>网站 -&gt; 多个网页<br>
-网页的组成：结构（HTML） + 表现（CSS） + 行为（JavaScript）</p>
-<h2 id="HTML-初体验"><a class="header-anchor" href="#HTML-初体验">¶</a>HTML 初体验</h2>
-<p>HTML: HyperText Markup Language<br>
-即超文本标记语言</p>
-<p>先来一个 Hello World 跑马灯效果</p>
-<figure class="highlight html"><figcaption><span>HTML初体验.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面的是 <strong>源代码</strong>，通过浏览器 <strong>渲染</strong> 成为 <strong>页面</strong></p>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/HelloWorld.PNG"/></div>
-<p>在 chrome 里面可以 -&gt;右键-&gt;查看网页源代码<br>
-【注】严格来说，文件名与文件夹名最好都不出现中文</p>
-<h2 id="HTML-标签"><a class="header-anchor" href="#HTML-标签">¶</a>HTML 标签</h2>
-<p>标签，又称元素<br>
-在上面的源代码中，<code>&lt;marquee&gt;</code> 与 <code>&lt;/marquee&gt;</code> 均为标签<br>
-<code>&lt;marquee&gt;</code> 为起始标签<br>
-<code>&lt;/marquee&gt;</code> 为结束标签<br>
-<code>marquee</code> 为标签名<br>
-<code>Hello World!</code> 为标签体<br>
-即</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span>&gt;</span>标签体<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- &lt;标签名&gt;为起始标签 &lt;/标签名&gt;为结束标签 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 规范为小写 --&gt;</span></span><br></pre></td></tr></table></figure>
-<p>标签有双也有单</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span>/&gt;</span> <span class="comment">&lt;!-- 自结束 --&gt;</span></span><br></pre></td></tr></table></figure>
-<p>标签可以并列，也可以嵌套，注意缩进</p>
-<figure class="highlight html"><figcaption><span>02_HTML标签.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/HTML%E6%A0%87%E7%AD%BE.PNG"/></div>
-<h2 id="HTML-标签属性"><a class="header-anchor" href="#HTML-标签属性">¶</a>HTML 标签属性</h2>
-<p>对上面的跑马灯效果提出需求：只想让它跑一次<br>
-利用属性进行控制，标签属性用于给标签提供附加信息</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- loop="x" 其中 x &gt; 0 --&gt;</span></span><br></pre></td></tr></table></figure>
-<p>更多的属性</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span> <span class="attr">bgcolor</span>=<span class="string">"orange"</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>不同的标签有不同的属性</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span> </span><br></pre></td></tr></table></figure>
-<p>属性分通用属性与独有属性</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span> <span class="attr">bgcolor</span>=<span class="string">"orange"</span> <span class="attr">id</span>=<span class="string">"hello"</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"typein"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>归纳</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> 属性名=<span class="string">"属性值"</span> 属性名=<span class="string">"属性值"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 起始标签或单标签 --&gt;</span></span><br></pre></td></tr></table></figure>
-<p>没有属性名，只有属性值</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">disabled</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>可以写多个属性，但不能重复，重复以第一个为准，后写的失效</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span> </span><br></pre></td></tr></table></figure>
-<p>属性名属性值不能乱写<br>
-不区分大小写，但是推荐小写<br>
-单双引号或无引号都可，但是推荐双引号</p>
-<figure class="highlight html"><figcaption><span>03_HTML标签属性.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span> <span class="attr">bgcolor</span>=<span class="string">"green"</span>&gt;</span></span><br><span class="line">    Hello World!</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">disabled</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="HTML-基本结构"><a class="header-anchor" href="#HTML-基本结构">¶</a>HTML 基本结构</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>浏览器会对源代码进行 HTML 格式检查<br>
-若格式合法将直接渲染<br>
-若格式不合法浏览器会进行处理（尽可能帮助调整）后，再渲染</p>
-<p>处理后的代码</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>可以这样看到：<br>
-用 chorme 打开 html 文件 -&gt; 右键 -&gt; 检查<br>
-检查和查看网页源代码的区别：<br>
-查看网页源代码：即程序员编写的源代码<br>
-检查：经过浏览器处理后的源代码</p>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E7%94%A8%E6%A3%80%E6%9F%A5.PNG"/></div>
-<p>图片所展示的其实是浏览器的开发者工具</p>
-<p>网页的基本结构如下：<br>
-呈现在网页中的内容写在 <code>body</code> 标签中<br>
-<code>head</code> 标签中的内容不会出现在网页中<br>
-<code>head</code> 标签中的 <code>title</code> 标签可以指定网页的标题（页签名）</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>...<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果将 <code>marquee</code> 标签作为 <code>head</code> 标签的标签体<br>
-即如下代码：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>浏览器会自己进行调整，把 <code>marquee</code> 标签移到下面的 <code>body</code> 中去</p>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9head%E7%9A%84%E8%B0%83%E6%95%B4.PNG"/></div>
-<figure class="highlight html"><figcaption><span>04_HTML基本结构.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>MyWebPage<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E6%94%B9%E9%A1%B5%E7%AD%BE.PNG"/></div>
-<h2 id="安装-VSCode"><a class="header-anchor" href="#安装-VSCode">¶</a>安装 VSCode</h2>
-<ul>
-<li>安装中文语言包</li>
-<li>使用 VSCode 打开文件夹的两种方式</li>
-<li>调整字体大小</li>
-<li>设置主题</li>
-<li>安装图标主题（可选：vscode-icons）</li>
-</ul>
-<h2 id="安装-Live-Server-插件"><a class="header-anchor" href="#安装-Live-Server-插件">¶</a>安装 Live Server 插件</h2>
-<ul>
-<li>
-<p>Live Server 插件可以更方便的打开网页<br>
-安装后，在代码编辑区域点击右键，选择 Open with Live Server</p>
-</li>
-<li>
-<p>与在文件夹中双击直接打开比较，其路径不同<br>
-后者是文件路径，而前者是服务器路径（127.0.0.1:5500）<br>
-用服务器路径打开网页的方式更贴近项目上线</p>
-</li>
-<li>
-<p>代码出现改动后，可以自动刷新</p>
-</li>
-<li>
-<p>可以配置一下 VSCode 的自动刷新（还是习惯手动 Ctrl + S）</p>
-</li>
-<li>
-<p>【注】Live Server 需要 VScode 打开的是文件夹才能正常工作</p>
-</li>
-<li>
-<p>【注】打开的网页源代码必须是标准的 HTML 结构，否则无法自动刷新</p>
-</li>
-</ul>
-<h2 id="HTML-注释"><a class="header-anchor" href="#HTML-注释">¶</a>HTML 注释</h2>
-<p>注释：对代码进行解释和说明<br>
-注释的内容会被浏览器所忽略，不会呈现到页面中，但源代码中依然可见</p>
-<p>注释的写法</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这里写注释 --&gt;</span></span><br></pre></td></tr></table></figure>
-<p>注释不可以嵌套</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    这里写注释 </span></span><br><span class="line"><span class="comment">    &lt;!-- 这里又写注释 --&gt;</span></span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><figcaption><span>05_HTML注释.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML注释<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">            Hello World!</span><br><span class="line">            <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">                下面的输入框是可以滚动的，</span></span><br><span class="line"><span class="comment">                且只能滚动一次</span></span><br><span class="line"><span class="comment">                &lt;!-- 可以通过控制 loop 属性，操作循环次数 --&gt;</span></span><br><span class="line">            --&gt;</span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 下面的输入框是不可以滚动的 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;input type="text"&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E6%B3%A8%E9%87%8A%E4%B8%8D%E8%83%BD%E5%B5%8C%E5%A5%97.PNG"/></div>
-<h2 id="HTML-文档声明"><a class="header-anchor" href="#HTML-文档声明">¶</a>HTML 文档声明</h2>
-<p><a href="https://www.w3.org/QA/2002/04/valid-dtd-list.html" target="_blank" rel="noopener">Recommended list of Doctype</a><br>
-The simplest and most reliable doctype declaration to use is the one defined in HTML5:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><figcaption><span>06_HTML文档声明.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">title</span>&gt;</span>An HTML standard template<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>  /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>… Your HTML content here …<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="HTML-字符编码"><a class="header-anchor" href="#HTML-字符编码">¶</a>HTML 字符编码</h2>
-<p>字符集：<br>
-ASCII | ISO 8859-1 | GB2312 | GBK | UTF-8</p>
-<p>原则1：存储时，务必采用合适的字符编码<br>
-否则：无法存储，数据会丢失，不可恢复<br>
-原则2：存储时采用哪种方式编码，读取时就采用哪种方式解码<br>
-否则：数据错乱（乱码），可恢复</p>
-<p>统一采用 <code>UTF-8</code> 编码<br>
-通过 <code>meta</code> 标签配合 <code>charset</code> 属性指定字符编码</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><figcaption><span>07_HTML字符编码.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"gbk"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML字符编码<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span></span><br><span class="line">            hello world 你好世界 こんにちは世界 안녕 세상</span><br><span class="line">        <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>直接打开会出现乱码，使用 Live Server 打开，会修正为正确的文字</p>
-<h2 id="HTML-设置语言"><a class="header-anchor" href="#HTML-设置语言">¶</a>HTML 设置语言</h2>
-<p>让浏览器显示对应的翻译提示<br>
-有利于搜索引擎优化</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><figcaption><span>08_HTML设置语言.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML设置语言<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>你好世界<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>こんにちは世界<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">marquee</span>&gt;</span>안녕 세상<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="HTML-标准结构"><a class="header-anchor" href="#HTML-标准结构">¶</a>HTML 标准结构</h2>
-<figure class="highlight html"><figcaption><span>09_HTML标准结构.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>我是一个标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>… Your HTML content here …<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>可以借助 VSCode，输入 !，随后回车即可快速生成标准结构</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 下面这行现在看不懂可以先删了 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>配置 VSCode 的内置插件 emmet，可以对生成结构的属性进行定制</p>
-<div align=center><img width = '400' height = '100' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/emmet%E6%B7%BB%E5%8A%A0lang%3Dzh-CN.PNG"/></div>
-<p>在存放代码的文件夹中，存放一个 favicon.ico 图片，可配置网站图标</p>
-<div align=center><img width = '300' height = '300' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E7%94%A8favicon%E9%85%8D%E7%BD%AE%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.PNG"/></div>
-<h2 id="开发者文档"><a class="header-anchor" href="#开发者文档">¶</a>开发者文档</h2>
-<p><a href="https://www.w3.org/html/" target="_blank" rel="noopener">W3C HTML</a></p>
-<p><a href="https://html.spec.whatwg.org/multipage/" target="_blank" rel="noopener">the current HTML standard</a></p>
-<p><a href="https://www.w3school.com.cn/" target="_blank" rel="noopener">W3school</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML" target="_blank" rel="noopener">MDN Web Docs</a></p>
-<h2 id="HTML-排版标签"><a class="header-anchor" href="#HTML-排版标签">¶</a>HTML 排版标签</h2>
-<p><code>h1</code> ~ <code>h6</code>：标题<br>
-<code>p</code>：段落<br>
-<code>div</code>：用于整体布局<br>
-三种皆为双标签</p>
-<figure class="highlight html"><figcaption><span>10_HTML排版标签.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML排版标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- h1~h6 不允许嵌套 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">        &lt;h1&gt;我是一级标题&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">        &lt;h2&gt;我是二级标题&lt;/h2&gt;</span></span><br><span class="line"><span class="comment">        &lt;h3&gt;我是三级标题&lt;/h3&gt;</span></span><br><span class="line"><span class="comment">        &lt;h4&gt;我是四级标题&lt;/h4&gt;</span></span><br><span class="line"><span class="comment">        &lt;h5&gt;我是五级标题&lt;/h5&gt;</span></span><br><span class="line"><span class="comment">        &lt;h6&gt;我是六级标题&lt;/h6&gt;</span></span><br><span class="line"><span class="comment">        &lt;div&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;我是一个段落&lt;/p&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;我是一个段落&lt;/p&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;我是一个段落&lt;/p&gt;</span></span><br><span class="line"><span class="comment">        &lt;/div&gt; </span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- p 标签中不能有 h1~h6、p、div 标签 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>生成式AI或将彻底改变在线广告行业<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>2023年07月10日 08:48 新浪科技<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>新浪科技讯 北京时间7月9日早间消息，据报道，就在ChatGPT去年因为超强的问答能力而火遍全球后不久，数字营销老兵谢恩·拉斯纳克（Shane Rasnak）就开始尝试这项技术。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>拉斯纳克的整个职业生涯几乎都在为客户制作网络广告，正是这样的经历，让他看到了生成式人工智能会给这个行业带来多大的变化。他表示，无论是制作Facebook广告标题还是创作广告文案简介，以前都至少要花费他30分钟至1个小时，但现在只需要15分钟即可完成。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>而且，这还只是开始。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E6%8E%92%E7%89%88%E6%A0%87%E7%AD%BE.PNG"/></div>
-<h2 id="HTML-语义化标签"><a class="header-anchor" href="#HTML-语义化标签">¶</a>HTML 语义化标签</h2>
-<p>语义：即含义<br>
-语义化：标签默认的效果不重要，语义最重要！<br>
-语义化标签：用特定的标签，去表达特定的含义</p>
-<p>语义化标签</p>
-<ul>
-<li>代码可读性强，结构清晰</li>
-<li>有利于 SEO（搜索引擎优化）</li>
-<li>方便设备解析（屏幕阅读器、盲人阅读器）</li>
-</ul>
-<p>例如：<code>h1</code> 的默认效果可以通过 CSS 进行修改<br>
-所以要用 <code>h1</code> 标签时，不是因为它默认的文字加粗、放大效果，而是因为标签体是网页的主要内容<br>
-（即符合 <code>h1</code> 的语义）</p>
-<figure class="highlight html"><figcaption><span>11_HTML语义化标签.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML语义化标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        h1&#123;</span><br><span class="line">            font-size: 20px;</span><br><span class="line"><span class="css">            <span class="selector-tag">color</span><span class="selector-pseudo">:dodgerblue</span>;</span></span><br><span class="line">            background-color: aliceblue;</span><br><span class="line">            transform: rotate(-2deg);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>生成式AI或将彻底改变在线广告行业<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>2023年07月10日 08:48 新浪科技<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>新浪科技讯 北京时间7月9日早间消息，据报道，就在ChatGPT去年因为超强的问答能力而火遍全球后不久，数字营销老兵谢恩·拉斯纳克（Shane Rasnak）就开始尝试这项技术。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>拉斯纳克的整个职业生涯几乎都在为客户制作网络广告，正是这样的经历，让他看到了生成式人工智能会给这个行业带来多大的变化。他表示，无论是制作Facebook广告标题还是创作广告文案简介，以前都至少要花费他30分钟至1个小时，但现在只需要15分钟即可完成。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>而且，这还只是开始。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE.PNG"/></div>
-<h2 id="块级元素与行内元素"><a class="header-anchor" href="#块级元素与行内元素">¶</a>块级元素与行内元素</h2>
-<p>块级元素：独占一行（排版标签都是）<br>
-行内元素：不独占一行<br>
-块级元素中能写：行内元素、块级元素（几乎什么都能写）<br>
-行内元素中能写：行内元素，但不能写：块级元素</p>
-<figure class="highlight html"><figcaption><span>12_块级元素与行内元素.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>块级元素与行内元素<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 块级元素，特点：独占一行 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;marquee&gt;Hello World&lt;/marquee&gt;</span></span><br><span class="line"><span class="comment">    &lt;marquee&gt;Hello World&lt;/marquee&gt;</span></span><br><span class="line"><span class="comment">    &lt;h1&gt;Hello World&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">    &lt;h1&gt;Hello World&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">    &lt;p&gt;Hello World&lt;/p&gt;</span></span><br><span class="line"><span class="comment">    &lt;p&gt;Hello World&lt;/p&gt;</span></span><br><span class="line"><span class="comment">    &lt;div&gt;Hello World&lt;/div&gt;</span></span><br><span class="line"><span class="comment">    &lt;div&gt;Hello World&lt;/div&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 行内元素，特点：不独占一行 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;input type="text" /&gt;</span></span><br><span class="line"><span class="comment">    &lt;input type="text" /&gt;</span></span><br><span class="line"><span class="comment">    &lt;span&gt;Hello World&lt;/span&gt;</span></span><br><span class="line"><span class="comment">    &lt;span&gt;Hello World&lt;/span&gt; --&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 规则1：块级元素中能写：行内元素、块级元素（几乎什么都能写） --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;div&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;row1&lt;/span&gt;</span></span><br><span class="line"><span class="comment">        &lt;input type="text" /&gt;</span></span><br><span class="line"><span class="comment">        &lt;div&gt;row2&lt;/div&gt;</span></span><br><span class="line"><span class="comment">    &lt;/div&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 规则2：行内元素中能写：行内元素，但不能写：块级元素 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;span&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;content1&lt;/span&gt;</span></span><br><span class="line"><span class="comment">        &lt;input type="text" /&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;content2&lt;/span&gt;</span></span><br><span class="line"><span class="comment">        &lt;div&gt;content3&lt;/div&gt;</span></span><br><span class="line"><span class="comment">    &lt;/span&gt;</span></span><br><span class="line"><span class="comment">    &lt;span&gt;content4&lt;/span&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 否则会导致样式错乱 --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 特殊规则：h1~h6 不能互相嵌套 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;h1&gt;</span></span><br><span class="line"><span class="comment">        标题1</span></span><br><span class="line"><span class="comment">        &lt;h2&gt;标题2&lt;/h2&gt;</span></span><br><span class="line"><span class="comment">    &lt;/h1&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 特殊规则：p 标签中不能写块元素 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;p&gt;</span></span><br><span class="line"><span class="comment">        &lt;h1&gt;标题1&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">    &lt;/p&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 发现 &lt;p&gt;&lt;marquee&gt;...&lt;/marquee&gt;&lt;/p&gt; 可以用，这是因为 marquee 标签已经不用了 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        &lt;marquee&gt; 元素已经 过时，请不要再使用（用 CSS 实现得更好）</span></span><br><span class="line"><span class="comment">        尽管一些浏览器仍然支持它，但它不是必须的</span></span><br><span class="line"><span class="comment">        此外，使用这个元素基本上是你可以对你的用户做最糟糕的事情之一</span></span><br><span class="line"><span class="comment">        所以请不要这样做。</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="常用的文本标签"><a class="header-anchor" href="#常用的文本标签">¶</a>常用的文本标签</h2>
-<p>用于包裹词汇、短语等，通常写在排版标签里面<br>
-排版标签更宏观，文本标签更微观<br>
-文本标签通常都是行内元素</p>
-<p><code>em</code> 要着重阅读的内容 双标签<br>
-<code>strong</code> 十分重要的内容（语气比 <code>em</code> 要强） 双标签<br>
-<code>span</code> 没有语义，用于包裹短语的通用容器 双标签</p>
-<figure class="highlight html"><figcaption><span>13_常用的文本标签.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML_常用的文本标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        span&#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">color</span><span class="selector-pseudo">:blue</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        预防电信诈骗，请安装：<span class="tag">&lt;<span class="name">em</span>&gt;</span>国家反诈中心app。<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        当我们出门的时候，一定要<span class="tag">&lt;<span class="name">strong</span>&gt;</span>关好门窗<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>！</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        前端三个框架为：<span class="tag">&lt;<span class="name">span</span>&gt;</span>Angular、React、Vue<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E5%B8%B8%E7%94%A8%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE.PNG"/></div>
-<h2 id="不常用的文本标签"><a class="header-anchor" href="#不常用的文本标签">¶</a>不常用的文本标签</h2>
-<p>cite | dfn | del | ins | sub | sup | code | samp |<br>
-kbd | abbr | bdo | var | small | b | i | u | q |<br>
-blockquote | address</p>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE%E5%88%97%E8%A1%A8.PNG"/></div>
-<figure class="highlight html"><figcaption><span>14_不常用的文本标签.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML_不常用的文本标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        这首<span class="tag">&lt;<span class="name">cite</span>&gt;</span>《光辉岁月》<span class="tag">&lt;/<span class="name">cite</span>&gt;</span>，非常的好听！</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dfn</span>&gt;</span>耗子尾汁<span class="tag">&lt;/<span class="name">dfn</span>&gt;</span>，是一个网络流行语，意思同<span class="tag">&lt;<span class="name">dfn</span>&gt;</span>好自为之<span class="tag">&lt;/<span class="name">dfn</span>&gt;</span>。</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        商品原价：<span class="tag">&lt;<span class="name">del</span>&gt;</span>199<span class="tag">&lt;/<span class="name">del</span>&gt;</span>，限时秒杀：<span class="tag">&lt;<span class="name">ins</span>&gt;</span>99<span class="tag">&lt;/<span class="name">ins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        水的化学方程式：H<span class="tag">&lt;<span class="name">sub</span>&gt;</span>2<span class="tag">&lt;/<span class="name">sub</span>&gt;</span>O，8的三次方：8<span class="tag">&lt;<span class="name">sup</span>&gt;</span>3<span class="tag">&lt;/<span class="name">sup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        学了JS，发现这段代码很有意思：<span class="tag">&lt;<span class="name">code</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        手机提示：<span class="tag">&lt;<span class="name">samp</span>&gt;</span>支付宝到账25元！<span class="tag">&lt;/<span class="name">samp</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        保存的快捷键：<span class="tag">&lt;<span class="name">kbd</span>&gt;</span>ctrl + s<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"英雄联盟"</span>&gt;</span>LOL<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span>这个游戏非常好玩</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        你是年少的欢喜，这句话反过来就是：<span class="tag">&lt;<span class="name">bdo</span> <span class="attr">dir</span>=<span class="string">"rtl"</span>&gt;</span>你是年少的欢喜<span class="tag">&lt;/<span class="name">bdo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        JS中，定义变量： <span class="tag">&lt;<span class="name">code</span>&gt;</span>let <span class="tag">&lt;<span class="name">var</span>&gt;</span>a<span class="tag">&lt;/<span class="name">var</span>&gt;</span> = 1<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>本网站所有资料、图表仅供参考。<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        我也买过<span class="tag">&lt;<span class="name">b</span>&gt;</span>罗技GPW<span class="tag">&lt;/<span class="name">b</span>&gt;</span>，蛮好用！</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        我说：<span class="tag">&lt;<span class="name">i</span>&gt;</span>“燕子，没有你我怎么活啊！”<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        你好不是<span class="tag">&lt;<span class="name">u</span>&gt;</span>heelo<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        屈子云：<span class="tag">&lt;<span class="name">q</span>&gt;</span>路漫漫其修远兮，吾将上下而求索<span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        歌词：<span class="tag">&lt;<span class="name">blockquote</span>&gt;</span>后来，我总算学会了如何去爱；可惜你早已远去，消失在人海；后来，终于在眼泪中明白；有些人，一旦错过就不再<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        学校地址：<span class="tag">&lt;<span class="name">address</span>&gt;</span>北京市海淀区学院路<span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- blockquote 与 address 是块元素，其他皆为行内元素 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 语义感不强的标签，很少使用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div align=center><img width = '' height = '' src = "https://cloudplayer99.oss-cn-beijing.aliyuncs.com/blog_pic/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/HTML%2BCCS/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE.PNG"/></div>
-<h2 id="HTML-图片标签"><a class="header-anchor" href="#HTML-图片标签">¶</a>HTML 图片标签</h2>
-]]></content>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>前端</tag>
-        <tag>HTML</tag>
-        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -4095,16 +3777,6 @@ WHERE  [CONDITION];</p>
       </tags>
   </entry>
   <entry>
-    <title>从零开始画一块板子</title>
-    <url>/2023/11/03/%E4%BB%8E%E9%9B%B6%E7%94%BB%E4%B8%80%E5%9D%97%E6%9D%BF%E5%AD%90/</url>
-    <content><![CDATA[<p>反激式开关电源电路设计<a id="more"></a></p>
-]]></content>
-      <tags>
-        <tag>DIGITAL</tag>
-        <tag>PCB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu 入门</title>
     <url>/2020/08/25/Ubuntu%20%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<p>又开新坑了。。。</p>
@@ -4614,113 +4286,6 @@ $F_i = F_{i-1} + F_{i-2}$，$F_1, F_0 = 1$</li>
         <tag>C/C++</tag>
         <tag>学习笔记</tag>
         <tag>Computer Systems：A Programmer&#39;s Perspective</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>六级二周目</title>
-    <url>/2023/12/04/%E5%85%AD%E7%BA%A7%E4%BA%8C%E5%91%A8%E7%9B%AE/</url>
-    <content><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/373774215" target="_blank" rel="noopener">英语六级考试时间分配和做题策略​</a><br>
-<a href="https://space.bilibili.com/72393079" target="_blank" rel="noopener">PYY考研英语</a><a id="more"></a><br>
-<a href="https://www.bilibili.com/video/BV1cr4y1c7nZ" target="_blank" rel="noopener">【合集】【六级听力】三小时带你搞定六级听力！全网最简单粗暴能提分的六级教程！</a></p>
-<ul>
-<li>六级考了很久了，当时是 444 分飘过，这次跟室友再冲一次</li>
-<li>先把当时的成绩放在这：<br>
-总分444 听力141 阅读159 写作144</li>
-<li>记录一下每天备考（摸鱼）的生活</li>
-<li>任务：<br>
-干完买的十二套卷子，分可以不高，钱不能浪费（毕竟之前已经浪费几本四六级的词汇书了）<br>
-按表背十天单词，记不住就算了，主打一个快<br>
-看完一套考试策略，建立一下做题思路</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">1</th>
-<th style="text-align:center">2</th>
-<th style="text-align:center">3</th>
-<th style="text-align:center">4</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">6</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">8</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">10</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">早</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">B</td>
-<td style="text-align:center">C</td>
-<td style="text-align:center">D</td>
-<td style="text-align:center">E</td>
-<td style="text-align:center">F</td>
-<td style="text-align:center">G</td>
-<td style="text-align:center">AH</td>
-<td style="text-align:center">BI</td>
-<td style="text-align:center">CJ</td>
-</tr>
-<tr>
-<td style="text-align:center">晚</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">AB</td>
-<td style="text-align:center">BC</td>
-<td style="text-align:center">ACD</td>
-<td style="text-align:center">BDE</td>
-<td style="text-align:center">CEF</td>
-<td style="text-align:center">DFG</td>
-<td style="text-align:center">EGH</td>
-<td style="text-align:center">FHI</td>
-<td style="text-align:center">GIJ</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>12.04<br>
-早上过 180 个词（A），下午模考了一下（2021_12_1），有点做不完，听力稀烂的，翻译更是乱写<br>
-晚上摸到九点不想学了，回寝室摆烂</li>
-<li>12.05<br>
-早上起晚了，上午过 155 个词（B），下午接着模考（2021_12_2），这回状态更差，很难专心，还总是被打断<br>
-晚上听一下听力的课，学一学方法</li>
-<li>六级听力教程
-<ul>
-<li>核心概念<br>
-1 . 视听一致原则<br>
-划选项中的关键信息<br>
-某一个选项关键信息与音频内容完全相符<br>
-某一个选项关键信息在音频中出现次数最多<br>
-2 . 关键词的选取<br>
-关键词能把握题的节奏<br>
-如何划选项关键词？<br>
-纵向审题：排除相同概念<br>
-横向划词：划实不划虚，划组合概念，划否定表述<br>
-3 . 同转的概念<br>
-同根词，同义词，短语/概念替换（难，保持敏感），宽泛（选项）与具体（音频）<br>
-4 . 正确及错误选项的特点<br>
-正确选项：<br>
-选项与音频内容一致（试听一致或同转后一致）<br>
-选项符合问题描述（非听音时必要步骤）<br>
-往往通过逻辑引导答案（因果、转折、强调、举例、疑问、感情色彩）也是用逻辑把握节奏<br>
-错误选项：<br>
-直接被否定<br>
-搭配不当<br>
-反义表述<br>
-部分信息未被提及<br>
-选项杂糅</li>
-<li>解题步骤<br>
-1 . <strong>划关键词</strong> 并 <strong>猜测发音</strong><br>
-2 . 使用试听一致加同转的方法听音做题<br>
-3 . 较难题目可以利用错误选项特点，反向选出答案<br>
-4 . 注意换题信号以及 <strong>语气</strong> 的暗示作用（把握节奏）</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>研一</tag>
-        <tag>学学外语</tag>
       </tags>
   </entry>
   <entry>
@@ -5429,20 +4994,6 @@ $F_i = F_{i-1} + F_{i-2}$，$F_1, F_0 = 1$</li>
       <tags>
         <tag>C/C++</tag>
         <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>记录我的前端学习</title>
-    <url>/2023/07/06/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>2023 年的暑假，开始学习前端<br>
-采用B站UP尚硅谷的教程<br>
-首要目的是要会用 vue，那么开始写 Vue 入门笔记<br>
-但是前面的基础都不会<br>
-先开始学 HTML + CSS<a id="more"></a></p>
-]]></content>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -6989,114 +6540,6 @@ N &lt;= 30000, L &lt;= 200.</p>
       </tags>
   </entry>
   <entry>
-    <title>学习 Tcl 过程中与 ChatGPT 的一些交谈</title>
-    <url>/2023/09/08/%E5%AD%A6%E4%B9%A0Tcl%E8%BF%87%E7%A8%8B%E4%B8%AD%E4%B8%8EChatGPT%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%A4%E8%B0%88/</url>
-    <content><![CDATA[<p>学习 Tcl 过程中与 ChatGPT 的一些交谈<a id="more"></a></p>
-<blockquote>
-<p>Q: tcl command upvar, explain it in chinese</p>
-</blockquote>
-<blockquote>
-<p>A: upvar 命令在 Tcl 中用于在当前作用域和外部（或全局）作用域之间创建变量链接。这使您可以访问和操作封闭作用域中的变量，而无需将它们明确地作为参数传递给过程。<br>
-以下是 upvar 命令的语法：<br>
-upvar ?level? otherVar myVar ?otherVar myVar …?<br>
-level：可选参数，用于指定从哪个封闭过程的层级开始搜索名为 otherVar 的变量。默认值为 1，表示当前的直接封闭过程。如果需要向上多个层级搜索封闭过程，可以为 level 指定更大的数字。<br>
-otherVar：要创建链接的变量。<br>
-myVar：要在当前作用域中创建的变量名称，该变量将链接到 otherVar。</p>
-</blockquote>
-<blockquote>
-<p>Q: Tcl 中的 concat 命令</p>
-</blockquote>
-<blockquote>
-<p>A: 在Tcl中，concat命令用于将一系列的字符串合并成一个单一的字符串。这个命令可以接受任意数量的参数，每个参数都是一个要合并的字符串，然后将这些字符串连接在一起。以下是concat命令的语法：<br>
-concat ?string string …?<br>
-其中，string string … 是要连接的多个字符串。<br>
-以下是一个使用concat命令的示例：<br>
-set firstName “John”<br>
-set lastName “Doe”<br>
-set fullName [concat $firstName &quot; &quot; $lastName]<br>
-puts “Full Name: $fullName”<br>
-在这个示例中，concat命令将$firstName和$lastName连接起来，创建一个完整的姓名，并将其存储在$fullName变量中。然后，通过puts命令打印完整的姓名。<br>
-请注意，Tcl中还有其他方式可以将字符串连接在一起，比如使用字符串插值或append命令。选择使用哪种方法取决于您的编程风格和需求。</p>
-</blockquote>
-<blockquote>
-<p>Q: Tcl 中 set items($item) 1 是什么意思</p>
-</blockquote>
-<blockquote>
-<p>A: 在Tcl中，set命令用于创建或修改变量。items($item)是一种特殊的变量形式，称为数组（array）或关联数组（associative array）。<br>
-在这种情况下，items是一个数组名称，而$item是数组索引（也称为键）。这个语法允许您在数组中存储和检索数据。在你提供的上下文中，set items($item) 1 的意思是将数组items中的索引为$item的元素设置为值1。</p>
-</blockquote>
-<blockquote>
-<p>Q: proc ::oo::Helpers::mymethod {method args} {<br>
-list [uplevel 1 {namespace which my}] $method {*}$args<br>
-}有返回值吗</p>
-</blockquote>
-<blockquote>
-<p>A: 是的，这段代码中的 ::oo::Helpers::mymethod 过程会返回一个值，这个值是一个Tcl列表（list）。具体来说，它返回一个命令前缀，用于调用指定的对象方法。</p>
-</blockquote>
-<blockquote>
-<p>Q: 没写return为什么也有返回值</p>
-</blockquote>
-<blockquote>
-<p>A: 抱歉，我之前的解释可能有些混淆。在Tcl中，每个语句的结果都被默认地作为返回值返回，即使没有显式使用 return 命令。因此，在 proc 过程中，最后一个执行的语句的结果会自动成为该过程的返回值。</p>
-</blockquote>
-<blockquote>
-<p>Q: proc ::kiteutils::lzipper {alist {blist {}}} {<br>
-set result [list]<br>
-foreach a $alist b $blist {<br>
-lappend result $a $b<br>
-}<br>
-return $result<br>
-}<br>
-为什么要这样传参</p>
-</blockquote>
-<blockquote>
-<p>A:这段代码是一个Tcl（Tool Command Language）脚本，用于实现一个过程（procedure）叫做 kiteutils::lzipper。它的作用是将两个列表进行“拉链”操作，即从两个列表中分别取出对应位置的元素，然后将这些元素依次交叉地放入一个新的列表中返回。<br>
-{alist {blist {}}} 是参数列表。这里使用花括号表示默认值为空列表。这意味着你可以传递一个或两个参数给过程，分别作为 alist 和 blist。如果你不提供任何参数，两个参数都将默认为空列表。</p>
-</blockquote>
-<blockquote>
-<p>Q: dict get命令</p>
-</blockquote>
-<blockquote>
-<p>A: dict get 是 Tcl 编程语言中的一个命令，用于从字典（dict）中获取指定键的值。字典是 Tcl 中的一种数据结构，类似于关联数组或映射，它允许你将键值对存储在一个容器中。<br>
-dict get 命令的基本语法如下：<br>
-dict get dictionaryName key ?default?<br>
-dictionaryName 是要从中获取值的字典的名称。<br>
-key 是要获取值的键。<br>
-default（可选参数）是一个默认值。如果键在字典中不存在，或者字典为 null，那么将返回此默认值。</p>
-</blockquote>
-<blockquote>
-<p>Q: my 在Tcl里面是什么意思</p>
-</blockquote>
-<blockquote>
-<p>A: 在Tcl中，my通常被用作一个命名空间限定符，用于引用当前对象的实例变量和方法。通过使用my限定符，可以确保在当前对象的上下文中引用实例变量和方法，而不会与其他命名空间中的同名变量或方法产生冲突。这有助于确保代码的可维护性和可重用性。</p>
-</blockquote>
-<blockquote>
-<p>Q: Tcl中%4.2g是什么意思</p>
-</blockquote>
-<blockquote>
-<p>A: 在Tcl中，%4.2g 是一种格式化输出的字符串格式。<br>
-具体含义如下：<br>
-%：表示格式化输出的开始。<br>
-4：表示最小输出宽度为4个字符。<br>
-.：表示小数点。<br>
-2：表示小数部分保留2位。<br>
-g：表示通用格式，会根据数值的大小自动选择%f（浮点数）或%e（科学计数法）中更短的一种方式进行输出。<br>
-综合起来，%4.2g 会将一个数值按照指定的规则进行格式化输出，保证至少有4个字符的宽度，小数部分保留2位有效数字，且根据数值的大小选择合适的表示方式。</p>
-</blockquote>
-<blockquote>
-<p>Q:</p>
-</blockquote>
-<blockquote>
-<p>A:</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>ChatGPT</tag>
-        <tag>Tcl/Tk</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>套接字编程，简单程序的编写</title>
     <url>/2021/09/24/%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B%EF%BC%8C%E7%AE%80%E5%8D%95%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99/</url>
     <content><![CDATA[<h2 id="Socket-编程"><a class="header-anchor" href="#Socket-编程">¶</a>Socket 编程</h2>
@@ -8080,15 +7523,6 @@ $if(D[\ v \ ] < INFINITY)\ \ \ \ prev[\ v \ ] = 0;$
       <tags>
         <tag>学习笔记</tag>
         <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>机械项目第一弹</title>
-    <url>/2023/11/03/%E6%9C%BA%E6%A2%B0%E9%A1%B9%E7%9B%AE%E7%AC%AC%E4%B8%80%E5%BC%B9/</url>
-    <content><![CDATA[<p>直线模组<a id="more"></a></p>
-]]></content>
-      <tags>
-        <tag>机械方向</tag>
       </tags>
   </entry>
   <entry>
@@ -14381,6 +13815,565 @@ CTI 中断（UnIIR[3:1]=110）是一个第二优先级中断，当 UARTn Rx FIFO
       <tags>
         <tag>DIGITAL</tag>
         <tag>ARM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Suicide vs genocide：Rest in power, Aaron Bushnell</title>
+    <url>/2024/03/04/ArtAlJazeeraSuicidevsgenocideRestinpowerAaronBushnell/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.aljazeera.com/opinions/2024/2/26/suicide-vs-genocide-rest-in-power-aaron-bushnell" target="_blank" rel="noopener">Suicide vs genocide: Rest in power, Aaron Bushnell</a></p>
+<p>–Bushnell’s extreme act of protest has put Western corporate media to shame.</p>
+<p>On Sunday, February 25, 25-year-old <strong>active duty</strong> member of the United States Air Force Aaron Bushnell set himself on fire outside the Israeli <strong>embassy</strong> in the US capital of Washington, DC, in a one -airman <strong>revolt against</strong> the <strong>US-backed</strong> <strong>slaughter</strong> currently being <strong>perpetrated</strong> by the Israeli military in the <strong>Gaza Strip</strong>.<a id="more"></a></p>
+<p>Over the past 143 days, Israel has killed nearly 30,000 Palestinians in the <strong>besieged</strong> <strong>coastal</strong> <strong>enclave</strong>. In video <strong>footage</strong> recorded prior to and during his <strong>self-immolation</strong>, Bushnell states that he will “no longer be <strong>complicit</strong> in genocide” and that he is “about to engage in an extreme act of protest – but compared to what people have been experiencing in Palestine at the hands of their colonisers is not extreme at all”.</p>
+<p>To be sure, Palestinians have long been <em>accustomed to</em>, well, burning to death at the hands of Israeli weaponry, ever since the state of Israel <em>undertook to</em> <strong>lethally</strong> invent itself on Palestinian land in 1948. The Israeli military’s use of skin-incinerating <strong>white phosphorus</strong> munitions in more recent years has no doubt <strong>contributed to</strong> the whole Palestinian “experience”.</p>
+<p>After pertinently observing that US complicity in the genocide of Palestinians is “what our <strong>ruling class</strong> has decided will be normal”, Bushnell plants himself directly in front of the Israeli embassy gate – in full US military <strong>fatigues</strong> – and proceeds to <strong>douse</strong> himself with <strong>flammable liquid</strong>. As he rapidly burns to death, he repeatedly shouts: “Free Palestine”, while security personnel order him to get “on the ground”. One particularly helpful individual points a gun at the blaze.</p>
+<p>In the <strong>aftermath</strong> of Bushnell’s self-immolation, the New York Times announced: “Man Dies After Setting Himself on Fire Outside Israeli Embassy in Washington, Police Say” – a rather strong contender, perhaps, for the most <strong>diluted</strong> and <strong>decontextualised</strong> headline ever. One wonders what folks would have said in 1965 had the US newspaper of record run headlines like: “<strong>Octogenarian</strong> Detroit Woman Dies After Setting Herself on Fire, Police Say – An Event <em>Having Nothing Potentially To Do With</em> Said Woman’s Opposition To The Vietnam War Or Anything Like That”.</p>
+<p>Speaking of Vietnam War-related self-immolations, recall <strong>renowned</strong> US historian and journalist David Halberstam’s account of the 1963 <strong>demise</strong> in Saigon, South Vietnam, of the Vietnamese monk Thich Quang Duc: “Flames were coming from a human being; his body was slowly <strong>withering</strong> and <strong>shriveling up</strong>, his head blackening and charring. In the air was the smell of burning flesh; human beings burn surprisingly quickly… I was too shocked to cry, too confused to take notes or ask questions, too <strong>bewildered</strong> even to think”.</p>
+<p>And while such an intense and passionate form of suicide is no doubt bewildering to many, genocide should be <em>all the more</em> appalling; as Bushnell himself said, self-immolation is nothing “compared to what people have been experiencing in Palestine”, where people know <em>all too well</em> how quickly human beings burn.</p>
+<p>In Bushnell’s case, the US political-media establishment <em>appears to be</em> <em>doing its best to</em> not only decontextualise but also <strong>posthumously</strong> <strong>discredit</strong> him. Time Magazine’s <strong>write-up</strong>, for example, <strong>admonishes</strong> that the US “Defence Department policy states that service members on active duty should ‘not engage in <strong>partisan political activity</strong>’” – <em>as though</em> actively <strong>abetting</strong> a genocide weren’t politically “partisan”.</p>
+<p>Furthermore, the magazine specifies, US military regulations “prohibit wearing the uniform during ‘unofficial public speeches, interviews’”, and other activities.</p>
+<p>Perhaps Bushnell’s ashes can <em>be tried in</em> military <em>court</em>.</p>
+<p>At the bottom of the Time article, readers are charitably given the following instructions: “If you or someone you know may be experiencing a mental-health <strong>crisis</strong> or <strong>contemplating suicide</strong>, call or text 988” – which naturally <strong>implies</strong> that Bushnell was simply the victim of a “mental-health crisis” rather than someone <em>making a</em> most <strong>cogent</strong> and <strong>defiant</strong> political <em>point</em> <em>in response to</em> an extremely mentally <strong>disturbing</strong> political reality.</p>
+<p><em>At the end of the day</em>, anyone who is not experiencing a serious “mental-health crisis” over the genocide going down in Gaza with full US backing can be safely <strong>filed</strong> under the category of psychologically disturbed.</p>
+<p>Of course, the US also perpetrated <em>its very own</em> genocide against <strong>Native</strong> Americans – another bloody phenomenon that has not been <strong>deemed</strong> worthy of <strong>diagnosis</strong> as a severe <strong>collective</strong> mental <strong>disturbance</strong> or <em>anything of the sort</em>. <strong>As per</strong> the <strong>official narrative</strong>, if you think it’s crazy for the US or its Israeli partner in crime to <em>commit genocide</em>, you’re the crazy one.</p>
+<p>Coming from a family of US Air Force veterans myself – both of my grandfathers <em>participated in</em> the <strong>carnage</strong> in Vietnam – I have personally witnessed the psychological <strong>fallout</strong> that can attend service as <strong>empire’s executioners</strong>. Aaron Bushnell <em>was meant to be</em> <em>a cog in the killing machine</em>, but his principles cost him his life.</p>
+<p>Indeed, according to a former colleague of Bushnell’s who worked with him to support the homeless community in San Antonio, Texas, he was “one of the most principled comrades I’ve ever known”. And while we journalists are supposed to be the ones speaking truth to power, <em>suffice it to say</em> that Bushnell has put Western corporate media to shame.</p>
+<p>Rest in power, Aaron Bushnell.</p>
+<h2 id="Notes"><a class="header-anchor" href="#Notes">¶</a>Notes</h2>
+<p>-cide genocide suicide<br>
+rest in peace / rest in power / r.i.p.<br>
+active duty<br>
+embassy embassador(not use anymore) ambassador<br>
+us-backed<br>
+siege besiege<br>
+immolation self-immolation<br>
+state statement<br>
+colony coloniser<br>
+weapon weaponry<br>
+diluted decontextualised<br>
+Octogenarian<br>
+renowned<br>
+account<br>
+Thich Quang Duc<br>
+wither / shrivel up<br>
+bewilder bewildered<br>
+all the more<br>
+appalling<br>
+all too well<br>
+posthumously discredit him<br>
+write-up / comment<br>
+admonish<br>
+ash<br>
+be tried in court(try)<br>
+make a point<br>
+in response to<br>
+At the end of the day<br>
+its very own<br>
+anything of the sort<br>
+commit genocide / commmit suicide<br>
+fallout / aftermath<br>
+empire’s executioners<br>
+was meant to be<br>
+a cog in the killing machine<br>
+suffice it to say</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>aljazeera</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Boeing whistleblower John Barnett found dead in US</title>
+    <url>/2024/04/09/ArtBBCBoeingwhistleblowerJohnBarnettfounddeadinUS/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.bbc.com/news/business-68534703" target="_blank" rel="noopener">Boeing whistleblower John Barnett found dead in US</a></p>
+<p>–John Barnett was a former quality control manager at Boeing</p>
+<p>A former Boeing employee known for <strong>raising concerns</strong> about the firm’s production standards has been found dead in the US.<a id="more"></a></p>
+<p>John Barnett worked for Boeing for more than 30 years before retiring in 2017.</p>
+<p>In the days before his death, he had been <strong>giving evidence</strong> in a <strong>whistleblower</strong> <strong>lawsuit</strong> against the company.</p>
+<p>Boeing said it was <strong>saddened</strong> to hear of Mr Barnett’s passing. The Charleston <strong>County</strong> <strong>coroner</strong> confirmed his death to the BBC on Monday.</p>
+<p>It said the 62-year-old had died from a “self-inflicted” wound on 9 March and police were <strong>investigating</strong>.</p>
+<p>Mr Barnett had worked for the US plane <strong>giant</strong> for three decades, until his retirement in 2017 on health grounds.</p>
+<p>From 2010, he was employed as a quality manager at the North Charleston plant. The facility builds the 787 Dreamliner, a <strong>state-of-the-art</strong> airliner used mainly on long-haul routes.</p>
+<p>In 2019, Mr Barnett told the BBC that under-pressure workers had been <strong>deliberately</strong> fitting <strong>sub-standard</strong> parts to aircraft on the production line.</p>
+<p>He also said he had <strong>uncovered</strong> serious problems with oxygen systems, which could mean one in four breathing masks would not work in an emergency.</p>
+<p>He said soon after starting work in South Carolina he had become concerned that the push to <em>get</em> new aircraft <em>built</em> meant the <strong>assembly</strong> process was rushed and safety was <strong>compromised</strong>, something the company denied.</p>
+<p>He later told the BBC that workers had failed to follow <strong>procedures</strong> intended to track components through the factory, allowing <strong>defective</strong> components to go missing.</p>
+<p>He said in some cases, sub-standard parts had even been removed from <strong>scrap bins</strong> and fitted to planes that were being built to prevent delays on the production line.</p>
+<p>He also claimed that tests on emergency oxygen systems due to <em>be fitted to</em> the 787 showed a <em>failure rate</em> of 25%, meaning that one in four could fail to deploy in a real-life emergency.</p>
+<p>Mr Barnett said he had <em><strong>alerted</strong></em> managers <em>to</em> his concerns, but no action had been taken.</p>
+<p>Boeing denied his <strong>assertions</strong>. However, a 2017 review by the US <strong>regulator</strong>, the Federal Aviation Administration (FAA), did <strong>uphold</strong> some of Mr Barnett’s concerns.</p>
+<p>It established that the location of at least 53 “<strong>non-conforming</strong>” parts in the factory was unknown, and that they were considered lost. Boeing <em>was ordered to</em> take <strong>remedial</strong> action.</p>
+<p>On the oxygen <strong>cylinders</strong> issue, the company said that in 2017 it had “identified some oxygen bottles received from the <strong>supplier</strong> that were not deploying properly”. But it denied that any of them were actually fitted on aircraft.</p>
+<p>After retiring, he <em><strong>embarked</strong> on</em> a long-running legal action against the company.</p>
+<p>He <em><strong>accused</strong></em> it <em>of</em> <strong>denigrating</strong> his character and <strong>hampering</strong> his career because of the issues he pointed out - <strong>charges</strong> <strong>rejected</strong> by Boeing.</p>
+<p>At the time of his death, Mr Barnett had been in Charleston for legal interviews <em>linked to</em> that case.</p>
+<p>Last week, he gave a formal <strong>deposition</strong> in which he was questioned by Boeing’s lawyers, before being <strong>cross-examined</strong> by his own <strong>counsel</strong>.</p>
+<p>He had been due to <strong>undergo</strong> further questioning on Saturday. When he did not appear, <strong>enquiries</strong> were made at his hotel.</p>
+<p>He was <strong>subsequently</strong> found dead in his truck in the hotel car park.</p>
+<p>Speaking to the BBC, his lawyer described his death as “<strong>tragic</strong>”.</p>
+<p>In a statement Boeing said: “We are saddened by Mr. Barnett’s passing, and <em>our thoughts are with his family and friends</em>.”</p>
+<p>His death <em>comes at a time when</em> production standards at both Boeing and its key supplier Spirit Aerosystems are under <strong>intense scrutiny</strong>.</p>
+<p>This follows an incident in early January when an unused emergency exit door <strong>blew off</strong> a <strong>brand-new</strong> Boeing 737 Max shortly after <strong>take-off</strong> from Portland International Airport.</p>
+<p>A <strong>preliminary</strong> report from the US National Transportation Safety <strong>Board</strong> suggested that four key bolts, designed to <em>hold the door securely in place</em>, were not fitted.</p>
+<p>Last week, the FAA said a six-week <strong>audit</strong> of the company had found “multiple instances where the company <strong>allegedly</strong> <em>failed to</em> <em>comply with</em> manufacturing quality control requirements”.</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>bbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Joe Biden dog Commander bit Secret Service agents at least 24 times</title>
+    <url>/2024/03/04/ArtBBCJoeBidendogCommanderbitSecretServiceagentsatleast24times/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.bbc.com/news/world-us-canada-68366306" target="_blank" rel="noopener">Joe Biden dog Commander bit Secret Service agents at least 24 times</a></p>
+<p>President Joe Biden’s dog Commander bit US Secret Service agents on at least 24 occasions, new documents show.</p>
+<p>Secret Service records show the extent to which the <strong>German Shepherd</strong> caused chaos for the presidential bodyguards.<a id="more"></a></p>
+<p>One senior agent noted the bites meant the Secret Service changed <strong>tactics</strong>, advising agents to “give lots of room”.</p>
+<p>The warning came months before Commander was removed from the White House.</p>
+<p>The documents were <strong>revealed</strong> through Freedom of Information requests and posted online. They are heavily redacted to protect the identity of Secret Service agents and secrecy of their security tactics.</p>
+<p>They show at least 24 biting incidents took place between October 2022 and July 2023, including members of the Secret Service being bitten on the wrist, forearm, elbow, waist, chest, thigh and shoulder.</p>
+<p>The documents do not necessarily record all biting incidents related to Commander, as they only cover the Secret Service and not others that work in the White House or staff at Camp David in Maryland.</p>
+<p>The Biden family’s pet left the White House in October last year, one week after a Secret Service agent required medical treatment for a <strong>severe</strong> bite.</p>
+<p>A previous incident in June led to a “deep bite” on the forearm of an agent, who needed <strong>stitches</strong>. Blood on the floor in an area of the White House caused tours of the East Wing of the building to be <strong>suspended</strong> for 20 minutes, according to one document.</p>
+<p>In July, another agent was bitten in the hand and required six stitches. The bite caused a “severe deep open wound” and the agent “started to lose a significant amount of blood”, one email showed.</p>
+<p>This agent was given a “small care package” by colleagues as a present, including painkillers, <strong>antibiotic ointment</strong>, <strong>pepper spray</strong>, a muzzle and dog biscuits “for safety purposes”.</p>
+<p>An unnamed senior agent in one email advised that agents protecting Mr Biden and his family “must be creative to ensure our own personal safety”.</p>
+<p>“The recent dog bites have challenged us to adjust our operational tactics when Commander is present - please give lots of room (staying a terrain feature away if possible),” the agent wrote.</p>
+<p>A statement to CNN from the office of First Lady Jill Biden said they had tried a number of measures to address the problem but gave up in the autumn and sent him to live with relatives.</p>
+<p>“Despite additional dog training, <strong>leashing</strong>, working with <strong>veterinarians</strong>, and <strong>consulting</strong> with animal behaviourists, the White House environment simply proved too much for Commander,” a statement said.</p>
+<p>Another dog owned by the family, Major, injured a Secret Service agent in 2021 and was sent away to live in Delaware.</p>
+<h2 id="Notes"><a class="header-anchor" href="#Notes">¶</a>Notes</h2>
+<p>commander, major, the dog’s name</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>bbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】China’s Electric Vehicles Are Going to Hit Detroit Like a Wrecking Ball</title>
+    <url>/2024/03/07/ArtNYTChina%E2%80%99sElectricVehiclesAreGoingtoHitDetroitLikeaWreckingBall/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.nytimes.com/2024/02/27/opinion/gm-ford-electric-vehicles.html" target="_blank" rel="noopener">China’s Electric Vehicles Are Going to Hit Detroit Like a Wrecking Ball<br>
+</a><a id="more"></a></p>
+<p>It happened very quickly, so fast that you might not have noticed it. Over the past few months, America’s Big Three automakers — Ford, General Motors and Stellantis, the oddly named company that owns Dodge, Chrysler and Jeep — landed in big trouble.<!--more--></p>
+<p>I realize this may sound silly. Ford, General Motors and Stellantis made billions in profit last year, even after a long strike by autoworkers, and all three companies are forecasting a big 2024. But recently, the Big Three found themselves outmaneuvered and missing their goals for electric vehicle sales at the same time that a crop of new affordable, electrified foreign cars appeared, ready to flood the global market.</p>
+<p>About a decade ago, America bailed out the Big Three and swore it wouldn’t do that again. But the federal government is going to have to help the Big Three and the rest of the U.S. car market again very soon. And it has to do it in the right way — now — to avoid the next auto bailout.</p>
+<p>The biggest threat to the Big Three comes from <em>a</em> new <em>crop of</em> Chinese automakers, especially BYD, which <em>specialize in</em> producing <strong>plug-in hybrid</strong> and fully electric vehicles. BYD’s growth is <strong>astounding</strong>: It sold three million electrified vehicles last year, more than any other company, and it now has enough <em>production capacity</em> in China to <strong>manufacture</strong> four million cars a year. But that isn’t enough: It’s building factories in Brazil, Thailand, Hungary and Uzbekistan, to produce even more cars, and it may soon add Indonesia and Mexico to that list. A <strong>deluge</strong> of electric vehicles is coming.</p>
+<p>BYD’s cars deliver great value at prices that beat anything coming out of the West. This month BYD <strong>unveiled</strong> a plug-in hybrid that gets decent all-electric <strong>range</strong> and will <em>retail for</em> just over $11,000. How can it do that? Like other Chinese manufacturers, BYD <em>benefits from</em> its home country’s lower labor costs, but this explains only some of its success. The fact is that BYD and other Chinese automakers like Geely, which owns Volvo Cars and Polestar brands, <em>are</em> very <em>good at</em> making cars. They have <strong>leveraged</strong> China’s <strong>dominance</strong> of the battery industry and <strong>automated</strong> production lines to create a <strong>juggernaut</strong>.</p>
+<p>The Chinese automakers, especially BYD, represent something new in the world. They <strong>signal</strong> that China’s decades-long <strong>accretion</strong> of economic <strong>complexity</strong> is almost <strong>complete</strong>: <strong>Whereas</strong> the country once made toys and clothes and then made electronics and batteries, now it makes cars and airplanes. <em>What’s more</em>, BYD and other Chinese automakers are becoming <strong>virtually</strong> global car companies, <em>capable of</em> manufacturing electric cars that can <em>compete</em> directly <em>with</em> gas-burning cars on cost.</p>
+<p>That is, <em>on the surface</em>, a good thing. Electric cars need to get cheaper and more <strong>abundant</strong> if we are to have any hope of <em>meeting</em> our global climate <em>goals</em>. But it <strong>poses</strong> some <strong>immediate</strong> and <strong>thorny</strong> problems for American policymakers. After BYD announced its $11,000 plug-in hybrid, it <strong>posted</strong> on the Chinese social media platform Weibo that “the price will make petrol car <strong>assemblers tremble</strong>.” The problem is many of those gasoline-car makers are American.</p>
+<p>Ford and GM <strong>plotted</strong> an ambitious E.V. <strong>transition</strong> three years ago, but it didn’t take long for them to <strong>stumble</strong>. Last year Ford lost more than $64,000 on every E.V. that it sold. Since October, it has <strong>delayed</strong> the opening of one of its new E.V. battery plants, and GM has <strong>fumbled</strong> the start of its new Ultium battery platform, which <em>is meant to</em> be the foundation for all of its future electric vehicles. Ford and GM have notched some wins here (the Mustang Mach-E and Chevrolet Bolt are modest hits), but they aren’t competing at the level of Tesla and Hyundai — companies that operate factories in less union-friendly states in the Sun Belt.</p>
+<p>Jim Farley, Ford’s chief executive, recently disclosed that the company had a secret development team building a cheap, affordable electric car to compete with Tesla and BYD. But producing electric vehicles profitably is an organizational skill, and like any skill, it takes time, effort and money to develop. Even if Ford and GM now bust out innovative new designs, they will lag their competition in executing them well.</p>
+<p>The other <strong>looming</strong> problem for Ford and General Motors is that their <em>balance sheets</em>, while <strong>superficially robust</strong>, <strong>conceal</strong> a structural <strong>vulnerability</strong>. While the two companies have <em>done</em> generally <em>well</em> in recent years, their billions in profits have <strong>overwhelmingly</strong> <strong>flowed</strong> from selling a relatively small number of vehicles to a small group of people. <strong>Specifically</strong>, Ford’s and GM’s <strong>earnings</strong> <em>rest</em> primarily <em>on</em> selling pickup trucks, S.U.V.s and <strong>crossovers</strong> to <strong>affluent</strong> North Americans.</p>
+<p><em>In other words</em>, if Americans’ <strong>appetite</strong> for trucks and S.U.V.s <strong>falters</strong>, then Ford and GM will be in real trouble. That creates a strategic <strong>quandary</strong> for them. In the coming years, these companies must <em>cross a bridge</em> from one <em>business model</em> to another: They must use their robust truck and S.U.V. earnings to <strong>subsidize</strong> their growing electric vehicle business and learn how to make E.V.s <strong>profitably</strong>. If they can make it across this bridge quickly, they will survive. But if their S.U.V. profits <strong>crumble</strong> before their E.V. business is ready, they will fall into the <strong>chasm</strong> and <strong>perish</strong>.</p>
+<p>That’s why the flood of cheap Chinese electric vehicles poses such a big problem: It could wash away Ford and GM’s bridge before they have finished building it. Even a wave of competitive electric cars from the Sun Belt automakers — like Kia’s EV9, a three-row S.U.V. — could eat away at their S.U.V. profits before they’re ready.</p>
+<p>Perhaps the Big Three deserve destruction; after all, they hooked us on S.U.V.s in the first place and then fell behind in the E.V. race. But letting them die is not a tenable political option for President Biden. One goal of his administration is to show not only that decarbonization can work for the American economy but also that it can revive moribund fossil-fuel-dependent communities in the Rust Belt. Mr. Biden has also fought for and won the endorsement of the United Auto Workers, which just cemented a generous new contract with the Big Three and now needs them to thrive.</p>
+<p>He has reason, in other words, to help the Big Three even before you get to the harsh electoral realities: The legacy auto industry employs more people in Michigan than in any other state, and Mr. Biden’s path to re-election all but requires him to win Michigan in November. (Recall that Donald Trump won Michigan by just under 11,000 votes in 2016.) Mr. Biden cannot allow the possibility of another China shock to hit the Midwest’s auto economy. So what should he do?</p>
+<p>The good news is that Congress has already done some of the work for him. You may have heard about the Inflation Reduction Act’s <strong>generous subsidies</strong> for domestic electric car production. Can it help here? It can, and it will, but the act alone is not nearly big enough to <strong>insulate</strong> these companies from the threat posed by Chinese E.V.s. Geely is preparing to sell the small, all-electric Volvo EX30 S.U.V. in the United States for $35,000. That price — which seemingly includes the cost of a 25 percent tariff, first imposed by the Trump administration — rivals what American automakers are capable of doing today, even with the Inflation Reduction Act’s subsidies.</p>
+<p>Subsidies most <strong>likely</strong> won’t be enough; Mr. Biden will need to <strong>impose</strong> trade <strong>restrictions</strong>. But here’s where it gets <strong>messy</strong>. <em>The case for protecting</em> the American auto market <em>from</em> Chinese E.V.s is obvious and politically essential but also highly <strong>troublesome</strong>. <em>In the short term</em>, American automakers — even the homegrown electric-only carmakers like Tesla and Rivian — must be <strong>shielded</strong> from a wave of cheap cars. But <em>in the long term</em>, Mr. Biden must be careful not to <em>cordon off</em> the American car market from the rest of the world, <em>turning</em> the United States <em>into</em> an <strong>automotive backwater</strong> of <strong>bloated</strong>, expensive, gas-<strong>guzzling</strong> vehicles. The Chinese carmakers are the first real competition that the global car industry has faced in decades, and American companies must <em>be exposed to</em> some of that threat, <em>for their own good</em>. That means they must feel the <strong>chill</strong> of death on their necks and be forced to rise and face this challenge.</p>
+<p>This could be done in a number of ways. One is by suggesting to American companies that any import restrictions imposed on Chinese cars in the next few years won’t necessarily be permanent. That might encourage American companies to learn everything they can from their new Chinese competition, getting over their hubris and recognizing that Chinese companies now understand aspects of E.V. manufacturing better than their American counterparts. That means that Republican lawmakers, in particular, must recognize that climate-friendly technologies are the future of global industry. Mr. Trump is threatening that, if elected, he would gut the Inflation Reduction Act, even though it’s full of policies meant to help America compete with Chinese E.V.s. There would be no faster way to destroy the U.S. car industry as a global force.</p>
+<p>What the United States is trying to do is really hard. We want to <strong>preserve</strong> the economic geography and <strong>institutions</strong> of our old fossil-fuel-powered economy while <strong>retooling</strong> it to work in a new zero-carbon world. There’s <em>no small</em> amount of <strong>irony</strong> in the fact that all those involved here — Democrats, Republicans, major automakers — <strong>resent</strong> China for achieving what was once a goal of, well, <strong>hippies</strong> and <strong>environmentalists</strong>: making electric cars popular and cheap. But if they’ve done it, we can do it, too. It will take <strong>grit</strong> and <strong>good-faith</strong> effort. We should <strong>assume</strong> that Ford and General Motors will be competing with BYD and Geely for decades to come, and we should relish that fight.</p>
+<h2 id="Notes"><a class="header-anchor" href="#Notes">¶</a>Notes</h2>
+<p>juggernaut jagannātha<br>
+be to do<br>
+pickup truck<br>
+S.U.V. Sport Utility Vehicle<br>
+crossover<br>
+the Inflation Reduction Act<br>
+the chill of death on their necks<br>
+Hippies were young people in the 1960s and 1970s who rejected conventional ways of living, dressing, and behaving, and tried to live a life based on peace and love. Hippies often had long hair and many took drugs.<br>
+good-faith effort<br>
+relish the fight<br>
+you can not give the world to someone you despise</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>nytimes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】José Andrés：Let People Eat</title>
+    <url>/2024/04/12/ArtNYTJos%C3%A9Andr%C3%A9sLetPeopleEat/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.nytimes.com/2024/04/03/opinion/jose-andres-let-people-eat.html" target="_blank" rel="noopener">José Andrés: Let People Eat</a></p>
+<p>In the worst conditions you can imagine — after <strong>hurricanes</strong>, earthquakes, bombs and gunfire — the best of humanity shows up. Not once or twice but always.<a id="more"></a></p>
+<p>The seven people killed on a World Central Kitchen mission in Gaza on Monday were the best of humanity. They are <em>not faceless or nameless</em>. They are not <strong>generic</strong> aid workers or <em><strong>collateral</strong> damage</em> in war.</p>
+<p>Saifeddin Issam Ayad Abutaha, John Chapman, Jacob Flickinger, Zomi Frankcom, James Henderson, James Kirby and Damian Sobol risked everything for the most fundamentally human activity: to share our food with others.</p>
+<p>These are people I served <strong>alongside</strong> in Ukraine, Turkey, Morocco, the Bahamas, Indonesia, Mexico, Gaza and Israel. They <em>were far more than</em> heroes.</p>
+<p>Their work was based on the simple belief that food is a universal human right. It is <em>not conditional on</em> being good or bad, rich or poor, left or right. We do not ask what religion you belong to. We just ask how many meals you need.</p>
+<p>From Day 1, we have fed Israelis as well as Palestinians. Across Israel, we have served more than 1.75 million hot meals. We have fed families <strong>displaced</strong> by Hezbollah rockets in the north. We have fed <strong>grieving</strong> families from the south. We delivered meals to the hospitals where <strong>hostages</strong> were <strong>reunited</strong> with their families. We have called <em>consistently, repeatedly and <strong>passionately</strong></em> for the release of all the hostages.</p>
+<p>All the while, we have communicated <strong>extensively</strong> with Israeli military and civilian officials. At the same time, we have worked closely with community leaders in Gaza, as well as <strong>Arab</strong> nations in the region. There is <em>no way to</em> bring a ship full of food to Gaza <em>without doing so</em>.</p>
+<p>That’s how we served more than 43 million meals in Gaza, preparing hot food in 68 community kitchens where Palestinians are feeding Palestinians.</p>
+<p>We know Israelis. Israelis, <em>in their heart of hearts</em>, know that food is not a weapon of war.</p>
+<p>Israel is better than the way this war is being <strong>waged</strong>. It is better than blocking food and medicine to civilians. It is better than killing aid workers who had coordinated their movements with the Israel Defense Forces.</p>
+<p>The Israeli government needs to open more land routes for food and medicine today. It needs to stop killing civilians and aid workers today. It needs to start the long journey to peace today.</p>
+<p>In the worst conditions, after the worst terrorist attack in its history, it’s time for the best of Israel to show up. <em>You cannot save the hostages by bombing every building in Gaza. You cannot win this war by starving an entire population.</em></p>
+<p>We welcome the government’s promise of an investigation into how and why members of our World Central Kitchen family were killed. That investigation needs to start at the top, not just the bottom.</p>
+<p>Prime Minister Benjamin Netanyahu has said of the Israeli killings of our team, “It happens in war.” It was a direct attack on clearly marked vehicles whose movements were known by the Israel Defense Forces.</p>
+<p>It was also the direct result of a policy that <em><strong>squeezed</strong></em> humanitarian aid <em>to</em> <strong>desperate</strong> levels. Our team was en route from a delivery of almost 400 tons of aid by sea — our second shipment, <em>funded by</em> <strong>the United Arab Emirates</strong>, supported by Cyprus and with <strong>clearance</strong> from the Israel Defense Forces.</p>
+<p>The team members put their lives at risk <strong>precisely</strong> because this food aid is so rare and desperately needed. According to the Integrated Food Security Phase Classification global <strong>initiative</strong>, half the population of Gaza — 1.1. million people — faces the <strong>imminent</strong> risk of <strong>famine</strong>. The team would not have <em>made the journey</em> if there were enough food, traveling by truck across land, to feed the people of Gaza.</p>
+<p>The peoples of the <strong>Mediterranean</strong> and Middle East, <em>regardless of <strong>ethnicity</strong> and religion</em>, share a culture that <em><strong>values</strong></em> food <em>as</em> a powerful statement of humanity and <strong>hospitality</strong> — of our <em>shared hope for a better tomorrow</em>.</p>
+<p>There’s a reason, at this special time of year, Christians make Easter eggs, Muslims eat an egg at iftar dinners and an egg sits on the Seder plate. This symbol of life and hope reborn in spring <em>extends across</em> religions and cultures.</p>
+<p>I have been a stranger at Seder dinners. I have heard the ancient Passover stories about being a stranger in the land of Egypt, the <strong>commandment</strong> to remember — with a <strong>feast</strong> before you — that the children of Israel were once slaves.</p>
+<p>It is not <em>a sign of</em> weakness to feed strangers; it is a sign of strength. The people of Israel need to remember, at this darkest hour, what strength truly looks like.</p>
+<h1>Notes</h1>
+<p>José Andrés is a <strong>chef</strong> and the founder of World Central Kitchen.</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>nytimes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】A gruesome murder sparks a debate about juvenile justice in China</title>
+    <url>/2024/04/10/ArtTheEconomistAgruesomemurdersparksadebateaboutjuvenilejusticeinChina/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.economist.com/china/2024/03/27/a-gruesome-murder-sparks-a-debate-about-juvenile-justice-in-china" target="_blank" rel="noopener">A gruesome murder sparks a debate about juvenile justice in China</a></p>
+<p>–A system that had become more merciful is being tested</p>
+<p>In one of the best-known <strong>commentaries</strong> attributed to him, Confucius said that at the age of 15 he <em>set his mind on</em> studying. At the ages of 30, 40, 50 and 60 he reached <strong>successive</strong> new levels of <strong>maturity</strong> and understanding. But it was only at the age of 70 that he had learnt how to follow his heart’s desires without <strong>overstepping</strong> boundaries. Today, 2,500 years since the great <strong>sage</strong> <em>held forth</em>, Chinese society continues to <strong>grapple</strong> with <strong>ethical</strong> questions about the <strong>appropriate</strong> balance between <strong>leniency</strong> and <strong>accountability</strong> for juvenile transgressors of the law.<a id="more"></a></p>
+<p>A <strong>horrific</strong> murder has <strong>spurred</strong> a new round of <strong>debate</strong> about how to treat young criminals. The case involves three middle-school students in the <strong>rural</strong> <strong>outskirts</strong> of Handan, a city in northern China. They are <strong>alleged</strong> to have <strong>bullied</strong> a classmate over a long period of time. Then, on March 10th, they killed him. His body was buried in an abandoned greenhouse. Some Chinese media <strong>outlets</strong> are reporting that the <strong>suspects</strong> began <em>digging the <strong>grave</strong></em> a day before the murder, <strong>indicating</strong> that the crime was <strong>premeditated</strong>. The alleged killers are all said to be in <strong>custody</strong>. Like the <strong>victim</strong>, they are all under the age of 14.</p>
+<p>That is <strong>significant</strong> because China <strong>amended</strong> its criminal <strong>code</strong> in 2021, lowering the age at which murder suspects can be <strong>prosecuted</strong> from 14 to 12. The Handan case <strong>appears to</strong> be the first in which the new age standards will apply.</p>
+<p>The Chinese <strong>justice</strong> system does not, <em>in general</em>, <em>have a reputation for</em> leniency—or fairness and independence, for that matter. Police, <strong>prosecutors</strong> and <strong>judges</strong> are all controlled by the Communist Party. <strong>Acquittals</strong> in criminal cases are <strong>exceedingly</strong> <strong>rare</strong>. But <em>in the field of</em> juvenile justice, China has been moving in a more merciful direction, say observers. The number of <strong>convictions</strong> of those aged 14 to 18 fell from 55,817 in 2013 to 27,757 in 2022. Officials are also increasingly <em>open to the idea</em> of <strong>sealing</strong> the criminal records of juveniles so that they don’t <strong>haunt</strong> them in adulthood, says John Kamm, an American rights activist. His Dui Hua Foundation, based in San Francisco, has worked with Chinese officials to improve the treatment of young <strong>detainees</strong>.</p>
+<p>Not everyone is happy with these changes, though. “In China you certainly <strong>encounter</strong> a ‘<strong>do the crime, do the time</strong>’ sort of attitude, <em>regardless of</em> an <strong>offender</strong>’s age,” says Mr Kamm. Such opinions have been expressed <em>in response to</em> the murder in Handan. One expert told Chongqing Daily, a local newspaper, that the bloody <strong>episode</strong> <strong>demanded</strong> a <strong>harsh</strong> response in order to <strong>deter</strong> “little demons”. Luo Xiang, a well-known legal scholar, posted a statement online saying the appropriate handling of the case “could only be achieved through punishment”.</p>
+<p>In another <strong>grisly</strong> case from earlier this year a four-year-old girl was reportedly murdered by a boy under the age of 12 in the central province of Hubei. Because of his age, the boy could not be prosecuted and was instead referred for <strong>psychiatric</strong> treatment. But some expressed <strong>outrage</strong> on social media. One commenter said age-based prohibitions on criminal prosecutions only <em>serve to</em> <strong>embolden</strong> <strong>bullies</strong> and that the <strong>perpetrator</strong> “should not be allowed to grow up”.</p>
+<p>A tough way to grow up</p>
+<p>There is one <strong>facet</strong> of the Handan case that has <strong>elicited</strong> more sympathy. That is the <strong>plight</strong> of “<strong>left-behind children</strong>”, or those whose parents have left their villages to look for work in cities. According to the most recent <strong>census</strong>, in 2020, there are 67m such children in China (<em>out of</em> a total population of 1.4bn). Many live in <em>rural boarding schools</em> far from their homes, a result of the government’s attempt to improve educational standards in the countryside. These boys and girls have higher rates of <strong>depression</strong>, <strong>substance abuse</strong> and bad behaviour than their peers.</p>
+<p>According to reports, the victim and the perpetrators in Handan were left-behind children. That has led to calls for better support in schools and communities. Confucius, who made much of the connection between well-managed families and well-governed states, would surely agree.</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>economist</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Will TikTok still exist in America?</title>
+    <url>/2024/03/21/ArtTheEconomistWillTikTokstillexistinAmerica/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.economist.com/business/2024/03/13/will-tiktok-still-exist-in-america" target="_blank" rel="noopener">Will TikTok still exist in America?</a></p>
+<p>–As <strong>Congress</strong> <em>starts the clock</em> on a ban, the app must consider its options</p>
+<p>Listen closely and you can hear the <strong>influencers wail</strong>. On March 13th America’s <strong>House of Representatives</strong> passed a <strong>bill</strong> <em>barring</em> app stores and internet providers <em>from</em> <strong>distributing</strong> “foreign-<strong>adversary</strong>-controlled applications”. The target is clear: TikTok, a <strong>hit</strong> short-video app <em>to</em> which 170m Americans <em>are glued</em> for an average of 56 minutes a day.<a id="more"></a></p>
+<p>TikTok’s position in America has long been <strong>precarious</strong>. Although the firm is based in Los Angeles and Singapore, it is a <strong>subsidiary</strong> of ByteDance, a Chinese tech <strong>darling</strong>. That has <strong>fed bipartisan</strong> fears that the Chinese government could use it to <em>spy on</em> American citizens or <em>shape public opinion</em>. TikTok has denied that the Chinese government <strong>wields</strong> any influence over it, and has <em>sought to</em> <strong>assuage</strong> concerns by <strong>enlisting</strong> Oracle, an American software giant, to <em>fence off</em> the data of American users into local servers and <strong>inspect</strong> its <em>source code</em>. It points out that American investors, such as Carlyle and General Atlantic, are among ByteDance’s biggest shareholders.</p>
+<p>If it becomes law, the bill would <strong>compel</strong> ByteDance <em>either</em> to sell TikTok’s American operations within six months <em>or</em> to shut them down. Pressure for such a move has been <strong>building</strong> since TikTok’s boss, Shou Zi Chew, was <strong>hauled</strong> before Congress last March. The firm <em>was</em> nevertheless <em>caught off guard</em> by the speed with which America’s typically sleepy lawmakers have acted.</p>
+<p>The proposal <em>gained <strong>momentum</strong></em> partly <em>as a consequence of</em> <strong>disquiet</strong> over the app’s <strong>handling</strong> of <strong>misinformation</strong> and <strong>antisemitic</strong> content following Hamas’s attack on Israel in October. TikTok’s efforts to <strong>stall</strong> the bill failed <strong>spectacularly</strong>. On March 6th it sent a notification <em>encouraging</em> users <em>to</em> <strong>lobby</strong> Congress against the <strong>legislation</strong>. That seems to have <strong>backfired</strong>: some <strong>undecided</strong> lawmakers were <strong>persuaded</strong> that TikTok does indeed <em>hold sway over</em> voters. <em>In the event</em> 352 of them <strong>backed</strong> the bill; only 65 were <strong>opposed</strong>.</p>
+<p>But before President Joe Biden can sign the bill into law, which he says he will do, it must first pass the Senate. <em>Given its bipartisan popularity</em> you might think this was a <strong>formality</strong>. Not so. Donald Trump, who as president almost forced TikTok into a sale in 2020, has <em>changed his tune</em>. On March 8th he complained that banning TikTok would <strong>benefit</strong> Meta, the social-media <strong>colossus</strong> which owns Facebook and Instagram—and which, <strong>unforgivably</strong>, <strong>exiled</strong> Mr Trump from its platforms after his supporters <strong>stormed</strong> Congress in January 2021. The motivation for his <strong>intervention</strong> may not be entirely <strong>public-spirited</strong>. A week earlier Mr Trump met Jeff Yass, a hedge-fund billionaire and prospective donor whose investment firm, Susquehanna, happens to own a stake in ByteDance.</p>
+<p>Republicans in the Senate may follow Mr Trump’s <strong>cue</strong>—he has, <em>after all</em>, just <strong>sealed</strong> their party’s <strong>nomination</strong> for the <em>presidential election</em> this November. Lindsey Graham, who is both vociferous in his criticisms of TikTok and sycophantic in his adulation for Mr Trump, said on March 10th that he was unsure how he would vote.</p>
+<p>If the bill does become law it <em>is likely to</em> face a challenge in the courts, probably <em>on</em> free-speech <em>grounds</em>. Still, there is a reasonable chance that TikTok would have to shut up shop in America. A year ago the Chinese government said it would oppose a sale. Hours before the House vote it <strong>denounced</strong> America for “<em>resorting to</em> <strong>hegemonic</strong> moves when one could not succeed in <strong>fair</strong> competition”. ByteDance, which reportedly generated $110bn of <strong>revenue</strong> last year, is believed to make around four-fifths of that in China, where it operates TikTok’s sister app, Douyin, and Toutiao, a news <strong>aggregator</strong>. Although its investors would lobby to allow a sale, China’s government could prove <strong>intransigent</strong>, <strong>dooming</strong> the American business. It could also <em>feel the need to</em> <strong>retaliate</strong> against American firms operating on the mainland.</p>
+<p>Were advertisers forced to <em>shift</em> their <strong>spending</strong> <em>from</em> TikTok, America’s homegrown social-media companies would be <em>in for</em> a <strong>windfall</strong>. Not all will benefit equally. According to Kepios, a research firm, 82% of global TikTokers use Facebook, 80% scroll Instagram and 78% watch YouTube, which is owned by Google’s corporate parent, Alphabet (see chart). Only 53% use X, the debating forum formerly known as Twitter, and a mere 35% are on Snapchat, a messaging app. If Americans redirect the roughly 3trn minutes of attention they lavished on TikTok last year to other apps already on their phones, Meta and Alphabet, the dominant duo in online advertising, will be the winners.</p>
+<p>His <strong>grudge</strong> against Meta <strong>notwithstanding</strong>, Mr Trump may <em>have a point</em> when he <strong>grumbles</strong> that the firm will be the biggest <strong>beneficiary</strong>. Reels, a TikTok-like <strong>offering</strong> <strong>embedded</strong> into Instagram, has gained more <strong>traction</strong> than similar ones from YouTube and Snapchat. Many TikTok influencers already <strong>repost</strong> their content on Meta’s app. After India banned TikTok (and dozens of other Chinese apps) in 2020 following a skirmish on its border with China, Instagram surged in the country. In 2019 it was the sixth-most downloaded app in India. By 2021 it was top of the charts.</p>
+<p>Meta will not be so lucky if ByteDance’s investors succeed in <em>persuading</em> China’s government <em>to</em> allow a <strong>divestiture</strong>. The American firm would <strong>doubtless</strong> be barred from <em>snapping up</em> TikTok on <strong>antitrust</strong> grounds, as would Alphabet. The list of other potential <strong>suitors</strong> is limited by TikTok’s <em>price tag</em>, which could run to 12 figures if ByteDance, fearing <strong>knock-on</strong> <strong>crackdowns</strong> elsewhere, <em>throws in</em> TikTok’s operations in other countries.</p>
+<p>Amazon, America’s e-commerce champion, may take a look, given TikTok’s growing focus on incorporating shopping into its app (though it, too, would face pushback from trustbusters). Apple and Netflix, which both passed when TikTok was sounding out a sale in 2020, could reconsider, given slowing growth in iPhone sales and streaming subscriptions, respectively. Back then Oracle teamed up with Walmart, a retail behemoth, to buy minority stakes in TikTok. But that deal fell through after Mr Trump left office. After its $28bn acquisition in 2022 of Cerner, a health-records business, Oracle is probably now too indebted to mount a bid.</p>
+<p>Microsoft, another American tech titan, could weigh in. Its own bid four years ago to acquire TikTok’s business in America, Australia, Canada and New Zealand ended after ByteDance balked at giving it full control of the app’s data and source code. But the company has long coveted a greater presence in consumers’ lives, which may bring it back to TikTok—if ByteDance were to loosen its terms. Other mashups have also been suggested. Bobby Kotick, former boss of Activision Blizzard, a video-game studio which Microsoft acquired last year, has reportedly pitched the idea of a bid for TikTok to various partners, including Sam Altman of Openai, maker of Chatgpt.</p>
+<p>However, as the artificial-intelligence race <em>heats up</em>, it seems doubtful that China would want to <em>hand</em> TikTok’s data or clever <strong>algorithm</strong> <em>to</em> any American <strong>interests</strong>. An alternative would be to sell off TikTok as a standalone business rather than merge it with an existing one. This would dodge antitrust concerns. But the deal’s size could again be a problem. The largest amount ever raised in an initial public offering was for a $26bn stake in Saudi Aramco, a state oil leviathan, in 2019. The largest leveraged buy-out in history was that of txu, a utility, for $45bn in 2007. The value of TikTok would exceed even that, though it helps that ByteDance’s American investors could swap their stakes for a slice of the new company.</p>
+<p><strong>Assuming</strong> it can be <strong>untangled</strong> from Bytedance, an independent TikTok would need to hire plenty of <strong>techies</strong> to replace the ones in Beijing. Still, a separation could <em>pay off</em>. Mark Shmulik of Bernstein, a broker, reckons that the firm became less <strong>aggressive</strong> in <strong>expanding</strong> its business than it could have been, as it sought to <em>keep a low profile</em>. It could do more to <em>link</em> its servers <em>with</em> those of advertisers—<em>the better to</em> track the <strong>efficacy</strong> of their spending, as Meta has done—and to speed up the <strong>roll-out</strong> of TikTok Shop, its <strong>e-commerce platform</strong>. In less than a decade a Chinese-linked TikTok has managed to <strong>upend</strong> the social-media business in America <em>and beyond</em>. An <strong>untethered</strong> one would keep being <strong>disruptive</strong>—if it is allowed to exist.</p>
+<h1>Notes</h1>
+<p>House of Representatives senate<br>
+be glued to<br>
+precarious<br>
+He makes a precarious living<br>
+bipartisan<br>
+shape public opinion<br>
+the company hired an internet water army to shape public opinion<br>
+be caught off guard<br>
+the lawyer’s question caught the witness off guard<br>
+The lawyer’s seemingly innocent question caught the witness off his guard.<br>
+back the bill<br>
+hold sway over / dominate / control<br>
+The powerful people of this world do not hold sway over the other world.<br>
+sign the bill into law<br>
+public-spirited<br>
+hegemonic hegemonism<br>
+intransigent<br>
+feel the need to<br>
+many young people do not feel the need to get married<br>
+retaliate / revenge<br>
+were she in charge, it will be another story.<br>
+windfall<br>
+notwithstanding<br>
+tether untethered<br>
+nevertheless / notwithstanding<br>
+Most marriages fail after between five and nine years. Nevertheless, people continue to get married.<br>
+His relations with colleagues, differences of opinion notwithstanding, were unfailingly friendly.</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>economist</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】OpenAI Unveils A.I. That Instantly Generates Eye-Popping Videos</title>
+    <url>/2024/02/15/ArtNYTOpenAIUnveilsAIThatInstantlyGeneratesEyePoppingVideos/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.nytimes.com/2024/02/15/technology/openai-sora-videos.html" target="_blank" rel="noopener">OpenAI Unveils A.I. That Instantly Generates Eye-Popping Videos</a></p>
+<p>The <strong>start-up</strong> is sharing the new technology, called Sora, with a small group of early testers as it tries to understand the potential dangers.<a id="more"></a></p>
+<p>In April, a New York start-up called Runway AI <strong>unveiled</strong> technology that let people generate videos, like a cow at a birthday party or a dog chatting on a smartphone, simply by typing a sentence into a <strong>box</strong> on a computer screen.</p>
+<p>The four-second videos were <strong>blurry</strong>, <strong>choppy</strong>, <strong>distorted</strong> and <strong>disturbing</strong>. But they were a clear sign that artificial intelligence technologies would generate increasingly <strong>convincing</strong> videos in the months and years to come.</p>
+<p>Just 10 months later, the San Francisco start-up OpenAI has unveiled a similar system that creates videos that look as if they were <strong>lifted</strong> from a Hollywood movie. A demonstration included short videos — created in minutes — of <strong>woolly mammoths trotting</strong> through a snowy <strong>meadow</strong>, a monster <em>gazing at</em> a melting candle and a Tokyo street scene seemingly shot by a camera swooping across the city.</p>
+<p>OpenAI, the company behind the ChatGPT chatbot and the <strong>still-image</strong> generator DALL-E, is among the many companies <em>racing to</em> improve this kind of instant video generator, including start-ups like Runway and tech giants like Google and Meta, the owner of Facebook and Instagram. The technology could <strong>speed</strong> the work of <strong>seasoned</strong> moviemakers, while replacing less experienced digital artists entirely.</p>
+<p>It could also become a quick and inexpensive way of creating online <strong>disinformation</strong>, making it even harder to tell what’s real on the internet.</p>
+<p>“I am absolutely <strong>terrified</strong> that this kind of thing will <strong>sway</strong> a <em>narrowly contested</em> election,” said Oren Etzioni, a professor at the University of Washington who <em>specializes in</em> artificial intelligence. He is also the founder of True Media, a <strong>nonprofit</strong> <em>working to</em> identify disinformation online in political campaigns.</p>
+<p>OpenAI calls its new system Sora, <strong>after</strong> the Japanese word for sky. The team behind the technology, including the researchers Tim Brooks and Bill Peebles, chose the name because it “<strong>evokes</strong> the idea of <strong>limitless</strong> creative potential.”</p>
+<p>In an interview, they also said the company was not yet releasing Sora to the public because it was still working to understand the system’s dangers. <strong>Instead</strong>, OpenAI is sharing the technology with a small group of <strong>academics</strong> and other outside researchers who will “<em>red team</em>” it, a term for looking for ways it can be <strong>misused</strong>.</p>
+<p>“The intention here is to give a <strong>preview</strong> of what is <em>on the horizon</em>, so that people can see the <strong>capabilities</strong> of this technology — and we can get <strong>feedback</strong>,” Dr. Brooks said.</p>
+<p>OpenAI is already <strong>tagging</strong> videos produced by the system with <strong>watermarks</strong> that identify them as being generated by A.I. But the company acknowledges that these can be removed. They can also be difficult to spot. (The New York Times added “Generated by A.I.” watermarks to the videos with this story.)</p>
+<p>The system is an example of generative A.I., which can instantly create text, images and sounds. Like other generative A.I. technologies, OpenAI’s system learns by analyzing digital data — in this case, videos and <strong>captions</strong> describing what those videos contain.</p>
+<p>OpenAI <strong>declined</strong> to say how many videos the system learned from or where they came from, except to say the training included both publicly available videos and videos that were <strong>licensed</strong> from copyright holders. The company <em>says little about</em> the data used to train its technologies, most likely because it wants to maintain <em>an advantage over</em> competitors — and has been <strong>sued</strong> multiple times for using copyrighted material.</p>
+<p>(The New York Times sued OpenAI and its partner, Microsoft, in December, claiming copyright infringement of news content related to A.I. systems.)</p>
+<p>Sora generates videos <em>in response to</em> short descriptions, like “a gorgeously <strong>rendered</strong> <strong>papercraft</strong> world of a coral reef, <em>rife with</em> colorful fish and sea creatures.” Though the videos can be impressive, they are not always perfect and may include strange and <strong>illogical</strong> images. The system, for example, recently generated a video of someone eating a cookie — but the cookie never got any smaller.</p>
+<p>DALL-E, Midjourney and other still-image generators have improved <em>so</em> quickly over the past few years <em>that</em> they are now producing images nearly <strong>indistinguishable</strong> from photographs. This has made it harder to identify disinformation online, and many digital artists are complaining that it has made it harder for them to find work.</p>
+<p>“We all laughed in 2022 when Midjourney first came out and said, ‘Oh, that’s cute,’” said Reid Southen, a movie concept artist in Michigan. “Now people are <em>losing their jobs to</em> Midjourney.”</p>
+<h2 id="Notes"><a class="header-anchor" href="#Notes">¶</a>Notes</h2>
+<p>gazing at abyss<br>
+still water runs deep<br>
+i wish you a speedy recovery<br>
+disinformation: fake news / misinformation: wrong<br>
+terrific / terrify<br>
+this is a narrowly contested game<br>
+after its donator’s name<br>
+The city was just a red glow on the horizon<br>
+he says little about his background<br>
+a good command of english is her anvantage over other competitors<br>
+the internet is rife with …<br>
+many state-owned enterprise workers lost their jobs to restructing</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>nytimes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Chinese animated films are booming</title>
+    <url>/2024/02/29/ArtTheEconomistChineseanimatedfilmsarebooming/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.economist.com/culture/2024/02/08/chinese-animated-films-are-booming" target="_blank" rel="noopener">Chinese <strong>animated</strong> films are <strong>booming</strong></a></p>
+<p>–But they would be even better if <strong>censors</strong> relaxed</p>
+<p>The “black cat detective”, released 40 years ago, was a childhood <strong>fixture</strong> for many Chinese. The <strong>protagonist</strong> was a <strong>stern</strong>-faced, <strong>feline</strong> cop with a law-and-order <strong>demeanour</strong> <strong>befitting</strong> a cool communist cat. His adventures involved <strong>apprehending</strong> suspects (rats), <strong>prosecuting</strong> criminals (rhinos and hippos) and protecting citizens (rabbits and pandas). Cheers from <strong>grateful onlookers</strong> greeted him as he rode around on his motorbike.<a id="more"></a></p>
+<p>Chinese cartoons have <em>come a long way</em> since then. While “Black Cat Detective” was simply drawn and <em>packed with</em> <strong>blunt propaganda</strong>, today’s <strong>offerings boast</strong> technical <strong>sophistication</strong> and <strong>engrossing</strong> narratives. The <strong>aesthetics</strong> of “The Storm”, which opened in cinemas in January, look <em>a lot</em> like Studio Ghibli, the <strong>celebrated</strong> Japanese animation studio behind films such as “Spirited Away”. Another new movie, “Boonie Bears: Time Twist” (pictured), released on February 10th, is a <strong>family-friendly</strong> adventure with <strong>slick</strong> scenes <strong>reminiscent</strong> of Pixar, a <strong>pioneering</strong> animation studio now owned by Disney.</p>
+<p>These recent <strong>leaps</strong> in quality have <strong>propelled</strong> Chinese cartoons to success at the <strong>domestic</strong> <em>box office</em>. “Ne Zha: Birth of the Demon Child” was the <strong>highest-grossing</strong> film in China in 2019, <em>beating out</em> “Avengers: Endgame”, a superhero movie by Marvel Studios, and “The Wandering Earth”, a <strong>home-grown</strong> sci-fi <strong>epic</strong>. The Economist <strong>crunched</strong> data from Maoyan, a movie-ticketing service in China, and found the <strong>share</strong> of box-office <strong>receipts</strong> going to Chinese animated films <em>took off</em> after 2019 (see chart). In 2023 animations’ share of the top 100 films’ box-office <strong>intake</strong> was 9.5%, more than four times that in 2018.</p>
+<p>China’s <strong>burgeoning</strong> animation industry <strong>withered</strong> during the <strong>purges</strong> of the Cultural Revolution, launched by Mao Zedong in 1966. After China <em>opened up</em> economically, studios in America and Japan <strong>trotted</strong> their films into China. Japanese <strong>anime</strong> (including “Doraemon”, <strong>starring</strong> a schoolboy and a robot cat) and Western cartoons (such as “Finding Nemo” and “Cars”) <strong>dominated</strong> television and cinema screens. Chinese animators <em>turned to</em> <strong>outsourcing</strong> work for Western clients.</p>
+<p>Things changed in 2015 with “Monkey King: Hero is Back”, the first <strong>breakout</strong> success for Chinese animation <em>at home</em>. It was based on “Journey to the West”, a famous Chinese novel from the 16th century. (In August 2023 a newer adaptation started streaming on Netflix, though not in China.) A big step up in <strong>graphical fidelity</strong> helped <strong>draw</strong> audiences, and so did film-makers’ <strong>insistence</strong> that the storytelling <em>appeal to</em> adults. The movie’s protagonist, the Monkey King, is <strong>portrayed</strong> as <em>emerging from</em> a mid-life crisis. “I never believed that cartoons are just for children,” Tian Xiaopeng, the director, has said.</p>
+<p><em>Just as</em> Pixar helped animated films <strong>captivate</strong> an audience beyond popcorn-popping children, Light Chaser Animation, a studio in Beijing, has <strong>boosted</strong> cartoons’ <strong>popularity</strong> in China. Light Chaser’s first three productions were <strong>cinematic marvels</strong> but financial <strong>flops</strong>. <em>It was not until</em> “White Snake” (2019), a love story between a snake hunter and snake spirit (made for adults), <em>that</em> the studio enjoyed its first success. Its “30,000 Miles from Chang’an”, which was the seventh-highest-grossing film of 2023, <strong>featured lyrical recitals</strong> of poetry from the Tang dynasty and <strong>blended</strong> elements from Chinese culture, history and mythology.</p>
+<p>That is a common theme among successful Chinese animations: the top three highest-grossing ones all <em>drew on</em> traditional themes. This <em>chimes with</em> the Communist Party’s <strong>drive</strong> for “cultural confidence”; <em>in other words</em>, China should <em>be proud of</em> its <strong>heritage</strong> and not <em>in thrall to</em> Western cultural influences.</p>
+<p>Indeed, <strong>authorities</strong> have <em>taken an interest</em>. China’s 14th five-year plan, which guides policy <strong>priorities</strong>, called for supporting development of the domestic animation industry. Traditional culture is the “best foundation” for Chinese animation, <strong>ran</strong> a <strong>boosterish</strong> headline last June in Global Times, a <strong>nationalist tabloid</strong>. Cartoons have become like other industries, from <strong>automobiles</strong> to internet companies: <strong>inspired</strong> by Western innovations but with <strong>added</strong> “Chinese characteristics”.</p>
+<p><strong>Ironically</strong>, China’s <strong>censorship</strong>-heavy environment may have <strong>fostered</strong> the <strong>relative</strong> success of its cartoons. Animations are usually <strong>chaste</strong> and do not <em>touch on</em> topics like sex, drugs or crime. That means they are less likely to <em>fall foul of</em> regulators, who <strong>vet</strong> and <strong>approve</strong> all films. But if Chinese animators can make films like the <strong>ravishing</strong> “Chang’an”, imagine what they could accomplish if they did not have to <em>contend with</em> censors, who are the real <strong>villains</strong> no hero (animated <em>or otherwise</em>) has been able to defeat.</p>
+<h2 id="Notes"><a class="header-anchor" href="#Notes">¶</a>Notes</h2>
+<p>black cat detective<br>
+The Storm<br>
+Spirited Away<br>
+Boonie Bears: Time Twist<br>
+Ne Zha: Birth of the Demon Child<br>
+Avengers: Endgame<br>
+The Wandering Earth<br>
+Doraemon<br>
+Finding Nemo<br>
+Cars<br>
+Monkey King: Hero is Back<br>
+Journey to the West<br>
+White Snake<br>
+30,000 Miles from Chang’an</p>
+<p>censor censorship<br>
+fixture<br>
+he is a fixture for this restaurant<br>
+demeanour<br>
+he maintains a professional demeanour<br>
+befit<br>
+the company offered he a position befitting his capability<br>
+rhino rhinoceros<br>
+hippo hippopotamus<br>
+the bus is packed (with people)<br>
+blunt propaganda<br>
+engrossing intriguing compelling absorbing<br>
+reminiscent of<br>
+the sights are reminiscent of my childhood<br>
+leap year leap day 2.29<br>
+graphical fidelity<br>
+Hi-Fi High-Fidelity<br>
+A big step up in graphical fidelity helped draw audiences, and so did film-makers’ insistence that the storytelling appeal to adults.<br>
+(the storytelling should appeal to adults)</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>economist</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Is Europe’s stubby skyline a sign of low ambition?</title>
+    <url>/2024/03/04/ArtTheEconomistIsEurope%E2%80%99sstubbyskylineasignoflowambition/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.economist.com/europe/2024/02/28/is-europes-lack-of-skyscapers-a-blessing-or-a-sign-of-deficient-ambition" target="_blank" rel="noopener">Is Europe’s <strong>stubby</strong> <strong>skyline</strong> a sign of low <strong>ambition</strong>?</a></p>
+<p>–Only seven of the world’s 1,000 tallest buildings are in the EU<a id="more"></a></p>
+<p>Atop an ordinary slab of office building in downtown Warsaw juts what at first might look like yet another example of architectural one-upmanship. But the 80-metre steel spire pointing out of the newish Varso tower is not there merely to provide bragging rights to the building’s owners. For over six decades until Varso was completed in 2022, the tallest building in Poland had been a monumental “gift” from Joseph Stalin, a tribute to unrequited communist amity completed two years after the dictator’s death in 1953. Without its pointy appendage the new edifice—a tribute to capitalism just one city block away from the enduring Soviet monolith—would have fallen a few centimetres short. Standing proud at 310 metres including its spire, Varso thus holds the title of tallest occupied building not just in the city but in the whole eu.</p>
+<p>Those hoping to glimpse a marvel of architecture and engineering are in for a disappointment: Varso and its 53 floors would be difficult to spot in the thicket of skyscrapers found in Manhattan, Shanghai or Dubai these days. Even with its height-enhancing spire the Polish edifice is but the 172nd tallest building in the world, according to the tower-spotters at the Council on Tall Buildings and Urban Habitat (ctbuh), based in Chicago. Continental Europe’s second-tallest tower does not make the global top 500; in the year Varso was completed seven skyscrapers went up in America, China, Indonesia and Kazakhstan that would overshadow it. Once an American phenomenon, <strong>high-rises</strong> have <em>long since</em> become a global one. Everywhere is building upwards, higher, further into the sky—except Europe. <em>At least</em> outside the <strong>continent</strong>’s <strong>fringes</strong> in London, Istanbul and Moscow, <em>it is</em> the <strong>peninsula</strong> <em>that</em> tower-builders forgot. Both North and South America, Asia, <strong>Oceania</strong> and soon Africa all have more buildings of 250 metres or higher. Only seven of the world’s tallest 1,000 buildings are in the eu.</p>
+<p>And <em>long may</em> that remain the case, many might say. What would Rome or Prague want with such <strong>outsize erections</strong>? A continent of <strong>piazzas</strong> and tree-lined <strong>boulevards</strong> needs no such <strong>monuments</strong> to the <strong>Trumpian egos</strong> of developers. Yet Europe’s <strong>reticence</strong> even <em>when it comes to</em> shorter <strong>scrapers</strong> is notable. As a rich place with <strong>scarce</strong> land and lots of people—Germany has a higher population <strong>density</strong> than the tower-mad United Arab Emirates—Europe might have been expected to join the tower-builders. For those who <em>see</em> skyscrapers <em>as</em> a symbol of progress and ambition, this once again looks like the <strong>signal</strong> of a continent that has <em>given up</em>.</p>
+<p>The obvious reason for Europe’s low-rise skylines is its <strong>stringent</strong> planning and heritage rules. Tall buildings <strong>sprouted</strong> in America in the late 19th century <em>thanks to</em> developments in the <strong>steel frames</strong> needed to build them and lifts to get people to their upper floors. Europe had the skills to <strong>deploy</strong> these—Gustave Eiffel knew a thing or two about metal structures, and Werner von Siemens about lifts—but by then its major cities already had rich <strong>neighbourhoods</strong> worth <strong>preserving</strong>. The density that American <strong>wannabe metropolises</strong> <em>sought to</em> create with skyscrapers already existed in the <strong>compact</strong> <strong>warren</strong> of streets that <em>make up</em> European cities.</p>
+<p>It did not help that the high-rises Europe built often <em>turned out</em> poorly. In many countries the first towers were <strong>shabby</strong> public-housing projects, which <strong>dented</strong> the <strong>prestige</strong> of tall buildings. Rotterdam (“Manhattan on the Maas”) and Frankfurt (“Mainhattan”), two places with towers more modest than the nicknames might suggest, are on few tourists’ <strong>itineraries</strong>. In Paris the Tour Montparnasse was considered <em>so</em> <strong>hideous</strong> after it was completed in 1973 <em>that</em> <strong>restrictions</strong> were introduced limiting buildings in the city to just 37 metres. Only in the business-district suburb of La Défense did tall buildings <em>pop up</em>—<strong>albeit</strong> at a third the size of what Chinese or <strong>Emirati</strong> developers <em>go for</em> these days. “America builds its towers in the centre,” says Daniel Safarik of the ctbuh. “For Europe, they are more often something you stick in the periphery.” Out of sight, were they not so tall, and out of mind.</p>
+<p>Europe’s <strong>distinctive</strong> geography and economy <em>play their part</em> too. <strong>Given</strong> its northerly <strong>latitude</strong>, the views of the 1% <strong>atop</strong> skyscrapers <em>come at the cost of</em> more <strong>shade</strong> for the rest. The 245-metre Karlatornet currently <em>under construction</em> in Sweden will create a shadow at mid-afternoon roughly <em>the same</em> length <em>as</em> the Burj Khalifa in Dubai, the world’s tallest building at 828 metres. A continent split into dozens of <strong>smallish</strong> countries <em>resulted in</em> few cities big enough to <strong>justify</strong> tall buildings: none of the world’s biggest 25 metropolises are in Europe. Many skyscrapers globally <em>were named after</em> companies that sought the <strong>cachet</strong> that came with height, like the Sears tower in Chicago or the Chrysler building in New York City. Europe has relatively few such corporate giants.</p>
+<p>The most recent <strong>burst</strong> of skyscrapers has involved <em>status symbols</em> in Asia. Developers in China and the Emirates <em>vied to</em> build higher <em>in a bid to</em> put <strong>second-tier</strong> cities on the map. Europe may <strong>justifiably</strong> feel it is above such games. “France does not need the tallest building in the world to be <strong>recognisable</strong>,” says Dario Trabucco at the University of Venice. Another new <strong>fad</strong> is <strong>residential</strong> skyscrapers of the sort that now line Central Park in Manhattan. These are designed for the global <em>nouveau riche</em>, often from <em>far afield</em>. Europe is more of an old-money kind of place. Why move to the top of a glass tower when the family <strong>palazzo</strong> <em>does the trick</em> nicely?</p>
+<p>Europe is no architectural <strong>sloth</strong>. But it has <em>focused on</em> making existing places better <em>rather than</em> <strong>colonising</strong> the urban sky. <em>In short</em>: more cycle lanes, fewer <strong>penthouses</strong>. It finds its architectural <strong>kicks</strong> in other ways: the <strong>pyramid</strong> in the courtyard of the Louvre and the glass dome atop the German Reichstag are <em>no less</em> ambitious <em>than</em> anything <em>knocked up</em> in Dubai or Taipei. That Europe has known how to build high—but chosen not to—is visible to anybody who has visited Paris. The Eiffel Tower, built in 1889, has too little occupiable space to be considered a proper building. Still, it stands 20 metres higher than the top of Varso’s spire.</p>
+<h2 id="Notes"><a class="header-anchor" href="#Notes">¶</a>Notes</h2>
+<p>the EU / the European Union<br>
+long may<br>
+long may he/she reign<br>
+Manhattan on the Maas<br>
+Mainhattan<br>
+the Tour Montparnasse<br>
+latitude longitude altitude<br>
+at expense of / come at the cost of<br>
+Karlatornet<br>
+the Burj Khalifa in Dubai<br>
+-ish<br>
+smallish reddish<br>
+prestige / cachet<br>
+the Sears tower<br>
+the Chrysler building<br>
+vie to / race to<br>
+nouveau riche<br>
+seven deadly sins<br>
+lust gluttony greed sloth wrath envy pride<br>
+the Louvre<br>
+the German Reichstag<br>
+knock up</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>economist</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Yu Hua on why young Chinese no longer want to work for private firms</title>
+    <url>/2024/04/08/ArtTheEconomistYuHuaonwhyyoungChinesenolongerwanttoworkforprivatefirms/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.economist.com/by-invitation/2024/04/02/yu-hua-on-why-young-chinese-no-longer-want-to-work-for-private-firms" target="_blank" rel="noopener">Yu Hua on why young Chinese no longer want to work for private firms</a></p>
+<p>–In today’s China stability <strong>trumps</strong> enterprise, argues the novelist</p>
+<p>What lies at <strong>the far reaches</strong> of the universe? This is a question that science has yet to answer, but most young people in China today already have an answer. According to them, at the end of the universe is not the <strong>Milky Way</strong>, the <strong>Andromeda Galaxy</strong> or the Canes Venatici Constellation, but a government job.<a id="more"></a></p>
+<p>Observing changing attitudes about government jobs among young people in China over the <strong>course</strong> of the past four decades of the reform <strong>era</strong> can <strong>reveal</strong> the <strong>deep-seated</strong> changes that have <em>taken place</em> in the structure of Chinese society.</p>
+<p>During the early days of the reform era in the 1980s, there were three categories of government jobs for <strong>urban residents</strong>: the collective positions (jiti bianzhi), the general positions (quanmin bianzhi) and the <strong>cadre</strong> positions (ganbu bianzhi). The cadre positions were equivalent to the <strong>civil-service</strong> system of today. At the time, all young people <strong>craved</strong> an opportunity to enter that system. But by the 1990s that was no longer something they desired.</p>
+<p>If we were to describe the <strong>pace</strong> of economic development in the 1980s as walking, by the 1990s it was <strong>akin</strong> to a <strong>horse galloping</strong>. College graduates in particular <em>turned their backs on</em> the <strong>bureaucratic</strong> system <em>in favour of</em> seeking employment with foreign firms or joint <strong>ventures</strong>, or founding their own firms. The <strong>incentive</strong> was obvious: they could earn more, possibly a lot more, in the private <strong>sector</strong>.</p>
+<p>In 1992 alone, more than 120,000 cadre-level bureaucrats—the backbone of various government departments at the time—<strong>resigned</strong> from their positions to work in the private sector. Seeing the <strong>tremendous</strong> opportunities of the market economy, some sought employment with foreign firms or joint ventures. Others <strong>drew on</strong> their savings and borrowed money from friends and family to start their own businesses. The most outstanding of them would later become China’s best-known entrepreneurs. Those <em>taking the</em> private-sector <em>plunge</em> described it as “diving into the sea”, as the market economy was <strong>metaphorically</strong> <em>referred to as</em> a great sea.</p>
+<p>But as the Chinese economy slowed, young people began to <strong>rekindle</strong> their desire for jobs within the government system—and this time their desire was even more <strong>fervent</strong>. It was referred to as “coming ashore”.</p>
+<p>For the past decade the number of Chinese college graduates applying for jobs in the civil service has <strong>surged</strong>. In 2023 some 2.8m applicants qualified for the civil-service examinations, <strong>chasing</strong> an <strong>estimated</strong> 39,000 available positions. The media described this as “an army of soldiers and horses attempting to cross a single-plank bridge”.</p>
+<p>What’s more, having a bachelor’s degree is no longer an advantage; one needs to have at least a master’s degree. And for an application to be truly competitive, one needs a <strong>doctorate</strong>.</p>
+<p>The <strong>fierce</strong> competition in the labour market has <strong>deprived</strong> young job-seekers of <em>the ability to be selective</em> when <em>it comes to</em> employment; as long as there is a secure government bureaucratic job available, no matter where or what the nature of the job, there are always large numbers of applicants. In 2020 a small <strong>subdistrict office</strong> in Hangzhou <em>made the news</em> when people with phds from some of China’s most <strong>prestigious</strong> universities were among those applying for an open position. In the remote Ali region of Tibet, where living conditions are extremely difficult, a job advertised in 2021 for a <strong>clerk</strong> at the local post office <em>drew</em> a staggering 20,813 <em>applications</em>.</p>
+<p><strong>Shutdowns</strong>, <strong>layoffs</strong>, <strong>unemployment</strong> and <strong>bankruptcy</strong> have all become key words to describe the economy of today. For young Chinese, high-paying jobs are no longer <em>the be-all and end-all</em>; what they want are stable jobs within the state bureaucratic system. After living through <strong>three years of pandemic lockdowns</strong>, it is not only the young who have realised the importance of these bureaucratic jobs. Everyone has.</p>
+<p>No matter how long you might end up <strong>quarantined</strong> at home, government jobs are the only form of employment you can <em>count on</em> to continue paying you a full salary. Without a government job, the second the next lockdown comes along, your source of income may well <em>be cut off</em>. That is why “At the far reaches of the universe lies a government job” has become a popular phrase online in China today.</p>
+<p>The Chinese people have always loved <strong>palm-reading</strong>, which is the simplest and most straightforward form of <strong>fortune-telling</strong>. In the past, palm-readers would <em>base</em> someone’s fortune <em>on</em> three lines which represented one’s <strong>longevity</strong>, career and love life. When young people get their fortunes told today, they care only about the career line, and all they want to know is: will there be a government job in their future.</p>
+<p>I don’t know how these young people invented this new form of <strong>divination</strong>, but I can only marvel at the <strong>awe-inspiring</strong> power of government jobs, as they have now even entered into the long tradition of Chinese fortune-telling.</p>
+<h2 id="Notes"><a class="header-anchor" href="#Notes">¶</a>Notes</h2>
+<p>Yu Hua is a novelist and essayist, known primarily for his avant-garde fiction. His novels include “To Live” (1993), “Brothers” (2005) and “The Seventh Day” (2015)</p>
+<p>diving into the sea<br>
+coming ashore<br>
+an army of soldiers and horses attempting to cross a single-plank bridge</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>economist</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Israeli inquiry findings on aid worker killings lack credibility, charity says</title>
+    <url>/2024/04/12/ArtTheGuardianIsraeliinquiryfindingsonaidworkerkillingslackcredibilitycharitysays/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.theguardian.com/world/2024/apr/05/israeli-inquiry-blames-wck-aid-killings-on-grave-errors-by-military-personnel" target="_blank" rel="noopener">Israeli inquiry findings on aid worker killings lack credibility, charity says</a></p>
+<p>–WCK <strong>renews</strong> call for independent investigation as former general <em>blames</em> incident <em>on</em> ‘grave errors’</p>
+<p>World Central Kitchen has rejected as lacking credibility the findings of an Israeli investigation led by a former general into a <strong>coordinated</strong> series of Israeli <strong>drone</strong> <em>strikes on</em> the charity’s vehicles in Gaza this week that killed seven aid workers.<a id="more"></a></p>
+<p>As the <strong>Israel Defense Forces</strong> blamed a series of “grave errors” by officers for the deadly attack that killed three Britons, three other foreign nationals and a Palestinian colleague while delivering food, WCK renewed its calls for a full and independent investigation.</p>
+<p><strong>Amid</strong> <strong>mounting</strong> international pressure on Israel, the British <strong>foreign secretary</strong>, David Cameron, said the findings of the Israeli inquiry – which he said the UK was reviewing carefully – showed that “major reform” was required.</p>
+<p>“It’s clear major reform of Israel’s <strong>deconfliction</strong> <strong>mechanism</strong> is <em>badly needed</em> to ensure the safety of aid workers,” Cameron said on X.</p>
+<p>The <strong>hurriedly</strong> completed inquiry, which led to two middle-ranking officers being <strong>dismissed</strong> and a general <strong>reprimanded</strong>, <strong>outlined</strong> <em>a catalogue of</em> failings by Israeli forces in an incident that has <strong>reinforced</strong> global <strong>criticism</strong> of Israel’s <strong>conduct</strong> of a war in which 33,000 Palestinians have been killed in six months.</p>
+<p>While welcoming the report as a first step, WCK’s founder, the <strong>celebrity</strong> <strong>chef</strong> José Andrés, said: “The IDF cannot credibly investigate its own failure in Gaza. It’s not enough to simply try to avoid further <strong>humanitarian</strong> deaths, which have now approached close to 200. All civilians need to be protected, and all innocent people in Gaza need to be fed and safe. And all <strong>hostages</strong> must be released.”</p>
+<p>The charity’s <strong>chief</strong> executive, Erin Gore, said: “Their apologies for the <strong>outrageous</strong> killing of our colleagues represent cold comfort. It’s cold comfort for the victims’ families and WCK’s global family. Israel needs to take <strong>concrete</strong> steps to assure the safety of humanitarian aid workers. Our operations remain <strong>suspended</strong>.”</p>
+<p>WCK’s <strong>remarks</strong> were <strong>echoed</strong> by <strong>the UN secretary general</strong>, António Guterres, who said fixing failings in Israel’s military procedures required “independent investigations” and meaningful and measurable changes on the ground.</p>
+<p>Noting that 196 humanitarian workers had been killed during Israel’s <strong>campaign</strong>, Guterres said: “We want to know why.”</p>
+<p>The announcement of punishments and the apology have not calmed the international <strong>outcry</strong> over the WCK workers’ deaths or <strong>reassured</strong> international aid groups that it is safe to <strong>resume</strong> operations in Gaza, where nearly a third of the population is <em>on the <strong>brink</strong> of starvation</em>.</p>
+<p><strong>The US secretary of state</strong>, Antony Blinken, said the US was reviewing the findings and would be looking very carefully at what <em>concrete measures</em> Israel was taking to reduce civilian harm.</p>
+<p>“It’s very important that Israel is <em>taking full responsibility for</em> this incident. It’s also important that it appears to be taking steps to hold those responsible <strong>accountable</strong>,” he said in Brussels. “Even more important is that steps are being taken going forward to ensure that something like this can never happen again.”</p>
+<p>The Israeli military commission of inquiry blamed a series of “grave errors” by military personnel, including lack of <strong>coordination</strong> and misidentification. The IDF said it had dismissed a <strong>brigade</strong> <em>chief of staff</em> with the rank of colonel and a brigade fire support officer with the rank of major, and issued formal <strong>reprimands</strong> to senior officers including the general at the head of the southern command.</p>
+<p>The rapidly completed investigation failed to resolve key questions including why soldiers from the Nahal brigade responsible were unaware that humanitarian vehicles were operating in the area with IDF permission, and why commanders launched an attack that the IDF said was in <strong>flagrant</strong> <strong>breach</strong> of its operational rules.</p>
+<p>The findings are likely to renew <strong>scepticism</strong> over the military’s decision-making. Palestinians, aid groups and human rights organisations have repeatedly <strong>accused</strong> Israeli forces of firing <strong>recklessly</strong> at civilians <em>throughout the conflict</em> – a charge Israel denies.</p>
+<p>Among those questioning whether the report was sufficiently <strong>thorough</strong> was Charlie Herbert, a retired British general who has been a <strong>trenchant</strong> <strong>critic</strong> of Israel’s operations during the current conflict.</p>
+<p>“Two quite junior officers dismissed,” Herbert tweeted. “Presumably for very bad judgment, with tragic consequences. But the real issue here is an <strong>institutional</strong> one with IDF <em>rules of engagement</em> and <strong>disregard</strong> for ‘<strong>collateral</strong> damage’. This is the reason for huge civilian <strong>casualties</strong> since October.”</p>
+<p>Scott Paul, of Oxfam, said <em>in a briefing</em> with other <strong>relief</strong> organisations on Thursday before the results of Israel’s investigation were released: “Let’s be very clear. This is tragic but it is not an <strong>anomaly</strong>. The killing of aid workers in Gaza has been <strong>systemic</strong>.”</p>
+<p>The Israeli military said the investigation found that the officers <strong>mishandled</strong> critical information and <strong>violated</strong> the army’s rules of engagement.</p>
+<p>“The strike on the aid vehicles is a grave mistake <em><strong>stemming</strong> from</em> a serious failure due to a mistaken identification, errors in decision-making, and an attack <em><strong>contrary</strong> to</em> the standard operating procedures,” it said.</p>
+<p>The investigation determined that a colonel had <strong>authorised</strong> the series of drone strikes on the <strong>convoy</strong> based on one major’s observation – from <strong>grainy</strong> drone-camera <strong>footage</strong> – that someone in the convoy was armed. The observation <em>turned out</em> to be untrue.</p>
+<p>It criticised officers for failing to read messages <strong>alerting</strong> troops that cars, not aid trucks, would carry workers from the charity <em>away from</em> the <strong>warehouse</strong> where aid was distributed. As a result, the targeted cars were misidentified as <strong>transporting militants</strong>.</p>
+<p>The army also <strong>faulted</strong> a major who identified the strike target and a colonel who approved the strike for acting with <strong>insufficient</strong> information.</p>
+<p>The army said it initially hit one car. As people <strong>scrambled</strong> away into a second car, it hit that vehicle as well. A third strike was launched as <strong>survivors</strong> scrambled into a third car.</p>
+<p>The IDF was unable to say exactly where communication had <em>broken down</em> about the convoy’s plans and <em><strong>declined</strong> to answer</em> questions about whether similar violations of rules of engagement had taken place during the war.</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>theguardian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【外刊精读】Trump Fraud Trial Penalty Will Exceed $450 Million</title>
+    <url>/2024/02/29/ArtNYTTrumpFraudTrialPenaltyWillExceed$450Million/</url>
+    <content><![CDATA[<font face = "Times New Roman">
+<p><a href="https://www.nytimes.com/2024/02/16/nyregion/trump-civil-fraud-trial-ruling.html" target="_blank" rel="noopener">Trump Fraud Trial Penalty Will Exceed $450 Million</a><a id="more"></a></p>
+<p>The ruling in Donald J. Trump’s civil fraud case could cost him all his available cash. The judge said that the former president’s “complete lack of contrition” bordered on pathological.</p>
+<p>A New York judge on Friday handed Donald J. Trump a crushing defeat in his civil fraud case, finding the former president liable for conspiring to manipulate his net worth and ordering him to pay a penalty of nearly $355 million plus interest that could wipe out his entire stockpile of cash.</p>
+<p>The decision by Justice Arthur F. Engoron caps a chaotic, yearslong case in which New York’s attorney general put Mr. Trump’s fantastical claims of wealth on trial. With no jury, the power was in Justice Engoron’s hands alone, and he came down hard: The judge delivered a sweeping array of punishments that threatens the former president’s business empire as he simultaneously contends with four criminal prosecutions and seeks to regain the White House.</p>
+<p>Justice Engoron barred Mr. Trump for three years from serving in top roles at any New York company, including portions of his own Trump Organization. He also imposed a two-year ban on the former president’s adult sons and ordered that they pay more than $4 million each. One of them, Eric Trump, is the company’s de facto chief executive, and the ruling throws into doubt whether any member of the family can run the business in the near term.</p>
+<p>The judge also ordered that they pay substantial interest, pushing the penalty for the former president to $450 million, according to the attorney general, Letitia James.</p>
+<p>In his unconventional style, Justice Engoron criticized Mr. Trump and the other defendants for refusing to admit wrongdoing for years. “Their complete lack of contrition and remorse borders on pathological,” he said.</p>
+<p>He noted that Mr. Trump had not committed violent crimes and also conceded that “Donald Trump is not Bernard Madoff.” Still, he wrote, “defendants are incapable of admitting the error of their ways.”</p>
+<p>Mr. Trump will appeal the financial penalty but will have to either come up with the money or secure a bond within 30 days. The ruling will not render him bankrupt, because most of his wealth is in real estate, which altogether is worth far more than the penalty.</p>
+<p>Mr. Trump will also ask an appeals court to halt the restrictions on him and his sons from running the company while it considers the case. In a news conference from his Palm Beach, Fla., home, Mar-a-Lago, on Friday evening, he attacked Ms. James and Justice Engoron, calling them both “corrupt.”</p>
+<p>Alina Habba, one of Mr. Trump’s lawyers, described the ruling in her own statement as “a manifest injustice — plain and simple.” She added that “given the grave stakes, we trust that the Appellate Division will overturn this egregious verdict.”</p>
+<p>But there might be little Mr. Trump can do to thwart one of the judge’s most consequential punishments: extending for three years the appointment of an independent monitor who is the court’s eyes and ears at the Trump Organization. Justice Engoron also strengthened the monitor’s authority to watch for fraud and second-guess transactions that look suspicious.</p>
+<p>Mr. Trump’s lawyers have railed against the monitor, Barbara Jones, saying that her work had already cost the business more than $2.5 million; the decision to extend her oversight of the privately held company could enrage the Trumps, who see her presence as an irritant and an insult.</p>
+<p>Ms. James had sought an even harsher penalty, asking for Mr. Trump to be permanently barred from New York’s business world. In the 2022 lawsuit that precipitated the trial, she accused Mr. Trump of inflating his net worth to obtain favorable treatment from banks and other lenders, attacking the foundation of his public persona as a billionaire businessman.</p>
+<p>Even though the lenders made money from Mr. Trump, they were the purported victims in the case, with Ms. James arguing that without his fraud, they could have made even more.</p>
+<p>The financial penalty reflects those lost profits, with nearly half of the $355 million — $168 million — representing the interest that Mr. Trump saved, and the remaining sum representing his profit on the recent sale of two properties, money that the judge has now clawed back from Mr. Trump and corporate entities he owns.</p>
+<p>Before the trial began, Justice Engoron ruled that the former president had used his annual financial statements to defraud the lenders, siding with the attorney general on her case’s central claim. The judge’s Friday ruling ratified almost all of the other accusations Ms. James had leveled against Mr. Trump, finding that the former president had conspired with his top executives to violate several state laws.</p>
+<p>The judge’s decision for now grants Ms. James, a Democrat, a career-defining victory. She campaigned for office promising to bring Mr. Trump to justice, and sat calmly in the courtroom as the former president attacked her, calling her a corrupt politician motivated solely by self-interest.</p>
+<p>“This long running fraud was intentional, egregious, illegal,” Ms. James said during a Friday evening news conference, adding that “there cannot be different rules for different people in this country, and former presidents are no exception.”</p>
+<p>Her win is Mr. Trump’s second major courtroom loss in two months, following a January jury verdict in a defamation case brought by E. Jean Carroll, a writer whom he was found liable of sexually abusing. The jury penalized him $83.3 million.</p>
+<p>Friday’s ruling comes as Manhattan prosecutors are set to try Mr. Trump on criminal charges late next month. He is also contending with 57 more felony counts across three other criminal cases.</p>
+<p>But none of his legal troubles seem to have anguished Mr. Trump quite like the fraud case. During the trial, he protested its premise, pleading, “This has been a persecution of somebody that’s done a good job in New York.”</p>
+<p>Mr. Trump’s lawyers argued that the fraud did not have a victim in the traditional sense, daring the attorney general to find someone who was harmed. And in a statement on Friday, a Trump Organization spokeswoman noted that the company had “never missed any loan payment or been in default on any loan” and that the lenders “performed extensive due diligence prior to entering into these transactions.”</p>
+<p>At trial, Mr. Trump’s lawyers called as witnesses the president’s former bankers, who testified that they had been delighted to have Mr. Trump as a client.</p>
+<p>Eric Trump and his brother Donald Trump Jr. also testified, but their efforts to distance themselves from their father’s financial statements fell flat with the judge. Justice Engoron’s decision to bar them from running any New York business for two years — and Mr. Trump for three — will likely strike a nerve with the Trump family.</p>
+<p>Before the trial, the fallout from the case seemed to threaten the Trump Organization’s very existence. When Justice Engoron first ruled that Mr. Trump had committed fraud, he ordered the dissolution of much of the former president’s New York empire.</p>
+<p>But legal experts had questioned the judge’s ability to do that, and in his ruling on Friday, Justice Engoron pulled back. Instead, the judge said any “restructuring and potential dissolution” would be up to Ms. Jones, the independent monitor.</p>
+<p>The judge also granted Ms. Jones new authority as part of an “enhanced monitorship,” and asked her to recommend an independent compliance director who will oversee the company’s financial reporting from within its ranks.</p>
+<p>The monitorship and other penalties, including a three-year ban on Mr. Trump and his company seeking loans from banks registered in New York, could hamstring the company as it seeks to compete in the state’s crowded real estate market.</p>
+<p>However, nothing will hurt quite as much as the financial penalty. If upheld on appeal, it could erase the cushion of liquidity — cash, stocks and bonds — that Mr. Trump built in his post-presidential life.</p>
+<p>Mr. Trump claimed under oath last year that he was sitting on more than $400 million in cash, but between Justice Engoron’s $355 million punishment, the interest Mr. Trump owes and the $83.3 million payout to Ms. Carroll, that might all be gone. If so, Mr. Trump might have to sell one of his properties or another asset to cover the payouts.</p>
+<p>The symbolism of the punishments cannot be overlooked, either. Mr. Trump is synonymous with the company he ran for decades, and by severing him from its operations, the judge has written an embarrassing epilogue to the former president’s story of his career as a New York mogul.</p>
+<p>For now, Mr. Trump has spun his legal misfortunes into what he sees as political gold. He has used the cases to falsely portray himself as a victim of a Democratic cabal led by President Biden, and he has campaigned at every courthouse he has visited.</p>
+<p>In Justice Engoron’s courtroom, Mr. Trump delivered a rally-made rant from the witness stand, marking the climax of a monthslong proceeding that was alternately stultifying and scintillating. The former president attacked one of Ms. James’s lawyers, saying: “You and about every other Democrat, district attorney, A.G. and U.S. attorney were coming after me from 15 different sides. All Democrats, all Trump haters.”</p>
+<p>He did not spare Ms. James herself, or the judge, calling the attorney general a “political hack” and Justice Engoron an “extremely hostile judge.”</p>
+<p>Mr. Trump later delivered his own closing statement, calling Ms. James’s fraud accusation a “fraud on me” and saying that the attorney general was the one who “should pay me.”</p>
+<p>He generated drama even when not in the spotlight, rolling his eyes at the defense table and muttering to his lawyers. He was particularly enraged by the testimony of his former fixer, Michael D. Cohen, who linked Mr. Trump directly to the fraud scheme.</p>
+<p>Mr. Trump’s lawyers succeeded in rattling Mr. Cohen, and asked, based on apparent contradictions in his testimony, that Justice Engoron throw out the case. When the judge declined, Mr. Trump abruptly stood up and stormed out of the courtroom.</p>
+<p>The judge largely tolerated Mr. Trump’s behavior, but early on, he barred the former president from attacking his staff members, most prominently his law clerk, who sat near the judge throughout the trial so they could confer. Mr. Trump twice violated that order, prompting $15,000 in fines from the judge.</p>
+<p>Courtroom theatrics notwithstanding, the evidence presented was often tedious, consisting of years-old emails and spreadsheets. Through that documentary evidence, Ms. James’s lawyers showed that Mr. Trump’s company had ignored appraisals and manipulated numbers to inflate the value of properties such as golf clubs and office buildings, sometimes to absurd heights.</p>
+<p>The most blatant exaggeration was the listed size of Mr. Trump’s triplex apartment in Trump Tower on Fifth Avenue. For years, the former president had valued it as if it were 30,000 square feet, when it was actually 10,996.</p>
+<p>In his ruling, Justice Engoron blasted Mr. Trump and the other defendants, saying that misstating the apartment’s size was the only error to which they would admit.</p>
+<p>Justice Engoron wrote that he was not looking to “judge morality” — only to find facts and apply the law.</p>
+<p>“The court intends to protect the integrity of the financial marketplace and, thus, the public as a whole,” he wrote.</p>
+<p>Justice Engoron added that Mr. Trump’s refusal to admit error left him with no choice but to conclude that the former president would continue to commit fraud unless he was stopped.</p>
+</font>
+]]></content>
+      <tags>
+        <tag>外刊精读</tag>
+        <tag>nytimes</tag>
       </tags>
   </entry>
 </search>
