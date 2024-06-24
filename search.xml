@@ -336,29 +336,304 @@ suffice it to say</p>
     <content><![CDATA[<div style='font-family: Times New Roman, 仿宋'>
 <p><a href="https://www.ft.com/content/253da081-fd61-4ea0-8fbd-2bf2b27d72fd" target="_blank" rel="noopener">Apple Intelligence: iPhone maker takes control with its own AI vision</a><br>
 OpenAI’s Sam Altman stays in the background as Tim Cook reveals upgraded Siri with ChatGPT-powered features</p>
-</div>
-<a id="more"></a>
+</div><a id="more"></a>
 <div style='font-family: Times New Roman, 仿宋'>
-<p>When it finally arrived, the hottest and most widely telegraphed partnership in Silicon Valley was announced so quickly that the audience at Apple’s headquarters in Cupertino barely had time to applaud it.</p>
-<p>Anyone expecting OpenAI’s Sam Altman, one of the key players in the generative artificial intelligence fever that has swept the tech sector, to appear onstage with Tim Cook at Apple’s flagship annual developer event for an iconic photo opportunity will have been disappointed.</p>
-<p>The focus of Apple’s event on Monday was on just that: Apple. And its message was that the partnership with OpenAI was merely the first of many.</p>
-<p>Apple’s pitch to investors worried it is slipping behind on the technology is that if the first wave of generative AI has concerned artificial intelligence that understands the broader world, the iPhone maker is uniquely positioned to offer generative AI that understands you.</p>
-<p>That means Apple’s own generative AI models received top billing. “Apple Intelligence” is the tech giant’s catch-all term for a suite of models, built and trained by Apple, that will be embedded in its new operating systems iOS 18, iPadOS18, and macOS Sequoia.</p>
-<p>The company has not built generative models of the complexity and scale offered by rivals. It has opted instead to act as a gateway to other products on the market that can do the things Apple cannot. Its on-device foundational model has 3bn parameters. OpenAI’s GPT-4o and Google’s Gemini Pro are estimated to have more than a trillion.</p>
-<p>“It doesn’t surprise me [that Apple focused on its own solutions] because they want to emphasise that they are in control,” said Gene Munster at Deepwater Asset Management. There is, he said, a “light year gap” between their model’s capabilities and OpenAI’s, and “they are not going to play that piece up”.</p>
-<p>Neither Apple nor OpenAI would say whether the partnership involved one of them paying the other in the same way that Google pays Apple about $20bn a year to be the default search engine on the iPhone maker’s devices.</p>
-<p>“We know that there are other models out there, and some of them have really fantastic world knowledge,” Apple senior vice-president for software Craig Federighi said following the keynote presentation. Apple, he said, is simply “starting with the best” and already has an eye on another deal with Google over Gemini.</p>
-<p>But even if Apple is focused on its own solutions, a cultural shift is still under way, Munster said. “Apple’s AI, at the core of it, is in someone else’s hands,” he said. “They’ve never gone to a third party to license a core technology.” The company’s longtime search partnership with Google, he said, concerns a feature on the device, whereas AI “is more of an operating system”.</p>
-<p>Apple is playing up its traditional differentiator. It says its on-device models bring privacy and security benefits, emphasising that any personal data used to train its own AI models will stay within its ecosystem. These will run as much as possible on the device. Where they do need to use the cloud, queries will go to servers owned and controlled by Apple. The idea is that users will not even notice which is being used.</p>
-<p>The features this enables, such as custom-generated emojis, smart photo editing that allows users to seamlessly remove unwanted people or objects from photos, writing and drawing assistants, and a smarter Siri capable of more contextual awareness and interacting with both Apple’s apps and third-party apps, are incremental. The idea is that the iPhone and its productivity features will get smarter over time as the hardware gets more powerful and Apple’s own models catch up.</p>
-<p>In the meantime, ChatGPT will be tasked with handling more complex questions sent to Siri. Those might involve, for example, sending a picture of an ingredient that OpenAI’s models can identify and recommend recipes for. It will also be integrated into Apple’s writing tools.</p>
-<p>Users will not be forced to use the feature and will receive a prompt from Siri before doing so. OpenAI meanwhile promises “built-in” privacy protections every time Siri pings ChatGPT. Requests will not be stored — which would allow a third party to develop a profile of a user — and users’ IP addresses will be obscured. Users can choose to connect their ChatGPT account, which will mean that ChatGPT’s data policies will then apply.</p>
-<p>The move still had Tesla chief executive and X owner Elon Musk fuming. On X, he said that Apple apparently “isn’t smart enough to make their own AI” and “has no clue” about what OpenAI would do with the data. He said he would ban Apple devices at his companies if OpenAI were integrated with them, calling it “an unacceptable security violation”.</p>
-<p>If nothing else, Musk’s intervention reflected the intense scrutiny facing AI partnerships in Big Tech, with regulators vowing to intervene to address concentrations of power.</p>
-<p>Meanwhile, if users want Apple’s new features, they will need to be on Apple’s latest and most powerful iPhones — the iPhone 15 Pro and Pro Max — powered by the newest A17 Pro chip. For laptops and tablets, the features will run on devices equipped with the M series of chips, which date back to 2020.</p>
-<p>If iPhone users are clinging on to older models for longer, the demand that even smaller generative models place on ageing hardware creates an incentive for them to upgrade. The iPhone 16, expected later this year, now seems set for a heavy marketing push highlighting its generative AI features.</p>
-<p>Francisco Jeronimo, data and analytics vice-president at the IDC research group, said the event marked “the beginning of a new era for Apple and for their users”, with Apple positioning itself to benefit from a future “supercycle” of device sales as it transitions to new “intelligent devices”.</p>
-<p>Apple shares dipped after the event on Monday. But they roared back Tuesday morning, climbing more than 3 per cent to touch a record high.</p>
+<ul>
+<li>主标题
+<ul>
+<li>take control 掌控，控制，获得主导权</li>
+<li>vision 此处的意思是愿景，战略
+<ul>
+<li>mission 使命 value 价值观</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>副标题
+<ul>
+<li>stay in the background 待在幕后</li>
+<li>reveal 揭示，展示
+<ul>
+<li>辨析 show，reveal，indicate<br>
+show 用于陈述内容和所指内容完全符合时，reveal 用来传达需要分析或思考的结论，indicate 可以用来避免明确肯定的说法，即带有不确定性</li>
+</ul>
+</li>
+<li>upgraded adj. 升级了的</li>
+<li>ChatGPT-powered 即 ChatGPT 赋能的</li>
+</ul>
+</li>
+</ul>
+<p>When it finally arrived, the hottest and most <strong>widely telegraphed</strong> partnership in Silicon Valley was announced so quickly that the audience at Apple’s headquarters in Cupertino barely had time to applaud it.</p>
+<ul>
+<li>widely telegraphed 广泛传播的</li>
+<li>Silicon Valley 硅谷</li>
+<li>headquarter 总部</li>
+<li>applaud 鼓掌</li>
+</ul>
+<p>Anyone <em>expecting</em> OpenAI’s Sam Altman, one of the key players in the <strong>generative artificial intelligence</strong> fever that has <strong>swept</strong> the <strong>tech sector</strong>, <em>to</em> appear onstage with Tim Cook at Apple’s <strong>flagship</strong> annual developer event for an <strong>iconic</strong> photo opportunity <em>will have been disappointed</em>.</p>
+<ul>
+<li>generative artificial intelligence 生成式人工智能</li>
+<li>fever 浪潮，热潮</li>
+<li>swept 席卷，（风浪等）席卷，横扫</li>
+<li>tech sector 科技界</li>
+<li>flagship 旗舰</li>
+<li>annual developer event 年度开发者大会</li>
+<li>iconic 标志性的</li>
+<li>OpenAI 公司的山姆·奥特曼是席卷科技行业的生成式人工智能热潮中的关键人物之一，如果有人期待他与蒂姆·库克一起出现在苹果旗舰年度开发者大会的舞台上，并获得标志性的拍照机会，那恐怕要失望了。</li>
+</ul>
+<p>The focus of Apple’s event on Monday was on just that: Apple. And its message was that the <strong>partnership</strong> with OpenAI was merely the <em>first of many</em>.</p>
+<ul>
+<li>partnership 合作</li>
+<li>merely the first of many 仅仅是众多中的第一个</li>
+</ul>
+<p>Apple’s pitch to investors worried it is <strong>slipping behind</strong> on the technology is that if the first wave of generative AI has <strong>concerned</strong> artificial intelligence that understands the broader world, the iPhone maker <em>is</em> uniquely <em>positioned to</em> offer generative AI that understands you.</p>
+<ul>
+<li>Apple’s pitch (to investors … on the technology) is that (if … , the iPhone maker …)
+<ul>
+<li>pitch 这里是指苹果的营销话术，说辞</li>
+<li>investors worried it is slipping behind on the technology
+<ul>
+<li>slip behind 落后，同义替代：lag behind</li>
+</ul>
+</li>
+<li>concern 关注</li>
+<li>be positioned to 被定为在
+<ul>
+<li>e.g. The city is uniquely positioned to attract international investment.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>That means Apple’s own generative AI models received <strong>top billing</strong>. “Apple Intelligence” is the tech giant’s <strong>catch-all term</strong> for <em>a suite of</em> models, built and trained by Apple, that will <em>be embedded in</em> its new operating systems iOS 18, iPadOS18, and macOS Sequoia.</p>
+<ul>
+<li>top billing 领衔主演，突出强调，特别宣传
+<ul>
+<li>billing （演员表上的）排名</li>
+</ul>
+</li>
+<li>“Apple Intelligence” is the tech giant’s catch-all term for a suite of models, built and trained by Apple, that will be embedded in its new operating systems iOS 18, iPadOS18, and macOS Sequoia.
+<ul>
+<li>tech giant 科技巨头</li>
+<li>call-all term 笼统的概念，总称</li>
+<li>a suite of 一套，同 a set of</li>
+<li>be embedded in 被嵌入
+<ul>
+<li>embed 嵌入</li>
+<li>e.g. These traditional views are deeply embedded in our society.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The company has not built generative models of the <strong>complexity</strong> and <strong>scale</strong> offered by <strong>rivals</strong>. It has <em><strong>opted</strong></em> instead <em>to</em> act as a <strong>gateway</strong> to other products on the market that can do the things Apple cannot. Its on-device foundational model has 3bn parameters. OpenAI’s GPT-4o and Google’s Gemini Pro <em>are <strong>estimated</strong> to</em> have more than a trillion.</p>
+<ul>
+<li>The company has not built generative models of the complexity and scale offered by rivals.
+<ul>
+<li>complexity 复杂度 scale 规模</li>
+<li>rival 竞争对手</li>
+<li>该公司（苹果）还没有建立起（与）竞争对手所提供的复杂度与规模（相当）的生成模型</li>
+</ul>
+</li>
+<li>It has opted instead to act as a gateway to other products on the market that can do the things Apple cannot.
+<ul>
+<li>opt to do 选择做</li>
+<li>act as 充当 gateway 门户</li>
+<li>相反，它选择充当通往市场上其他产品的门户，这些产品可以做到苹果无法做到的事情</li>
+</ul>
+</li>
+<li>be estimated to 据估计</li>
+</ul>
+<p>“It doesn’t surprise me [that Apple focused on its own solutions] because they want to <strong>emphasise</strong> that they <em>are in control</em>,” said Gene Munster at Deepwater Asset Management. There is, he said, a “light year gap” between their model’s capabilities and OpenAI’s, and “they are not going to <em>play</em> that piece <em>up</em>”.</p>
+<ul>
+<li>they want to emphasise that they are in control
+<ul>
+<li>emphasise 强调</li>
+<li>be in control，掌控局面，处于决策者的位置</li>
+</ul>
+</li>
+<li>asset 资产</li>
+<li>play that piece up
+<ul>
+<li>that piece 那一方面，指前面的 a “light year gap” between their model’s capabilities and OpenAI’s</li>
+<li>play … up 强调，夸大，突出</li>
+</ul>
+</li>
+</ul>
+<p>Neither Apple nor OpenAI would say whether the partnership involved one of them paying the other <em><strong>in the same way that</strong></em> Google pays Apple about $20bn a year to be the <strong>default search engine</strong> on the iPhone maker’s devices.</p>
+<ul>
+<li>Neither … nor … 两者都不</li>
+<li>in the same way that 以 … 一样的方式
+<ul>
+<li>e.g. I love you in the same way that mice love rice.</li>
+</ul>
+</li>
+<li>default search engine 默认搜索引擎</li>
+<li>苹果和 OpenAI 都不愿透露，双方的合作是否涉及一方向另一方支付费用，就像谷歌每年向苹果支付约 200 亿美元，作为苹果设备的默认搜索引擎一样。</li>
+</ul>
+<p>“We know that there are other models <strong>out there</strong>, and some of them have really fantastic world knowledge,” Apple <strong>senior vice-president</strong> for software Craig Federighi said <strong>following</strong> the keynote presentation. Apple, he said, is simply “starting with the best” and already <em>has an eye on</em> another deal with Google over Gemini.</p>
+<ul>
+<li>out there 在那里，在那边</li>
+<li>senior vice-president 高级副总裁</li>
+<li>following 在…之后 keynote presentation 主题演讲</li>
+<li>have an eye on 着眼于，考虑</li>
+</ul>
+<p>But even if Apple is focused on its own solutions, a <strong>cultural shift</strong> is still <strong>under way</strong>, Munster said. “Apple’s AI, at the core of it, is in someone else’s hands,” he said. “They’ve never gone to a third party to license a core technology.” The company’s longtime search partnership with Google, he said, concerns a feature on the device, whereas AI “is more of an operating system”.</p>
+<ul>
+<li>cultural shift 文化转变</li>
+<li>under way 在进行中</li>
+<li>third party 第三方</li>
+</ul>
+<p>Apple is <strong>playing up</strong> its traditional <strong>differentiator</strong>. It says its on-device models bring privacy and security benefits, emphasising that any personal data used to train its own AI models will stay within its <strong>ecosystem</strong>. These will run as much as possible on the device. Where they do need to use the cloud, <strong>queries</strong> will go to servers owned and controlled by Apple. The idea is that users will not even notice which is being used.</p>
+<ul>
+<li>Apple is playing up its traditional differentiator.
+<ul>
+<li>play up</li>
+<li>differentiator 微分器；微分电路；区分者
+<ul>
+<li>这里指差异化的优势</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>It says its on-device models bring privacy and security benefits, emphasising that any personal data used to train its own AI models will stay within its ecosystem.
+<ul>
+<li>privacy and security 隐私和安全</li>
+<li>ecosystem 生态系统</li>
+</ul>
+</li>
+<li>Where they do need to use the cloud, queries will go to servers owned and controlled by Apple.
+<ul>
+<li>Where 句首引导状语从句，在 … 的情况下，有条件或时间之意
+<ul>
+<li>e.g. Where there is a will, there is a way. 有志者事竟成</li>
+</ul>
+</li>
+<li>query 询问</li>
+</ul>
+</li>
+</ul>
+<p>The features this enables, such as <strong>custom-generated</strong> emojis, <strong>smart photo editing</strong> that allows users to <strong>seamlessly</strong> remove unwanted people or objects from photos, writing and drawing assistants, and a smarter Siri <strong>capable of</strong> more <strong>contextual awareness</strong> and <strong>interacting with</strong> both Apple’s apps and third-party apps, are <strong>incremental</strong>. The idea is that the iPhone and its productivity features will get smarter <strong>over time</strong> as the hardware gets more powerful and Apple’s own models catch up.</p>
+<ul>
+<li>custom-generated 定制化生成的</li>
+<li>seamlessly 无缝地</li>
+<li>capable of 有能力</li>
+<li>contextual awareness 有上下文意识的</li>
+<li>interacting with 与 … 交互</li>
+<li>incremental 增加的，递增的；
+<ul>
+<li>increment 增加</li>
+</ul>
+</li>
+<li>productivity 生产率，生产力</li>
+<li>overtime 随着时间推移</li>
+<li>catch up 追赶</li>
+</ul>
+<p><em>In the meantime</em>, ChatGPT will <em>be tasked with</em> handling more complex questions sent to Siri. Those might involve, for example, sending a picture of an <strong>ingredient</strong> that OpenAI’s models can identify and recommend <strong>recipes</strong> for. It will also <em>be integrated into</em> Apple’s writing tools.</p>
+<ul>
+<li>In the meantime 与此同时；在此期间</li>
+<li>be tasked with 被指派负责做</li>
+<li>ingredient 原料 recipe 烹饪法，食谱</li>
+<li>be integrated into 被整合到，被集成到
+<ul>
+<li>integrate （使）合并，成为一体；（使）加入，融入群体；（使）取消种族隔离；求……的积分；</li>
+</ul>
+</li>
+</ul>
+<p>Users will not <em>be forced to</em> use the feature and will receive a <strong>prompt</strong> from Siri before doing so. OpenAI meanwhile promises “built-in” privacy protections every time Siri pings ChatGPT. Requests will not be stored — which would allow a third party to develop a <strong>profile</strong> of a user — and users’ IP addresses will be <strong>obscured</strong>. Users can choose to connect their ChatGPT account, which will mean that ChatGPT’s data policies will then apply.</p>
+<ul>
+<li>be forced to 被迫；不得不做某事</li>
+<li>prompt 提示；鼓励</li>
+<li>built-in 内置 privacy protection 隐私保护</li>
+<li>profile 简介，概况；（记载个人心理或行为特点、喜好等的）档案；</li>
+<li>obscure
+<ul>
+<li>v. 遮掩，遮蔽；使费解</li>
+<li>adj. 难以说清楚的，模糊的</li>
+</ul>
+</li>
+</ul>
+<p>The move still <em><strong>had</strong></em> Tesla chief executive and X owner Elon Musk <em><strong>fuming</strong></em>. On X, he said that Apple <strong>apparently</strong> “isn’t smart enough to make their own AI” and “<strong>has no clue</strong>” <strong>about</strong> what OpenAI would do with the data. He said he would ban Apple devices at his companies if OpenAI were integrated with them, calling it “an unacceptable security <strong>violation</strong>”.</p>
+<ul>
+<li>The move still had Tesla chief executive and X owner Elon Musk fuming.
+<ul>
+<li>move 表示这一举动</li>
+<li>had … fuming 使役用法
+<ul>
+<li>fuming 愤怒的，做宾补；fume 发怒，生气</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>On X, he said that Apple apparently “isn’t smart enough to make their own AI” and “has no clue” about what OpenAI would do with the data.
+<ul>
+<li>apparently 显然</li>
+<li>have no clue about 对 … 毫无线索，一无所知
+<ul>
+<li>e.g. People have no clue about the origin of universe.</li>
+<li>clue 线索，提示；理解，想法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>He said he would ban Apple devices at his companies if OpenAI were integrated with them, calling it “an unacceptable security violation”.
+<ul>
+<li>ban 禁止</li>
+<li>an unacceptable security violation 不可接受的安全违规行为</li>
+</ul>
+</li>
+</ul>
+<p>If nothing else, Musk’s <strong>intervention</strong> reflected the intense scrutiny facing AI partnerships in Big Tech, with regulators <strong>vowing to</strong> intervene to address concentrations of power.</p>
+<ul>
+<li>if nothing else
+<ul>
+<li>如果没有别的办法：如果没有其他更好/更差的可能性，用于表示某事可能是唯一真实、可接受、可取或确定的事情。</li>
+</ul>
+</li>
+<li>intervention 干预，介入；调停，斡旋
+<ul>
+<li>intervene 干预，干涉；</li>
+</ul>
+</li>
+<li>the intense scrutiny 严格的审查</li>
+<li>regulator 监管者 vow to 发誓去做</li>
+<li>concentrations of power 权力集中
+<ul>
+<li>concentration 专心，专注；关注，重视；集中，聚集；</li>
+</ul>
+</li>
+</ul>
+<p>Meanwhile, if users want Apple’s new features, they will need to be on Apple’s latest and most powerful iPhones — the iPhone 15 Pro and Pro Max — powered by the newest A17 Pro chip. For laptops and <strong>tablets</strong>, the features will run on devices <strong>equipped with</strong> the M series of chips, which date back to 2020.</p>
+<ul>
+<li>laptops and tablets 笔记本电脑与平板电脑</li>
+<li>equipped with 装备着 …；有 … 的配置</li>
+<li>date back to 追溯到</li>
+</ul>
+<p>If iPhone users <em>are <strong>clinging</strong> on</em> to older models for longer, the demand that even smaller generative models place on ageing hardware creates an incentive for them to upgrade. The iPhone 16, expected later this year, now seems set for a heavy marketing push highlighting its generative AI features.</p>
+<ul>
+<li>be clinging on 坚持
+<ul>
+<li>cling 抓住，抱紧；黏附；依附；坚持；</li>
+</ul>
+</li>
+<li>incentive 激励</li>
+</ul>
+<p>Francisco Jeronimo, data and analytics vice-president at the IDC research group, said the event marked “the beginning of a new era for Apple and for their users”, with Apple <strong>positioning itself</strong> to <strong>benefit from</strong> a future “supercycle” of device sales as it <strong>transitions</strong> to new “intelligent devices”.</p>
+<ul>
+<li>position itself 定位自己</li>
+<li>benefit from 从 … 中收益</li>
+<li>transition 过渡，转变</li>
+</ul>
+<p>Apple <strong>shares</strong> <strong>dipped</strong> after the event on Monday. But they <strong>roared back</strong> Tuesday morning, climbing more than 3 per cent to <strong>touch a record high</strong>.</p>
+<ul>
+<li>share 股份，股票；（共有财产的）部分所有权；责任，贡献；份额；
+<ul>
+<li>dip 下跌 plummet 猛跌</li>
+<li>roar back 迅猛回升</li>
+<li>touch a record high 创新高</li>
+</ul>
+</li>
+</ul>
 </div>
 ]]></content>
       <tags>
