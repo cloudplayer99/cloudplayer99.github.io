@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.1/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cloudplayer.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="欢迎来到未来 ¶试图回答一个终极问题：为什么要招你而不是买一个 $ 200 的 Claude Max？ 当代码（一个工程结构中填进去的具体内容）本身越来越不值钱之后，我们应该怎样组织人、AI、工具、规范、测试和架构，可靠地构造一套可维护的实际工程？ ¶未来工程师的价值  提出有价值的问题； 把工程未知拆解成细分的独立实验； 了解 AI 的边界； 不断审核检验及时停止不合适的方向； 能够对长期结果负">
+<meta property="og:type" content="article">
+<meta property="og:title" content="欢迎来到未来">
+<meta property="og:url" content="https://cloudplayer.top/2026/09/15/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%9C%AA%E6%9D%A5/index.html">
+<meta property="og:site_name" content="Cloud_Player&#39;s Notes">
+<meta property="og:description" content="欢迎来到未来 ¶试图回答一个终极问题：为什么要招你而不是买一个 $ 200 的 Claude Max？ 当代码（一个工程结构中填进去的具体内容）本身越来越不值钱之后，我们应该怎样组织人、AI、工具、规范、测试和架构，可靠地构造一套可维护的实际工程？ ¶未来工程师的价值  提出有价值的问题； 把工程未知拆解成细分的独立实验； 了解 AI 的边界； 不断审核检验及时停止不合适的方向； 能够对长期结果负">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-09-15T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-15T15:31:10.646Z">
+<meta property="article:author" content="Cloud_Player">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="生成式软件工程">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cloudplayer.top/2026/09/15/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%9C%AA%E6%9D%A5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>欢迎来到未来 | Cloud_Player's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cloud_Player's Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://cloudplayer.top/2026/09/15/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%9C%AA%E6%9D%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Cloud_Player">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cloud_Player's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          欢迎来到未来
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-09-15 20:00:00 / 修改时间：23:31:10" itemprop="dateCreated datePublished" datetime="2026-09-15T20:00:00+08:00">2026-09-15</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>欢迎来到未来</h1>
+<h2 id="试图回答一个终极问题：为什么要招你而不是买一个-200-的-Claude-Max？"><a class="header-anchor" href="#试图回答一个终极问题：为什么要招你而不是买一个-200-的-Claude-Max？">¶</a>试图回答一个终极问题：为什么要招你而不是买一个 $ 200 的 Claude Max？</h2>
+<p>当代码（一个工程结构中填进去的具体内容）本身越来越不值钱之后，我们应该怎样组织人、AI、工具、规范、测试和架构，可靠地构造一套可维护的实际工程？</p>
+<h3 id="未来工程师的价值"><a class="header-anchor" href="#未来工程师的价值">¶</a>未来工程师的价值</h3>
+<ul>
+<li>提出有价值的问题；</li>
+<li>把工程未知拆解成细分的独立实验；</li>
+<li>了解 AI 的边界；</li>
+<li>不断审核检验及时停止不合适的方向；</li>
+<li>能够对长期结果负责。</li>
+</ul>
+<p>一个重要的交叉路口（AI，ChatGPT 2022），未来已来，一个过去昂贵、稀缺的能力变成普通人的日用品，一大类原本需要专业训练才能完成的智力劳动，正在迅速变便宜。以前需要掌握一个领域的实际技能才能做这个领域的事，现在 Agent 能代替人做相当一大部分的工作。</p>
+<h3 id="从-LLM-到-Agent"><a class="header-anchor" href="#从-LLM-到-Agent">¶</a>从 LLM 到 Agent</h3>
+<p>大语言模型 LLM，一个学习到的概率分布 $\text{Pr} \{ \text{token} | \text{context} \}$，它不断的预测，一个一个 $\text{token}$ 的生成下去；<br>
+从 Transformer 论文出现，到现象级产品 ChatGPT，GPT o-family &amp; DeepSeek R1 (2024–2025)，Chain-of-thought 实现 in-context reasoning，test-time scaling 还可以增加轨迹、候选、搜索与验证，显著提高复杂推理能力，GPT-5 配合 search，幻觉已经非常低，进化的 Claude family (2025)，ReAct 型 Agent 从“不可用”到“能用”，Agent 产品开始爆发。<br>
+模型从“输入文本→输出文本”到“思考→调用工具→观察结果→继续思考→再次调用工具”，已经形成 loop，于是模型从“回答问题”到“执行任务，把事情推进”。<br>
+那么自然语言就代替了原来需要的大量高门槛的技能（譬如前所未见的 Linux 命令），不需要原理也可以用好，效率暴增。<br>
+白板的 Agent 只是起点，Agent 拥有一套完整的生态系统，domain-specific 任务对应 domain-specific 的插件（你想做的事一定也有别人想做），computer use，让 Agent 探索页面、理解流程，完成一次任务，然后直接让 Agent 沉淀成脚本（Programming by Demonstration），从操作到资产，信息源→信息处理→操作，所有的能力都可以互相增强，自由组合，无限复用，就连工作流都可以让 AI 自己改进，这样的未来已经被预见，于是一个问题出现了，所有重复的事情，即是所有可以被抽象出来的程序，都可以被系统性地取代了，而不是 AI-native 的人（或说旧人类）仍然“心安理得”地每天做重复的事情。<br>
+知道编程（everything is code）的能力界限，把（自然语言）需求“编译”成工具（可重复执行的闭环），Agent 让我们从 Bits 到 Atoms。</p>
+<h3 id="AI-并非万能，产品是系统性工程"><a class="header-anchor" href="#AI-并非万能，产品是系统性工程">¶</a>AI 并非万能，产品是系统性工程</h3>
+<p>前端、后端、交互、运营，任何一个环节出错，产品暴毙。AI 每一个环节都可以做，但组织不当也会暴毙。AI 跑出来极有可能是硬编码的、完全无法维护的 AI slop，上来就对着需求写（过拟合了，没有泛化能力），直接陷入维护泥潭。能运行只是工程的起点。</p>
+<ul>
+<li>三个空间：</li>
+<li>Intent Space</li>
+<li>Spec Space</li>
+<li>Impl Space</li>
+</ul>
+<p>“正确”发生在哪一层？模型如何补 Gap？<br>
+模型补 Gap 靠猜——如果事无巨细都问，人会觉得很讨厌，有无穷多 spec “满足” intent，也有无穷多 impl 方法“满足” spec，模型训练的目标是“在有限的 token 内完成任务”，太容易“立即遵循指令”（AI 上手解决问题的能力太强，做题家）；正确的软件工程动作：先别急，再讨论一下。一旦在重大决策上犯错，就需要巨大的成本来补；它们不像人一样有重构意识。模型/Agent 很强，但如何人机协同发挥最大的能力？这就是真正需要讨论的。</p>
+<p>“The Mythical Man-Month”<br>
+大型动物一旦陷入焦油坑就很难逃脱，而濒死的动物又会引来各种掠食者。<br>
+软件工程研究什么？怎么把一件大事，在人和工具的共同协作下做成？有技术，也有人类学、社会学、管理学的部分（人因）。<br>
+ICSE 2027 Call for Papers: AI4SE, Analytics, Architecture and Design, Dependability and Security, Evolution, Human and Social Aspects, Requirements and Modeling, SE4AI, Testing and Analysis<br>
+教育体系“考试就是终点”的弊端，所有“考题”都是分钟级能求解的；而没有 self-motivation，就从未训练过如何解决 long-horizon 的问题。</p>
+<p>LLM 时代，失败的定义没有变<br>
+失败 = 软件不满足 intent 和 constraints；“真实 intent”和“真实 spec”都非常困难，gap 的自由度很高；<br>
+GRPO（Group Relative Policy Optimization） 的 long-horizon reward 信号其实很弱，不像人在经历项目失败以后会“三观尽毁”再重生（方法论重塑）。<br>
+一个预测：这个问题会在不久的将来被“大力出奇迹”解决，这样人类就不剩下什么了。</p>
+<p>怎么让工程不失败？把不可控的大赌注，改造成可验证的小赌注。<br>
+拆解：把大“国民级应用”的大 gap 拆成小 gap；<br>
+验证：测试、CI，确保门控；<br>
+迭代：小步提交、快速验证，让噪音尽早暴露；</p>
+<p>当 AI 连“品味”也学会以后？人的稀缺性继续向上游迁移（更高层次的抽象）。</p>
+<p>古法编程死了，而软件工程暂时还没有死。</p>
+<h3 id="项目经理，从执行者到管理者"><a class="header-anchor" href="#项目经理，从执行者到管理者">¶</a>项目经理，从执行者到管理者</h3>
+<p>当人的大部分精力不再投入到每一个细节上去，人的思维自然变化，如何管理项目（组织 AI），对项目整体流程（workflow）、成果（AI 边界）的预期，对项目成本（怎么烧 token）的有效控制。<br>
+AI-native 代表一种思维模式的重构：</p>
+<ul>
+<li>怎么解释任务？起点即提问（Prompt-First）“我该怎么做”变成“我该如何向 AI 描述这个问题/构建这个系统”；</li>
+<li>怎么分活给干事的？将复杂大目标拆解为可被 AI 理解的节点；</li>
+<li>团队怎么纠错，团队成员的能力范围有多大？适应 AI 带来的“概率性输出”（幻觉或非确定性），懂得如何在模糊中通过迭代（Iterative Prompting）获取高精准度结果；</li>
+<li>怎么发挥团队力量？AI 从工具到协同创作、介入决策；</li>
+<li>你不是一个人，你有一个team：一人即团队（One-person Unicorn），能快速跨领域交付成果；</li>
+<li>不懂直接问专家：非线性学习；</li>
+<li>不是你干了多少活，而是你要知道这个活怎么分配资源组织人力（AI 力）干出来？决定个体价值的不再是劳动时长，而是个人的审美、判断力、独特的洞察力以及对真实场景的深刻理解。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Cloud_Player 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Cloud_Player 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cloud_Player
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cloudplayer.top/2026/09/15/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%9C%AA%E6%9D%A5/" title="欢迎来到未来">https://cloudplayer.top/2026/09/15/欢迎来到未来/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag"># 生成式软件工程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/30/ArtTheGuardianParisOlympicGamesopeningceremonyahigh-kitschriversidespectacle/" rel="prev" title="【外刊精读】Paris Olympic Games opening ceremony：a high-kitsch, riverside spectacle">
+      <i class="fa fa-chevron-left"></i> 【外刊精读】Paris Olympic Games opening ceremony：a high-kitsch, riverside spectacle
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">欢迎来到未来</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%95%E5%9B%BE%E5%9B%9E%E7%AD%94%E4%B8%80%E4%B8%AA%E7%BB%88%E6%9E%81%E9%97%AE%E9%A2%98%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%8B%9B%E4%BD%A0%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B9%B0%E4%B8%80%E4%B8%AA-200-%E7%9A%84-Claude-Max%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">试图回答一个终极问题：为什么要招你而不是买一个 $ 200 的 Claude Max？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E4%BB%B7%E5%80%BC"><span class="nav-number">1.1.1.</span> <span class="nav-text">未来工程师的价值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E-LLM-%E5%88%B0-Agent"><span class="nav-number">1.1.2.</span> <span class="nav-text">从 LLM 到 Agent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AI-%E5%B9%B6%E9%9D%9E%E4%B8%87%E8%83%BD%EF%BC%8C%E4%BA%A7%E5%93%81%E6%98%AF%E7%B3%BB%E7%BB%9F%E6%80%A7%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.1.3.</span> <span class="nav-text">AI 并非万能，产品是系统性工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86%EF%BC%8C%E4%BB%8E%E6%89%A7%E8%A1%8C%E8%80%85%E5%88%B0%E7%AE%A1%E7%90%86%E8%80%85"><span class="nav-number">1.1.4.</span> <span class="nav-text">项目经理，从执行者到管理者</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cloud_Player"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Cloud_Player</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-name">博文</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cloudplayer99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:newphilosophy1504@gmail.com" title="E-Mail → mailto:newphilosophy1504@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/cloudplayer99" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;cloudplayer99" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/348530250" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;348530250" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/qq_43742385" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43742385" rel="noopener" target="_blank">烯烃@</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jianshu.com/u/33ae80156f74" title="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;33ae80156f74" rel="noopener" target="_blank">Day_cun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://music.163.com/#/artist?id=30002005" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;30002005" rel="noopener" target="_blank">DEANBE</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cloud_Player</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">698k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:34</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.1/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three-waves.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/canvas_lines.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4c51b139d4c2973e0cbc',
+      clientSecret: 'f34e9dd30d03bcdd48050c5aed39458dc83e1772',
+      repo        : 'cloudplayer99.github.io',
+      owner       : 'cloudplayer99',
+      admin       : ['cloudplayer99'],
+      id          : '2026/09/15/欢迎来到未来/',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":300,"hOffset":-50,"vOffset":100},"mobile":{"show":true},"log":false});</script></body>
+</html>

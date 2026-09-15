@@ -15521,4 +15521,69 @@ $[4][2\ 4][5\ 1]$<br>
         <tag>学习笔记</tag>
       </tags>
   </entry>
+  <entry>
+    <title>欢迎来到未来</title>
+    <url>/2026/09/15/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%9C%AA%E6%9D%A5/</url>
+    <content><![CDATA[<h1>欢迎来到未来</h1>
+<h2 id="试图回答一个终极问题：为什么要招你而不是买一个-200-的-Claude-Max？"><a class="header-anchor" href="#试图回答一个终极问题：为什么要招你而不是买一个-200-的-Claude-Max？">¶</a>试图回答一个终极问题：为什么要招你而不是买一个 $ 200 的 Claude Max？</h2>
+<p>当代码（一个工程结构中填进去的具体内容）本身越来越不值钱之后，我们应该怎样组织人、AI、工具、规范、测试和架构，可靠地构造一套可维护的实际工程？</p>
+<h3 id="未来工程师的价值"><a class="header-anchor" href="#未来工程师的价值">¶</a>未来工程师的价值</h3>
+<ul>
+<li>提出有价值的问题；</li>
+<li>把工程未知拆解成细分的独立实验；</li>
+<li>了解 AI 的边界；</li>
+<li>不断审核检验及时停止不合适的方向；</li>
+<li>能够对长期结果负责。</li>
+</ul>
+<p>一个重要的交叉路口（AI，ChatGPT 2022），未来已来，一个过去昂贵、稀缺的能力变成普通人的日用品，一大类原本需要专业训练才能完成的智力劳动，正在迅速变便宜。以前需要掌握一个领域的实际技能才能做这个领域的事，现在 Agent 能代替人做相当一大部分的工作。</p>
+<h3 id="从-LLM-到-Agent"><a class="header-anchor" href="#从-LLM-到-Agent">¶</a>从 LLM 到 Agent</h3>
+<p>大语言模型 LLM，一个学习到的概率分布 $\text{Pr} \{ \text{token} | \text{context} \}$，它不断的预测，一个一个 $\text{token}$ 的生成下去；<br>
+从 Transformer 论文出现，到现象级产品 ChatGPT，GPT o-family &amp; DeepSeek R1 (2024–2025)，Chain-of-thought 实现 in-context reasoning，test-time scaling 还可以增加轨迹、候选、搜索与验证，显著提高复杂推理能力，GPT-5 配合 search，幻觉已经非常低，进化的 Claude family (2025)，ReAct 型 Agent 从“不可用”到“能用”，Agent 产品开始爆发。<br>
+模型从“输入文本→输出文本”到“思考→调用工具→观察结果→继续思考→再次调用工具”，已经形成 loop，于是模型从“回答问题”到“执行任务，把事情推进”。<br>
+那么自然语言就代替了原来需要的大量高门槛的技能（譬如前所未见的 Linux 命令），不需要原理也可以用好，效率暴增。<br>
+白板的 Agent 只是起点，Agent 拥有一套完整的生态系统，domain-specific 任务对应 domain-specific 的插件（你想做的事一定也有别人想做），computer use，让 Agent 探索页面、理解流程，完成一次任务，然后直接让 Agent 沉淀成脚本（Programming by Demonstration），从操作到资产，信息源→信息处理→操作，所有的能力都可以互相增强，自由组合，无限复用，就连工作流都可以让 AI 自己改进，这样的未来已经被预见，于是一个问题出现了，所有重复的事情，即是所有可以被抽象出来的程序，都可以被系统性地取代了，而不是 AI-native 的人（或说旧人类）仍然“心安理得”地每天做重复的事情。<br>
+知道编程（everything is code）的能力界限，把（自然语言）需求“编译”成工具（可重复执行的闭环），Agent 让我们从 Bits 到 Atoms。</p>
+<h3 id="AI-并非万能，产品是系统性工程"><a class="header-anchor" href="#AI-并非万能，产品是系统性工程">¶</a>AI 并非万能，产品是系统性工程</h3>
+<p>前端、后端、交互、运营，任何一个环节出错，产品暴毙。AI 每一个环节都可以做，但组织不当也会暴毙。AI 跑出来极有可能是硬编码的、完全无法维护的 AI slop，上来就对着需求写（过拟合了，没有泛化能力），直接陷入维护泥潭。能运行只是工程的起点。</p>
+<ul>
+<li>三个空间：</li>
+<li>Intent Space</li>
+<li>Spec Space</li>
+<li>Impl Space</li>
+</ul>
+<p>“正确”发生在哪一层？模型如何补 Gap？<br>
+模型补 Gap 靠猜——如果事无巨细都问，人会觉得很讨厌，有无穷多 spec “满足” intent，也有无穷多 impl 方法“满足” spec，模型训练的目标是“在有限的 token 内完成任务”，太容易“立即遵循指令”（AI 上手解决问题的能力太强，做题家）；正确的软件工程动作：先别急，再讨论一下。一旦在重大决策上犯错，就需要巨大的成本来补；它们不像人一样有重构意识。模型/Agent 很强，但如何人机协同发挥最大的能力？这就是真正需要讨论的。</p>
+<p>“The Mythical Man-Month”<br>
+大型动物一旦陷入焦油坑就很难逃脱，而濒死的动物又会引来各种掠食者。<br>
+软件工程研究什么？怎么把一件大事，在人和工具的共同协作下做成？有技术，也有人类学、社会学、管理学的部分（人因）。<br>
+ICSE 2027 Call for Papers: AI4SE, Analytics, Architecture and Design, Dependability and Security, Evolution, Human and Social Aspects, Requirements and Modeling, SE4AI, Testing and Analysis<br>
+教育体系“考试就是终点”的弊端，所有“考题”都是分钟级能求解的；而没有 self-motivation，就从未训练过如何解决 long-horizon 的问题。</p>
+<p>LLM 时代，失败的定义没有变<br>
+失败 = 软件不满足 intent 和 constraints；“真实 intent”和“真实 spec”都非常困难，gap 的自由度很高；<br>
+GRPO（Group Relative Policy Optimization） 的 long-horizon reward 信号其实很弱，不像人在经历项目失败以后会“三观尽毁”再重生（方法论重塑）。<br>
+一个预测：这个问题会在不久的将来被“大力出奇迹”解决，这样人类就不剩下什么了。</p>
+<p>怎么让工程不失败？把不可控的大赌注，改造成可验证的小赌注。<br>
+拆解：把大“国民级应用”的大 gap 拆成小 gap；<br>
+验证：测试、CI，确保门控；<br>
+迭代：小步提交、快速验证，让噪音尽早暴露；</p>
+<p>当 AI 连“品味”也学会以后？人的稀缺性继续向上游迁移（更高层次的抽象）。</p>
+<p>古法编程死了，而软件工程暂时还没有死。</p>
+<h3 id="项目经理，从执行者到管理者"><a class="header-anchor" href="#项目经理，从执行者到管理者">¶</a>项目经理，从执行者到管理者</h3>
+<p>当人的大部分精力不再投入到每一个细节上去，人的思维自然变化，如何管理项目（组织 AI），对项目整体流程（workflow）、成果（AI 边界）的预期，对项目成本（怎么烧 token）的有效控制。<br>
+AI-native 代表一种思维模式的重构：</p>
+<ul>
+<li>怎么解释任务？起点即提问（Prompt-First）“我该怎么做”变成“我该如何向 AI 描述这个问题/构建这个系统”；</li>
+<li>怎么分活给干事的？将复杂大目标拆解为可被 AI 理解的节点；</li>
+<li>团队怎么纠错，团队成员的能力范围有多大？适应 AI 带来的“概率性输出”（幻觉或非确定性），懂得如何在模糊中通过迭代（Iterative Prompting）获取高精准度结果；</li>
+<li>怎么发挥团队力量？AI 从工具到协同创作、介入决策；</li>
+<li>你不是一个人，你有一个team：一人即团队（One-person Unicorn），能快速跨领域交付成果；</li>
+<li>不懂直接问专家：非线性学习；</li>
+<li>不是你干了多少活，而是你要知道这个活怎么分配资源组织人力（AI 力）干出来？决定个体价值的不再是劳动时长，而是个人的审美、判断力、独特的洞察力以及对真实场景的深刻理解。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>生成式软件工程</tag>
+      </tags>
+  </entry>
 </search>
